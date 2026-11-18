@@ -1,0 +1,1845 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB University Dashboard</title>
+<!-- Google Font: Plus Jakarta Sans / Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config" id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#F3EEFF',
+              100: '#E7DCFF',
+              500: '#6338EE',
+              600: '#4F22DC',
+              700: '#4315D1',
+              800: '#3410A8',
+              navy: '#0E1022',
+              card: '#FFFFFF',
+              bg: '#F5F6FA',
+              subtle: '#6B7280'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 10px rgba(22, 28, 45, 0.04)',
+            'card-hover': '0 10px 25px -5px rgba(22, 28, 45, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Typography & Layout Rules -->
+<style data-purpose="typography">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0E1022;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #25284B;
+      border-radius: 4px;
+    }
+  </style>
+<meta content="web_dashboard" name="shell-type"><style>
+  #catalogContainer:not([data-api-ready="true"]) .category-block,
+  #featuredCourseSection:not([data-api-ready="true"]),
+  #categoryChipsSection:not([data-api-ready="true"]),
+  #staticMasterclassesSection {
+    display: none !important;
+  }
+</style>
+<link href="../responsive.css" rel="stylesheet">
+</head>
+<body class="bg-[#F5F6FA] text-slate-800 flex min-h-screen overflow-x-hidden">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="w-64 bg-[#0E1022] flex-shrink-0 flex flex-col justify-between py-6 px-4 select-none min-h-screen z-20" data-purpose="main-sidebar">
+<div>
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-3 px-3 mb-8"><a class="block w-full py-1" href="#"><img alt="UCC SKILLSHUB Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCVWTYgkzn-xXat5aYzOFQIe6hHFIOr52TSlwG_b7mghmgvlWLQOgdAluO49EhpxP3yI7c_7TdEoFe6jpbkDxKLUrLkMCd0j2A7Xt-SM1VARwTWtgT7K1m5-TRtlXHAxtzyr5LmHc_uanBi2RV0E_TonjJqbuADrBK3sSVPqWliYWg19VE1Qxjn1vjjekXNb5JRlO1a400IB3-U6EYl1Nsquu07TKCABRAnjdddEEkV"></a></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="space-y-1.5">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#dashboard">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Dashboard</span>
+</a>
+<!-- Courses -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F22DC] text-white font-medium text-sm shadow-md shadow-indigo-900/50 transition" href="#courses">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Courses</span>
+</a>
+<!-- Skill Pathways -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#pathways">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Skill Pathways</span>
+</a>
+<!-- Projects -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#projects">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Projects</span>
+</a>
+<!-- Certificates -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#certificates">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Certificates</span>
+</a>
+<!-- Portfolio -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#portfolio">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Portfolio</span>
+</a>
+<!-- Opportunities -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#opportunities">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Opportunities</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#analytics">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div>
+<hr class="border-[#202444] mb-4">
+<div class="space-y-1.5">
+<!-- Settings -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#settings">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Settings</span>
+</a>
+<!-- Notifications with Badge -->
+<a class="flex items-center justify-between px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#notifications">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Notifications</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-[#E53E3E] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+</a>
+<!-- Logout -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#logout">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Top App Header -->
+<header class="px-8 py-5 flex items-center justify-between gap-6 bg-[#F5F6FA] sticky top-0 z-10" data-purpose="top-header">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</div>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#EBEEF5] text-sm text-gray-800 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-5">
+<!-- Notification Bell Icon -->
+<button aria-label="Notifications" class="relative p-2 text-gray-600 hover:text-gray-900 transition">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full ring-2 ring-[#F5F6FA]"></span>
+</button>
+<!-- User Profile Pill -->
+<div class="flex items-center gap-3 cursor-pointer group select-none">
+<img data-profile-photo="" alt="" class="w-9 h-9 rounded-full object-cover ring-2 ring-purple-100">
+<span class="text-sm font-semibold text-gray-800">Prince Egah</span>
+<svg class="w-4 h-4 text-gray-500 group-hover:text-gray-700 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Grid Layout -->
+<main class="px-8 pb-10 flex-1 grid grid-cols-1 xl:grid-cols-12 gap-8 items-start"><div class="flex flex-col w-full">
+<!-- PAGE HEADER & AMBIENT INTRO -->
+<section class="relative w-full mb-8">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed mb-3.5">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Official Academic Catalog • UCC 2024-2025</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-background tracking-tight">Explore Courses</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+          Discover skills that go beyond the classroom. Learn, develop yourself and prepare for high-impact opportunities in the modern African and global digital economy.
+        </p>
+</div>
+<!-- Quick Metrics Counter Group -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-auto">
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-2 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-secondary text-base">auto_stories</span>
+<span class="font-label-sm text-label-sm">Available</span>
+</div>
+<div class="font-stat-counter text-stat-counter text-on-background" id="liveCourseCount">0</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Matching courses</span>
+</div>
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-2 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-secondary text-base">play_circle</span>
+<span class="font-label-sm text-label-sm">Enrolled</span>
+</div>
+<div class="font-stat-counter text-stat-counter text-secondary" id="activeCourseCount">—</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Your courses</span>
+</div>
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-2 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-secondary text-base">task_alt</span>
+<span class="font-label-sm text-label-sm">Completed</span>
+</div>
+<div class="font-stat-counter text-stat-counter text-on-background" id="completedCourseCount">—</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Your courses</span>
+</div>
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-2 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-secondary text-base">military_tech</span>
+<span class="font-label-sm text-label-sm">Certificate-eligible</span>
+</div>
+<div class="font-stat-counter text-stat-counter text-on-background" id="eligibleCourseCount">—</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Eligible courses</span>
+</div>
+</div>
+</div>
+<!-- SEARCH & FILTER TOOLBAR -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-4">
+<!-- Search Input with Keyboard shortcut -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-lg pointer-events-none">search</span>
+<input class="w-full pl-11 pr-24 py-3 bg-surface-container-low rounded-xl text-on-background placeholder:text-outline font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:shadow-md transition" id="courseSearchInput" placeholder="Search for courses, skills or topics..." type="text">
+<div class="absolute right-3.5 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+<span>⌘</span><span>K</span>
+</div>
+</div>
+<!-- Filters & Sorting Group -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+<!-- Level Dropdown -->
+<div class="relative flex-1 sm:flex-initial">
+<select class="appearance-none w-full sm:w-auto bg-surface-container-low text-on-surface-variant font-label-md text-label-md py-3 pl-3.5 pr-8 rounded-xl cursor-pointer focus:outline-none focus:bg-surface-container-lowest" id="levelFilter">
+<option value="all">All Levels</option>
+<option value="beginner">Beginner</option>
+<option value="intermediate">Intermediate</option>
+<option value="advanced">Advanced</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-base">expand_more</span>
+</div>
+<!-- Duration Dropdown -->
+<div class="relative flex-1 sm:flex-initial">
+<select class="appearance-none w-full sm:w-auto bg-surface-container-low text-on-surface-variant font-label-md text-label-md py-3 pl-3.5 pr-8 rounded-xl cursor-pointer focus:outline-none focus:bg-surface-container-lowest" id="durationFilter">
+<option value="all">Any Duration</option>
+<option value="short">Under 2 hrs</option>
+<option value="medium">2 - 5 hrs</option>
+<option value="long">5+ hrs</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-base">expand_more</span>
+</div>
+<div class="relative flex-1 sm:flex-initial">
+<select class="appearance-none w-full sm:w-auto bg-surface-container-low text-on-surface-variant font-label-md text-label-md py-3 pl-3.5 pr-8 rounded-xl cursor-pointer focus:outline-none focus:bg-surface-container-lowest" id="certificateFilter">
+<option value="all">Any Certificate</option>
+<option value="true">Certificate eligible</option>
+<option value="false">No certificate</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-base">expand_more</span>
+</div>
+<!-- Sort Dropdown -->
+<div class="relative flex-1 sm:flex-initial">
+<select class="appearance-none w-full sm:w-auto bg-surface-container-low text-on-surface-variant font-label-md text-label-md py-3 pl-3.5 pr-8 rounded-xl cursor-pointer focus:outline-none focus:bg-surface-container-lowest" id="sortFilter">
+<option value="popular">Most Popular</option>
+<option value="rated">Highest Rated</option>
+<option value="newest">Newest Added</option>
+<option value="duration">Shortest First</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-base">swap_vert</span>
+</div>
+<!-- View Mode Toggle -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl">
+<button aria-label="Grid View" class="p-2 rounded-lg bg-surface-container-lowest text-secondary shadow-sm transition" id="viewGridBtn">
+<span class="material-symbols-outlined text-base">grid_view</span>
+</button>
+<button aria-label="List View" class="p-2 rounded-lg text-outline hover:text-on-background transition" id="viewListBtn">
+<span class="material-symbols-outlined text-base">view_list</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- HORIZONTAL CATEGORY NAVIGATION CHIPS -->
+<section class="sticky top-0 z-20 py-2.5 bg-surface-dim/40 backdrop-blur-md -mx-8 px-8 mb-8" id="categoryChipsSection" data-api-ready="false">
+<div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1" id="categoryChipsContainer" aria-label="Course categories">
+<button class="category-chip active flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-secondary text-on-secondary shadow-sm" data-category="all">
+<span class="material-symbols-outlined text-sm">widgets</span>
+<span>All Courses</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-on-secondary/20">72</span>
+</button>
+<button class="category-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-background" data-category="ai">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+<span>AI &amp; Technology</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">8</span>
+</button>
+<button class="category-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-background" data-category="communication">
+<span class="material-symbols-outlined text-sm">record_voice_over</span>
+<span>Communication &amp; Public Speaking</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">8</span>
+</button>
+<button class="category-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-background" data-category="business">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+<span>Business &amp; Entrepreneurship</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">6</span>
+</button>
+<button class="category-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-background" data-category="finance">
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+<span>Finance &amp; Literacy</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">5</span>
+</button>
+<button class="category-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-background" data-category="workplace">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span>Workplace Skills</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">6</span>
+</button>
+<button class="category-chip flex items-center gap-2 px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap transition bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-background" data-category="leadership">
+<span class="material-symbols-outlined text-sm">diversity_3</span>
+<span>Leadership &amp; Mindset</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">5</span>
+</button>
+</div>
+</section>
+<!-- FEATURED SPOTLIGHT COURSES (4 PROMINENT CARDS) -->
+<section class="mb-10 w-full" id="featuredCourseSection" data-api-ready="false">
+  <div class="bg-surface-container-low rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-surface-container-highest/60 relative overflow-hidden flex flex-col xl:flex-row gap-8 items-stretch justify-between">
+    <div class="flex-1 flex flex-col justify-between max-w-2xl">
+      <div>
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300/80 font-label-sm text-label-sm font-bold">
+            <span class="material-symbols-outlined text-sm text-amber-600" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+            <span>STAFF PICK • FEATURED TRACK</span>
+          </span>
+          <span class="text-slate-700 font-label-md text-label-md font-medium">
+            Cohort 6 • Starts March 10
+          </span>
+        </div>
+        <h2 class="font-headline-xl text-headline-xl text-slate-900 font-bold tracking-tight mb-3 leading-tight">
+          Full-Stack Software Engineering Accelerator &amp; AI Cloud Systems
+        </h2>
+        <p class="font-body-md text-body-md text-slate-700 mb-6 leading-relaxed">
+          Master real-world modern architecture from TypeScript, Next.js, and Distributed Microservices to LLM Orchestration. Build 3 production-grade portfolio applications reviewed directly by senior engineering mentors.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-slate-700 font-label-sm text-label-sm mb-4">
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-slate-800 text-base">calendar_month</span>
+            <span class="font-medium text-slate-800">12 Weeks • Comprehensive</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-secondary text-base">verified</span>
+            <span class="font-medium text-slate-800">University Verified Credential</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 mb-6 font-label-sm text-label-sm">
+          <div class="flex items-center gap-1.5 text-slate-800 font-medium">
+            <span class="material-symbols-outlined text-secondary text-base">rocket_launch</span>
+            <span>3 Capstones</span>
+          </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200/80 text-slate-800 font-semibold">
+            <span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="text-slate-900 font-bold">4.9</span>
+            <span class="text-slate-700 font-normal">(1,240 university reviews)</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <button class="px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm shadow-md border border-slate-200 flex items-center gap-2 transition hover:shadow-lg">
+            <span>Enroll Now — Free for Students</span>
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </button>
+          <button class="px-4 py-3 rounded-full text-slate-700 hover:text-slate-900 font-medium text-sm flex items-center gap-1.5 transition">
+            <span class="material-symbols-outlined text-base text-slate-500">play_circle</span>
+            <span>Preview Syllabus</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+          <img class="w-10 h-10 rounded-full object-cover ring-2 ring-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9L8alfGdZYDmktFgySfh2VxvbdddZhmZFpuHqq5PEXL_bM-3h-hex3PrEpJJofS3D9-yQWuTuB9oJW2_IM0dVsOcb0lJpfo4xX3--f_R2Oq8H_wSDdbUR_ylO8rUxh2hcX-dgd955yZjrdQ9Dn06ql4V9leTWmU9VYS--qQP0JAI0QIvWSzkFc9I-Mf2wd5IJjGoECFZW3RtaLh7IXfBZ8xfcTfTqZP332opM1U8" alt="Prof. Kwame Sterling">
+          <div>
+            <p class="font-label-md text-label-md text-slate-800 font-bold">Prof. Kwame Sterling</p>
+            <p class="font-body-sm text-body-sm text-slate-500">Ex-Google Fellow • Faculty Mentor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full xl:w-80 bg-white rounded-2xl p-5 shadow-lg border border-slate-200/80 flex flex-col justify-between self-stretch">
+      <div>
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+          <h3 class="font-headline-sm text-headline-sm text-slate-900 font-bold">Program Milestones</h3>
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-semibold">Fast-Track</span>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+            <div>
+              <p class="font-label-md text-label-md text-slate-900 font-semibold">Scalable REST &amp; GraphQL Engine</p>
+              <p class="font-body-sm text-body-sm text-slate-600">Database schema, caching &amp; load tests</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+            <div>
+              <p class="font-label-md text-label-md text-slate-900 font-semibold">AI Retrieval Augmented Agent</p>
+              <p class="font-body-sm text-body-sm text-slate-600">Vector DB embeddings &amp; query routing</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+            <div>
+              <p class="font-label-md text-label-md text-slate-900 font-semibold">Multi-Tenant SaaS Deployment</p>
+              <p class="font-body-sm text-body-sm text-slate-600">CI/CD pipelines, Docker containerization</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-1.5 text-slate-800 font-medium">
+          <span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">stars</span>
+          <span>Recruiter Showcase Included</span>
+        </div>
+        <span class="font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">88 Seats Remaining</span>
+      </div>
+    </div>
+  </div>
+</section><section class="mb-14" id="staticMasterclassesSection">
+<div class="flex items-center justify-between mb-5">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background tracking-tight">Featured Masterclasses</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Handpicked high-demand credentials designed specifically for UCC undergraduates &amp; finalists.</p>
+</div>
+<span class="hidden sm:inline-flex items-center gap-1.5 text-secondary font-label-md text-label-md hover:underline cursor-pointer">
+        View curriculum syllabus
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Showcase Card 1 -->
+<div class="group bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-16 -top-16 w-52 h-52 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-all pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+              AI &amp; Technology
+            </span>
+<div class="flex items-center gap-1 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-on-surface-variant">(1,420 students)</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background group-hover:text-secondary transition-colors mb-2">
+            AI for Everyday Productivity
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">
+            Master generative prompt engineering, workflow automation, and speed up academic research workflows with verified modern AI pipelines.
+          </p>
+<div class="flex flex-wrap items-center gap-3 mb-6 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>4h 30m</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">signal_cellular_alt</span>
+<span>Beginner</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-base">workspace_premium</span>
+<span>UCC Certified</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto flex items-center justify-between bg-surface-container-low/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-on-secondary-fixed text-label-md">
+              KM
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Dr. Kwame Mensah</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Senior AI Researcher, UCC CS Dept</p>
+</div>
+</div>
+<button class="px-5 py-2.5 rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md transition flex items-center gap-1.5 shadow-sm">
+<span>Enroll Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Showcase Card 2 -->
+<div class="group bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-16 -top-16 w-52 h-52 bg-secondary-fixed/50 rounded-full blur-3xl group-hover:bg-secondary-fixed transition-all pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+              Communication
+            </span>
+<div class="flex items-center gap-1 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.8</span>
+<span class="text-on-surface-variant">(980 students)</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background group-hover:text-secondary transition-colors mb-2">
+            Mastering Public Speaking &amp; Pitching
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">
+            Overcome podium anxiety, develop command of body language, and deliver persuasive project defenses and entrepreneurship pitch decks.
+          </p>
+<div class="flex flex-wrap items-center gap-3 mb-6 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>3h 15m</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">signal_cellular_alt</span>
+<span>All Levels</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-base">workspace_premium</span>
+<span>Certificate Available</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto flex items-center justify-between bg-surface-container-low/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface-variant text-label-md">
+              NA
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Prof. Nana Aba Arthur</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rhetoric &amp; Oratory Lead</p>
+</div>
+</div>
+<button class="px-5 py-2.5 rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md transition flex items-center gap-1.5 shadow-sm">
+<span>Enroll Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Showcase Card 3 -->
+<div class="group bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-16 -top-16 w-52 h-52 bg-secondary-fixed-dim/30 rounded-full blur-3xl group-hover:bg-secondary-fixed-dim/50 transition-all pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+              Finance &amp; Business
+            </span>
+<div class="flex items-center gap-1 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-on-surface-variant">(2,100 students)</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background group-hover:text-secondary transition-colors mb-2">
+            Introduction to Business &amp; Personal Finance
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">
+            Master cash flow fundamentals, student budgeting, treasury bills, and early venture financial modeling tailored for the Ghanaian context.
+          </p>
+<div class="flex flex-wrap items-center gap-3 mb-6 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>6h 00m</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">signal_cellular_alt</span>
+<span>Beginner</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-base">workspace_premium</span>
+<span>Certificate Available</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto flex items-center justify-between bg-surface-container-low/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface-variant text-label-md">
+              KB
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Kofi Boateng, CA</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Investment Analyst &amp; UCC Alum</p>
+</div>
+</div>
+<button class="px-5 py-2.5 rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md transition flex items-center gap-1.5 shadow-sm">
+<span>Enroll Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Showcase Card 4 -->
+<div class="group bg-surface-container-lowest rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-16 -top-16 w-52 h-52 bg-secondary/15 rounded-full blur-3xl group-hover:bg-secondary/25 transition-all pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+              Professional Skills
+            </span>
+<div class="flex items-center gap-1 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.7</span>
+<span class="text-on-surface-variant">(850 students)</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background group-hover:text-secondary transition-colors mb-2">
+            Professional Writing &amp; Executive Proofreading
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">
+            Structure concise executive summaries, high-converting scholarship letters, and polished business memorandums with zero stylistic fluff.
+          </p>
+<div class="flex flex-wrap items-center gap-3 mb-6 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>2h 45m</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">signal_cellular_alt</span>
+<span>All Levels</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-base">workspace_premium</span>
+<span>Certificate Available</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto flex items-center justify-between bg-surface-container-low/50 -mx-6 -mb-6 px-6 py-4 rounded-b-2xl">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface-variant text-label-md">
+              SO
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Sarah Osei</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lead Comms Strategist</p>
+</div>
+</div>
+<button class="px-5 py-2.5 rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md transition flex items-center gap-1.5 shadow-sm">
+<span>Enroll Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- COMPLETE ORGANIZED COURSE CATALOGUE -->
+<div class="space-y-12" id="catalogContainer" data-api-ready="false" aria-live="polite">
+<!-- CATEGORY A: Artificial Intelligence & Technology -->
+<section class="category-block" data-category-group="ai">
+<div class="flex items-center justify-between pb-3 mb-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">smart_toy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Artificial Intelligence &amp; Technology</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">8 Courses</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Equip yourself with digital intelligence and automation tools reshaping enterprise workspaces.</p>
+</div>
+</div>
+<button class="hidden sm:flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline">
+          View all in AI <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+<!-- AI Card 1 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="beginner" data-title="ai for everyday productivity">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed">Tech &amp; Productivity</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Free via SSO</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">AI for Everyday Productivity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Leverage conversational LLMs and prompt chains to speed up student and workplace research.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>4.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Kwame Mensah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 2 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="intermediate" data-title="prompt engineering fundamentals">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Generative AI</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Prompt Engineering Fundamentals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Formulate high-precision prompt templates for code generation, data synthesis, and creative briefs.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>1.8 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">E. Tetteh-Quarshie</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 3 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="beginner" data-title="ai tools for students and researchers">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Research Tech</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">AI Tools for Students &amp; Researchers</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Discover verified citation generators, semantic literature mapping, and automated dataset reviews.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>3.0 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Patricia Doku</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 4 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="introduction to generative ai">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Core AI</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Introduction to Generative AI</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Foundational neural concepts: tokens, context windows, diffusion models, and ethical AI safeguards.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.6</span>
+<span>•</span>
+<span>2.0 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">CS Faculty Hub</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 5 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="ai-powered research and academic writing">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Academic Hub</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">AI-Powered Academic Writing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">UCC standards on academic integrity, thesis structuring, and ethical generative co-writing.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>3.5 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Prof. J. Annan</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 6 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="no-code automation for beginners">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Workflow Automation</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">No-Code Automation for Beginners</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Connect Zapier, Google Workspace, and Airtable into zero-effort automated business pipelines.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Samuel K. Appiah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 7 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="digital literacy and computer fundamentals">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Foundations</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Core</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Digital Literacy Fundamentals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Master cloud file systems, keyboard ergonomics, modern OS utilities, and secure authentication.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.5</span>
+<span>•</span>
+<span>2.0 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">UCC IT Services</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- AI Card 8 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="cybersecurity and online safety">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Security</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Cybersecurity &amp; Online Safety</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Defend against phishing, social engineering, credential leaks, and manage multi-factor access.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>3.2 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Frank B. Mensah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CATEGORY B: Communication & Public Speaking -->
+<section class="category-block" data-category-group="communication">
+<div class="flex items-center justify-between pb-3 mb-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">record_voice_over</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Communication &amp; Public Speaking</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">8 Courses</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Convey ideas with conviction, articulate complex arguments, and command attention in boardrooms.</p>
+</div>
+</div>
+<button class="hidden sm:flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline">
+          View all in Communication <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+<!-- Comm Card 1 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="all" data-title="mastering public speaking">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Oratory</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Mastering Public Speaking</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Eliminate filler words, manage microphone pacing, and structure memorable audience narratives.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>3.2 hrs</span>
+<span>•</span>
+<span>All Levels</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Prof. Nana Aba</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 2 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="effective communication skills">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Foundations</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Effective Communication Skills</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Bridge personal styles, avoid ambiguity in emails, and build collaborative team rapport.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>2.1 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Clement Adjei</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 3 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="presentation skills for students and professionals">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Visual Pitching</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Presentation Skills &amp; Slide Craft</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Craft uncluttered Keynote/PowerPoint decks that let your key data takeaways shine.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>2.8 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">G. Baafi, Lead UX</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 4 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="intermediate" data-title="business communication and professional etiquette">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Workplace Etiquette</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Business Etiquette &amp; Protocol</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Professional email sign-offs, conference call moderation, and client management etiquette.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.6</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Sarah Osei</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 5 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="long" data-level="advanced" data-title="negotiation and persuasion skills">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Influence</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Negotiation &amp; Persuasion Skills</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Win-win tactics, anchor pricing, salary negotiations, and closing agreements under pressure.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>5.2 hrs</span>
+<span>•</span>
+<span>Advanced</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">K. Forson, Esq.</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 6 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="active listening and interpersonal dynamics">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Interpersonal</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Active Listening &amp; Dynamics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">De-escalate friction, demonstrate empathetic attention, and extract underlying client intent.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>1.8 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Mercy Addo</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 7 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="storytelling for effective impact">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Storytelling</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Storytelling for Impact</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Turn dry metrics into memorable human stories for donors, grantmakers, and corporate leads.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>2.5 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Kweku Darko</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<!-- Comm Card 8 -->
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="advanced" data-title="conflict resolution and difficult conversations">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Resolution</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Conflict Resolution &amp; Difficult Chats</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Frameworks for performance critiques, peer tension, and leading teams through organizational change.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>3.0 hrs</span>
+<span>•</span>
+<span>Advanced</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Charles Frimpong</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CATEGORY C: Business & Entrepreneurship -->
+<section class="category-block" data-category-group="business">
+<div class="flex items-center justify-between pb-3 mb-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">rocket_launch</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Business &amp; Entrepreneurship</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">6 Courses</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Transform campus projects into scalable businesses in vibrant local and cross-border African markets.</p>
+</div>
+</div>
+<button class="hidden sm:flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline">
+          View all in Business <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="beginner" data-title="introduction to business and entrepreneurship">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Foundations</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Intro to Business &amp; Enterprise</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Validate problems, customer discovery interviews, and ideation cycles for campus founders.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>3.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Bright K.</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="intermediate" data-title="business model development and canvas">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Strategy</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Business Model Development &amp; Canvas</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Map value propositions, key partnerships, cost structures, and revenue streams visually.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>2.2 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">UCC Incubator Team</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="beginner" data-title="starting and managing a small business">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Operations</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Managing a Small Enterprise</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Registration via Registrar General's Dept, inventory management, bookkeeping, and supplier relations.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>4.0 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Abena Mensah, MBA</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="marketing fundamentals and digital growth">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Growth &amp; Sales</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Marketing &amp; Digital Growth</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Social ad campaigns, conversion funnels, local influencer partnerships, and organic search.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>3.0 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Nana Yaw O.</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="long" data-level="advanced" data-title="business opportunities in african markets">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">AfCFTA &amp; Trade</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Business in African Markets</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Leveraging AfCFTA protocols, logistics across West Africa, and regional digital currencies.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>5.5 hrs</span>
+<span>•</span>
+<span>Advanced</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. George Amissah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="introduction to freelancing and client acquisition">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Gig Economy</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Freelancing &amp; Client Acquisition</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Setup profiles on Upwork/Fiverr, write winning proposals, and handle international wire payouts.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>2.0 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Kelvin B. Arthur</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CATEGORY D: Finance & Financial Literacy -->
+<section class="category-block" data-category-group="finance">
+<div class="flex items-center justify-between pb-3 mb-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Finance &amp; Financial Literacy</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">5 Courses</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Practical budgeting, high-yield investment tools, and digital payments management for undergraduates.</p>
+</div>
+</div>
+<button class="hidden sm:flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline">
+          View all in Finance <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="personal finance fundamentals">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Foundations</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Personal Finance Fundamentals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Understand inflation, compounding returns, emergency funds, and credit fundamentals.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>1.8 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Kofi Boateng, CA</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="budgeting and money management for students">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Student Life</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Budgeting for University Students</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Track semester allowances, eliminate impulse spending, and build a semester contingency buffer.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Efua A. Barnes</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="introduction to saving and investing">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Wealth Building</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Intro to Saving &amp; Investing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Government of Ghana Treasury bills, mutual funds, unit trusts, and index investment portfolios.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>3.2 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Kofi Boateng, CA</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="understanding banking and mobile money digital payments">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Fintech</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Banking &amp; Mobile Money Fintech</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">GhIPSS instant pay, mobile money agent rails, fees optimization, and fraud prevention methods.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Samuel T. Cobbinah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="long" data-level="advanced" data-title="financial planning and investment decisions">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Advanced Wealth</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Financial Planning &amp; Valuation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Long-term asset allocations, retirement modeling, tax brackets, and discounted cash flow modeling.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>6.0 hrs</span>
+<span>•</span>
+<span>Advanced</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Alex Danquah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CATEGORY E: Professional & Workplace Skills -->
+<section class="category-block" data-category-group="workplace">
+<div class="flex items-center justify-between pb-3 mb-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Professional &amp; Workplace Skills</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">6 Courses</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Accelerate hireability with high-converting job applications, spreadsheets, and interview poise.</p>
+</div>
+</div>
+<button class="hidden sm:flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline">
+          View all in Workplace <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="all" data-title="professional writing and proofreading">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Writing</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Professional Writing &amp; Proofreading</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Eliminate grammatical errors, draft corporate reports, and polish publication-ready memos.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>2.8 hrs</span>
+<span>•</span>
+<span>All Levels</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Sarah Osei</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="cv and resume writing for high-impact applications">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Career Kit</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">High-Impact CV &amp; Resume Writing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Beat Applicant Tracking Systems (ATS), write quantified achievement bullets, and tailor covers.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">UCC Career Services</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="intermediate" data-title="linkedin profile development and social selling">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Personal Branding</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">LinkedIn Mastery &amp; Social Selling</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Position your profile for inbound recruiter outreach, share thought pieces, and expand networks.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>1.8 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">P. Egah, Talent Lead</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="interview preparation and job readiness">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Interviewing</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Interview Prep &amp; Job Readiness</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Master behavioral STAR responses, case interview solving, and post-interview follow-ups.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>2.5 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Evelyn Quarshie</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="time management and workplace productivity">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Productivity</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Time Management &amp; Focus</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Time-blocking systems, Pomodoro sprints, combating student burnout, and energy management.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.6</span>
+<span>•</span>
+<span>1.2 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Daniel Agyeman</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="long" data-level="intermediate" data-title="microsoft excel for workplace data analysis">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Data Tools</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Excel for Workplace Data Analysis</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">XLOOKUP, Pivot Tables, conditional formatting, data cleansing, and executive dashboard views.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>5.0 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Francis Annor</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CATEGORY F: Personal Development & Leadership -->
+<section class="category-block" data-category-group="leadership">
+<div class="flex items-center justify-between pb-3 mb-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">diversity_3</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-background">Personal Development &amp; Leadership</h2>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">5 Courses</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Build character, resilience, self-mastery, and agile leadership to inspire and guide campus peers.</p>
+</div>
+</div>
+<button class="hidden sm:flex items-center gap-1 text-secondary font-label-md text-label-md hover:underline">
+          View all in Leadership <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="all" data-title="emotional intelligence and self-awareness">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">EQ &amp; Mind</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Emotional Intelligence (EQ)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Recognize cognitive biases, regulate reactive impulses, and read social environments effectively.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>2.0 hrs</span>
+<span>•</span>
+<span>All Levels</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. Mercy Addo</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="building self-confidence and growth mindset">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Mindset</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Self-Confidence &amp; Growth Mindset</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Unpack imposter syndrome, transform academic setbacks into learning loops, and build grit.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.7</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">K. Nketia-Gyimah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="intermediate" data-title="leadership fundamentals and team delegation">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Team Leadership</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Leadership &amp; Team Delegation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Delegating without micromanaging, setting team OKRs, and holding accountability circles.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>3.4 hrs</span>
+<span>•</span>
+<span>Intermediate</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Prof. Nana Aba</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="medium" data-level="advanced" data-title="strategic thinking and decision making">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Strategy</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Strategic Thinking &amp; Decisions</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Second-order thinking, probabilistic decision trees, and avoiding sunk-cost traps in projects.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.8</span>
+<span>•</span>
+<span>3.0 hrs</span>
+<span>•</span>
+<span>Advanced</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">Dr. George Amissah</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+<div class="course-card bg-surface-container-lowest rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between" data-duration="short" data-level="beginner" data-title="stress management and resilience in university life">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Wellness</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Stress Management &amp; Resilience</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">Practical mindfulness techniques, exam anxiety reduction, and sleep hygiene for UCC students.</p>
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-on-surface-variant mb-4">
+<span class="flex items-center gap-1 text-amber-500 font-bold"><span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>4.9</span>
+<span>•</span>
+<span>1.5 hrs</span>
+<span>•</span>
+<span>Beginner</span>
+</div>
+</div>
+<div class="pt-3 border-t border-transparent flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[130px]">UCC Counseling Hub</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition">View Course</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="hidden mt-5 flex-col items-center justify-between gap-3 text-sm text-on-surface-variant sm:flex-row" id="coursePagination">
+<span id="coursePageSummary"></span>
+<div class="flex gap-2">
+<button class="rounded-full bg-surface-container-low px-4 py-2 font-semibold hover:bg-surface-container disabled:cursor-not-allowed disabled:opacity-50" id="previousCoursesPage" disabled="">Previous</button>
+<button class="rounded-full bg-secondary px-4 py-2 font-semibold text-on-secondary hover:bg-secondary-container disabled:cursor-not-allowed disabled:opacity-50" id="nextCoursesPage" disabled="">Next</button>
+</div>
+</div>
+<p class="mt-4 hidden text-center font-body-sm text-body-sm text-on-surface-variant" id="courseCatalogueNotice" role="status" aria-live="polite">Loading courses…</p>
+<!-- CALL TO ACTION BANNER / SUGGEST COURSE -->
+<section class="mt-14 mb-4">
+<div class="relative overflow-hidden bg-primary-container text-on-primary rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-secondary-container/30 blur-3xl pointer-events-none"></div>
+<div class="max-w-2xl relative z-10">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-high/20 text-on-primary font-label-sm text-label-sm mb-4">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+          UCC Student Voice
+        </span>
+<h2 class="font-headline-xl text-headline-xl tracking-tight text-white mb-3">Can't find a specific course or micro-credential?</h2>
+<p class="font-body-md text-body-md text-surface-container-highest max-w-xl">
+          We collaborate with department heads, industry leaders, and global platforms to curate exactly what you need. Tell us what skill would unlock your next career milestone.
+        </p>
+</div>
+<div class="relative z-10 flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+<button class="px-6 py-3.5 rounded-full bg-secondary text-white font-label-md text-label-md hover:bg-secondary-container transition-all flex items-center justify-center gap-2 shadow-lg" id="suggestCourseBtn">
+<span class="material-symbols-outlined text-base">add_circle</span>
+<span>Suggest a Course</span>
+</button>
+<button class="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-label-md text-label-md transition flex items-center justify-center gap-2">
+<span>Browse Faculty Archive</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SUGGEST COURSE MODAL -->
+<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4" id="suggestModal">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-2xl p-6 shadow-2xl relative">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md text-on-background">Suggest a New Course</h3>
+<button class="p-1 rounded-full text-outline hover:text-on-background" id="closeModalBtn">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Request a specialized skill pathway or industry credential for the upcoming semester.</p>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Course Title or Topic</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-xl text-on-background font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="e.g. Flutter Mobile App Development" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Target Department or Career Goal</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-xl text-on-background font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="e.g. Computer Science &amp; IT / FinTech careers" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Why is this important for UCC students?</label>
+<textarea class="w-full px-4 py-2.5 bg-surface-container-low rounded-xl text-on-background font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Briefly describe the demand or practical application..." rows="3"></textarea>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-4 py-2 rounded-full text-on-surface-variant font-label-md text-label-md hover:bg-surface-container" id="cancelModalBtn">Cancel</button>
+<button class="px-5 py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container" id="submitSuggestionBtn">Submit Request</button>
+</div>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE FILTERING & VIEW CONTROLLER -->
+<script>
+    (function initCourseInteractions() {
+      const searchInput = document.getElementById('courseSearchInput');
+      const levelFilter = document.getElementById('levelFilter');
+      const durationFilter = document.getElementById('durationFilter');
+      const categoryChips = document.querySelectorAll('.category-chip');
+      const categoryBlocks = document.querySelectorAll('.category-block');
+      const courseCards = document.querySelectorAll('.course-card');
+      const viewGridBtn = document.getElementById('viewGridBtn');
+      const viewListBtn = document.getElementById('viewListBtn');
+
+      let currentCategory = 'all';
+
+      // Category Chip Filter
+      categoryChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          categoryChips.forEach(c => {
+            c.classList.remove('active', 'bg-secondary', 'text-on-secondary');
+            c.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+          });
+
+          chip.classList.add('active', 'bg-secondary', 'text-on-secondary');
+          chip.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+
+          currentCategory = chip.getAttribute('data-category');
+          applyFilters();
+        });
+      });
+
+      // Filter Handler
+      function applyFilters() {
+        const query = (searchInput.value || '').toLowerCase().trim();
+        const selectedLevel = levelFilter.value;
+        const selectedDuration = durationFilter.value;
+
+        categoryBlocks.forEach(block => {
+          const group = block.getAttribute('data-category-group');
+          let visibleCardsInBlock = 0;
+
+          const cards = block.querySelectorAll('.course-card');
+          cards.forEach(card => {
+            const title = (card.getAttribute('data-title') || '').toLowerCase();
+            const level = card.getAttribute('data-level') || 'all';
+            const duration = card.getAttribute('data-duration') || 'all';
+
+            const matchesCategory = (currentCategory === 'all' || currentCategory === group);
+            const matchesQuery = !query || title.includes(query);
+            const matchesLevel = (selectedLevel === 'all' || level === selectedLevel || level === 'all');
+            const matchesDuration = (selectedDuration === 'all' || duration === selectedDuration);
+
+            if (matchesCategory && matchesQuery && matchesLevel && matchesDuration) {
+              card.style.display = '';
+              visibleCardsInBlock++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Toggle visibility of category section itself
+          if (visibleCardsInBlock > 0) {
+            block.style.display = '';
+          } else {
+            block.style.display = 'none';
+          }
+        });
+      }
+
+      // Event listeners
+      if (searchInput) searchInput.addEventListener('input', applyFilters);
+      if (levelFilter) levelFilter.addEventListener('change', applyFilters);
+      if (durationFilter) durationFilter.addEventListener('change', applyFilters);
+
+      // Keyboard Shortcut ⌘K / Ctrl+K to jump to search
+      window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          searchInput && searchInput.focus();
+        }
+      });
+
+      // Toggle Grid / List
+      if (viewListBtn && viewGridBtn) {
+        viewListBtn.addEventListener('click', () => {
+          viewListBtn.classList.add('bg-surface-container-lowest', 'text-secondary', 'shadow-sm');
+          viewListBtn.classList.remove('text-outline');
+          viewGridBtn.classList.remove('bg-surface-container-lowest', 'text-secondary', 'shadow-sm');
+          viewGridBtn.classList.add('text-outline');
+
+          document.querySelectorAll('.category-block .grid').forEach(grid => {
+            grid.classList.remove('md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4');
+            grid.classList.add('grid-cols-1');
+          });
+        });
+
+        viewGridBtn.addEventListener('click', () => {
+          viewGridBtn.classList.add('bg-surface-container-lowest', 'text-secondary', 'shadow-sm');
+          viewGridBtn.classList.remove('text-outline');
+          viewListBtn.classList.remove('bg-surface-container-lowest', 'text-secondary', 'shadow-sm');
+          viewListBtn.classList.add('text-outline');
+
+          document.querySelectorAll('.category-block .grid').forEach(grid => {
+            grid.classList.add('md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4');
+            grid.classList.remove('grid-cols-1');
+          });
+        });
+      }
+
+      // Suggest Course Modal
+      const suggestBtn = document.getElementById('suggestCourseBtn');
+      const modal = document.getElementById('suggestModal');
+      const closeBtn = document.getElementById('closeModalBtn');
+      const cancelBtn = document.getElementById('cancelModalBtn');
+      const submitBtn = document.getElementById('submitSuggestionBtn');
+
+      function openModal() {
+        if (modal) {
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+      }
+
+      function closeModal() {
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      }
+
+      if (suggestBtn) suggestBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          submitBtn.textContent = 'Submitted!';
+          setTimeout(() => {
+            submitBtn.textContent = 'Submit Request';
+            closeModal();
+          }, 800);
+        });
+      }
+    })();
+  </script>
+</div></main>
+</div>
+<!-- END: MainContentArea -->
+
+<script src="../skillshub-api.js"></script>
+<script src="../courses-catalogue.js"></script>
+<script src="../profile.js"></script>
+<script src="../responsive.js"></script>
+</body></html>

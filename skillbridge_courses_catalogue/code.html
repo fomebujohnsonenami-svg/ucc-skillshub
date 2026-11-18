@@ -1,0 +1,1153 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB University Dashboard</title>
+<!-- Google Font: Plus Jakarta Sans / Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config" id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#F3EEFF',
+              100: '#E7DCFF',
+              500: '#6338EE',
+              600: '#4F22DC',
+              700: '#4315D1',
+              800: '#3410A8',
+              navy: '#0E1022',
+              card: '#FFFFFF',
+              bg: '#F5F6FA',
+              subtle: '#6B7280'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 10px rgba(22, 28, 45, 0.04)',
+            'card-hover': '0 10px 25px -5px rgba(22, 28, 45, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Typography & Layout Rules -->
+<style data-purpose="typography">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0E1022;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #25284B;
+      border-radius: 4px;
+    }
+  </style>
+<meta content="web_dashboard" name="shell-type">
+<link href="../responsive.css" rel="stylesheet">
+</head>
+<body class="bg-[#F5F6FA] text-slate-800 flex min-h-screen overflow-x-hidden">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="w-64 bg-[#0E1022] flex-shrink-0 flex flex-col justify-between py-6 px-4 select-none min-h-screen z-20" data-purpose="main-sidebar">
+<div>
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-3 px-3 mb-8"><a href="#" class="block w-full py-1"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCVWTYgkzn-xXat5aYzOFQIe6hHFIOr52TSlwG_b7mghmgvlWLQOgdAluO49EhpxP3yI7c_7TdEoFe6jpbkDxKLUrLkMCd0j2A7Xt-SM1VARwTWtgT7K1m5-TRtlXHAxtzyr5LmHc_uanBi2RV0E_TonjJqbuADrBK3sSVPqWliYWg19VE1Qxjn1vjjekXNb5JRlO1a400IB3-U6EYl1Nsquu07TKCABRAnjdddEEkV" alt="UCC SKILLSHUB Logo" class="h-10 w-auto object-contain"></a></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="space-y-1.5">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#dashboard">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Dashboard</span>
+</a>
+<!-- Courses -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F22DC] text-white font-medium text-sm shadow-md shadow-indigo-900/50 transition" href="#courses">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Courses</span>
+</a>
+<!-- Skill Pathways -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#pathways">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Skill Pathways</span>
+</a>
+<!-- Projects -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#projects">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Projects</span>
+</a>
+<!-- Certificates -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#certificates">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Certificates</span>
+</a>
+<!-- Portfolio -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#portfolio">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Portfolio</span>
+</a>
+<!-- Opportunities -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#opportunities">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Opportunities</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#analytics">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div>
+<hr class="border-[#202444] mb-4">
+<div class="space-y-1.5">
+<!-- Settings -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#settings">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Settings</span>
+</a>
+<!-- Notifications with Badge -->
+<a class="flex items-center justify-between px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#notifications">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Notifications</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-[#E53E3E] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+</a>
+<!-- Logout -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#logout">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Top App Header -->
+<header class="px-8 py-5 flex items-center justify-between gap-6 bg-[#F5F6FA] sticky top-0 z-10" data-purpose="top-header">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</div>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#EBEEF5] text-sm text-gray-800 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-5">
+<!-- Notification Bell Icon -->
+<button aria-label="Notifications" class="relative p-2 text-gray-600 hover:text-gray-900 transition">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full ring-2 ring-[#F5F6FA]"></span>
+</button>
+<!-- User Profile Pill -->
+<div class="flex items-center gap-3 cursor-pointer group select-none">
+<img data-profile-photo="" alt="" class="w-9 h-9 rounded-full object-cover ring-2 ring-purple-100">
+<span class="text-sm font-semibold text-gray-800">Prince Egah</span>
+<svg class="w-4 h-4 text-gray-500 group-hover:text-gray-700 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Grid Layout -->
+<main class="px-8 pb-10 flex-1 grid grid-cols-1 xl:grid-cols-12 gap-8 items-start"><div class="flex flex-col w-full col-span-1 xl:col-span-12 space-y-8">
+<!-- Interactive Style overrides for shell active menu link & subtle aesthetics -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Synchronize Shell Sidebar: Make 'Courses' item active and 'Dashboard' inactive
+      const navLinks = document.querySelectorAll('aside nav a');
+      navLinks.forEach(link => {
+        const text = link.textContent.trim().toLowerCase();
+        if (text.includes('courses')) {
+          link.className = "flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F22DC] text-white font-medium text-sm shadow-md shadow-indigo-900/50 transition";
+          const icon = link.querySelector('svg');
+          if (icon) icon.className = "w-5 h-5 text-white";
+        } else if (text.includes('dashboard')) {
+          link.className = "flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition";
+          const icon = link.querySelector('svg');
+          if (icon) icon.className = "w-5 h-5 text-gray-400";
+        }
+      });
+    });
+  </script>
+<!-- Page Header & Action Controls -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Accredited Curriculum
+          </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">• Updated for 2025/2026 Term</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Explore Courses</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+          Discover practical, job-ready skills designed to complement your university degree and accelerate your transition into global high-impact careers.
+        </p>
+</div>
+<!-- Action Meta Badge -->
+<div class="flex items-center gap-3 self-start md:self-auto">
+<div class="px-4 py-2 rounded-full bg-surface-container-low text-on-surface flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-md text-label-md font-semibold">Showing 48 Available Courses</span>
+</div>
+</div>
+</div>
+<!-- Search & Secondary Toolbar -->
+<div class="bg-surface-container-lowest p-2.5 rounded-2xl shadow-card flex flex-col lg:flex-row items-center justify-between gap-3">
+<!-- Search Input Container -->
+<div class="relative w-full lg:flex-1">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-xl">search</span>
+</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low text-on-surface placeholder:text-outline text-body-md font-body-md rounded-xl border-0 focus:ring-2 focus:ring-secondary transition-all" id="courseSearchInput" placeholder="Search by course name, topic, tool (e.g. Python, Figma), or instructor..." type="text">
+</div>
+<!-- Filter Controls & Sort -->
+<div class="flex items-center gap-2.5 w-full lg:w-auto justify-between lg:justify-end">
+<!-- Quick Filter Toggle for mobile/compact -->
+<button class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container transition shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-secondary text-lg">tune</span>
+<span>Filters</span>
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary text-[11px] font-bold flex items-center justify-center">4</span>
+</button>
+<!-- Sort Select -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">swap_vert</span>
+<select class="pl-9 pr-8 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md border-0 focus:ring-2 focus:ring-secondary cursor-pointer shadow-sm appearance-none">
+<option>Sort: Most Popular</option>
+<option>Highest Rated (4.8+)</option>
+<option>Newest Additions</option>
+<option>Duration: Shortest to Longest</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 text-outline text-base pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Spotlight Banner (Deep violet luminescent card) -->
+<section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary-container via-tertiary-container to-secondary-container text-on-secondary shadow-card-hover p-6 md:p-8 lg:p-10">
+<!-- Ambient decorative light glow -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-secondary/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/3 -top-24 w-72 h-72 bg-on-tertiary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left Content -->
+<div class="lg:col-span-8 space-y-4">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="px-3 py-1 rounded-full bg-on-secondary/15 backdrop-blur-md text-white font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-amber-300 text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+            Staff Pick • Featured Track
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/20 text-secondary-fixed text-label-sm font-label-sm">
+            Cohort 6 • Starts March 10
+          </span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-white tracking-tight leading-tight">
+          Full-Stack Software Engineering Accelerator &amp; AI Cloud Systems
+        </h2>
+<p class="font-body-md text-body-md text-white/80 max-w-2xl leading-relaxed">
+          Master real-world modern architecture from TypeScript, Next.js, and Distributed Microservices to LLM Orchestration. Build 3 production-grade portfolio applications reviewed directly by senior engineering mentors.
+        </p>
+<!-- Highlight Meta Grid -->
+<div class="flex flex-wrap items-center gap-4 sm:gap-6 pt-1 text-white/90">
+<div class="flex items-center gap-2 text-label-md font-label-md">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">calendar_month</span>
+<span>12 Weeks • Comprehensive</span>
+</div>
+<div class="flex items-center gap-2 text-label-md font-label-md">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">verified</span>
+<span>University Verified Credential</span>
+</div>
+<div class="flex items-center gap-2 text-label-md font-label-md">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">rocket_launch</span>
+<span>3 Capstones</span>
+</div>
+<div class="flex items-center gap-1.5 text-label-md font-label-md bg-black/20 px-2.5 py-1 rounded-lg">
+<span class="material-symbols-outlined text-amber-400 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-white">4.9</span>
+<span class="text-white/60">(1,240 university reviews)</span>
+</div>
+</div>
+<!-- Call to Actions & Instructor snippet -->
+<div class="flex flex-wrap items-center gap-4 pt-3">
+<button class="px-7 py-3 rounded-full bg-white text-secondary font-label-md text-label-md font-bold shadow-lg hover:bg-secondary-fixed transition transform hover:-translate-y-0.5 flex items-center gap-2">
+<span>Enroll Now — Free for Students</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+<button class="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-label-md text-label-md transition flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">play_circle</span>
+<span>Preview Syllabus</span>
+</button>
+<!-- Mentor pill -->
+<div class="flex items-center gap-2.5 pl-2 sm:border-l sm:border-white/20 py-1">
+<img class="w-8 h-8 rounded-full object-cover ring-2 ring-white/50" data-alt="Close up professional portrait of a senior African software engineering professor smiling warmly, wearing a crisp modern dark blazer with studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVqNG7QZ54_7xMrYrWvJTqYZ1gXYBUSC5KGJ3nPwlRxAX6_giGF5dSd9ZlZmPuu6yuci4pHYXGs5EoofytjpPEDeEkEIbaQwwJQGq7AOWK7Cud_7pyMGK8k87oXNCMfDVU_xZ7xqqt6TOwUT1O9YPRb3U54OyO7fSb7Aq1QLFNbqdBgbzLiFPY0rFAOCZTP_bwvzdkcWZXS8xR1t-tZlW9YM_k6aiY86FesueV8y0">
+<div class="text-xs">
+<span class="text-white font-semibold block leading-tight">Prof. Kwame Sterling</span>
+<span class="text-white/70 block leading-tight text-[11px]">Ex-Google Fellow • Faculty Mentor</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Spotlight Visual Card / Mini Canvas -->
+<div class="lg:col-span-4 hidden lg:flex justify-end">
+<div class="w-full max-w-sm rounded-2xl bg-white/10 backdrop-blur-md p-5 text-white shadow-xl space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-white/70">Program Milestones</span>
+<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Fast-Track</span>
+</div>
+<!-- Capstone Mini Track -->
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-primary font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+<div>
+<p class="text-xs font-semibold">Scalable REST &amp; GraphQL Engine</p>
+<p class="text-[11px] text-white/70">Database schema, caching &amp; load tests</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-primary font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+<div>
+<p class="text-xs font-semibold">AI Retrieval Augmented Agent</p>
+<p class="text-[11px] text-white/70">Vector DB embeddings &amp; query routing</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-primary font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+<div>
+<p class="text-xs font-semibold">Multi-Tenant SaaS Deployment</p>
+<p class="text-[11px] text-white/70">CI/CD pipelines, Docker containerization</p>
+</div>
+</div>
+</div>
+<div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-white/80">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-amber-300">stars</span>
+              Recruiter Showcase Included
+            </span>
+<span class="font-semibold text-secondary-fixed">88 Seats Remaining</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Horizontal Scrolling Category Chips -->
+<section class="w-full overflow-x-auto pb-1.5 custom-scrollbar" data-purpose="category-tabs">
+<div class="flex items-center gap-2.5 min-w-max">
+<button class="px-5 py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md font-semibold shadow-md shadow-secondary/20 transition cursor-pointer">
+        All Courses (48)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Technology (16)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Data &amp; Analytics (10)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Design (8)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Business (7)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Marketing (6)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Finance (4)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Communication (5)
+      </button>
+<button class="px-4 py-2.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md font-medium transition cursor-pointer shadow-sm">
+        Entrepreneurship (4)
+      </button>
+</div>
+</section>
+<!-- Main Content Layout: Sticky Filter Sidebar + Responsive 3-Column Course Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT FILTER SIDEBAR (lg:col-span-3, sticky) -->
+<aside class="lg:col-span-3 bg-surface-container-lowest p-6 rounded-2xl shadow-card space-y-6 lg:sticky lg:top-24">
+<div class="flex items-center justify-between pb-3 border-b border-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">filter_alt</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Refine Catalog</span>
+</div>
+<button class="text-xs font-label-sm text-secondary hover:underline cursor-pointer">Reset All</button>
+</div>
+<!-- Filter Group: Skill Category -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface font-semibold block uppercase tracking-wider text-xs">
+          Skill Category
+        </label>
+<div class="space-y-2 text-sm text-on-surface-variant font-body-sm">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input checked="" class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Technology</span>
+</span>
+<span class="text-xs text-outline font-mono">16</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Data Science</span>
+</span>
+<span class="text-xs text-outline font-mono">10</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Product Design</span>
+</span>
+<span class="text-xs text-outline font-mono">8</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Marketing &amp; Growth</span>
+</span>
+<span class="text-xs text-outline font-mono">6</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Finance &amp; Wealth</span>
+</span>
+<span class="text-xs text-outline font-mono">4</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Entrepreneurship</span>
+</span>
+<span class="text-xs text-outline font-mono">4</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Filter Group: Difficulty Level -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface font-semibold block uppercase tracking-wider text-xs">
+          Difficulty Level
+        </label>
+<div class="space-y-2 text-sm text-on-surface-variant font-body-sm">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input checked="" class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Beginner</span>
+</span>
+<span class="text-xs text-outline font-mono">22</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input checked="" class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Intermediate</span>
+</span>
+<span class="text-xs text-outline font-mono">18</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Advanced</span>
+</span>
+<span class="text-xs text-outline font-mono">8</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Filter Group: Course Duration -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface font-semibold block uppercase tracking-wider text-xs">
+          Duration
+        </label>
+<div class="space-y-2 text-sm text-on-surface-variant font-body-sm">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Short (&lt; 4 Weeks)</span>
+</span>
+<span class="text-xs text-outline font-mono">12</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input checked="" class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Medium (4 – 8 Weeks)</span>
+</span>
+<span class="text-xs text-outline font-mono">24</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="flex items-center gap-2.5">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Comprehensive (8 – 12+ Wks)</span>
+</span>
+<span class="text-xs text-outline font-mono">12</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Filter Group: Format & Accreditation -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface font-semibold block uppercase tracking-wider text-xs">
+          Accreditation &amp; Delivery
+        </label>
+<div class="space-y-2 text-sm text-on-surface-variant font-body-sm">
+<label class="flex items-center gap-2.5 cursor-pointer group">
+<input checked="" class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">University Verified</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer group">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Industry Partner Badge</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer group">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Self-Paced Learning</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer group">
+<input class="rounded text-secondary focus:ring-secondary w-4 h-4" type="checkbox">
+<span class="group-hover:text-on-surface transition">Mentor-Guided Cohort</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Skill Advisor Promo Widget in sidebar -->
+<div class="rounded-xl bg-surface-container-low p-4 space-y-2">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-base">psychology</span>
+<span>Not sure where to begin?</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Take the 2-minute diagnostic to map your university major directly to high-paying tech pathways.
+        </p>
+<a class="inline-flex items-center gap-1 text-secondary font-bold text-xs hover:underline pt-1" href="#pathways">
+<span>Start Pathway Diagnostic</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+</a>
+</div>
+</aside>
+<!-- RIGHT 3-COLUMN COURSE GRID (lg:col-span-9) -->
+<main class="lg:col-span-9 space-y-8">
+<!-- 9 High-Fidelity Course Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Course Card 1: Python Programming -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<!-- Stylized Header Thumbnail -->
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Editorial visual of an African young computer programmer working on modern Python code with neon purple and deep indigo reflections on an ultra-wide monitor, in a modern tech incubator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb8AsPjrcfo6HpRuoXwPK8QGQ45jZCb00UXt4KMxbKh5AkpdmBxZ04gzEMp_O-_oEZqTTkczDRp-nUwVKmxhkwUSOAkC8Tzq04tuBEntiLzqh4NfAlo8OjIvBPhMMux_Dv1uH8EtuRjYwZdXjNfQ5iLdw9r7-WY6TELfwGK_tx0m-OX0LBsMxjJyfvjGR6JAd5_h-ISnOo8Z-7w8JPRK37GcwJt07NNqbdDOQ_BPw">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<!-- Badges on image -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Technology
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 8 Wks
+                </span>
+</div>
+<!-- Heart Bookmark -->
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<!-- Level tag bottom left -->
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  Beginner Level
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-5 space-y-3">
+<!-- Verification Pill -->
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Python Programming Fundamentals
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Master Python syntax, algorithms, data parsing, and build automation scripts for university research and industry.
+              </p>
+<!-- Instructor Avatar Info -->
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Professional avatar photo of Dr K Mensah, an African computer science lecturer with glasses in a university lecture hall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm120AkFl41UNULDSIBrxhX4k3KFMprtQ-m2tIlW7L-bi2hbzM-jmzGAy1_b5xIdzkvIfV2C08XEdpVNe3AGfewZw2iETcRIi60Ikp4vxO0sIWKZWrLZs7flQCDp81Um7fBiL5HkxpAXmCmC1Q93fMxdJ_1SwZb6tGSpVkiw8bB35tEvr5zbByFWAn9dkRF1XFSHYgYSbZ39TWSK3VeHnMVvCluLCpeE0KSq-kKdU">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Dr. K. Mensah</p>
+<p class="text-[11px] text-on-surface-variant truncate">Lead Software Architect</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Footer Meta -->
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.9</span>
+<span class="text-outline text-[11px]">(840)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 2: Data Analytics with Excel & Power BI -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern business analytics dashboard displayed on multiple screens with charts, financial projections, and interactive heatmaps in a bright fintech agency setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChaFoLea-CaqPG0Lb06cxFkQhKgI3CDBQArB2FmllRgCnf-iRhNb20Ta158UXlw1Zf4CRr1Q6D0P_g0IYPY7p3MDnFGDPXa3edchuqD2RbUVYbdWif3Ptd-Lqd9rSc5Pxpf3Kg6SHMHn8ybWIn2dSdHWhtd9J5124EK7qz0zm5bUViJIia-uXRLSAkY6s02CRNXkyczb7LcLy5UCNa5oAhCuqpaNfhT54AYhqbe78">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Data &amp; Analytics
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 6 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  Beginner Level
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Data Analytics with Excel &amp; Power BI
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Transform raw business spreadsheets into dynamic interactive Power BI executive dashboards and predictive models.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Professional headshot of Sarah Osei, a confident African female business intelligence specialist with short natural hair in a modern corporate office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV6Lf-Qq83sZu6QVRjU3RSvt9w8xUfK7RR1bHn7KSvkJeS5pOuWZwoL3ahmBGcTUIiv0CoORU8trv8V1kUF6a5DvTvoWF9IrEVqqjAvGjGag9bmLzHJB9FG-jYd9QIAYYgfq7Cv7TC5E3U-UkfyYXTIG2bY6JdBP3bZEd6K06EA84vv_TWLai3KE6rv6wWvQZ9AKqMNay0ewYrEIlmDGTpWE_HyiCYfqiY5-19qyU">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Sarah Osei</p>
+<p class="text-[11px] text-on-surface-variant truncate">Senior BI Analyst</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.8</span>
+<span class="text-outline text-[11px]">(1,420)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 3: Full Stack Web Development -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Contemporary workspace showing a dual monitor setup with clean React Tailwind CSS source code, coffee mug, and minimalist keyboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwKI-NkbYkcTicIPZGEUni_svtVV67qcIsf7Ogevn_ezZN1fSN3nmJezInam2JRu2DbcWqpoEFqPDG2HTccew__kWImKWnbupW3PdcupRcjHZKfPG_iAci2O0n_oZa2OGwaM5rNpguehstJCNd1RnE4bFzNbVhJut72LaAd586aO1eOMPQYT4vQ2UeLljNm6stJOOeswwe-xBY4dxm33w1XTOaQu-PR3Wl5iULqsM">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Technology
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 12 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold">
+                  Intermediate
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Full Stack Web Development
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Build production React, Tailwind CSS, and Node.js web applications with robust relational database integrations.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Close up profile picture of Emmanuel Boateng, a young creative tech developer wearing a casual polo shirt smiling in an open studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4PdDtaCgA3MMNuCvmzWc0s9_NP-MIc2LELHg_vnwt2JAkTQeeLWh3fZGDxT2hcEjuV2amsEeT7YzNdFBL1ERB0P-_Ojr-zHBAIxEYLDRSOrRawwfpyJL1t_vKsvLeLGTWtDg8rphSkTHFoyuL-0rb0V3svyejEBs3MJHV4hjq2yLbudJeumX_lie7WrsCc_Ui3FhNODVORfOlH8Y-0pd6Q8AL88b980m-LQFDHAs">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Emmanuel Boateng</p>
+<p class="text-[11px] text-on-surface-variant truncate">Full Stack Engineer</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.95</span>
+<span class="text-outline text-[11px]">(950)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 4: UI/UX Design Fundamentals -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Digital product design process with Figma wireframes, colorful color swatches, user flow diagrams, and a sleek tablet with stylus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw1EZRGtln167k1f3tDRtyLYT01FQJ87ktWVlrPlljxoYC470P8mHuVCioJzFZGBrfGc_yzSLQ2WUa2M7GwfYdSbh71XIGgtPiRCOFaeXEIw9ooFTaFhsdmcyaUnMah_JvpoaCI-9LKruucDeMOwgWzTr2ILlh9xlBmcjGb0HacIltLrkx__5hdTEY-P1BCUOBbmaFFPlaD3Sw_3WvqNQYqMeN6Cx663bkUAC9pFY">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Design
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 8 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  All Levels
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                UI/UX Design Fundamentals
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Learn user research, wireframing, high-fidelity Figma prototyping, and design systems for mobile and web.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Portrait of Amina Bello, a stylish African woman product designer wearing glasses in a sunlit architectural studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYGViamSc8Y4PQAVq_0eYonJinWyNywjOxFxZv_OVRoh0y_gGI5WOSjlDg1tXf9f8vyOg2X1t5hG7vMC2jp93LC2wb3kuYV4Ax6vaay_ikkSe7Qw3N6XOmdSXlQ1jUoiXsHDyvg3Dw0F3sTxTR_GbetKqp0ifNz4U_xXno2CwywmAmTA_2lFn0RyhLpckGML-zk-4cwG_WiOuKxkkq-FIVbf8X6F6rcvbo7LLknZ4">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Amina Bello</p>
+<p class="text-[11px] text-on-surface-variant truncate">Principal Product Designer</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.9</span>
+<span class="text-outline text-[11px]">(780)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 5: Digital Marketing & Growth Strategy -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Digital marketing strategy session with graphs illustrating viral social media reach, customer acquisition metrics, and creative content planning boards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6uX2v3APNcXsjMkWZ9DpwEbHjeoaDsU9dax4Kbc_uSRZ1hQJeG7sbxwZDpJXh9DkynmKD4_rh9sc_3dsh6uPRAagW5o85KFd68f3T6BnIuRVg7fFFSOLJQo1ubfWHMbJljlOEfbxgY051U5IPK7wStJZtkGqELIeDJBO0ZvkpPIjPg0OoZQypgeY0u8aynI7dQzoEeb8Q32TIw5iiAaJIN4tL9bv6CFnoxFetftc">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Marketing
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 5 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  Beginner Level
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Digital Marketing &amp; Growth Strategy
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Master search engine optimization, viral content loops, Google Analytics 4, and paid performance campaigns.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Headshot of Kofi Mensah, a charismatic African growth marketer with a neat goatee and smart blazer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxD6O3zmbejUDPVR8G9s7-wkmiMgloSYEMvLZRJCRpHEgJUoyiDq1536HfHDGkqqR7g3NPkuqFhB4ZBlu9bCYGEuBNbviP_KuQRO1Apt3t4ThHM7gq0SK_-FQY3pY2OlhxR7uXSFoG8Imz-LNTHR3jOtC6D5Ek4XfG8G1tpCJfj_lIYxVW6voLF2xHA4AMdULbXDb9k9m_fP4q7CmX5USb_690H1xihUSGqRZ5cNE">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Kofi Mensah</p>
+<p class="text-[11px] text-on-surface-variant truncate">Growth Lead</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.7</span>
+<span class="text-outline text-[11px]">(620)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 6: Financial Literacy and Investment -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Financial terminal showing global stock tickers, currency indices, investment portfolio breakdown charts, and wealth management graphs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWPucYRI4mFXEE4VW8JLoYvaU_CqNm-yU1XOhqB3mAEo8w1QiMKutoH5KsFwxuJq4pZAMYW1T_Xel6Jfuo7Lqy59X5CkbFqbeo7EIt43iWN6xxho0Fpr8yJ55J8WjoM78bASrKkUKg8j_X_2Gi-stlqt4ortM7WKktW2kmIL2s_DkNoMOrYrSSfaka9eg2EzJOHksMNKqmimezsmMnMw-KfMgVhbLwSoMYNzSQfn8">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Finance
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 6 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  Beginner Level
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Financial Literacy and Investment
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Understand personal wealth building, African &amp; global stock markets, index funds, and corporate valuation.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Portrait of Patricia Quaye, an African CFA investment professional with a warm smile in an executive conference boardroom." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmlBA2UM2tnzV68bpcA6-l32Ww44QQzvT4LS-qcKLeTzpFGcXAvqqAwfxikaHXkqkTaEyj72XWhF8C4CJC1zkRhEEgZgbLN9Zf_HUehdwsUMKD-reknCspbZhuNIi4YWvX_FzkiUMCFqI26PIo4wHM9-WTVM0HUajtDSvoHoKg899E48eGtpKPI4CeIPtWCaEUdhksDNGpJwl4FX8ACG_YX3D8rXB1i3VXTCD-5No">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Patricia Quaye, CFA</p>
+<p class="text-[11px] text-on-surface-variant truncate">Investment Banker</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.85</span>
+<span class="text-outline text-[11px]">(890)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 7: Graphic Design with Canva & Adobe CC -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Creative graphic design studio layout with bold visual typography posters, color wheel palettes, brand identity guidelines, and print collateral samples." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcKdTAq6oCFu4tdSXv6V8-WMfKOww93jx23F4q26KuQkcCKyIzhiVkiy1Exfv_J7e_4V4aCYdm2oiDrEgxhbK95vQKjWjgEzaVvA6kYAmhnOOuRH1wIds0wCd2n0uT3WsOsbjgQ99AVxLmbKc16V7Uh3W-qtzSZU5JV37W8P6X1pzsRD6892TN2WNQosm3-qxBxZ99NiQnvjI6ihfmdh7Og2sTF-IY2X1kuYTX7w4">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Design
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 4 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  Beginner Level
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Graphic Design with Canva &amp; Adobe CC
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Craft captivating social media visuals, brand collaterals, startup logos, and university pitch decks.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Creative profile shot of David Appiah, a young African male graphic designer with braided hair in a bright artist workshop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYUEjMslVaxt6iNZo23TNS_fFAqq09TmTR7zIWMlkBvfwj6mgJsEWy1LVeYQGzJpq9WMsxLTk0xTC8uav5MQrl6nBcTGCen4jOWtdC8N78zh6FoA8A5inp3jaFUFSKpC2JU3_JlLAD0fPNF-EK00UEY9n8xZl-UnWuSoEJp8DATmMFz8dEe629nnWMqe2FHjyk4Dt9ZEwx-V6N-qD5z8ebDLJPEVP5F-KO-WBjBVg">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">David Appiah</p>
+<p class="text-[11px] text-on-surface-variant truncate">Brand Identity Designer</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.8</span>
+<span class="text-outline text-[11px]">(1,150)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 8: Cybersecurity & Ethical Hacking -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Digital cyber security operation center with shield graphics, firewall network packets trace visualization, and encrypted code matrices in deep blue." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK_f0JouRahEdtJo54NZlKrGXHFkBw0qhF4IfXU7VqwUKIoa0zWrkbsZSNaRzLaS1_F4plh0PFKO3LAKzMKNpSGM5YLE2YtwwK3jgKwigCR2szaKGuUp4rDx1qTJHCXzKTWrh7dZ6MbhAbs5XA3aVQGeD1H_amHXlPzb0VwfbozyfhREasbX8R1A-FDCCDhq_ILOQ-rbijqWW7bI6m4GphT8Jirm2Guy3K6VmZ4Lk">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Technology
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 10 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-secondary-fixed text-on-secondary-fixed text-[11px] font-bold">
+                  Intermediate
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Intro to Cybersecurity &amp; Ethical Hacking
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Network security essentials, vulnerability assessment, defense mechanisms, and ethical penetration testing tools.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Professional avatar portrait of Isaac Tetteh, an African cybersecurity consultant with spectacles and headset in an IT lab." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkVK5dfSuXT6CcbpuUcCKQBHl4FRX-MXT3gxSzKQxfu1lNjSrBC8v6ioAwh0v9-2jCqkRbQthSmy1jSyPdHo2g-r3DTJ8gF4yslENEU3M26CicnfMlcvQVB9JLx56S1gwNMwr3I_znpD8j9nFvzZzC9v0GTa-qx2hRg0Z2vq4b89rHDDiVwRyyo3tRFsnH6Y48NTZcSrmRfM6nl4pYMZN-bIE1v1u4kgSCI3MYlR4">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Isaac Tetteh</p>
+<p class="text-[11px] text-on-surface-variant truncate">Certified InfoSec Auditor</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.9</span>
+<span class="text-outline text-[11px]">(510)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Course Card 9: Business Entrepreneurship & Venture Launch -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="University startup incubator pitch event with university founders presenting a business model canvas to prospective investors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-XXxtlLEg9ua_AmUg4GAWEbtvhNO3jOuA3ohxe8Wppvhs_9vJ_qUUDxOCiwFX_eTEy0uxpIO0QTT1-3-RtofsMAgLbdHo_z16mSQA5YUJNqAJGgXNVNSUTI6roTu1FcQubYZnEvhHds8wHFsssQmr7EvfoNwAd6XXUB_o3m_Q_Xd6nigQ0UHgGPCa6Suq6v89udJp3zkG1entBg2T3SxjWFHd3mtmCXnZNyU-ebk">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary text-white font-label-sm text-[11px] font-bold">
+                  Entrepreneurship
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md text-white/90 text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 8 Wks
+                </span>
+</div>
+<button aria-label="Bookmark course" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 flex items-center justify-center transition shadow-sm">
+<span class="material-symbols-outlined text-base">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3">
+<span class="px-2.5 py-0.5 rounded-md bg-white/90 backdrop-blur text-primary text-[11px] font-bold">
+                  All Levels
+                </span>
+</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>University Verified Certificate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition line-clamp-1">
+                Business Entrepreneurship &amp; Venture Launch
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                From ideation to business modeling, investor pitch decks, customer discovery, and seed funding navigation.
+              </p>
+<div class="flex items-center gap-2.5 pt-2">
+<img class="w-7 h-7 rounded-full object-cover ring-1 ring-surface-container" data-alt="Dr Nana Yeboah, distinguished African venture accelerator director wearing traditional tailored formal fabric in an executive office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXbFCwr3Ir5ZpV15uVoiL0jY19wqM4O_Msbkm2S8-6eeiC_CwMU9_EEQg8a3vpuU3gx_8u8ndzWfaDxIuPzM57YElSjs1hvPmQNcEANB1VUmiAz5rv2kiDW4Cb9-lu6MgEZlR3IdYM5ZmWp8PC_veQLjXm4wvl__AR3d1VyBhF6a9T2gyZfFExLgUathPMgO3_913OZy4Y-c0qtVBbHJ_AXYAr0WkDAnMpO3EM6y0">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Dr. Nana Yeboah</p>
+<p class="text-[11px] text-on-surface-variant truncate">Incubator Director</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-3 border-t border-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.88</span>
+<span class="text-outline text-[11px]">(730)</span>
+</div>
+<span class="text-[11px] font-medium text-emerald-600">Free for Students</span>
+</div>
+<button class="px-3.5 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-white transition font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span>View Course</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Pagination & Help Banner Section -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-card flex flex-col md:flex-row items-center justify-between gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant">
+          Showing <span class="font-bold text-on-surface">1 – 9</span> of <span class="font-bold text-on-surface">48</span> courses
+        </span>
+<!-- Numbered Pagination Pills -->
+<div class="flex items-center gap-1.5">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-outline hover:text-on-surface hover:bg-surface-container transition font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span>Previous</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm font-bold flex items-center justify-center shadow-sm">
+            1
+          </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition">
+            2
+          </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition">
+            3
+          </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition">
+            4
+          </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-semibold flex items-center justify-center transition">
+            5
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container transition font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+<span>Next</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Skill Quiz Callout Link -->
+<a class="flex items-center gap-1.5 text-xs font-semibold text-secondary hover:underline" href="#pathways">
+<span>Need guidance? Take the 2-minute Skill Quiz</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</main>
+</section>
+</div></main>
+</div>
+<!-- END: MainContentArea -->
+
+
+
+
+<script src="../skillshub-api.js"></script>
+<script src="../profile.js"></script>
+<script src="../responsive.js"></script>
+</body></html>

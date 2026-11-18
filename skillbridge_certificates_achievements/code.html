@@ -1,0 +1,803 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB Dashboard</title>
+<meta content="web_dashboard" name="shell-type">
+<!-- Google Fonts: Manrope & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#000000",
+            "tertiary-container": "#1f005f",
+            "surface-container-highest": "#dfe0fd",
+            "surface-bright": "#fbf8ff",
+            "on-primary-container": "#8081a0",
+            "on-secondary-fixed-variant": "#4214d0",
+            "on-error-container": "#93000a",
+            "on-background": "#171a2f",
+            "primary-fixed-dim": "#c3c4e5",
+            "surface-dim": "#d7d8f4",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#434560",
+            "surface-tint": "#5b5c79",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#c3c4e5",
+            "on-surface": "#171a2f",
+            "on-tertiary-fixed-variant": "#4e00d1",
+            "surface": "#fbf8ff",
+            "error-container": "#ffdad6",
+            "secondary-fixed-dim": "#c8bfff",
+            "outline": "#77767e",
+            "surface-variant": "#dfe0fd",
+            "inverse-surface": "#2c2f45",
+            "on-surface-variant": "#46464d",
+            "surface-container-low": "#f4f2ff",
+            "outline-variant": "#c8c5ce",
+            "on-secondary-container": "#fffbff",
+            "surface-container-high": "#e6e6ff",
+            "on-tertiary-container": "#8c69ff",
+            "background": "#fbf8ff",
+            "secondary-fixed": "#e5deff",
+            "on-tertiary-fixed": "#1f005f",
+            "inverse-on-surface": "#f0efff",
+            "on-tertiary": "#ffffff",
+            "secondary": "#5939e5",
+            "surface-container": "#edecff",
+            "on-secondary-fixed": "#190064",
+            "primary-fixed": "#e0e0ff",
+            "tertiary-fixed": "#e7deff",
+            "on-primary-fixed": "#171932",
+            "tertiary-fixed-dim": "#cdbdff",
+            "error": "#ba1a1a",
+            "primary-container": "#171932",
+            "on-secondary": "#ffffff",
+            "tertiary": "#000000",
+            "secondary-container": "#7257ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-md": "1rem",
+            "margin": "2rem",
+            "space-2xl": "3rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-xl-mobile": ["Manrope"],
+            "label-sm": ["Hanken Grotesk"],
+            "display-hero": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "headline-xl": ["Manrope"],
+            "display-hero-mobile": ["Manrope"],
+            "stat-counter": ["Manrope"],
+            "body-sm": ["Hanken Grotesk"],
+            "headline-sm": ["Manrope"],
+            "body-lg": ["Hanken Grotesk"],
+            "label-md": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "headline-lg": ["Manrope"]
+          },
+          "fontSize": {
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "stat-counter": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Hanken Grotesk', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  </style>
+<link href="../responsive.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="fixed top-0 left-0 bottom-0 w-64 bg-primary-container z-30 flex flex-col justify-between py-margin-desktop px-space-md select-none" data-purpose="main-sidebar">
+<div class="flex flex-col gap-space-lg">
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center px-space-xs py-1"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCVWTYgkzn-xXat5aYzOFQIe6hHFIOr52TSlwG_b7mghmgvlWLQOgdAluO49EhpxP3yI7c_7TdEoFe6jpbkDxKLUrLkMCd0j2A7Xt-SM1VARwTWtgT7K1m5-TRtlXHAxtzyr5LmHc_uanBi2RV0E_TonjJqbuADrBK3sSVPqWliYWg19VE1Qxjn1vjjekXNb5JRlO1a400IB3-U6EYl1Nsquu07TKCABRAnjdddEEkV" alt="UCC SKILLSHUB Logo" class="h-10 w-auto object-contain"></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary shadow-md font-label-md">
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="dashboard" href="#dashboard">Dashboard</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="courses" href="#courses">Courses</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="skill-pathways" href="#skill-pathways">Skill Pathways</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="projects" href="#projects">Projects</a>
+<a aria-current="page" class="px-space-md py-space-sm rounded-full flex items-center gap-space-sm transition block bg-secondary text-on-secondary shadow-md font-label-md" data-path="certificates" href="#certificates">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span>Certificates</span>
+</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="portfolio" href="#portfolio">Portfolio</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="opportunities" href="#opportunities">Opportunities</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="analytics" href="#analytics">Analytics</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div class="flex flex-col gap-space-xs">
+<div class="h-px bg-on-primary-container/20 my-space-xs"></div>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="settings" href="#settings">Settings</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition" data-path="notifications" href="#notifications">
+<span>Notifications</span>
+<span class="w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="logout" href="#logout">Logout</a>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="pl-64 flex flex-col min-h-screen">
+<!-- Top App Header -->
+<header class="fixed top-0 left-64 right-0 z-20 bg-background/95 backdrop-blur-md px-margin py-0" data-purpose="top-header">
+<div class="h-16 flex items-center justify-between gap-space-lg">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-xl">
+<div class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</div>
+<input class="w-full pl-10 pr-space-md py-space-sm bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-space-lg">
+<!-- Notification Bell Icon with Badge -->
+<button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background"></span>
+</button>
+<!-- User Profile Pill Dropdown -->
+<div class="flex items-center gap-space-sm cursor-pointer group select-none px-space-xs py-space-xs rounded-full hover:bg-surface-container-low transition">
+<img data-profile-photo="" alt="" class="w-9 h-9 rounded-full object-cover ring-2 ring-surface-container">
+<span class="font-label-md text-label-md text-on-surface">Prince Egah</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Workspace -->
+<main class="pt-16 px-margin pb-space-2xl flex-1"><div class="flex flex-col w-full">
+<!-- Top Welcome & Credentials Header Area -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg mb-space-xl">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+          Verified Digital Portfolio
+        </span>
+<span class="font-label-sm text-label-sm text-outline">Updated today</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">My Certificates</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">Issued by UCC SKILLSHUB Academy &amp; Design Guild</p>
+</div>
+<!-- Header Quick Actions -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm hover:bg-surface-container-low transition-all">
+<svg class="w-4 h-4 fill-current text-[#0A66C2]" viewBox="0 0 24 24">
+<path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 0 0 1.64-1.64c0-.91-.73-1.64-1.64-1.64a1.64 1.64 0 0 0-1.64 1.64c0 .91.73 1.64 1.64 1.64m1.39 9.74v-8.37H5.07v8.37h2.78z"></path>
+</svg>
+<span>Add to LinkedIn</span>
+</button>
+<button class="inline-flex items-center gap-space-sm px-space-lg py-3 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-md shadow-secondary/25 hover:opacity-95 transition-all" id="verify-modal-btn">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Verify Credential</span>
+</button>
+</div>
+</div>
+<!-- Metric Statistics Grid (4 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
+<div>
+<span class="font-label-md text-label-md text-outline block mb-1">Certificates Earned</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block">4</span>
+<span class="font-label-sm text-label-sm text-outline-variant mt-1 block">University &amp; Accredited</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600">
+<span class="material-symbols-outlined text-[26px]">workspace_premium</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
+<div>
+<span class="font-label-md text-label-md text-outline block mb-1">Courses Completed</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block">5</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1 block">Across 3 Skill Tracks</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[26px]">menu_book</span>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
+<div>
+<span class="font-label-md text-label-md text-outline block mb-1">Projects Verified</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block">4</span>
+<span class="font-label-sm text-label-sm text-outline-variant mt-1 block">Senior Mentor Evaluated</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined text-[26px]">assignment_turned_in</span>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
+<div>
+<span class="font-label-md text-label-md text-outline block mb-1">Achievement Badges</span>
+<div class="flex items-baseline gap-1">
+<span class="font-stat-counter text-stat-counter text-on-surface">8</span>
+<span class="font-headline-sm text-headline-sm text-outline">/ 12</span>
+</div>
+<span class="font-label-sm text-label-sm text-emerald-700 mt-1 block">Top 5% of Cohort</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined text-[26px]">military_tech</span>
+</div>
+</div>
+</div>
+<!-- Featured Certificate Live Inspection Panel -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg lg:p-space-xl shadow-md mb-space-2xl relative overflow-hidden">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-space-lg mb-space-lg border-b border-surface-container gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-semibold uppercase tracking-wider">Active Verified Credential</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Data Analytics Fundamentals</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Accredited by University of Cape Coast in partnership with Microsoft Learn</p>
+</div>
+<!-- Action Button Ribbon -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow hover:bg-secondary-container transition" onclick="window.print()">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download PDF</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition" onclick="navigator.clipboard &amp;&amp; navigator.clipboard.writeText('https://ucc-skillshub.edu/verify/UCC-DAT-2025-0199'); alert('Credential URL copied to clipboard!');">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+<span>Copy Link</span>
+</button>
+</div>
+</div>
+<!-- Certificate Visual Showcase Stage -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-xl items-center">
+<!-- Diploma Miniature Render (Left - 8 Cols) -->
+<div class="xl:col-span-8 bg-surface-container-low/60 p-space-md md:p-space-lg rounded-xl relative">
+<!-- Physical Certificate Canvas Mockup -->
+<div class="bg-[#fcfbf7] text-[#1a1b26] p-6 sm:p-10 rounded-lg shadow-xl relative overflow-hidden">
+<!-- Ornate Guilloche Watermark Frame -->
+<div class="absolute inset-2 border-2 border-[#c5a059]/40 rounded pointer-events-none"></div>
+<div class="absolute inset-3 border border-[#c5a059]/20 rounded pointer-events-none"></div>
+<!-- Crest & Institutional Head -->
+<div class="flex items-center justify-between mb-6 relative z-10">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary-container text-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[28px]">school</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm tracking-wide block uppercase text-primary-container">University of Cape Coast</span>
+<span class="font-label-sm text-label-sm text-outline block">Division of Computational Science &amp; Career Pedagogy</span>
+</div>
+</div>
+<!-- Microsoft Partner Badge miniature -->
+<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Microsoft Learn Partner</span>
+</div>
+</div>
+<!-- Certificate Core Content -->
+<div class="text-center my-6 relative z-10">
+<span class="font-label-sm text-label-sm text-[#8c6d32] uppercase tracking-[0.25em] block mb-2 font-bold">Certificate of Excellence and Accreditation</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic mb-2">This is formally conferred upon</p>
+<h3 class="font-display-hero text-headline-xl text-primary-container font-extrabold tracking-tight mb-2">Prince Egah</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-lg mx-auto leading-relaxed">
+              for successfully completing the rigorous 8-week curriculum and capstone defense in
+              <span class="font-bold text-on-surface block mt-1">Data Analytics Fundamentals (Graduated with Honors - 96%)</span>
+</p>
+</div>
+<!-- Bottom Row: Signatures and Wax Seal -->
+<div class="pt-6 mt-6 border-t border-[#e2d8c3] flex flex-wrap items-end justify-between gap-4 relative z-10">
+<!-- Signature 1 -->
+<div class="text-left">
+<div class="font-serif italic text-lg text-primary-container tracking-wider">Dr. Kwame Mensah</div>
+<div class="w-32 h-0.5 bg-outline-variant my-1"></div>
+<span class="font-label-sm text-label-sm text-outline block">Academic Dean, UCC</span>
+</div>
+<!-- Metallic Gold Ribbon Seal -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg relative">
+<div class="w-13 h-13 rounded-full border border-amber-800/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-container-lowest text-[30px]">military_tech</span>
+</div>
+</div>
+<span class="font-label-sm text-[10px] text-amber-900 font-bold uppercase tracking-wider mt-1">Certified Official</span>
+</div>
+<!-- Signature 2 -->
+<div class="text-right">
+<div class="font-serif italic text-lg text-primary-container tracking-wider">Sarah Osei</div>
+<div class="w-32 h-0.5 bg-outline-variant my-1 ml-auto"></div>
+<span class="font-label-sm text-label-sm text-outline block">Lead Instructor &amp; Mentor</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Credential Security & Metadata (Right - 4 Cols) -->
+<div class="xl:col-span-4 flex flex-col justify-between h-full space-y-space-md">
+<!-- Verification Details Box -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-3">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Security &amp; Registry Metadata</span>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-md">Certificate ID</span>
+<span class="font-mono font-semibold text-on-surface">UCC-DAT-2025-0199</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-md">Issue Date</span>
+<span class="font-medium text-on-surface">January 14, 2025</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-md">Validity</span>
+<span class="text-emerald-700 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+              Lifetime (No Expiry)
+            </span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-label-md">Ledger Hash</span>
+<span class="font-mono text-outline text-[12px] truncate max-w-[140px]" title="0x884a8219c0b1129994f">0x884a...92b1</span>
+</div>
+</div>
+<!-- QR Scan & Public Verification Card -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex items-center gap-space-md">
+<!-- Inline Minimal QR SVG Representation -->
+<div class="w-20 h-20 bg-surface-container-lowest p-1.5 rounded-lg flex-shrink-0 shadow-sm flex items-center justify-center">
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewBox="0 0 100 100">
+<path d="M0,0 h30 v30 h-30 z M10,10 h10 v10 h-10 z"></path>
+<path d="M70,0 h30 v30 h-30 z M80,10 h10 v10 h-10 z"></path>
+<path d="M0,70 h30 v30 h-30 z M10,80 h10 v10 h-10 z"></path>
+<path d="M40,10 h20 v10 h-20 z M10,40 h10 v20 h-10 z M40,40 h20 v20 h-20 z M70,40 h20 v10 h-20 z M40,70 h10 v20 h-10 z M60,80 h20 v10 h-20 z M80,60 h10 v20 h-10 z M90,90 h10 v10 h-10 z"></path>
+</svg>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface block">Instant Verification</span>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Scan to cross-reference university ledger public key.</p>
+<span class="inline-block mt-2 font-label-sm text-label-sm text-secondary font-semibold">Live Public Record #912</span>
+</div>
+</div>
+<!-- Wallets Integration -->
+<div class="flex items-center gap-space-sm pt-2">
+<button class="flex-1 py-2 px-3 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+<span>Google Wallet</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition">
+<span class="material-symbols-outlined text-[16px]">phone_iphone</span>
+<span>Apple Wallet</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter & Tab Controls -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<!-- Category Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 select-none">
+<button class="px-space-md py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md whitespace-nowrap shadow-sm">
+        All Credentials (4)
+      </button>
+<button class="px-space-md py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition whitespace-nowrap">
+        Academic Degrees &amp; Diplomas
+      </button>
+<button class="px-space-md py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition whitespace-nowrap">
+        Professional Certificates (3)
+      </button>
+<button class="px-space-md py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition whitespace-nowrap">
+        Specializations (1)
+      </button>
+</div>
+<!-- Search & Sort Secondary Controls -->
+<div class="flex items-center gap-space-sm">
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-lowest text-on-surface rounded-full text-body-sm placeholder:text-outline border-none focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Search by name or ID..." type="text">
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest text-on-surface font-label-md text-label-md py-2 pl-3 pr-8 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Sort: Most Recent</option>
+<option>Sort: Oldest First</option>
+<option>Sort: Course Alphabetical</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Certificate Collection Grid (4 Realistic Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg mb-space-2xl">
+<!-- Certificate 1: Python Programming Fundamentals -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<!-- Top Status & Actions -->
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Verified &amp; Active
+            </span>
+<span class="font-mono text-outline text-[12px]">UCC-PYT-2025-0842</span>
+</div>
+<button class="p-1.5 rounded-full text-outline hover:text-secondary hover:bg-surface-container transition" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+</button>
+</div>
+<!-- Miniature Card Art Preview -->
+<div class="h-32 rounded-lg bg-gradient-to-br from-primary-container via-[#1f2244] to-[#2b245e] p-4 text-surface-container-lowest relative overflow-hidden mb-space-md flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-secondary/20 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-outline-variant">Computing &amp; Tech Institute</span>
+<span class="material-symbols-outlined text-amber-400 text-[20px]">verified</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-surface-container-lowest leading-tight">Python Programming Fundamentals</h4>
+<p class="font-label-sm text-label-sm text-secondary-fixed-dim mt-0.5">Awarded to Prince Egah • Feb 2025</p>
+</div>
+</div>
+<!-- Details -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Python Programming Fundamentals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Issued by UCC SKILLSHUB Academy &amp; Design Guild</p>
+<p class="font-label-sm text-label-sm text-outline mt-0.5">Issued: February 18, 2025</p>
+<!-- Skill Badges -->
+<div class="flex flex-wrap gap-1.5 mt-space-md">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Python 3</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Algorithms</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">OOP</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Data Structures</span>
+</div>
+</div>
+<!-- Footer Button -->
+<div class="mt-space-lg pt-space-md border-t border-surface-container flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Digital Signature: Verified</span>
+<button class="inline-flex items-center gap-1 text-secondary font-label-md text-label-md group-hover:gap-2 transition-all">
+<span>View Certificate</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Certificate 2: Data Analytics Fundamentals -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<!-- Top Status & Actions -->
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Verified &amp; Active
+            </span>
+<span class="font-mono text-outline text-[12px]">UCC-DAT-2025-0199</span>
+</div>
+<button class="p-1.5 rounded-full text-outline hover:text-secondary hover:bg-surface-container transition" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+</button>
+</div>
+<!-- Miniature Card Art Preview -->
+<div class="h-32 rounded-lg bg-gradient-to-br from-[#122240] via-[#1a3560] to-secondary p-4 text-surface-container-lowest relative overflow-hidden mb-space-md flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-amber-400/20 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-outline-variant">UCC &amp; Microsoft Learn</span>
+<span class="material-symbols-outlined text-amber-300 text-[20px]">stars</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-surface-container-lowest leading-tight">Data Analytics Fundamentals</h4>
+<p class="font-label-sm text-label-sm text-secondary-fixed-dim mt-0.5">Awarded to Prince Egah • Jan 2025</p>
+</div>
+</div>
+<!-- Details -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Data Analytics Fundamentals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Issued by UCC SKILLSHUB Academy &amp; Design Guild</p>
+<p class="font-label-sm text-label-sm text-outline mt-0.5">Issued: January 14, 2025</p>
+<!-- Skill Badges -->
+<div class="flex flex-wrap gap-1.5 mt-space-md">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Excel Modeling</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Power BI</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">DAX</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Data Sanitization</span>
+</div>
+</div>
+<!-- Footer Button -->
+<div class="mt-space-lg pt-space-md border-t border-surface-container flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Mentor Sarah Osei Approved</span>
+<button class="inline-flex items-center gap-1 text-secondary font-label-md text-label-md group-hover:gap-2 transition-all">
+<span>View Certificate</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Certificate 3: UI/UX Design Essentials -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<!-- Top Status & Actions -->
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Verified &amp; Active
+            </span>
+<span class="font-mono text-outline text-[12px]">UCC-UIX-2024-9104</span>
+</div>
+<button class="p-1.5 rounded-full text-outline hover:text-secondary hover:bg-surface-container transition" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+</button>
+</div>
+<!-- Miniature Card Art Preview -->
+<div class="h-32 rounded-lg bg-gradient-to-br from-[#2a174d] via-secondary to-[#8c69ff] p-4 text-surface-container-lowest relative overflow-hidden mb-space-md flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-secondary-fixed/30 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-outline-variant">Design Guild Global</span>
+<span class="material-symbols-outlined text-yellow-300 text-[20px]">palette</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-surface-container-lowest leading-tight">UI/UX Design Essentials</h4>
+<p class="font-label-sm text-label-sm text-surface-container-highest mt-0.5">Awarded to Prince Egah • Nov 2024</p>
+</div>
+</div>
+<!-- Details -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface">UI/UX Design Essentials</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Issued by UCC SKILLSHUB Academy &amp; Design Guild</p>
+<p class="font-label-sm text-label-sm text-outline mt-0.5">Issued: November 28, 2024</p>
+<!-- Skill Badges -->
+<div class="flex flex-wrap gap-1.5 mt-space-md">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Wireframing</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Figma Systems</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">User Research</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Usability Testing</span>
+</div>
+</div>
+<!-- Footer Button -->
+<div class="mt-space-lg pt-space-md border-t border-surface-container flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Verified Digital Stamp #88</span>
+<button class="inline-flex items-center gap-1 text-secondary font-label-md text-label-md group-hover:gap-2 transition-all">
+<span>View Certificate</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Certificate 4: Digital Marketing Foundations -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<!-- Top Status & Actions -->
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Verified &amp; Active
+            </span>
+<span class="font-mono text-outline text-[12px]">UCC-MKT-2024-7721</span>
+</div>
+<button class="p-1.5 rounded-full text-outline hover:text-secondary hover:bg-surface-container transition" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+</button>
+</div>
+<!-- Miniature Card Art Preview -->
+<div class="h-32 rounded-lg bg-gradient-to-br from-[#3b2314] via-[#613615] to-amber-700 p-4 text-surface-container-lowest relative overflow-hidden mb-space-md flex flex-col justify-between">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-amber-400/20 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-amber-200">Career Network</span>
+<span class="material-symbols-outlined text-amber-300 text-[20px]">campaign</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-surface-container-lowest leading-tight">Digital Marketing Foundations</h4>
+<p class="font-label-sm text-label-sm text-amber-100 mt-0.5">Awarded to Prince Egah • Oct 2024</p>
+</div>
+</div>
+<!-- Details -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Digital Marketing Foundations</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Issued by UCC SKILLSHUB Career Network</p>
+<p class="font-label-sm text-label-sm text-outline mt-0.5">Issued: October 05, 2024</p>
+<!-- Skill Badges -->
+<div class="flex flex-wrap gap-1.5 mt-space-md">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">SEO Audit</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Google Analytics 4</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Meta Ad Strategy</span>
+</div>
+</div>
+<!-- Footer Button -->
+<div class="mt-space-lg pt-space-md border-t border-surface-container flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Warm Amber Seal Accredited</span>
+<button class="inline-flex items-center gap-1 text-secondary font-label-md text-label-md group-hover:gap-2 transition-all">
+<span>View Certificate</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Achievement Badges Showcase Section -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg lg:p-space-xl shadow-sm mb-space-xl">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Achievement Badges</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Earn badges as you complete courses, maintain study streaks, and deliver capstones.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline font-semibold">8 of 12 Unlocked</span>
+<div class="w-24 h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 66.6%;"></div>
+</div>
+</div>
+</div>
+<!-- Badges Grid (6 Cards: 4 Earned, 2 Locked) -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-md">
+<!-- Badge 1: Earned -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-center text-center group hover:bg-surface-container transition">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-400 flex items-center justify-center text-on-secondary shadow-md group-hover:scale-105 transition mb-3">
+<span class="material-symbols-outlined text-[32px] text-yellow-300">hotel_class</span>
+</div>
+<h5 class="font-headline-sm text-[14px] leading-tight text-on-surface font-bold">First Course Completed</h5>
+<span class="font-label-sm text-[11px] text-emerald-700 font-semibold mt-1">Unlocked Dec 2024</span>
+</div>
+<!-- Badge 2: Earned -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-center text-center group hover:bg-surface-container transition">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-600 to-orange-400 flex items-center justify-center text-on-secondary shadow-md group-hover:scale-105 transition mb-3">
+<span class="material-symbols-outlined text-[32px] text-white">local_fire_department</span>
+</div>
+<h5 class="font-headline-sm text-[14px] leading-tight text-on-surface font-bold">7-Day Streak</h5>
+<span class="font-label-sm text-[11px] text-emerald-700 font-semibold mt-1">Unlocked Jan 2025</span>
+</div>
+<!-- Badge 3: Earned -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-center text-center group hover:bg-surface-container transition">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-secondary to-purple-400 flex items-center justify-center text-on-secondary shadow-md group-hover:scale-105 transition mb-3">
+<span class="material-symbols-outlined text-[32px] text-yellow-200">handyman</span>
+</div>
+<h5 class="font-headline-sm text-[14px] leading-tight text-on-surface font-bold">Project Master</h5>
+<span class="font-label-sm text-[11px] text-emerald-700 font-semibold mt-1">Unlocked Feb 2025</span>
+</div>
+<!-- Badge 4: Earned -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-center text-center group hover:bg-surface-container transition">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-indigo-700 to-blue-500 flex items-center justify-center text-on-secondary shadow-md group-hover:scale-105 transition mb-3">
+<span class="material-symbols-outlined text-[32px] text-cyan-200">query_stats</span>
+</div>
+<h5 class="font-headline-sm text-[14px] leading-tight text-on-surface font-bold">Data Analytics Beginner</h5>
+<span class="font-label-sm text-[11px] text-emerald-700 font-semibold mt-1">Unlocked Jan 2025</span>
+</div>
+<!-- Badge 5: Locked -->
+<div class="bg-surface-container-low/60 p-space-md rounded-xl flex flex-col items-center text-center opacity-75 relative">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline shadow-inner mb-3 relative">
+<span class="material-symbols-outlined text-[28px]">lock</span>
+</div>
+<h5 class="font-headline-sm text-[14px] leading-tight text-on-surface font-bold">Learning Champion</h5>
+<span class="font-label-sm text-[11px] text-outline mt-1 block">Progress: 5/10 Courses</span>
+</div>
+<!-- Badge 6: Locked -->
+<div class="bg-surface-container-low/60 p-space-md rounded-xl flex flex-col items-center text-center opacity-75 relative">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline shadow-inner mb-3 relative">
+<span class="material-symbols-outlined text-[28px]">lock</span>
+</div>
+<h5 class="font-headline-sm text-[14px] leading-tight text-on-surface font-bold">Hackathon Finalist</h5>
+<span class="font-label-sm text-[11px] text-outline mt-1 block">Progress: 1/2 Challenges</span>
+</div>
+</div>
+</div>
+<!-- Verification Quick Modal (Hidden by default, triggered via JavaScript) -->
+<div class="fixed inset-0 z-50 bg-primary-container/60 backdrop-blur-sm hidden items-center justify-center p-4" id="verify-modal">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-2xl p-space-xl shadow-2xl relative">
+<button class="absolute top-4 right-4 text-outline hover:text-on-surface transition" id="close-modal-btn">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex items-center gap-space-sm mb-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">gavel</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Verify Student Credential</h3>
+<p class="font-label-sm text-label-sm text-outline">University Central Public Ledger</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Enter a UCC SKILLSHUB certificate serial code or public hash below to confirm authenticity, grading honors, and student matriculation details.</p>
+<div class="space-y-space-sm mb-space-lg">
+<label class="block font-label-md text-label-md text-on-surface">Credential Identifier / Serial</label>
+<div class="relative">
+<input class="w-full pl-3 pr-10 py-2.5 bg-surface-container-low text-on-surface font-mono text-body-sm rounded-lg border-none focus:ring-2 focus:ring-secondary" id="credential-input" type="text" value="UCC-DAT-2025-0199">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-emerald-600">check_circle</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-xl mb-space-lg text-body-sm space-y-1">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Recipient:</span>
+<span class="font-semibold text-on-surface">Prince Egah (BSc Computer Science)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Accredited by:</span>
+<span class="font-semibold text-on-surface">University of Cape Coast</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Status:</span>
+<span class="text-emerald-700 font-semibold">Active &amp; Tamper-Proof</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition" id="close-modal-footer">
+          Close
+        </button>
+<button class="px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow hover:bg-secondary-container transition" onclick="alert('Public ledger verified! Credential is authentic and issued directly by the Academic Registry.');">
+          Check Blockchain Record
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple modal open/close interaction
+  const verifyBtn = document.getElementById('verify-modal-btn');
+  const verifyModal = document.getElementById('verify-modal');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  const closeModalFooter = document.getElementById('close-modal-footer');
+
+  if (verifyBtn && verifyModal) {
+    verifyBtn.addEventListener('click', () => {
+      verifyModal.classList.remove('hidden');
+      verifyModal.classList.add('flex');
+    });
+
+    const closeModal = () => {
+      verifyModal.classList.add('hidden');
+      verifyModal.classList.remove('flex');
+    };
+
+    closeModalBtn?.addEventListener('click', closeModal);
+    closeModalFooter?.addEventListener('click', closeModal);
+    verifyModal.addEventListener('click', (e) => {
+      if (e.target === verifyModal) closeModal();
+    });
+  }
+</script></main>
+</div>
+<!-- END: MainContentArea -->
+
+
+
+
+<script src="../skillshub-api.js"></script>
+<script src="../profile.js"></script>
+<script src="../responsive.js"></script>
+</body></html>

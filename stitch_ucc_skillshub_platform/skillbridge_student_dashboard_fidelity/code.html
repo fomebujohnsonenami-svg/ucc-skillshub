@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillBridge University Dashboard</title>
+<!-- Google Font: Plus Jakarta Sans / Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#F3EEFF',
+              100: '#E7DCFF',
+              500: '#6338EE',
+              600: '#4F22DC',
+              700: '#4315D1',
+              800: '#3410A8',
+              navy: '#0E1022',
+              card: '#FFFFFF',
+              bg: '#F5F6FA',
+              subtle: '#6B7280'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 10px rgba(22, 28, 45, 0.04)',
+            'card-hover': '0 10px 25px -5px rgba(22, 28, 45, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Typography & Layout Rules -->
+<style data-purpose="typography">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0E1022;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #25284B;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#F5F6FA] text-slate-800 flex min-h-screen overflow-x-hidden">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="w-64 bg-[#0E1022] flex-shrink-0 flex flex-col justify-between py-6 px-4 select-none min-h-screen z-20" data-purpose="main-sidebar">
+<div>
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-3 px-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#5B22E5] to-[#7B42FF] flex items-center justify-center shadow-lg shadow-purple-900/40">
+<!-- Graduation Cap Icon -->
+<svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"></path>
+</svg>
+</div>
+<div>
+<span class="text-white text-xl font-bold tracking-tight block leading-none">SkillBridge</span>
+<span class="text-[10px] text-gray-400 font-medium tracking-wide">Learn • Practice • Grow</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="space-y-1.5">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F22DC] text-white font-medium text-sm shadow-md shadow-indigo-900/50 transition" href="#dashboard">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Dashboard</span>
+</a>
+<!-- Courses -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#courses">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Courses</span>
+</a>
+<!-- Skill Pathways -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#pathways">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Skill Pathways</span>
+</a>
+<!-- Projects -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#projects">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Projects</span>
+</a>
+<!-- Certificates -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#certificates">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Certificates</span>
+</a>
+<!-- Portfolio -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#portfolio">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Portfolio</span>
+</a>
+<!-- Opportunities -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#opportunities">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Opportunities</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#analytics">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div>
+<hr class="border-[#202444] mb-4"/>
+<div class="space-y-1.5">
+<!-- Settings -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#settings">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Settings</span>
+</a>
+<!-- Notifications with Badge -->
+<a class="flex items-center justify-between px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#notifications">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Notifications</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-[#E53E3E] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+</a>
+<!-- Logout -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#logout">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Top App Header -->
+<header class="px-8 py-5 flex items-center justify-between gap-6 bg-[#F5F6FA] sticky top-0 z-10" data-purpose="top-header">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</div>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#EBEEF5] text-sm text-gray-800 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400" placeholder="Search courses, skills or opportunities..." type="text"/>
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-5">
+<!-- Notification Bell Icon -->
+<button aria-label="Notifications" class="relative p-2 text-gray-600 hover:text-gray-900 transition">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full ring-2 ring-[#F5F6FA]"></span>
+</button>
+<!-- User Profile Pill -->
+<div class="flex items-center gap-3 cursor-pointer group select-none">
+<img alt="Prince Egah avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-purple-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9L8alfGdZYDmktFgySfh2VxvbdddZhmZFpuHqq5PEXL_bM-3h-hex3PrEpJJofS3D9-yQWuTuB9oJW2_IM0dVsOcb0lJpfo4xX3--f_R2Oq8H_wSDdbUR_ylO8rUxh2hcX-dgd955yZjrdQ9Dn06ql4V9leTWmU9VYS--qQP0JAI0QIvWSzkFc9I-Mf2wd5IJjGoECFZW3RtaLh7IXfBZ8xfcTfTqZP332opM1U8"/>
+<span class="text-sm font-semibold text-gray-800">Prince Egah</span>
+<svg class="w-4 h-4 text-gray-500 group-hover:text-gray-700 transition" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Grid Layout -->
+<main class="px-8 pb-10 flex-1 grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<!-- LEFT / CENTER COLUMN (8 cols in 12-col grid) -->
+<section class="xl:col-span-8 flex flex-col gap-6" data-purpose="center-content-column">
+<!-- Banner: Welcome Back Hero -->
+<div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#20115B] via-[#4315D1] to-[#602AEA] text-white p-8 flex items-center justify-between shadow-sm min-h-[220px]" data-purpose="welcome-hero-banner">
+<!-- Background glow / pattern -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.15),transparent)] pointer-events-none"></div>
+<div class="relative z-10 max-w-md pr-4">
+<h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Welcome back, Prince! 👋</h1>
+<p class="text-white/80 text-sm mb-6 leading-relaxed">Continue building your skills and unlocking new opportunities at the University.</p>
+<a class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#4315D1] font-semibold text-sm rounded-full shadow hover:bg-gray-50 transition transform hover:-translate-y-0.5" href="#courses">
+<span>Explore Courses</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</a>
+</div>
+<!-- Hero Image of smiling student with laptop -->
+<div class="hidden sm:block absolute right-0 bottom-0 h-full w-2/5 overflow-hidden">
+<img alt="Student on campus with laptop" class="w-full h-full object-cover object-top mask-gradient" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfZrhAwjaVwN5Pj9N5fBuB6D5Xt3mP-1w4x4Ylu4JO4HF07CZxpC7zQtLLg2WPCeavjedH_okvTMUnFC7ZMj1sxR3LN1jg6FhIZHf-wr3_7c_j-TR7Z9NgSVEGiK6MbL0ek-a4Y_VJYImg6MVT5uANZGXraPq73d0g5KiUcUR0bpB54TddZ2mqO7EeqtOqcv1hisddb4mHbYV9H18zkfY27JvvNAoqa8ZpwviswO0" style="mask-image: linear-gradient(to right, transparent 0%, black 35%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 35%);"/>
+</div>
+</div>
+<!-- 4 Quick Stats Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-purpose="stats-row">
+<!-- Stat 1: Enrolled Courses -->
+<div class="bg-white rounded-2xl p-4 flex items-center gap-3.5 border border-slate-100 shadow-card">
+<div class="w-12 h-12 rounded-xl bg-[#E8F1FF] text-[#2970FF] flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 2H5C3.89 2 3 2.89 3 4V18C3 19.1 3.9 20 5 20H19C20.1 20 21 19.1 21 18V4C21 2.89 20.1 2 19 2M19 18H5V4H7V11L9.5 9.5L12 11V4H19V18Z"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-800 leading-none">3</div>
+<div class="text-xs text-gray-400 font-medium mt-1">Enrolled Courses</div>
+</div>
+</div>
+<!-- Stat 2: Completed Courses -->
+<div class="bg-white rounded-2xl p-4 flex items-center gap-3.5 border border-slate-100 shadow-card">
+<div class="w-12 h-12 rounded-xl bg-[#E6F9F0] text-[#12B76A] flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-800 leading-none">1</div>
+<div class="text-xs text-gray-400 font-medium mt-1">Completed Courses</div>
+</div>
+</div>
+<!-- Stat 3: Certificates -->
+<div class="bg-white rounded-2xl p-4 flex items-center gap-3.5 border border-slate-100 shadow-card">
+<div class="w-12 h-12 rounded-xl bg-[#FEF6E7] text-[#F79009] flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 5H17V3H7V5H5C3.9 5 3 5.9 3 7V8C3 10.55 4.92 12.63 7.39 12.93C8.14 14.21 9.45 15.14 11 15.42V18H9V20H15V18H13V15.42C14.55 15.14 15.86 14.21 16.61 12.93C19.08 12.63 21 10.55 21 8V7C21 5.9 20.1 5 19 5M5 8V7H7V10.15C5.83 9.71 5 8.92 5 8M19 8C19 8.92 18.17 9.71 17 10.15V7H19V8Z"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-800 leading-none">2</div>
+<div class="text-xs text-gray-400 font-medium mt-1">Certificates</div>
+</div>
+</div>
+<!-- Stat 4: Projects -->
+<div class="bg-white rounded-2xl p-4 flex items-center gap-3.5 border border-slate-100 shadow-card">
+<div class="w-12 h-12 rounded-xl bg-[#F4EDFD] text-[#7F56D9] flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"></path>
+</svg>
+</div>
+<div>
+<div class="text-2xl font-bold text-slate-800 leading-none">4</div>
+<div class="text-xs text-gray-400 font-medium mt-1">Projects</div>
+</div>
+</div>
+</div>
+<!-- Section: Continue Learning -->
+<div class="flex flex-col gap-3" data-purpose="continue-learning-section">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[#4315D1]">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"></path>
+</svg>
+</span>
+<h2 class="text-base font-bold text-gray-900 tracking-tight">Continue Learning</h2>
+</div>
+<a class="text-xs font-semibold text-[#4315D1] hover:underline flex items-center gap-1" href="#view-courses">
+              View All <span>→</span>
+</a>
+</div>
+<!-- Continue Learning Card -->
+<div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-card flex flex-col md:flex-row items-center gap-6">
+<!-- Course Graphic / Thumbnail -->
+<div class="w-full md:w-56 h-36 bg-[#EBF3FF] rounded-xl flex items-center justify-center relative overflow-hidden flex-shrink-0 border border-blue-50">
+<!-- Illustrated Data Graph Concept -->
+<div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100/50"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-28 h-18 bg-white/90 backdrop-blur rounded-lg p-2.5 shadow-sm border border-blue-100">
+<div class="flex items-end gap-1.5 h-10 w-full mb-1">
+<span class="w-2.5 bg-blue-300 rounded-t h-3/5"></span>
+<span class="w-2.5 bg-blue-500 rounded-t h-4/5"></span>
+<span class="w-2.5 bg-[#4315D1] rounded-t h-full"></span>
+<span class="w-2.5 bg-indigo-300 rounded-t h-2/4"></span>
+</div>
+<div class="h-1.5 w-12 bg-gray-200 rounded"></div>
+</div>
+</div>
+<!-- Floating Magnifier Accent -->
+<div class="absolute bottom-2 right-4 w-7 h-7 bg-white rounded-full shadow flex items-center justify-center text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+</div>
+<!-- Course Meta & Progress Info -->
+<div class="flex-1 w-full">
+<div class="flex flex-wrap items-center gap-2.5 mb-1.5">
+<h3 class="font-bold text-gray-900 text-base">Data Analytics Fundamentals</h3>
+<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#EFEBFF] text-[#5925DC]">In Progress • 68%</span>
+</div>
+<p class="text-xs text-gray-500 mb-5">Learn the basics of data analysis using Excel and Power BI.</p>
+<!-- Progress Bar and Action Button -->
+<div class="flex items-center gap-5">
+<div class="flex-1">
+<div class="w-full bg-[#E5E7EB] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#4315D1] h-full rounded-full transition-all duration-500" style="width: 68%;"></div>
+</div>
+</div>
+<a class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#4315D1] text-white text-xs font-semibold hover:bg-[#3410A8] transition shadow-sm flex-shrink-0" href="#course-play">
+<span>Continue</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Skill Pathways -->
+<div class="flex flex-col gap-3" data-purpose="skill-pathways-section">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-[#4315D1]">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
+</svg>
+</span>
+<h2 class="text-base font-bold text-gray-900 tracking-tight">Skill Pathways</h2>
+</div>
+<a class="text-xs font-semibold text-[#4315D1] hover:underline flex items-center gap-1" href="#view-pathways">
+              View All <span>→</span>
+</a>
+</div>
+<!-- 4 Pathway Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Pathway 1: Data Analyst -->
+<div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-card flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-[#E8F1FF] text-[#2970FF] flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M9 17H7V10H9V17M13 17H11V7H13V17M17 17H15V13H17V17Z"></path>
+</svg>
+</div>
+<h4 class="font-bold text-gray-900 text-sm leading-snug">Data Analyst Pathway</h4>
+<div class="text-[11px] text-gray-400 mt-1 mb-3">7 steps • 80%</div>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#4315D1] h-full rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Pathway 2: Graphic Designer -->
+<div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-card flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-[#F6EEFF] text-[#9E77ED] flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M20.71 7.04C21.1 6.65 21.1 6 20.71 5.63L18.37 3.29C18 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25Z"></path>
+</svg>
+</div>
+<h4 class="font-bold text-gray-900 text-sm leading-snug">Graphic Designer Pathway</h4>
+<div class="text-[11px] text-gray-400 mt-1 mb-3">6 steps • 50%</div>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#4315D1] h-full rounded-full" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Pathway 3: Web Developer -->
+<div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-card flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-[#EBF7FE] text-[#0BA5EC] flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<h4 class="font-bold text-gray-900 text-sm leading-snug">Web Developer Pathway</h4>
+<div class="text-[11px] text-gray-400 mt-1 mb-3">8 steps • 30%</div>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#4315D1] h-full rounded-full" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Pathway 4: Digital Marketer -->
+<div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-card flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-[#E6F4FF] text-[#0086C9] flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 8H4A2 2 0 002 10V14A2 2 0 004 16H5V20A1 1 0 006 21H8A1 1 0 009 20V16H12L17 20V4L12 8M21.5 12C21.5 10.12 20.44 8.5 18.91 7.69V16.31C20.44 15.5 21.5 13.88 21.5 12Z"></path>
+</svg>
+</div>
+<h4 class="font-bold text-gray-900 text-sm leading-snug">Digital Marketer Pathway</h4>
+<div class="text-[11px] text-gray-400 mt-1 mb-3">5 steps • 20%</div>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#4315D1] h-full rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Banner: Bottom Encouragement Callout -->
+<div class="bg-[#EFEBFF] rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4" data-purpose="bottom-encouragement-banner">
+<div class="flex items-center gap-3.5">
+<span class="text-[#5B22E5] text-2xl flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2.5s3.5 4.5 3.5 9.5c0 3-1.5 5.5-3.5 7.5-2-2-3.5-4.5-3.5-7.5 0-5 3.5-9.5 3.5-9.5M4 14c0 3 2.5 5.5 4.5 7-1.5 0-3-1-3.5-2.5-.5-1.5 0-3 1-4.5H4m16 0c1 1.5 1.5 3 1 4.5-.5 1.5-2 2.5-3.5 2.5 2-1.5 4.5-4 4.5-7h-2z"></path>
+</svg>
+</span>
+<span class="font-bold text-gray-900 text-sm">Your future is brighter with new skills. Keep going!</span>
+</div>
+<a class="inline-flex items-center gap-1.5 px-5 py-2 bg-[#4315D1] hover:bg-[#3410A8] text-white font-semibold text-xs rounded-full shadow-sm transition flex-shrink-0" href="#skills">
+<span>Explore More Skills</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</a>
+</div>
+</section>
+<!-- RIGHT COLUMN: User Profile & Widgets (4 cols in 12-col grid) -->
+<section class="xl:col-span-4 flex flex-col gap-6" data-purpose="right-widgets-column">
+<!-- Widget 1: Your Profile Summary -->
+<div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-card" data-purpose="profile-card">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-gray-900 text-base">Your Profile</h3>
+<a class="text-xs font-semibold text-[#4315D1] hover:underline flex items-center gap-1" href="#profile">
+              View Profile <span>→</span>
+</a>
+</div>
+<!-- Avatar + Student Info -->
+<div class="flex items-center gap-4 mb-4">
+<img alt="Prince Egah" class="w-16 h-16 rounded-full object-cover shadow-sm ring-2 ring-purple-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtT5mCTflPHpWGtKzrVz6seT28Vj14FEIPHpxgqQwafeRdPcBA9rYY7-W-tWBodmOp__64wwkosSPp8tIw2KN_FMnL_A4TMS8IXkV31Uj31UoWkpSt7ch2biqUqy1L5JH67Sd54MKqd1C-AAXJF9md6CyHs83WggGS1vs-itqDw1LwU1CkLcEzL2D8zM1g-EbVLJ6Ad8ODN1i80l-YApVU4F38XwalTMMxrsJw-ig"/>
+<div>
+<h4 class="font-bold text-gray-900 text-base">Prince Egah</h4>
+<p class="text-xs text-gray-500 font-medium">BSc Computer Science</p>
+</div>
+</div>
+<!-- Skill Badges -->
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#EAF9F1] text-[#12B76A] border border-[#D1FADF]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#12B76A]"></span>
+              Data Analytics
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#EFF4FF] text-[#2970FF] border border-[#D1E9FF]">
+<svg class="w-3 h-3 text-[#2970FF]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+              Web Development
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#ECFDF3] text-[#039855] border border-[#A6F4C5]">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+</svg>
+              Graphic Design
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600">
+              +2 more
+            </span>
+</div>
+</div>
+<!-- Widget 2: Achievements Badges -->
+<div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-card" data-purpose="achievements-card">
+<div class="flex items-center justify-between mb-5">
+<h3 class="font-bold text-gray-900 text-base">Achievements</h3>
+<a class="text-xs font-semibold text-[#4315D1] hover:underline flex items-center gap-1" href="#achievements">
+              View All <span>→</span>
+</a>
+</div>
+<!-- 3 Trophy Medals Side by Side -->
+<div class="grid grid-cols-3 gap-3 text-center">
+<!-- Badge 1: First Course Completed -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#1570EF] to-[#53B1FD] p-1 flex items-center justify-center shadow-md shadow-blue-500/20 mb-2">
+<div class="w-full h-full rounded-full border border-white/40 flex items-center justify-center">
+<!-- Gold Star -->
+<svg class="w-7 h-7 text-[#FEDF89] fill-current drop-shadow" viewbox="0 0 24 24">
+<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+</svg>
+</div>
+</div>
+<span class="text-[11px] font-bold text-gray-800 leading-tight">First Course<br/>Completed</span>
+</div>
+<!-- Badge 2: 7-Day Streak -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#F04438] to-[#F79009] p-1 flex items-center justify-center shadow-md shadow-orange-500/20 mb-2">
+<div class="w-full h-full rounded-full border border-white/40 flex items-center justify-center">
+<!-- Fire Flame -->
+<svg class="w-7 h-7 text-[#FFFAEB] fill-current drop-shadow" viewbox="0 0 24 24">
+<path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.61 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"></path>
+</svg>
+</div>
+</div>
+<span class="text-[11px] font-bold text-gray-800 leading-tight">7-Day<br/>Streak</span>
+</div>
+<!-- Badge 3: Data Analytics Beginner -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#0086C9] to-[#026AA2] p-1 flex items-center justify-center shadow-md shadow-sky-500/20 mb-2">
+<div class="w-full h-full rounded-full border border-white/40 flex items-center justify-center">
+<!-- Bar Chart -->
+<svg class="w-6 h-6 text-[#D1FADF] fill-current drop-shadow" viewbox="0 0 24 24">
+<path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"></path>
+</svg>
+</div>
+</div>
+<span class="text-[11px] font-bold text-gray-800 leading-tight">Data Analytics<br/>Beginner</span>
+</div>
+</div>
+</div>
+<!-- Widget 3: Campus Opportunities -->
+<div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-card" data-purpose="campus-opportunities-card">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-gray-900 text-base">Campus Opportunities</h3>
+<a class="text-xs font-semibold text-[#4315D1] hover:underline flex items-center gap-1" href="#opportunities">
+              View All <span>→</span>
+</a>
+</div>
+<div class="space-y-4">
+<!-- Opportunity 1 -->
+<div class="p-3.5 rounded-2xl hover:bg-slate-50 border border-slate-100 transition">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-[#F4EDFD] text-[#7F56D9] flex items-center justify-center flex-shrink-0">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-2">
+<h4 class="font-bold text-gray-900 text-xs truncate">Graphic Designer Needed</h4>
+</div>
+<p class="text-[11px] text-gray-400 mt-0.5">Entrepreneurship Club • 2 days ago</p>
+<p class="text-xs text-gray-600 mt-1 line-clamp-1">Create social media graphics for our event.</p>
+</div>
+</div>
+<div class="flex justify-end mt-2">
+<a class="px-4 py-1.5 rounded-full bg-[#4315D1] hover:bg-[#3410A8] text-white text-xs font-semibold shadow-sm transition" href="#apply-1">
+                  Apply
+                </a>
+</div>
+</div>
+<!-- Opportunity 2 -->
+<div class="p-3.5 rounded-2xl hover:bg-slate-50 border border-slate-100 transition">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-[#E8F1FF] text-[#2970FF] flex items-center justify-center flex-shrink-0">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M9 17H7V10H9V17M13 17H11V7H13V17M17 17H15V13H17V17Z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-2">
+<h4 class="font-bold text-gray-900 text-xs truncate">Data Analyst Intern</h4>
+</div>
+<p class="text-[11px] text-gray-400 mt-0.5">Research Department • 3 days ago</p>
+<p class="text-xs text-gray-600 mt-1 line-clamp-1">Analyze student survey data.</p>
+</div>
+</div>
+<div class="flex justify-end mt-2">
+<a class="px-4 py-1.5 rounded-full bg-[#4315D1] hover:bg-[#3410A8] text-white text-xs font-semibold shadow-sm transition" href="#apply-2">
+                  Apply
+                </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- END: MainContentArea -->
+</body></html>

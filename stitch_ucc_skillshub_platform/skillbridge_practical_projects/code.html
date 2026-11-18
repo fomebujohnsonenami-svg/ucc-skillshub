@@ -1,0 +1,987 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB University Dashboard</title>
+<meta content="web_dashboard" name="shell-type">
+<!-- Google Fonts: Manrope & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#000000",
+            "tertiary-container": "#1f005f",
+            "surface-container-highest": "#dfe0fd",
+            "surface-bright": "#fbf8ff",
+            "on-primary-container": "#8081a0",
+            "on-secondary-fixed-variant": "#4214d0",
+            "on-error-container": "#93000a",
+            "on-background": "#171a2f",
+            "primary-fixed-dim": "#c3c4e5",
+            "surface-dim": "#d7d8f4",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#434560",
+            "surface-tint": "#5b5c79",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#c3c4e5",
+            "on-surface": "#171a2f",
+            "on-tertiary-fixed-variant": "#4e00d1",
+            "surface": "#fbf8ff",
+            "error-container": "#ffdad6",
+            "secondary-fixed-dim": "#c8bfff",
+            "outline": "#77767e",
+            "surface-variant": "#dfe0fd",
+            "inverse-surface": "#2c2f45",
+            "on-surface-variant": "#46464d",
+            "surface-container-low": "#f4f2ff",
+            "outline-variant": "#c8c5ce",
+            "on-secondary-container": "#fffbff",
+            "surface-container-high": "#e6e6ff",
+            "on-tertiary-container": "#8c69ff",
+            "background": "#fbf8ff",
+            "secondary-fixed": "#e5deff",
+            "on-tertiary-fixed": "#1f005f",
+            "inverse-on-surface": "#f0efff",
+            "on-tertiary": "#ffffff",
+            "secondary": "#5939e5",
+            "surface-container": "#edecff",
+            "on-secondary-fixed": "#190064",
+            "primary-fixed": "#e0e0ff",
+            "tertiary-fixed": "#e7deff",
+            "on-primary-fixed": "#171932",
+            "tertiary-fixed-dim": "#cdbdff",
+            "error": "#ba1a1a",
+            "primary-container": "#171932",
+            "on-secondary": "#ffffff",
+            "tertiary": "#000000",
+            "secondary-container": "#7257ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-md": "1rem",
+            "margin": "2rem",
+            "space-2xl": "3rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2rem",
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-xl-mobile": ["Manrope"],
+            "label-sm": ["Hanken Grotesk"],
+            "display-hero": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "headline-xl": ["Manrope"],
+            "display-hero-mobile": ["Manrope"],
+            "stat-counter": ["Manrope"],
+            "body-sm": ["Hanken Grotesk"],
+            "headline-sm": ["Manrope"],
+            "body-lg": ["Hanken Grotesk"],
+            "label-md": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "headline-lg": ["Manrope"]
+          },
+          "fontSize": {
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "stat-counter": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Hanken Grotesk', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="fixed top-0 left-0 bottom-0 w-64 bg-primary-container z-30 flex flex-col justify-between py-margin-desktop px-space-md select-none" data-purpose="main-sidebar">
+<div class="flex flex-col gap-space-lg">
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-space-sm px-space-sm"><div class="w-full flex items-center py-1"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCzSSFqOZgpcSA-ekdHjPfpoRqzTLQ1L-6tA3g6TpX6-NiCME5yGpLbS80xmgQagfHT4CdgLfA_39KhDHUcttEPDV2K5nrnarLxjNVZWZOZKvJl8rnCt1CI64PP2q88B35fBO_PVR8D9H9ITZNXUZ9w6WpojAAk2IROh42AYccPK27M3G31CFeZEl70lyiI7uzA8Fom9EGQHUnBsOCVZZ9Fqkb9UVr7l2peUPp0rA5g" alt="UCC SKILLSHUB Logo" class="h-9 w-auto max-w-full object-contain filter brightness-0 invert"></div></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary shadow-md font-label-md">
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="dashboard" href="#dashboard">Dashboard</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="courses" href="#courses">Courses</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="skill-pathways" href="#skill-pathways">Skill Pathways</a>
+<a aria-current="page" class="px-space-md py-space-sm rounded-full block bg-secondary text-on-secondary shadow-md font-label-md" data-path="projects" href="#projects">Projects</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="certificates" href="#certificates">Certificates</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="portfolio" href="#portfolio">Portfolio</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="opportunities" href="#opportunities">Opportunities</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="analytics" href="#analytics">Analytics</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div class="flex flex-col gap-space-xs">
+<div class="h-px bg-on-primary-container/20 my-space-xs"></div>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="settings" href="#settings">Settings</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition" data-path="notifications" href="#notifications">
+<span>Notifications</span>
+<span class="w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="logout" href="#logout">Logout</a>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="pl-64 flex flex-col min-h-screen">
+<!-- Top App Header -->
+<header class="fixed top-0 left-64 right-0 z-20 bg-background/95 backdrop-blur-md px-margin py-0" data-purpose="top-header">
+<div class="h-16 flex items-center justify-between gap-space-lg">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-xl">
+<div class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</div>
+<input class="w-full pl-10 pr-space-md py-space-sm bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-space-lg">
+<!-- Notification Bell Icon with Badge -->
+<button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background"></span>
+</button>
+<!-- User Profile Pill Dropdown -->
+<div class="flex items-center gap-space-sm cursor-pointer group select-none px-space-xs py-space-xs rounded-full hover:bg-surface-container-low transition">
+<img alt="Prince Egah avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9L8alfGdZYDmktFgySfh2VxvbdddZhmZFpuHqq5PEXL_bM-3h-hex3PrEpJJofS3D9-yQWuTuB9oJW2_IM0dVsOcb0lJpfo4xX3--f_R2Oq8H_wSDdbUR_ylO8rUxh2hcX-dgd955yZjrdQ9Dn06ql4V9leTWmU9VYS--qQP0JAI0QIvWSzkFc9I-Mf2wd5IJjGoECFZW3RtaLh7IXfBZ8xfcTfTqZP332opM1U8">
+<span class="font-label-md text-label-md text-on-surface">Prince Egah</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Workspace -->
+<main class="pt-16 px-margin pb-space-2xl flex-1"><div class="flex flex-col w-full">
+<!-- Top Ambient Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 -left-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-10 right-10 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- 1. PAGE HEADER -->
+<section class="relative pt-space-md pb-space-lg flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 bg-surface-container-high rounded-full w-fit">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">PORTFOLIO-READY CAPSTONES • INDUSTRY EVALUATED</span>
+</div>
+<h1 class="font-display-hero text-[34px] md:text-[44px] leading-tight text-on-surface font-extrabold tracking-tight">
+          Practical Projects
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Turn your knowledge into practical experience. Build real projects, demonstrate your abilities, and strengthen your professional portfolio with verified industry reviews.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-3 rounded-full bg-surface-container-low text-secondary font-label-md text-label-md hover:bg-surface-container transition shadow-sm font-semibold" href="#active-workspace">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+<span>My Active Submissions</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-bold text-label-sm">2</span>
+</a>
+<button class="inline-flex items-center gap-space-xs px-space-lg py-3 rounded-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary font-label-md text-label-md shadow-lg shadow-secondary/25 hover:shadow-xl hover:shadow-secondary/35 hover:brightness-105 transition transform active:scale-95 font-semibold">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Submit Custom Project</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- 2. TOP STATISTICS (4 Metric Cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl">
+<!-- Card 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Available Projects</span>
+<div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">folder_open</span>
+</div>
+</div>
+<div>
+<div class="font-stat-counter text-stat-counter text-on-surface font-extrabold">24</div>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">auto_awesome</span>
+<span>8 newly added this semester</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Projects In Progress</span>
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+</div>
+<div>
+<div class="font-stat-counter text-stat-counter text-on-surface font-extrabold">2</div>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span>Active practical labs underway</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Projects Submitted</span>
+<div class="w-11 h-11 rounded-full bg-surface-container-highest flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[22px]">rate_review</span>
+</div>
+</div>
+<div>
+<div class="font-stat-counter text-stat-counter text-on-surface font-extrabold">1</div>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">hourglass_top</span>
+<span>Under mentor evaluation</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Projects Completed</span>
+<div class="w-11 h-11 rounded-full bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<div class="font-stat-counter text-stat-counter text-on-surface font-extrabold">4</div>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">badge</span>
+<span>Verified &amp; published to portfolio</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. TAB & FILTER CONTROLS -->
+<section class="flex flex-col gap-space-md mb-space-xl">
+<!-- Main Status Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 scrollbar-none" id="status-tabs">
+<button class="px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-md font-semibold whitespace-nowrap flex items-center gap-2">
+<span>All Projects</span>
+<span class="px-2 py-0.5 rounded-full bg-on-secondary/20 text-on-secondary font-label-sm text-label-sm">24</span>
+</button>
+<button class="px-space-lg py-2.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition whitespace-nowrap flex items-center gap-2">
+<span>Recommended</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">6</span>
+</button>
+<button class="px-space-lg py-2.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition whitespace-nowrap flex items-center gap-2">
+<span>In Progress</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">2</span>
+</button>
+<button class="px-space-lg py-2.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition whitespace-nowrap flex items-center gap-2">
+<span>Submitted</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">1</span>
+</button>
+<button class="px-space-lg py-2.5 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition whitespace-nowrap flex items-center gap-2">
+<span>Completed</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">4</span>
+</button>
+</div>
+<!-- Secondary Filter Bar -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[260px]">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" placeholder="Search project title, skill or keyword..." type="text">
+</div>
+<!-- Filter Dropdowns & Pills -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Skill Category -->
+<div class="relative">
+<select class="appearance-none pl-3.5 pr-8 py-2 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>All Categories</option>
+<option>Web Dev</option>
+<option>Data Science &amp; BI</option>
+<option>UI/UX Design</option>
+<option>Product Management</option>
+<option>Digital Marketing</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+<!-- Difficulty Dropdown -->
+<div class="relative">
+<select class="appearance-none pl-3.5 pr-8 py-2 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Difficulty: Any</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+<!-- Duration Dropdown -->
+<div class="relative">
+<select class="appearance-none pl-3.5 pr-8 py-2 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Duration: Any</option>
+<option>1-2 Weeks</option>
+<option>3-4 Weeks</option>
+<option>Capstone 6+ Weeks</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+<!-- Project Type -->
+<div class="relative">
+<select class="appearance-none pl-3.5 pr-8 py-2 bg-surface-container-low text-on-surface font-label-md text-label-md rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Type: All Types</option>
+<option>Individual</option>
+<option>Team / Pair</option>
+<option>Capstone</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+<!-- Sort -->
+<div class="relative ml-auto xl:ml-0">
+<select class="appearance-none pl-3.5 pr-8 py-2 bg-surface-container text-on-surface font-label-md text-label-md rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer font-medium">
+<option>Sort: Highest Impact</option>
+<option>Sort: Most Recent</option>
+<option>Sort: Shortest Duration</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">sort</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. PROJECT GRID (6 Distinct Practical Projects) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-space-2xl">
+<!-- Project 1: Portfolio Website -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern minimalist frontend developer portfolio website on a laptop screen with elegant typography, project grid preview, dynamic dark purple gradient banner, crisp UI layout in high definition studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5iyJga3e1rxX3D72Bc0N0Wvahv0Uml44FGuSlJ8ScPqrEBSs-EAED7cQNnI5z615S-3FO7De9S7JGnVGyWwKFd7P838UPkMMI0sogQotrUUcE_AcRwIks3WlkkKInKB-LXR7s84LeTkrUI26PZtmPA0-6zPNQt4IUGeA-PtP52Td25UbKQWHXRg-vDJndmUley2H3I3Tri_NJowKkvWKBzq1gGYGY0wUvkAKm2Ik">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>Frontend &amp; Web Dev</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-secondary">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/90 text-white font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Completed (96/100)
+            </span>
+<span class="font-label-sm text-label-sm text-surface-container-low font-medium">2 Weeks</span>
+</div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Beginner</span>
+<span>•</span>
+<span>Individual Capstone</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+              Build a Personal Portfolio Website
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Create an accessible, responsive personal developer portfolio showcasing projects, interactive case studies, and automated contact form.
+            </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">HTML5</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Tailwind CSS</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">JavaScript ES6+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Vercel</span>
+</div>
+<a class="w-full py-2.5 px-4 rounded-full bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-label-md font-semibold transition text-center flex items-center justify-center gap-2" href="#active-workspace">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>View Submission &amp; Grade</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Project 2: University Survey Data (Featured Active) -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md ring-2 ring-secondary/20 hover:shadow-xl transition-all duration-300 flex flex-col group relative">
+<div class="absolute -top-3 -right-3 z-10">
+<span class="px-3 py-1 bg-secondary text-on-secondary font-label-sm text-label-sm font-bold rounded-full shadow-md">
+            CURRENT WORKSPACE
+          </span>
+</div>
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Interactive Power BI analytics dashboard showing university student enrollment and career satisfaction charts, sleek violet and dark blue bar graphs, radial metrics and KPIs displayed on high tech monitor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvcOaxCgoclezlRTY3qBV-K-0iIDKm1mbJZUIVv1L_ss_Kx44cPxYDFg8GYfLUiJuwVWs3OSabw6ScXcMEWajSe4ek3RxN8l2uCfTUukQlC7nC4TQ0fIKdX3QFZq-fqMxyZqP_KhHuOny1lletpIxhAf6LDOARZYN3fwcSLMGjPZRq2eMDlkzmxnIlP3OyqtV8FbUj3f2YfTHDZrVK-eKbAcHqxO0KEr05kw7Kxo4">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">query_stats</span>
+<span>Data Analytics &amp; BI</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-secondary">
+<span class="px-2.5 py-0.5 rounded-full bg-amber-500/95 text-white font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] animate-spin">autorenew</span> Milestone 2/3 Active
+            </span>
+<span class="font-label-sm text-label-sm text-amber-200 font-semibold">Due in 4 days</span>
+</div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Intermediate</span>
+<span>•</span>
+<span>3 Weeks Duration</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+              Analyze University Survey Data
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Clean, model, and visualize real-world university student satisfaction and employment survey data using Power BI and DAX formulas.
+            </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Power BI</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">DAX</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Excel Cleaning</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Star Schema</span>
+</div>
+<a class="w-full py-2.5 px-4 rounded-full bg-secondary text-on-secondary hover:bg-secondary-container font-label-md text-label-md font-semibold transition text-center shadow-md shadow-secondary/20 flex items-center justify-center gap-2" href="#active-workspace">
+<span>Continue Project</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Project 3: Mobile Banking App UI -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern smartphone mobile banking UI mockup showing sleek dark indigo debit card, student wallet transfer interface, biometric auth screen and typography system on neat studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_gTpUog9crZ8xU3O2kI9DB4CxUEDYien_rx3IJR3vLwUjDHxaZ7mF7siZlXz3ZVrI5K5OvmprQpKIJkS8oEUL8SGHPrBivcZXqeZ9Q-nsKJXJI0rOBZ8auloUGdyDGnd5LxupXKwcz9_mZXAb7dKMtmCPBGRQBZrSBbDgqWjIIKWf1ZN-vi93T5ehnPLufkPmA-LGiuvki4DGUFxvg5AU1-8XbrW72puZ7rgfqa8">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">draw</span>
+<span>UI/UX &amp; Product Design</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-secondary">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">pending</span> Under Review
+            </span>
+<span class="font-label-sm text-label-sm text-surface-container-low font-medium">Submitted 2d ago</span>
+</div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Intermediate</span>
+<span>•</span>
+<span>4 Weeks Duration</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+              Design a Mobile Banking Application
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Execute full UX research, design interactive wireframes, design token systems, and produce an end-to-end Figma prototype for a student mobile banking app.
+            </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Figma</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">User Research</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Design Systems</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Usability</span>
+</div>
+<button class="w-full py-2.5 px-4 rounded-full bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-label-md font-semibold transition text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+<span>View Submission Status</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Project 4: Student Management System -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Full stack web app interface mockup displaying database architecture, student records table, dark developer IDE terminal with clean API code and schema visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Mje4zj1xsSB2__rOdNMJMSsCFooWDEBe4fligFfmRF8cQ9nzby6IMPo8PP6P_fbsxWJpI7G3chw5l1ulYZOfOoIZSwiaVhKD9vO5uVehCnHv9Y1MhxdCzzP2101unFFemBWNQPdaWo5gKWE0neYfjGwCcwLBXotSIqpsMXohKftTrVggq51LCMxmQ9F8qFXcMJ2ZsPntimQco-NHQWFRNLmS4QZ7YDwUut5HJBY">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">database</span>
+<span>Full Stack Web Dev</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-secondary">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest/90 text-on-surface-variant font-label-sm text-label-sm font-semibold">
+              Not Started
+            </span>
+<span class="font-label-sm text-label-sm text-surface-container-low font-medium">5 Weeks</span>
+</div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Advanced</span>
+<span>•</span>
+<span>Team or Solo Capstone</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+              Build a Student Management System
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Architect a multi-tenant university student records engine with role-based auth, RESTful APIs, PostgreSQL schemas, and Dockerized deployment.
+            </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">React</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Node.js</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">PostgreSQL</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Docker</span>
+</div>
+<button class="w-full py-2.5 px-4 rounded-full bg-surface-container-low text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-label-md font-semibold transition text-center flex items-center justify-center gap-2">
+<span>Start Project</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Project 5: Marketing Campaign -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Digital growth marketing dashboard with customer conversion funnel, social ads analytics graphic, ROI percentage counters, and marketing content planner laid out elegantly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClkFS5zL3qnFD-x-vgyN_TfaFd6Nsuu1Xd2xMlTBNrbDk6P1Y4_u1CQT39PwhKtdxDYXf-QY4L_kqyQkVDR7iSQwMFJilu4w3Pa94a6PcZrE3vMPq5JLYIMbK48y-mvqxOef1q-ue813-6U8sABJod87Z21fRD7w1bB9617rcz1MBuy9AlKoiLvOe_s2Ujgsi7AHI8rfYRBGMKMrRwtKXoKU3UxXcRR9dr-HJxX0U">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">campaign</span>
+<span>Digital Marketing</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-secondary">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest/90 text-on-surface-variant font-label-sm text-label-sm font-semibold">
+              Not Started
+            </span>
+<span class="font-label-sm text-label-sm text-surface-container-low font-medium">2 Weeks</span>
+</div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Beginner</span>
+<span>•</span>
+<span>Individual Project</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+              Create a Business Marketing Campaign
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Develop a multi-channel growth marketing plan for a campus startup, including SEO audit, Google Ads simulation, and conversion copy.
+            </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">SEO Audit</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Meta Ads</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Google Analytics</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Copywriting</span>
+</div>
+<button class="w-full py-2.5 px-4 rounded-full bg-surface-container-low text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-label-md font-semibold transition text-center flex items-center justify-center gap-2">
+<span>Start Project</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Project 6: Weather Forecast App -->
+<article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Dynamic weather app interface on tablet showing radar storm map, animated temperature graphs, dynamic 7-day atmospheric forecast and sleek glassmorphism UI elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArxzn4FGJU3YHYXQtZCesIGAa29E9_b5u_wmu_6PIiejtKrtTgeq_6QJTZz26q9-IZ3rD-8NRVFrNOSkXpu7guVFkDwWKmmFchSyPQiat4oF3aJ1vawwKLxR-SnQJegmFFNzw8i_vSl5mKNjI6a23m4APp1zf2aLzVukDOZbC_RxCwS5EqFo8AbfpSqkqGJ3yEkUagugy-tQF3LBnjUsyX9E2bueGOllZcOmxRp6U">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">cloud</span>
+<span>Frontend Development</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-on-secondary">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/90 text-white font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Completed (92/100)
+            </span>
+<span class="font-label-sm text-label-sm text-surface-container-low font-medium">1 Week</span>
+</div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-outline font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">Beginner</span>
+<span>•</span>
+<span>API Integration Lab</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+              Develop a Weather Forecast Application
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Build a dynamic weather application consuming OpenWeatherMap API with location geolocation, asynchronous fetch, and 7-day forecast.
+            </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">JavaScript</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Fetch API</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">Async / Await</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm">CSS Grid</span>
+</div>
+<button class="w-full py-2.5 px-4 rounded-full bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary font-label-md text-label-md font-semibold transition text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+<span>View Project Details</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<!-- 5. ACTIVE PROJECT DEEP DIVE & INTERACTIVE WORKFLOW -->
+<section class="mb-space-2xl scroll-mt-24" id="active-workspace">
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-lg relative overflow-hidden">
+<!-- Breadcrumb & Status Banner -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pb-space-lg mb-space-lg bg-surface-container-low -mx-space-lg lg:-mx-space-xl -mt-space-lg lg:-mt-space-xl px-space-lg lg:px-space-xl pt-space-lg">
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<span>Projects</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Data Analytics</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-secondary font-semibold">Analyze University Survey Data</span>
+</div>
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 text-amber-900 font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+<span>IN PROGRESS • Milestone 2 of 3 Active • Due: March 24, 2025</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<!-- Left 2/3 Column (8 cols): Project Overview, Objectives, Rubric, Checklist -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-space-xl">
+<!-- Title & Context -->
+<div class="flex flex-col gap-space-xs">
+<h2 class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">
+                Analyze University Survey Data
+              </h2>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">The Problem Statement</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                  The University Student Affairs office collected 2,400 survey responses but lacks actionable insights on student employability and career services satisfaction. Your objective is to transform raw tabular responses into an interactive executive decision dashboard.
+                </p>
+</div>
+</div>
+<!-- Key Objectives -->
+<div class="flex flex-col gap-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">flag</span>
+<span>Milestone 2 Objectives</span>
+</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm shrink-0">1</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Data Sanitization</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Handle 12% missing records and build star-schema data model.</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm shrink-0">2</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Exploratory Analysis</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Compute correlation between internship participation &amp; employment offer rates.</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm shrink-0">3</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Interactive Power BI</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Construct hierarchical slicers, tooltip drill-throughs, and dynamic DAX metrics.</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm shrink-0">4</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Executive Report</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Deliver 3 key strategic recommendations for the Vice Chancellor's board.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Assessment Rubric -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">grading</span>
+<span>Assessment Rubric &amp; Weighting</span>
+</h3>
+<span class="font-label-sm text-label-sm text-outline">Total 100 Points</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Data Cleaning</span>
+<div class="flex items-baseline justify-between">
+<span class="font-stat-counter text-[20px] font-extrabold text-on-surface">25</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Visual Hierarchy</span>
+<div class="flex items-baseline justify-between">
+<span class="font-stat-counter text-[20px] font-extrabold text-on-surface">30</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">DAX Accuracy</span>
+<div class="flex items-baseline justify-between">
+<span class="font-stat-counter text-[20px] font-extrabold text-on-surface">25</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Executive Delivery</span>
+<div class="flex items-baseline justify-between">
+<span class="font-stat-counter text-[20px] font-extrabold text-on-surface">20</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">pts</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Deliverables Checklist -->
+<div class="flex flex-col gap-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">checklist</span>
+<span>Milestone 2 Deliverables Checklist</span>
+</h3>
+<div class="flex flex-col gap-2">
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer select-none">
+<input checked="" class="mt-0.5 rounded text-secondary focus:ring-secondary w-4 h-4 bg-surface-container-lowest" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold line-through text-outline">Import CSV &amp; normalize null demographic fields in Power Query</span>
+<span class="font-body-sm text-body-sm text-outline">Verified and cleaned across 2,400 row records.</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer select-none">
+<input checked="" class="mt-0.5 rounded text-secondary focus:ring-secondary w-4 h-4 bg-surface-container-lowest" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold line-through text-outline">Construct Star Schema (Dim_Student, Dim_Department, Fact_Survey)</span>
+<span class="font-body-sm text-body-sm text-outline">Single directional 1-to-many relationships configured.</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer select-none">
+<input class="mt-0.5 rounded text-secondary focus:ring-secondary w-4 h-4 bg-surface-container-lowest" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Develop 6 DAX Measures (NPS, Employability Rate, Sentiment Index)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Include CALCULATE and SWITCH conditional statements.</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer select-none">
+<input class="mt-0.5 rounded text-secondary focus:ring-secondary w-4 h-4 bg-surface-container-lowest" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Publish Power BI Service Report with cross-filter capabilities</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Export accessible public link or embed token.</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Right 1/3 Column (4-5 cols): Submission Interface -->
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-space-md p-space-lg rounded-2xl bg-surface-container-low">
+<div class="flex items-center justify-between pb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Submission Portal</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-bold">Draft Active</span>
+</div>
+<!-- Workflow Visual State Indicator -->
+<div class="flex items-center justify-between px-2 py-3 bg-surface-container-lowest rounded-xl">
+<div class="flex flex-col items-center gap-1 text-center flex-1">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[12px] font-bold">✓</span>
+<span class="font-label-sm text-[10px] text-secondary font-bold">Started</span>
+</div>
+<div class="h-0.5 flex-1 bg-secondary"></div>
+<div class="flex flex-col items-center gap-1 text-center flex-1">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[12px] font-bold animate-pulse">2</span>
+<span class="font-label-sm text-[10px] text-secondary font-bold">Active Lab</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container-highest"></div>
+<div class="flex flex-col items-center gap-1 text-center flex-1">
+<span class="w-6 h-6 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-[12px] font-bold">3</span>
+<span class="font-label-sm text-[10px] text-outline font-semibold">Review</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container-highest"></div>
+<div class="flex flex-col items-center gap-1 text-center flex-1">
+<span class="w-6 h-6 rounded-full bg-surface-container-highest text-outline flex items-center justify-center text-[12px] font-bold">4</span>
+<span class="font-label-sm text-[10px] text-outline font-semibold">Graded</span>
+</div>
+</div>
+<!-- GitHub Repo URL -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium flex items-center justify-between">
+<span>GitHub Repository URL</span>
+<span class="text-emerald-600 font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Verified
+                </span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">terminal</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-secondary" type="url" value="https://github.com/prince-egah/survey-data-analytics">
+</div>
+</div>
+<!-- Live Demo Link -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium">Live Power BI / Demo Link</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">link</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-secondary" type="url" value="https://app.powerbi.com/view?r=eyJrIjoiMzQyYzE2ZGYtM2MwNC00...">
+</div>
+</div>
+<!-- Drag & Drop Dropzone -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium">Project Deliverable File (.pbix / PDF)</label>
+<div class="p-space-md rounded-2xl bg-surface-container-lowest hover:bg-surface-container transition border-2 border-dashed border-outline-variant/50 flex flex-col items-center justify-center text-center gap-1.5 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Drop file here or <span class="text-secondary underline">Browse</span></div>
+<div class="font-body-sm text-body-sm text-outline">PDF report, .pbix file or zip (Max 50MB)</div>
+</div>
+<!-- Uploaded file chip -->
+<div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-secondary text-[20px]">picture_as_pdf</span>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-label-md text-on-surface font-medium truncate">survey_final_report_v2.pdf</span>
+<span class="font-label-sm text-label-sm text-emerald-600 font-semibold">4.2 MB • Ready for review</span>
+</div>
+</div>
+<button aria-label="Remove file" class="p-1 text-outline hover:text-error transition">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Student Reflection & Notes -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-medium">Notes &amp; Reflection for Evaluator</label>
+<textarea class="w-full p-3 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-secondary resize-none placeholder:text-outline" placeholder="Explain your design decisions, DAX logic compromises, or data anomalies you discovered..." rows="3">Optimized the star schema to index students by graduation year cohort. Configured custom tooltip cards showcasing departmental responses.</textarea>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full py-3 rounded-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary font-label-md text-label-md font-bold shadow-md shadow-secondary/30 hover:shadow-lg hover:shadow-secondary/40 transition flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Submit for Academic Review</span>
+</button>
+<button class="w-full py-2.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-semibold transition text-center">
+                Save Progress Draft
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. FEEDBACK & MENTOR EVALUATION SECTION -->
+<section class="mb-space-xl">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">Recent Mentor Feedback</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Academic and industry feedback on your latest milestone submission</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary transition font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download Evaluation Report (PDF)</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg lg:p-space-xl shadow-sm flex flex-col lg:flex-row gap-space-xl items-stretch">
+<!-- Evaluator Profile & Score Column -->
+<div class="lg:w-1/3 flex flex-col justify-between gap-space-md p-space-lg rounded-2xl bg-surface-container-low">
+<div class="flex items-start gap-space-md">
+<img class="w-14 h-14 rounded-full object-cover ring-2 ring-secondary/20 shadow-md" data-alt="Professional headshot of Sarah Osei, a friendly Ghanaian female senior BI analyst and university mentor wearing smart navy blazer and smiling warmly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtAeZTG46Hhl2xywqLToOrNbqBJj7zi6-QorCjWLJcTfIDfE4K22dBlFHJqIya7APrUjLfvB1e97Fq18U-YjGh1m-uSEXUDwzB5VeHI0tB7svqFRclYDcjTzCM1nU3DVFcEO4CsZ9e-Wrp3YdR_4LbP4k-fAjQCOBYiCERSa_2CyklVRo3gih5yaZBWKtkJ4Ug4R0lymQ6x544RX61z1TtUqJuWA3Vutg6ZJww1bQ">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Sarah Osei</span>
+<span class="font-label-md text-label-md text-secondary font-semibold">Senior BI Analyst &amp; Academic Mentor</span>
+<span class="font-body-sm text-body-sm text-outline mt-0.5">Evaluated March 18, 2025</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-outline font-bold">Milestone 1 Grade</span>
+<span class="font-display-hero text-[36px] leading-tight font-extrabold text-secondary">94<span class="text-[20px] font-medium text-outline">/100</span></span>
+</div>
+<div class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-800 font-label-md text-label-md font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+<span>Honors Grade</span>
+</div>
+</div>
+</div>
+<!-- Feedback & Detailed Breakdown -->
+<div class="lg:w-2/3 flex flex-col justify-between gap-space-lg">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm font-bold">
+                MILESTONE 1: DATA CLEANING &amp; STAR SCHEMA
+              </span>
+</div>
+<blockquote class="font-body-lg text-body-lg text-on-surface italic leading-relaxed pl-4 border-l-4 border-secondary">
+              “Outstanding data sanitization pipeline, Prince. The star schema handles dimension relationships cleanly. Consider optimizing the nested IF statements in your calculated columns into SWITCH functions for better DAX query performance in Milestone 2.”
+            </blockquote>
+</div>
+<!-- Score Breakdown Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md pt-space-xs">
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline">Data Quality</span>
+<span class="font-stat-counter text-stat-counter text-on-surface font-bold">25<span class="text-label-sm text-outline font-normal">/25</span></span>
+<span class="font-label-sm text-[11px] text-emerald-700 font-bold">Perfect Score</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline">Schema Design</span>
+<span class="font-stat-counter text-stat-counter text-on-surface font-bold">24<span class="text-label-sm text-outline font-normal">/25</span></span>
+<span class="font-label-sm text-[11px] text-emerald-700 font-bold">Exemplary</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline">Documentation</span>
+<span class="font-stat-counter text-stat-counter text-on-surface font-bold">23<span class="text-label-sm text-outline font-normal">/25</span></span>
+<span class="font-label-sm text-[11px] text-secondary font-bold">Strong Delivery</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline">Timeliness</span>
+<span class="font-stat-counter text-stat-counter text-on-surface font-bold">22<span class="text-label-sm text-outline font-normal">/25</span></span>
+<span class="font-label-sm text-[11px] text-secondary font-bold">On Schedule</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div></main>
+</div>
+<!-- END: MainContentArea -->
+
+
+</body></html>

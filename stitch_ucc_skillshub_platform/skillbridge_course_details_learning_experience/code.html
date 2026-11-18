@@ -1,0 +1,1271 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB - Course Overview &amp; Classroom</title>
+<!-- Google Font: Plus Jakarta Sans / Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config" id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#F3EEFF',
+              100: '#E7DCFF',
+              500: '#6338EE',
+              600: '#4F22DC',
+              700: '#4315D1',
+              800: '#3410A8',
+              navy: '#0E1022',
+              card: '#FFFFFF',
+              bg: '#F5F6FA',
+              subtle: '#6B7280'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 10px rgba(22, 28, 45, 0.04)',
+            'card-hover': '0 10px 25px -5px rgba(22, 28, 45, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Typography & Layout Rules -->
+<style data-purpose="typography">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0E1022;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #25284B;
+      border-radius: 4px;
+    }
+  </style>
+<meta content="web_dashboard" name="shell-type"></head>
+<body class="bg-[#F5F6FA] text-slate-800 flex min-h-screen overflow-x-hidden">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="w-64 bg-[#0E1022] flex-shrink-0 flex flex-col justify-between py-6 px-4 select-none min-h-screen z-20" data-purpose="main-sidebar">
+<div>
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-3 px-3 mb-8"><div class="flex items-center py-1"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCzSSFqOZgpcSA-ekdHjPfpoRqzTLQ1L-6tA3g6TpX6-NiCME5yGpLbS80xmgQagfHT4CdgLfA_39KhDHUcttEPDV2K5nrnarLxjNVZWZOZKvJl8rnCt1CI64PP2q88B35fBO_PVR8D9H9ITZNXUZ9w6WpojAAk2IROh42AYccPK27M3G31CFeZEl70lyiI7uzA8Fom9EGQHUnBsOCVZZ9Fqkb9UVr7l2peUPp0rA5g" alt="UCC SKILLSHUB Logo" class="h-9 w-auto object-contain"></div></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="space-y-1.5">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F22DC] text-white font-medium text-sm shadow-md shadow-indigo-900/50 transition" href="#dashboard">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Dashboard</span>
+</a>
+<!-- Courses -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#courses">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Courses</span>
+</a>
+<!-- Skill Pathways -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#pathways">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Skill Pathways</span>
+</a>
+<!-- Projects -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#projects">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Projects</span>
+</a>
+<!-- Certificates -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#certificates">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Certificates</span>
+</a>
+<!-- Portfolio -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#portfolio">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Portfolio</span>
+</a>
+<!-- Opportunities -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#opportunities">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Opportunities</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#analytics">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div>
+<hr class="border-[#202444] mb-4">
+<div class="space-y-1.5">
+<!-- Settings -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#settings">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Settings</span>
+</a>
+<!-- Notifications with Badge -->
+<a class="flex items-center justify-between px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#notifications">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Notifications</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-[#E53E3E] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+</a>
+<!-- Logout -->
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 font-medium text-sm transition" href="#logout">
+<svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Top App Header -->
+<header class="px-8 py-5 flex items-center justify-between gap-6 bg-[#F5F6FA] sticky top-0 z-10" data-purpose="top-header">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</div>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#EBEEF5] text-sm text-gray-800 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-5">
+<!-- Notification Bell Icon -->
+<button aria-label="Notifications" class="relative p-2 text-gray-600 hover:text-gray-900 transition">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full ring-2 ring-[#F5F6FA]"></span>
+</button>
+<!-- User Profile Pill -->
+<div class="flex items-center gap-3 cursor-pointer group select-none">
+<img alt="Prince Egah avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-purple-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9L8alfGdZYDmktFgySfh2VxvbdddZhmZFpuHqq5PEXL_bM-3h-hex3PrEpJJofS3D9-yQWuTuB9oJW2_IM0dVsOcb0lJpfo4xX3--f_R2Oq8H_wSDdbUR_ylO8rUxh2hcX-dgd955yZjrdQ9Dn06ql4V9leTWmU9VYS--qQP0JAI0QIvWSzkFc9I-Mf2wd5IJjGoECFZW3RtaLh7IXfBZ8xfcTfTqZP332opM1U8">
+<span class="text-sm font-semibold text-gray-800">Prince Egah</span>
+<svg class="w-4 h-4 text-gray-500 group-hover:text-gray-700 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Grid Layout -->
+<main class="px-8 pb-10 flex-1 grid grid-cols-1 xl:grid-cols-12 gap-8 items-start"><div class="flex flex-col w-full">
+<!-- Top Level State Switcher Bar & Breadcrumbs -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span class="hover:text-secondary cursor-pointer transition">Dashboard</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<span class="hover:text-secondary cursor-pointer transition">Courses</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<span class="text-on-surface font-headline-sm text-headline-sm font-semibold">Data Analytics Fundamentals</span>
+</div>
+<!-- Mode Switcher Pill -->
+<div class="inline-flex p-1 bg-surface-container rounded-full shadow-sm">
+<button class="flex items-center gap-2 px-5 py-2 rounded-full font-label-md text-label-md transition-all duration-200 bg-secondary text-on-secondary shadow-md" id="tab-btn-overview" onclick="switchMainView('overview')">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Course Overview</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2 rounded-full font-label-md text-label-md transition-all duration-200 text-on-surface-variant hover:text-on-surface" id="tab-btn-classroom" onclick="switchMainView('classroom')">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Continue Learning Classroom</span>
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+</div>
+</div>
+<!-- =============================================================== -->
+<!-- STATE 1: COURSE OVERVIEW (PART A)                               -->
+<!-- =============================================================== -->
+<div class="flex flex-col gap-8 w-full" id="view-overview">
+<!-- Hero Banner Card -->
+<div class="relative overflow-hidden rounded-2xl bg-primary-container text-on-primary p-6 md:p-10 shadow-xl">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-12 w-64 h-64 rounded-full bg-on-tertiary-container/15 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left Hero Copy -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-on-secondary-fixed-variant font-label-sm text-label-sm uppercase tracking-wider font-bold">UCC SKILLSHUB Certified</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high/20 text-surface-bright font-label-sm text-label-sm">Beginner Level</span>
+<span class="flex items-center gap-1 text-surface-container-highest font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-yellow-400" style="font-variation-settings: 'FILL' 1;">star</span>
+<strong class="text-on-secondary">4.9</strong> (1,420 reviews)
+            </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-primary font-extrabold tracking-tight">
+            Data Analytics Fundamentals
+          </h1>
+<p class="font-body-md text-body-md text-on-primary-container max-w-2xl leading-relaxed">
+            Master the complete pipeline of modern business intelligence. From wrangling messy data in Excel to architecting SQL queries, creating interactive Power BI dashboards, and pitching insights to executives.
+          </p>
+<!-- Badges Bar -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2">
+<div class="flex items-center gap-2 text-on-primary-container">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">calendar_today</span>
+<span class="font-label-md text-label-md text-on-secondary">8 Weeks</span>
+</div>
+<div class="flex items-center gap-2 text-on-primary-container">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">play_lesson</span>
+<span class="font-label-md text-label-md text-on-secondary">24 Lessons</span>
+</div>
+<div class="flex items-center gap-2 text-on-primary-container">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">group</span>
+<span class="font-label-md text-label-md text-on-secondary">3,850 Enrolled</span>
+</div>
+<div class="flex items-center gap-2 text-on-primary-container">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">verified</span>
+<span class="font-label-md text-label-md text-on-secondary">Cert. Included</span>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<button class="flex items-center gap-3 px-8 py-3 rounded-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary font-label-md text-label-md shadow-lg shadow-secondary/40 hover:brightness-110 active:scale-95 transition" onclick="switchMainView('classroom')">
+<span>Resume Learning (Module 3)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<a class="flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-high/15 hover:bg-surface-container-high/25 text-on-secondary font-label-md text-label-md transition" href="#curriculum">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Download Syllabus</span>
+</a>
+</div>
+<!-- Instructor Quick Card -->
+<div class="flex items-center gap-3 pt-3">
+<img class="w-11 h-11 rounded-full object-cover shadow-inner" data-alt="Portrait of Sarah Osei, a senior female business intelligence analyst wearing modern glasses and navy blazer smiling in a bright data tech company office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuqA8gffOnkOv5mJqZ_cFG2kYE5LvlXJzll2ZauKqS1s01onnUT-SNvYVpzwCyLPi8bD9tRA5pFyM03VfltNyeeofYM8Irl1QC2s-SWh-8L2JuO2_j-cbf9IvrDPGzfcOgflxRb8fGIBOH_jplRwkhYBd0fg7PtuwUSP0w4zgXGLS1j6hKhqghoRvwVO46rRXaRjzbZrGZywg6GVUgMjliQJPP-z9c-MTIWav_-cg">
+<div>
+<p class="font-label-sm text-label-sm text-on-primary-container">Lead Instructor</p>
+<p class="font-label-md text-label-md text-on-secondary font-bold">Sarah Osei <span class="font-normal text-on-primary-container">• Senior BI Analyst at TechHub</span></p>
+</div>
+</div>
+</div>
+<!-- Right Hero Preview Poster -->
+<div class="lg:col-span-5 relative group cursor-pointer" onclick="switchMainView('classroom')">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" data-alt="A modern computer setup displaying a multi-colored Power BI business intelligence dashboard with interactive bar charts, KPI indicators and revenue breakdown graphs on screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIt6MfaRJrNW2VJWN2QqrDGqIo_RGzHgswb0RV9opWhOtxp9ixc1FBeniJmw8g9Qea_PVevzEV9-BlYOWlGH50i2g1LfOPl6fo3GCj1OxGCVf9hCwLb8WtF0RpECXR4VcjeUAZfKGutKA-lUCQUtqZ-VViIbv04uwOVpcCUzziAJBEq_CJUBOhejLUcvL9wwWiaFJUboNuUzGT0GQ_P0J84vrQZpeXxTNw-U2vK6I">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent flex items-center justify-center">
+<div class="w-16 h-16 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-xl group-hover:scale-110 transition duration-300">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-3 left-4 right-4 flex justify-between items-center text-on-primary font-label-sm text-label-sm bg-primary-container/60 backdrop-blur-md px-3 py-1.5 rounded-lg">
+<span>Preview: Course Introduction (2:45)</span>
+<span class="text-secondary-fixed">Click to Watch</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Grid: Syllabus & Details Left (8 cols) + Right Sidebar Stats (4 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- What You Will Learn Card -->
+<div class="p-6 md:p-8 rounded-2xl bg-surface-container-lowest shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-4 flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+            What You Will Master in this Course
+          </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[22px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Data Cleaning &amp; Excel Mastery</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Perform VLOOKUP, INDEX-MATCH, XLOOKUP, pivot tables, and nested logic to sanitize raw datasets.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[22px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Relational Databases &amp; SQL</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Write complex SQL queries using JOINs, GROUP BY, Window functions, and CTEs to extract enterprise metrics.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[22px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Interactive Power BI Dashboards</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Model star schemas, author DAX calculations, and craft high-impact responsive visual reports.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[22px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Executive Storytelling &amp; Insights</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Translate dense statistical findings into actionable business strategy recommendations for C-suite leaders.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Course Curriculum Accordion Section -->
+<div class="p-6 md:p-8 rounded-2xl bg-surface-container-lowest shadow-sm" id="curriculum">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Course Curriculum</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4 Modules • 24 In-Depth Lessons • 18 Practical Exercises</p>
+</div>
+<button class="text-secondary font-label-md text-label-md hover:underline self-start sm:self-auto" onclick="expandAllModules()">Expand All Sections</button>
+</div>
+<div class="space-y-4">
+<!-- Module 1 -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleAccordion('ov-mod-1')">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm">01</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Module 1: Foundations of Business Analytics &amp; Excel Mastery</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4 lessons • 1h 45m • Completed</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm">4/4 Done</span>
+<span class="material-symbols-outlined text-outline" id="ov-mod-1-icon">expand_more</span>
+</div>
+</button>
+<div class="hidden p-4 pt-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant" id="ov-mod-1">
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>1.1 Anatomy of a Modern Data Pipeline</span>
+</div>
+<span>22 min</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>1.2 Advanced Lookup Logic &amp; Array Formulas</span>
+</div>
+<span>30 min</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>1.3 Pivot Table Mastery &amp; Dynamic Slicers</span>
+</div>
+<span>28 min</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>1.4 Module 1 Hands-On Assessment</span>
+</div>
+<span>25 min</span>
+</div>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleAccordion('ov-mod-2')">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm">02</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Module 2: Relational Databases &amp; SQL Queries</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">5 lessons • 2h 20m • Completed</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm">5/5 Done</span>
+<span class="material-symbols-outlined text-outline" id="ov-mod-2-icon">expand_more</span>
+</div>
+</button>
+<div class="hidden p-4 pt-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant" id="ov-mod-2">
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>2.1 Schema Design &amp; Primary Key Relationships</span>
+</div>
+<span>24 min</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>2.2 Deep Dive into SQL INNER &amp; OUTER JOINs</span>
+</div>
+<span>35 min</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>2.3 Aggregations, GROUP BY &amp; HAVING Clauses</span>
+</div>
+<span>30 min</span>
+</div>
+</div>
+</div>
+<!-- Module 3 (Active) -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleAccordion('ov-mod-3')">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm">03</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Module 3: Power BI Visualization &amp; Visual Storytelling</h3>
+<p class="font-body-sm text-body-sm text-secondary font-semibold">Active Module • 3 of 6 Lessons Finished</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">In Progress</span>
+<span class="material-symbols-outlined text-outline" id="ov-mod-3-icon">expand_less</span>
+</div>
+</button>
+<div class="p-4 pt-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant" id="ov-mod-3">
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span>3.1 Power Query Data Modelling &amp; Transformations</span>
+</div>
+<span class="text-emerald-700 font-label-sm">Done • 18m</span>
+</div>
+<div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-secondary/10 text-on-surface font-semibold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">play_circle</span>
+<span>3.2 Building Interactive Executive Dashboards</span>
+</div>
+<button class="px-3 py-1 rounded-full bg-secondary text-on-secondary text-label-sm hover:brightness-110" onclick="switchMainView('classroom')">Resume Now</button>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span>3.3 DAX Calculations &amp; Time Intelligence</span>
+</div>
+<span>22 min</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+<span>3.4 Custom Brand Themes &amp; Accessibility</span>
+</div>
+<span>15 min</span>
+</div>
+</div>
+</div>
+<!-- Module 4 -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleAccordion('ov-mod-4')">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-outline-variant/30 text-outline flex items-center justify-center font-bold text-label-sm">04</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Module 4: Industry Capstone Project &amp; Portfolio Build</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">5 lessons • 5h 00m • Locked</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[20px]">lock</span>
+<span class="material-symbols-outlined text-outline" id="ov-mod-4-icon">expand_more</span>
+</div>
+</button>
+<div class="hidden p-4 pt-0 space-y-2 font-body-sm text-body-sm text-on-surface-variant" id="ov-mod-4">
+<p class="italic text-outline-variant p-2">Complete Module 3 to unlock the real-world e-commerce capstone dataset and assessment rubrics.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Instructor Profile Card -->
+<div class="p-6 md:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row gap-6 items-start">
+<img class="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover shrink-0 shadow-md" data-alt="Close up professional portrait of instructor Sarah Osei with warm smile in an office setting with university degrees hanging in blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC19CSLdu1sP96YlxJQ2xmrGz_vUqpaDfylA7zDVffBh0a3PqJuC_05vZm7Vo6hwGblEq6H5Yzy5N3hlTlzsESAFCtwH0CsOjE6RiiMI2o38wUCzE3udKMYXKgONxJX2cQxtiNpSmYFcMIOOTot52WwTyWq64GJOuuWanAW9BlUVDSi69_Q1rgDLqTNOId3kN5xRcj8SRYD_m-A9sDgx-1W3xojE33FoGq6dAQf6-Q">
+<div class="flex flex-col gap-2">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Sarah Osei</h3>
+<p class="font-label-md text-label-md text-secondary">Senior BI Analyst &amp; Academic Mentor</p>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-yellow-500 text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<strong>4.95 Rating</strong> • 12,400+ Students Taught
+              </div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Sarah has spent over 9 years designing enterprise data warehouses and reporting pipelines for Fortune 500 fintech and logistics firms. She specializes in demystifying complex SQL syntax and helping early-career university graduates build hire-ready portfolios.
+            </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Microsoft Certified: Power BI Data Analyst</span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Ex-McKinsey Analytics Fellow</span>
+</div>
+</div>
+</div>
+<!-- Student Reviews & Ratings -->
+<div class="p-6 md:p-8 rounded-2xl bg-surface-container-lowest shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-6">Student Feedback &amp; Outcomes</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-8 pb-6 bg-surface-container-low p-6 rounded-xl">
+<div class="md:col-span-4 text-center md:border-r border-outline-variant/30 pr-0 md:pr-6">
+<div class="font-display-hero text-display-hero text-on-surface leading-none font-extrabold mb-1">4.9</div>
+<div class="flex justify-center text-yellow-400 mb-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Course Rating • 1,420 Reviews</p>
+</div>
+<!-- Star Distribution Bars -->
+<div class="md:col-span-8 flex flex-col gap-1.5">
+<div class="flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-12">5 stars</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 88%"></div>
+</div>
+<span class="w-8 text-right">88%</span>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-12">4 stars</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary/70 rounded-full" style="width: 9%"></div>
+</div>
+<span class="w-8 text-right">9%</span>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-12">3 stars</span>
+<div class="flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary/40 rounded-full" style="width: 2%"></div>
+</div>
+<span class="w-8 text-right">2%</span>
+</div>
+</div>
+</div>
+<!-- Individual Testimonials -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col justify-between">
+<p class="font-body-sm text-body-sm text-on-surface italic mb-4">"The DAX walkthrough in Module 3 completely shifted how I approach data. I landed a Junior Data Associate role 3 weeks after posting my Capstone dashboard on LinkedIn!"</p>
+<div class="flex items-center gap-3">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="Portrait of a young male university student smiling confidently with campus greenery in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz8dLCsIDjYQ_1JOQ9DGweZxplgs73MoXXkK4rdlqQ_rPqSFat0CIk7yEryDLFL0n2z6woh7elA8XrClOLgJXsbpXPemPobA7ppKZbsJ0HHcZlrtpW44EJdUHnCyL7sl-yb1fYxKhP-R2TQiESwd5ybFz0Z1C1Cgz6dyWI7-32sG2M2C9pKciWlg81QCfDDImZof_zh3W-Zahhd2mCUQx1wW_kff2lqum1-T-vV3w">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Kofi Mensah</h4>
+<p class="font-label-sm text-label-sm text-secondary">Now Data Analyst at Sterling Bank</p>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col justify-between">
+<p class="font-body-sm text-body-sm text-on-surface italic mb-4">"Super clear pacing. Sarah doesn't just show formulas; she explains the business reason behind every visualization choice. 10/10 recommendation for students."</p>
+<div class="flex items-center gap-3">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="Portrait of an African female graduate student in smart casual wear inside a university modern library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2M_w9Y8Gv4-bBnkR5TjDsXxa2tjEncTqidOKXU1Fed9A_zY4-GKtMtCgTPs2hhsT8jcDerOGoUH8Xy-dKuSMKjYxFfjqStN5JO9q4wA-xnz12u5pToueriaJMx6WvcLGM62bIagN3G5byRsYfbrqY3n01VUixaQsT5LqLYH4YDx0MrB8AtASG6O0-QOg80m_FEQLlq4C-h1IO-cwQJk1mkgLbyDG50pL8uIHRO9E">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Amina Yusuf</h4>
+<p class="font-label-sm text-label-sm text-secondary">Final Year Economics Undergrad</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Rail (4 cols): Course Meta, Prerequisites & Related -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Enrolled Progress Mini Card -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Your Course Progress</span>
+<span class="font-label-md text-label-md text-secondary font-bold">68%</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-secondary-container rounded-full" style="width: 68%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">16 of 24 lessons completed. You are on track to earn your verified credential by next week!</p>
+<button class="w-full py-3 rounded-full bg-secondary text-on-secondary font-label-md text-label-md font-semibold hover:brightness-110 shadow-md shadow-secondary/25 transition" onclick="switchMainView('classroom')">
+            Continue to Classroom
+          </button>
+</div>
+<!-- Course Requirements / Prerequisites -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-4">Requirements &amp; Setup</h3>
+<ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">laptop_mac</span>
+<span>PC or Mac laptop capable of running desktop applications.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">grid_on</span>
+<span>Microsoft Excel (2019, 365, or Google Sheets web equivalent).</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">bar_chart</span>
+<span>Power BI Desktop (Free download link provided in Lesson 3.1).</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">sentiment_very_satisfied</span>
+<span>No prior coding or programming background required.</span>
+</li>
+</ul>
+</div>
+<!-- Related Courses Widget -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-4">Related Next Steps</h3>
+<div class="space-y-4">
+<div class="flex gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer">
+<div class="w-14 h-14 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary-fixed">terminal</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold text-[14px]">Python for Data Science</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pandas, NumPy &amp; Seaborn</p>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Intermediate • 6 Weeks</span>
+</div>
+</div>
+<div class="flex gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer">
+<div class="w-14 h-14 rounded-lg bg-surface-container text-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">database</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold text-[14px]">Advanced Data Engineering</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">PostgreSQL, ETL pipelines</p>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Advanced • 10 Weeks</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- =============================================================== -->
+<!-- STATE 2: ACTIVE LEARNING LMS INTERFACE (PART B)                 -->
+<!-- =============================================================== -->
+<div class="hidden flex-col gap-6 w-full" id="view-classroom">
+<!-- Classroom Top Status Bar -->
+<div class="p-4 md:px-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition text-on-surface" onclick="switchMainView('overview')">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-secondary font-bold">Active Module 3</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="classroom-progress-text">16 of 24 Lessons Finished</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold" id="active-lesson-heading">Lesson 3.2: Building Interactive Executive Dashboards in Power BI</h2>
+</div>
+</div>
+<!-- Live Dynamic Progress Bar Indicator -->
+<div class="flex items-center gap-4 w-full md:w-80">
+<div class="flex-1">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="text-on-surface-variant">Course Progress</span>
+<span class="font-bold text-secondary" id="classroom-progress-percent">68%</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-secondary-container transition-all duration-500 rounded-full" id="classroom-progress-fill" style="width: 68%;"></div>
+</div>
+</div>
+<button class="shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container hover:bg-secondary hover:text-on-secondary text-secondary font-label-md text-label-md transition" id="btn-mark-complete" onclick="toggleLessonComplete()">
+<span class="material-symbols-outlined text-[18px]" id="mark-icon">check_circle</span>
+<span id="mark-text">Mark Complete</span>
+</button>
+</div>
+</div>
+<!-- Two Column Classroom Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- LEFT COLUMN (70% on desktop = 8 of 12 cols or 8.5) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Video Player Component -->
+<div class="rounded-2xl bg-primary-container overflow-hidden shadow-xl flex flex-col">
+<!-- 16:9 Video Canvas Mockup -->
+<div class="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden group">
+<img class="w-full h-full object-cover opacity-90 group-hover:scale-102 transition duration-700" data-alt="Detailed screen recording of a hands on tutorial building executive Power BI dashboards with dark theme UI, line charts, revenue cards and filters" id="video-poster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmy6WAFUHeKcfKaRMmD70maauqqzTYfDajLVrQx4F5bHZeVavlWLgmdFFn4q4DBjbAf3cJx9HZByIpTpWrx8anBkLZ5eKOFYpbEZy2nrNHoBvVo8i7IXp7LZEEQtyntO_Xej6fKh-N6zbdubr7gwwvOerpTbGrat0Vis-30_vdkAmJNxBAnel8MFC4R7fhg9FYdubgWEVKkMurrexnVFR9uykP9-YfjDaZt3hqRrk">
+<!-- Center Big Play Button (Interactive overlay) -->
+<button class="absolute w-20 h-20 rounded-full bg-secondary/90 hover:bg-secondary text-on-secondary flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95" id="player-center-play" onclick="togglePlayState()">
+<span class="material-symbols-outlined text-[40px]" id="center-play-icon" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<!-- Video Live Notification overlay -->
+<div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+<span>1080p HD • Power BI Desktop 2024</span>
+</div>
+<!-- Bottom Video Player Controls Bar -->
+<div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-4 flex flex-col gap-2">
+<!-- Scrub Bar -->
+<div class="w-full h-1.5 bg-white/30 rounded-full overflow-hidden cursor-pointer relative group/scrub" onclick="scrubTimeline(event)">
+<div class="h-full bg-secondary rounded-full" id="video-progress-bar" style="width: 50%;"></div>
+</div>
+<!-- Controls row -->
+<div class="flex items-center justify-between text-white font-label-sm text-label-sm pt-1">
+<div class="flex items-center gap-4">
+<button class="hover:text-secondary-fixed transition" onclick="togglePlayState()">
+<span class="material-symbols-outlined text-[24px]" id="ctrl-play-icon">play_arrow</span>
+</button>
+<button class="hover:text-secondary-fixed transition">
+<span class="material-symbols-outlined text-[20px]">replay_10</span>
+</button>
+<button class="hover:text-secondary-fixed transition">
+<span class="material-symbols-outlined text-[20px]">forward_10</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+<div class="w-16 h-1 bg-white/40 rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-white"></div>
+</div>
+</div>
+<span class="text-white/80 font-mono text-[12px]" id="video-time">14:22 / 28:40</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 cursor-pointer text-[11px] font-bold">1.25x</span>
+<button class="hover:text-secondary-fixed transition" title="Toggle Captions">
+<span class="material-symbols-outlined text-[20px]">closed_caption</span>
+</button>
+<button class="hover:text-secondary-fixed transition" title="Picture in Picture">
+<span class="material-symbols-outlined text-[20px]">picture_in_picture_alt</span>
+</button>
+<button class="hover:text-secondary-fixed transition" title="Full Screen">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Video Lesson Header & Previous / Next Actions -->
+<div class="p-4 md:px-6 bg-surface-container-lowest flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition" onclick="navigateLesson(-1)">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+<span>Previous Lesson</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition" onclick="navigateLesson(1)">
+<span>Next Lesson</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition" onclick="copyLessonLink()" title="Share Lesson">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<button class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition" title="Bookmark Timestamp">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Classroom Tabbed Details Section -->
+<div class="p-6 md:p-8 rounded-2xl bg-surface-container-lowest shadow-sm">
+<!-- Lesson Subtabs -->
+<div class="flex items-center gap-2 border-b border-surface-container-highest pb-3 mb-6 overflow-x-auto">
+<button class="px-4 py-2 rounded-full font-label-md text-label-md bg-secondary text-on-secondary shadow-sm transition" id="subtab-overview" onclick="switchLessonSubTab('overview')">
+              Lesson Overview
+            </button>
+<button class="px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition flex items-center gap-1.5" id="subtab-resources" onclick="switchLessonSubTab('resources')">
+<span>Resources</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container text-[11px] font-bold">4</span>
+</button>
+<button class="px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition flex items-center gap-1.5" id="subtab-discussion" onclick="switchLessonSubTab('discussion')">
+<span>Discussion</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container text-[11px] font-bold">18</span>
+</button>
+<button class="px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition flex items-center gap-1.5" id="subtab-notes" onclick="switchLessonSubTab('notes')">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span>My Timestamped Notes</span>
+</button>
+</div>
+<!-- Subtab 1: Lesson Overview Content -->
+<div class="space-y-6" id="content-overview">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-2">Key Learning Objectives</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                In this session, we construct a C-suite financial revenue monitor from scratch using Power BI Desktop. We explore cross-filtering interactions, configure drill-through parameters, and enforce corporate color palettes.
+              </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-surface-container-low">
+<span class="font-label-md text-label-md text-secondary font-bold block mb-1">Takeaway 1</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Card visual grouping using shape containers to anchor monthly recurring revenue (MRR) metrics.</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low">
+<span class="font-label-md text-label-md text-secondary font-bold block mb-1">Takeaway 2</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dynamic year-over-year growth calculation using the DAX <code class="font-mono text-on-secondary-fixed-variant">CALCULATE</code> and <code class="font-mono text-on-secondary-fixed-variant">SAMEPERIODLASTYEAR</code> functions.</p>
+</div>
+</div>
+<!-- Code / DAX Formula Box -->
+<div class="rounded-xl bg-primary-container p-5 text-on-primary">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm text-secondary-fixed flex items-center gap-1.5 font-mono">
+<span class="material-symbols-outlined text-[16px]">code</span>
+                  DAX Measure: YoY Growth Percentage
+                </span>
+<button class="text-xs px-2.5 py-1 rounded bg-surface-container-high/20 hover:bg-surface-container-high/40 text-on-primary transition" onclick="navigator.clipboard.writeText('YoY Growth % = \nVAR CurrentSales = SUM(Sales[Revenue])\nVAR PriorSales = CALCULATE(SUM(Sales[Revenue]), SAMEPERIODLASTYEAR(\'Calendar\'[Date]))\nRETURN\nDIVIDE(CurrentSales - PriorSales, PriorSales, 0)')">Copy DAX</button>
+</div>
+<pre class="font-mono text-[13px] leading-relaxed overflow-x-auto text-surface-container-highest"><code>YoY Growth % = 
+VAR CurrentSales = SUM(Sales[Revenue])
+VAR PriorSales = CALCULATE(
+    SUM(Sales[Revenue]), 
+    SAMEPERIODLASTYEAR('Calendar'[Date])
+)
+RETURN
+DIVIDE(CurrentSales - PriorSales, PriorSales, 0)</code></pre>
+</div>
+</div>
+<!-- Subtab 2: Resources Content -->
+<div class="hidden space-y-4" id="content-resources">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Downloadable Course Assets</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-emerald-600 text-[28px]">table_chart</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">superstore_sales_2024.xlsx</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Cleaned Raw Dataset • 4.2 MB</p>
+</div>
+</div>
+<button class="p-2 rounded-lg bg-surface-container-lowest text-secondary hover:bg-secondary hover:text-on-secondary transition">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-amber-600 text-[28px]">monitoring</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">power_bi_starter_template.pbix</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Report Starter Project • 12.8 MB</p>
+</div>
+</div>
+<button class="p-2 rounded-lg bg-surface-container-lowest text-secondary hover:bg-secondary hover:text-on-secondary transition">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500 text-[28px]">picture_as_pdf</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">dax_cheat_sheet_v3.pdf</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Quick Formula Reference • 850 KB</p>
+</div>
+</div>
+<button class="p-2 rounded-lg bg-surface-container-lowest text-secondary hover:bg-secondary hover:text-on-secondary transition">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-600 text-[28px]">description</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">module3_exercise_brief.docx</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Capstone Instructions • 340 KB</p>
+</div>
+</div>
+<button class="p-2 rounded-lg bg-surface-container-lowest text-secondary hover:bg-secondary hover:text-on-secondary transition">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Subtab 3: Discussion Q&A -->
+<div class="hidden space-y-6" id="content-discussion">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Classroom Discussion (18 Threads)</h3>
+<button class="px-4 py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md">Ask a Question</button>
+</div>
+<!-- Thread Item -->
+<div class="p-4 rounded-xl bg-surface-container-low space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Avatar headshot of university student Chinedu smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAO40rq2yizdEkveg5I3rLqDru_K0FTRl2hf5KvF_cm2psU-H071wRvbGOEm78N1H0fL78dhJRXamrowlyku8omtSshKqT1gToDjtcY1PfaFrEN2G64es1zK9tL-rHfBHSjU3Lzc_uAwof3VsitfPLI_wpeJv-vbWnQjje8GoDtyeHJiGJ3_jbUI8ymgf87pM6dpVIvsvWmVi7vnS9Isk5q2Gny1Kln0S21OGKo6M">
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Chinedu Eze</span>
+<span class="text-xs text-on-surface-variant ml-2">2 days ago</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-xs text-on-surface-variant">Timestamp: 16:10</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">When I try to relate the Date table to the OrderDate field, Power BI throws a 'many-to-many' warning. Did I miss a primary key step in Power Query?</p>
+<!-- Instructor Reply -->
+<div class="pl-4 border-l-2 border-secondary ml-2 space-y-2 pt-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary text-[10px] font-bold">INSTRUCTOR</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Sarah Osei</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Spot on, Chinedu! Make sure you right-click the Date column on your dedicated Calendar table and select "Remove Duplicates" in Power Query. That restores 1-to-many cardinality.</p>
+</div>
+</div>
+<!-- Reply Box -->
+<div class="flex gap-3 pt-2">
+<input class="flex-1 bg-surface-container-low px-4 py-2.5 rounded-full text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-secondary border-none" placeholder="Write a response or question..." type="text">
+<button class="px-5 py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md">Send</button>
+</div>
+</div>
+<!-- Subtab 4: Timestamped Notes -->
+<div class="hidden space-y-4" id="content-notes">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">My Personal Notes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Notes are automatically tied to the current video timestamp.</p>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-secondary hover:text-on-secondary transition" onclick="insertCurrentTimestamp()">
+<span class="material-symbols-outlined text-[16px]">add_alarm</span>
+<span>Insert Current Time (14:22)</span>
+</button>
+</div>
+<textarea class="w-full bg-surface-container-low p-4 rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-secondary border-none" id="student-notes" placeholder="Type key insights, formula shortcuts, or questions here..." rows="5">[12:45] Remember to normalize international currency exchange rates before calculating total gross margin.
+[14:22] Use the 'Matrix' visual instead of basic tables when nesting regional sales hierarchies.</textarea>
+<div class="flex justify-end">
+<button class="px-5 py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-sm" id="save-notes-btn" onclick="saveNotesFeedback()">Save Notes</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (30% on desktop = 4 cols) - Sticky Curriculum Sidebar -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Curriculum Lessons</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">24 Total</span>
+</div>
+<!-- Module 1 Sidebar Accordion -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-3.5 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleSidebarAccordion('side-mod-1')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Module 1: Excel Mastery</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" id="side-mod-1-icon">expand_more</span>
+</button>
+<div class="hidden p-2 space-y-1 font-body-sm text-body-sm" id="side-mod-1">
+<div class="p-2 rounded-lg text-on-surface-variant flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer">
+<span class="text-xs">1.1 Anatomy of a Pipeline</span>
+<span class="text-[11px] text-emerald-700 font-bold">✓ 22m</span>
+</div>
+<div class="p-2 rounded-lg text-on-surface-variant flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer">
+<span class="text-xs">1.2 Advanced Array Formulas</span>
+<span class="text-[11px] text-emerald-700 font-bold">✓ 30m</span>
+</div>
+</div>
+</div>
+<!-- Module 2 Sidebar Accordion -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden">
+<button class="w-full p-3.5 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleSidebarAccordion('side-mod-2')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Module 2: SQL &amp; Databases</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" id="side-mod-2-icon">expand_more</span>
+</button>
+<div class="hidden p-2 space-y-1 font-body-sm text-body-sm" id="side-mod-2">
+<div class="p-2 rounded-lg text-on-surface-variant flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer">
+<span class="text-xs">2.1 Schema Design &amp; Keys</span>
+<span class="text-[11px] text-emerald-700 font-bold">✓ 24m</span>
+</div>
+<div class="p-2 rounded-lg text-on-surface-variant flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer">
+<span class="text-xs">2.2 SQL INNER &amp; OUTER JOINs</span>
+<span class="text-[11px] text-emerald-700 font-bold">✓ 35m</span>
+</div>
+</div>
+</div>
+<!-- Module 3 Sidebar Accordion (Currently Active) -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden ring-2 ring-secondary/20">
+<button class="w-full p-3.5 flex items-center justify-between text-left bg-surface-container" onclick="toggleSidebarAccordion('side-mod-3')">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold block">Current Module</span>
+<h4 class="font-label-md text-label-md text-on-surface font-extrabold">Module 3: Power BI Visualization</h4>
+</div>
+<span class="material-symbols-outlined text-secondary text-[18px]" id="side-mod-3-icon">expand_less</span>
+</button>
+<div class="p-2 space-y-1.5 font-body-sm text-body-sm" id="side-mod-3">
+<!-- Lesson 3.1 -->
+<div class="p-2.5 rounded-lg flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer text-on-surface-variant transition" onclick="selectLesson('Lesson 3.1: Power Query Data Modelling &amp; Transformations', '18 min', false)">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[16px]">check_circle</span>
+<span class="text-xs">3.1 Power Query Modelling</span>
+</div>
+<span class="text-[11px]">18 min</span>
+</div>
+<!-- Lesson 3.2 (Now Playing) -->
+<div class="p-2.5 rounded-lg flex items-center justify-between bg-secondary text-on-secondary shadow-sm cursor-pointer transition" id="side-lesson-3-2" onclick="selectLesson('Lesson 3.2: Building Interactive Executive Dashboards in Power BI', '28 min', true)">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="text-xs font-bold">3.2 Interactive Dashboards</span>
+</div>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-surface-container-lowest/20 font-mono">PLAYING</span>
+</div>
+<!-- Lesson 3.3 -->
+<div class="p-2.5 rounded-lg flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer text-on-surface transition" onclick="selectLesson('Lesson 3.3: DAX Calculations &amp; Time Intelligence', '22 min', false)">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">radio_button_unchecked</span>
+<span class="text-xs">3.3 DAX Time Intelligence</span>
+</div>
+<span class="text-[11px] text-on-surface-variant">22 min</span>
+</div>
+<!-- Lesson 3.4 -->
+<div class="p-2.5 rounded-lg flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer text-on-surface-variant transition" onclick="selectLesson('Lesson 3.4: Custom Themes &amp; Accessibility In Reports', '15 min', false)">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">radio_button_unchecked</span>
+<span class="text-xs">3.4 Custom Brand Themes</span>
+</div>
+<span class="text-[11px]">15 min</span>
+</div>
+<!-- Lesson 3.5 -->
+<div class="p-2.5 rounded-lg flex items-center justify-between hover:bg-surface-container-lowest cursor-pointer text-on-surface-variant transition" onclick="selectLesson('Lesson 3.5: Publishing to Power BI Cloud Service', '20 min', false)">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">radio_button_unchecked</span>
+<span class="text-xs">3.5 Power BI Service Publishing</span>
+</div>
+<span class="text-[11px]">20 min</span>
+</div>
+<!-- Module 3 Quiz -->
+<div class="p-2.5 rounded-lg flex items-center justify-between bg-surface-container-high/40 text-on-surface-variant cursor-not-allowed">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">quiz</span>
+<span class="text-xs font-semibold">Module 3 Evaluation Quiz</span>
+</div>
+<span class="text-[10px] text-outline">15 Questions</span>
+</div>
+</div>
+</div>
+<!-- Module 4 Sidebar Accordion (Locked) -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden opacity-75">
+<button class="w-full p-3.5 flex items-center justify-between text-left hover:bg-surface-container transition" onclick="toggleSidebarAccordion('side-mod-4')">
+<div class="flex items-center gap-2.5 text-outline">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span class="font-label-md text-label-md">Module 4: Capstone Project</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" id="side-mod-4-icon">expand_more</span>
+</button>
+<div class="hidden p-3 text-xs text-outline italic" id="side-mod-4">
+              Unlocks after passing Module 3 Evaluation.
+            </div>
+</div>
+</div>
+<!-- Instructor Support Mini Card -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of mentor Sarah Osei ready for student office hours" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIUeGSSREYHbrDTXfDaQzP-y9Le-FItCXUyOqp2tIMvebm96JTMXjylm2ZXoZ_2jrQZjSg8jVs1egqa-UBUax1D0oR8ZT-v8brgqQi_HwRKx7FbYM0OEXrzMA2eiBNRgoAgD-BMd0nfuEZK9Iy1GiFpSEhtJgcs5XJjUVYt6r-kEsyidiA8UEmvnfDrCZPyxCGorRGcYShg4WLH4Rn52r4aw1MpZF3q3WDidwkojQ">
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Need Help? Ask Sarah</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Office Hours: Tuesdays 4PM GMT</p>
+</div>
+<button class="px-3 py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-secondary hover:text-on-secondary transition">
+            Book
+          </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Vanilla Interactive JavaScript -->
+<script>
+  // Top-Level State Switcher (Overview vs Classroom)
+  function switchMainView(target) {
+    const viewOverview = document.getElementById('view-overview');
+    const viewClassroom = document.getElementById('view-classroom');
+    const btnOverview = document.getElementById('tab-btn-overview');
+    const btnClassroom = document.getElementById('tab-btn-classroom');
+
+    if (target === 'classroom') {
+      viewOverview.classList.add('hidden');
+      viewClassroom.classList.remove('hidden');
+
+      // Style active state on Classroom pill
+      btnClassroom.classList.add('bg-secondary', 'text-on-secondary', 'shadow-md');
+      btnClassroom.classList.remove('text-on-surface-variant');
+      btnOverview.classList.remove('bg-secondary', 'text-on-secondary', 'shadow-md');
+      btnOverview.classList.add('text-on-surface-variant');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      viewClassroom.classList.add('hidden');
+      viewOverview.classList.remove('hidden');
+
+      // Style active state on Overview pill
+      btnOverview.classList.add('bg-secondary', 'text-on-secondary', 'shadow-md');
+      btnOverview.classList.remove('text-on-surface-variant');
+      btnClassroom.classList.remove('bg-secondary', 'text-on-secondary', 'shadow-md');
+      btnClassroom.classList.add('text-on-surface-variant');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // Accordion Expand/Collapse for Overview
+  function toggleAccordion(id) {
+    const el = document.getElementById(id);
+    const icon = document.getElementById(id + '-icon');
+    if (el.classList.contains('hidden')) {
+      el.classList.remove('hidden');
+      if (icon) icon.textContent = 'expand_less';
+    } else {
+      el.classList.add('hidden');
+      if (icon) icon.textContent = 'expand_more';
+    }
+  }
+
+  function expandAllModules() {
+    ['ov-mod-1', 'ov-mod-2', 'ov-mod-3', 'ov-mod-4'].forEach(id => {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (el) el.classList.remove('hidden');
+      if (icon) icon.textContent = 'expand_less';
+    });
+  }
+
+  // Accordion for Sidebar in Classroom
+  function toggleSidebarAccordion(id) {
+    const el = document.getElementById(id);
+    const icon = document.getElementById(id + '-icon');
+    if (el.classList.contains('hidden')) {
+      el.classList.remove('hidden');
+      if (icon) icon.textContent = 'expand_less';
+    } else {
+      el.classList.add('hidden');
+      if (icon) icon.textContent = 'expand_more';
+    }
+  }
+
+  // Subtab switching in Classroom
+  function switchLessonSubTab(tabName) {
+    const tabs = ['overview', 'resources', 'discussion', 'notes'];
+    tabs.forEach(t => {
+      const btn = document.getElementById('subtab-' + t);
+      const content = document.getElementById('content-' + t);
+      if (t === tabName) {
+        btn.className = "px-4 py-2 rounded-full font-label-md text-label-md bg-secondary text-on-secondary shadow-sm transition";
+        content.classList.remove('hidden');
+      } else {
+        btn.className = "px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition flex items-center gap-1.5";
+        content.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle Video Play / Pause state simulation
+  let isPlaying = false;
+  function togglePlayState() {
+    isPlaying = !isPlaying;
+    const centerIcon = document.getElementById('center-play-icon');
+    const ctrlIcon = document.getElementById('ctrl-play-icon');
+    const centerBtn = document.getElementById('player-center-play');
+
+    if (isPlaying) {
+      centerIcon.textContent = 'pause';
+      ctrlIcon.textContent = 'pause';
+      centerBtn.classList.add('opacity-0', 'hover:opacity-100');
+    } else {
+      centerIcon.textContent = 'play_arrow';
+      ctrlIcon.textContent = 'play_arrow';
+      centerBtn.classList.remove('opacity-0');
+    }
+  }
+
+  // Timeline scrub simulation
+  function scrubTimeline(e) {
+    const bar = e.currentTarget;
+    const rect = bar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (clickX / rect.width) * 100));
+    document.getElementById('video-progress-bar').style.width = percentage + '%';
+    const totalSeconds = 28 * 60 + 40;
+    const currentSeconds = Math.floor((percentage / 100) * totalSeconds);
+    const mins = Math.floor(currentSeconds / 60);
+    const secs = currentSeconds % 60;
+    document.getElementById('video-time').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs} / 28:40`;
+  }
+
+  // Mark lesson as complete toggle with live stats
+  let isLessonComplete = false;
+  function toggleLessonComplete() {
+    isLessonComplete = !isLessonComplete;
+    const markBtn = document.getElementById('btn-mark-complete');
+    const markText = document.getElementById('mark-text');
+    const markIcon = document.getElementById('mark-icon');
+    const progressFill = document.getElementById('classroom-progress-fill');
+    const progressPercent = document.getElementById('classroom-progress-percent');
+    const progressText = document.getElementById('classroom-progress-text');
+
+    if (isLessonComplete) {
+      markBtn.classList.remove('bg-surface-container', 'text-secondary');
+      markBtn.classList.add('bg-emerald-600', 'text-white');
+      markText.textContent = 'Completed ✓';
+      markIcon.textContent = 'task_alt';
+
+      progressFill.style.width = '71%';
+      progressPercent.textContent = '71%';
+      progressText.textContent = '17 of 24 Lessons Finished';
+    } else {
+      markBtn.classList.add('bg-surface-container', 'text-secondary');
+      markBtn.classList.remove('bg-emerald-600', 'text-white');
+      markText.textContent = 'Mark Complete';
+      markIcon.textContent = 'check_circle';
+
+      progressFill.style.width = '68%';
+      progressPercent.textContent = '68%';
+      progressText.textContent = '16 of 24 Lessons Finished';
+    }
+  }
+
+  // Select lesson from sidebar
+  function selectLesson(title, duration, isCurrent) {
+    document.getElementById('active-lesson-heading').textContent = title;
+    // reset completion state for simulated lesson
+    if (!isCurrent) {
+      isLessonComplete = false;
+      const markBtn = document.getElementById('btn-mark-complete');
+      markBtn.classList.add('bg-surface-container', 'text-secondary');
+      markBtn.classList.remove('bg-emerald-600', 'text-white');
+      document.getElementById('mark-text').textContent = 'Mark Complete';
+      document.getElementById('mark-icon').textContent = 'check_circle';
+    }
+  }
+
+  function navigateLesson(dir) {
+    const heading = document.getElementById('active-lesson-heading');
+    if (dir > 0) {
+      selectLesson('Lesson 3.3: DAX Calculations & Time Intelligence', '22 min', false);
+    } else {
+      selectLesson('Lesson 3.1: Power Query Data Modelling & Transformations', '18 min', false);
+    }
+  }
+
+  function insertCurrentTimestamp() {
+    const textarea = document.getElementById('student-notes');
+    textarea.value += '\n[14:22] ';
+    textarea.focus();
+  }
+
+  function saveNotesFeedback() {
+    const btn = document.getElementById('save-notes-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Saved to Cloud ✓';
+    btn.classList.add('bg-emerald-600');
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.classList.remove('bg-emerald-600');
+    }, 2000);
+  }
+
+  function copyLessonLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Lesson link copied to clipboard!');
+  }
+</script></main>
+</div>
+<!-- END: MainContentArea -->
+
+
+</body></html>

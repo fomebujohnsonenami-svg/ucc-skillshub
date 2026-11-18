@@ -1,0 +1,603 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB - Student Dashboard</title>
+<!-- Tailwind CSS CDN with forms & container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for custom brand colors -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              sidebar: '#14162F',
+              sidebarHover: '#1E2145',
+              purple: '#5022DE',
+              purpleHover: '#4317C9',
+              purpleLight: '#F3F0FF',
+              accent: '#6429EF',
+              bgMain: '#F7F6FF',
+              cardBg: '#FFFFFF',
+              borderMuted: '#EAE8F5',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Custom Styles for Scrollbars and Refinements -->
+<style data-purpose="custom-enhancements">
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #F7F6FF;
+    }
+    
+    /* Smooth custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F0FA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4D0ED;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B4AFD9;
+    }
+  </style>
+<link href="../responsive.css" rel="stylesheet">
+</head>
+<body class="bg-brand-bgMain text-slate-800 antialiased min-h-screen flex overflow-x-hidden selection:bg-brand-purple selection:text-white">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-64 bg-brand-sidebar flex-shrink-0 flex flex-col justify-between py-6 px-4 text-slate-400 min-h-screen z-20" data-purpose="primary-sidebar">
+<div class="space-y-7">
+<!-- Brand Logo Header -->
+<div class="flex items-center gap-3 px-3"><a href="#dashboard" class="block py-1"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCVWTYgkzn-xXat5aYzOFQIe6hHFIOr52TSlwG_b7mghmgvlWLQOgdAluO49EhpxP3yI7c_7TdEoFe6jpbkDxKLUrLkMCd0j2A7Xt-SM1VARwTWtgT7K1m5-TRtlXHAxtzyr5LmHc_uanBi2RV0E_TonjJqbuADrBK3sSVPqWliYWg19VE1Qxjn1vjjekXNb5JRlO1a400IB3-U6EYl1Nsquu07TKCABRAnjdddEEkV" alt="UCC SKILLSHUB Logo" class="h-9 w-auto object-contain"></a></div>
+<!-- Main Navigation Menu -->
+<nav class="space-y-1" data-purpose="sidebar-nav">
+<!-- Active Dashboard Link -->
+<a class="flex items-center gap-3.5 px-3.5 py-3 rounded-xl bg-gradient-to-r from-brand-accent to-brand-purple text-white font-medium shadow-md shadow-purple-950/30 transition-all" href="#dashboard">
+<svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Dashboard</span>
+</a>
+<!-- Courses -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#courses">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Courses</span>
+</a>
+<!-- Skill Pathways -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#pathways">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Skill Pathways</span>
+</a>
+<!-- Projects -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#projects">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Projects</span>
+</a>
+<!-- Certificates -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#certificates">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Certificates</span>
+</a>
+<!-- Portfolio -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#portfolio">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Portfolio</span>
+</a>
+<!-- Opportunities -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#opportunities">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Opportunities</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#analytics">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div class="space-y-1 pt-6 border-t border-slate-800/80">
+<!-- Settings -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#settings">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Settings</span>
+</a>
+<!-- Notifications with Badge -->
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-brand-sidebarHover hover:text-white transition-colors group" href="#notifications">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Notifications</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-rose-500 text-white text-[11px] font-bold flex items-center justify-center">3</span>
+</a>
+<!-- Logout -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-rose-500/10 hover:text-rose-400 transition-colors group" href="#logout">
+<svg class="w-5 h-5 flex-shrink-0 text-slate-400 group-hover:text-rose-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentContainer -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- BEGIN: TopHeader -->
+<header class="w-full h-20 px-8 flex items-center justify-between gap-6 border-b border-brand-borderMuted/60 bg-brand-bgMain/70 backdrop-blur sticky top-0 z-10" data-purpose="top-header">
+<!-- Search Input Container -->
+<div class="relative flex-1 max-w-2xl">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full pl-11 pr-4 py-2.5 bg-[#EEEDFA] border-none rounded-xl text-sm placeholder-slate-400 text-slate-800 focus:ring-2 focus:ring-brand-purple/40 focus:bg-white transition-all outline-none" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right User Controls -->
+<div class="flex items-center gap-5">
+<!-- Notification Indicator Button -->
+<button aria-label="Notifications" class="relative p-2 text-slate-600 hover:text-slate-900 transition-colors" type="button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white"></span>
+</button>
+<!-- User Profile Dropdown Pill -->
+<div class="flex items-center gap-3 pl-2 cursor-pointer group">
+<div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-purple-100 flex-shrink-0 bg-slate-200">
+<img data-profile-photo="" alt="" class="w-full h-full object-cover">
+</div>
+<span class="text-sm font-semibold text-slate-800 group-hover:text-brand-purple transition-colors">Prince Egah</span>
+<svg class="w-4 h-4 text-slate-500 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- END: TopHeader -->
+<!-- Main Dashboard Grid Layout -->
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- ========================================== -->
+<!-- Center & Main Workspace (Col 8)           -->
+<!-- ========================================== -->
+<div class="lg:col-span-8 space-y-7">
+<!-- BEGIN: WelcomeBanner -->
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#2B0E7E] via-[#4319B5] to-[#712BF5] text-white p-8 shadow-xl shadow-purple-950/10 min-h-[220px] flex items-center" data-purpose="welcome-hero-banner">
+<!-- Left Info Content -->
+<div class="relative z-10 max-w-md space-y-3">
+<h1 class="text-3xl font-extrabold tracking-tight flex items-center gap-2">
+<span data-profile-greeting>Welcome to UCC SKILLSHUB!</span>
+<span class="text-2xl animate-pulse">👋</span>
+</h1>
+<p class="text-purple-100/90 text-sm leading-relaxed pr-4">
+                Continue building your skills and unlocking new opportunities at the University.
+              </p>
+<div class="pt-3">
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-brand-purple font-semibold text-sm shadow hover:bg-purple-50 transition transform hover:-translate-y-0.5 active:translate-y-0" type="button">
+<span>Explore Courses</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Decorative Right Graphic/Photo Student overlay -->
+<div class="absolute right-0 bottom-0 top-0 w-2/5 pointer-events-none hidden md:block">
+<!-- Soft radial ambient highlight behind student -->
+<div class="absolute inset-0 bg-gradient-to-l from-transparent via-[#712BF5]/30 to-[#2B0E7E] z-0"></div>
+<img alt="Student smiling with laptop" class="w-full h-full object-cover object-top filter contrast-105 brightness-95 opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ZIorTMZz5vi4SEiX5S6XPqZ_ot57m3PDxPsZuN5SiLZcSCZUmx_IY9RDlh2pdl7A1ZtK5C5pYMs4bdvh6O8LZiUT1FfB9I5bKGJ1tkkH14BFiTujD54z4sNwZqV_Iz81L_lyCerMAllnjojRvMq5DteJchBRKitR7dxi26JGwN6YgOAueZmj5IfSTJXX-sGDv9z4e03Ddm8Ci_DwmUrzkYlD8i-iweZiMo2tQOw">
+</div>
+</div>
+<!-- END: WelcomeBanner -->
+<!-- BEGIN: MetricsBar -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4" data-purpose="metrics-summary-bar">
+<!-- Stat 1: Enrolled Courses -->
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-borderMuted flex items-center gap-3.5 hover:shadow-md transition">
+<div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zM4 6h4v2H4V6zm0 4h4v2H4v-2z"></path>
+</svg>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-800 leading-none">3</span>
+<p class="text-xs text-slate-500 font-medium mt-1">Enrolled Courses</p>
+</div>
+</div>
+<!-- Stat 2: Completed Courses -->
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-borderMuted flex items-center gap-3.5 hover:shadow-md transition">
+<div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-800 leading-none">1</span>
+<p class="text-xs text-slate-500 font-medium mt-1">Completed Courses</p>
+</div>
+</div>
+<!-- Stat 3: Certificates -->
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-borderMuted flex items-center gap-3.5 hover:shadow-md transition">
+<div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"></path>
+</svg>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-800 leading-none">2</span>
+<p class="text-xs text-slate-500 font-medium mt-1">Certificates</p>
+</div>
+</div>
+<!-- Stat 4: Projects -->
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-borderMuted flex items-center gap-3.5 hover:shadow-md transition">
+<div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path>
+</svg>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-800 leading-none">4</span>
+<p class="text-xs text-slate-500 font-medium mt-1">Projects</p>
+</div>
+</div>
+</div>
+<!-- END: MetricsBar -->
+<!-- BEGIN: ContinueLearningSection -->
+<div class="space-y-4" data-purpose="continue-learning-widget">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+<path d="M8 5v14l11-7z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold text-slate-800 tracking-tight">Continue Learning</h2>
+</div>
+<a class="text-xs font-semibold text-brand-purple hover:underline flex items-center gap-1" href="#all-courses">
+<span>View All</span>
+<span>→</span>
+</a>
+</div>
+<!-- Learning Card Component -->
+<div class="bg-white rounded-2xl p-5 border border-brand-borderMuted shadow-sm flex flex-col md:flex-row items-center gap-6">
+<!-- Course Illustration / Thumbnail -->
+<div class="w-full md:w-56 h-36 bg-gradient-to-tr from-blue-50 to-indigo-100 rounded-xl flex items-center justify-center p-4 relative overflow-hidden flex-shrink-0 border border-blue-100">
+<div class="w-28 h-20 bg-white rounded-lg shadow-md border border-slate-100 flex flex-col p-2 space-y-1.5 relative">
+<div class="flex justify-between items-center border-b pb-1 border-slate-100">
+<div class="w-4 h-1 bg-slate-200 rounded"></div>
+<div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+</div>
+<!-- Mock Bar Chart inside graphic -->
+<div class="flex items-end justify-between h-8 pt-1 px-1">
+<div class="w-2 bg-blue-300 h-3 rounded-t"></div>
+<div class="w-2 bg-indigo-500 h-6 rounded-t"></div>
+<div class="w-2 bg-purple-400 h-4 rounded-t"></div>
+<div class="w-2 bg-blue-600 h-7 rounded-t"></div>
+</div>
+<!-- Magnifier Accent -->
+<div class="absolute -right-2 -bottom-2 w-8 h-8 rounded-full bg-indigo-600/90 text-white flex items-center justify-center shadow-lg">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Course Info & Progress -->
+<div class="flex-1 w-full space-y-3">
+<div class="flex flex-wrap items-center gap-2.5">
+<h3 class="text-base font-bold text-slate-800">Data Analytics Fundamentals</h3>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-brand-purple">
+                    In Progress • 68%
+                  </span>
+</div>
+<p class="text-xs text-slate-500">
+                  Learn the basics of data analysis using Excel and Power BI.
+                </p>
+<!-- Full Width Progress Bar -->
+<div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+<div class="bg-gradient-to-r from-brand-accent to-brand-purple h-2.5 rounded-full" style="width: 68%;"></div>
+</div>
+<div class="pt-1 flex justify-end">
+<button class="inline-flex items-center gap-2 px-5 py-2 bg-brand-purple text-white text-xs font-semibold rounded-full hover:bg-brand-purpleHover transition shadow-sm" type="button">
+<span>Continue</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- END: ContinueLearningSection -->
+<!-- BEGIN: SkillPathwaysSection -->
+<div class="space-y-4" data-purpose="skill-pathways-widget">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold text-slate-800 tracking-tight">Skill Pathways</h2>
+</div>
+<a class="text-xs font-semibold text-brand-purple hover:underline flex items-center gap-1" href="#all-pathways">
+<span>View All</span>
+<span>→</span>
+</a>
+</div>
+<!-- Pathway Cards Grid (4 items) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Pathway 1 -->
+<div class="bg-white rounded-2xl p-4 border border-brand-borderMuted shadow-sm hover:shadow transition flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+</svg>
+</div>
+<h3 class="text-xs font-bold text-slate-800 leading-snug">Data Analyst Pathway</h3>
+<p class="text-[11px] text-slate-400 mt-1">7 steps • 80%</p>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+<div class="bg-brand-purple h-1.5 rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Pathway 2 -->
+<div class="bg-white rounded-2xl p-4 border border-brand-borderMuted shadow-sm hover:shadow transition flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M2.53 19.65l1.34.56v-9.03l-1.34 8.47zM22.03 15.95L17.07 3.99a2.013 2.013 0 0 0-2.54-1.14l-5.32 2.2-4.14-1.72c-.89-.37-1.92.06-2.29.96L.56 9.47c-.37.89.06 1.92.96 2.29l17.84 7.42c.89.37 1.92-.06 2.29-.96l.38-.92 1.14-2.75c.38-.89-.05-1.92-.95-2.29zM10.88 6.46l4.24-1.76 3.54 8.52-4.24 1.76-3.54-8.52z"></path>
+</svg>
+</div>
+<h3 class="text-xs font-bold text-slate-800 leading-snug">Graphic Designer Pathway</h3>
+<p class="text-[11px] text-slate-400 mt-1">6 steps • 50%</p>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+<div class="bg-brand-purple h-1.5 rounded-full" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Pathway 3 -->
+<div class="bg-white rounded-2xl p-4 border border-brand-borderMuted shadow-sm hover:shadow transition flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="text-xs font-bold text-slate-800 leading-snug">Web Developer Pathway</h3>
+<p class="text-[11px] text-slate-400 mt-1">8 steps • 30%</p>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+<div class="bg-brand-purple h-1.5 rounded-full" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Pathway 4 -->
+<div class="bg-white rounded-2xl p-4 border border-brand-borderMuted shadow-sm hover:shadow transition flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center mb-3">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 4.99c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm9 4.43V10.6L10.38 11H5v2h5.38L13 13.43z"></path>
+</svg>
+</div>
+<h3 class="text-xs font-bold text-slate-800 leading-snug">Digital Marketer Pathway</h3>
+<p class="text-[11px] text-slate-400 mt-1">5 steps • 20%</p>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+<div class="bg-brand-purple h-1.5 rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- END: SkillPathwaysSection -->
+<!-- BEGIN: MotivationalBanner -->
+<div class="bg-[#EBE7FD] rounded-2xl p-4 px-6 flex flex-col sm:flex-row items-center justify-between gap-4" data-purpose="encouragement-banner">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-brand-purple text-white flex items-center justify-center flex-shrink-0">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M13.13 2.16c-.19-.1-.41-.16-.63-.16-.22 0-.44.06-.63.16L2.37 7.02c-.46.24-.76.71-.77 1.23-.01.52.27 1 .72 1.26l9.5 5.28c.19.1.41.16.63.16.22 0 .44-.06.63-.16l9.5-5.28c.45-.25.73-.74.72-1.26-.01-.52-.31-.99-.77-1.23l-9.5-4.86z"></path>
+</svg>
+</div>
+<p class="text-xs sm:text-sm font-semibold text-slate-800">
+                Your future is brighter with new skills. Keep going!
+              </p>
+</div>
+<button class="px-5 py-2 bg-brand-purple text-white rounded-full text-xs font-semibold hover:bg-brand-purpleHover transition shadow whitespace-nowrap" type="button">
+              Explore More Skills →
+            </button>
+</div>
+<!-- END: MotivationalBanner -->
+</div>
+<!-- ========================================== -->
+<!-- Right Sidebar / Student Information (Col 4) -->
+<!-- ========================================== -->
+<div class="lg:col-span-4 space-y-6">
+<!-- BEGIN: ProfileCard -->
+<div class="bg-white rounded-2xl p-6 border border-brand-borderMuted shadow-sm space-y-5" data-purpose="profile-summary-card">
+<div class="flex items-center justify-between">
+<h2 class="text-base font-bold text-slate-800">Your Profile</h2>
+<a class="text-xs font-semibold text-brand-purple hover:underline flex items-center gap-0.5" href="#profile">
+<span>View Profile</span>
+<span>→</span>
+</a>
+</div>
+<!-- Profile Info Row -->
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden ring-4 ring-purple-50 flex-shrink-0 bg-slate-100">
+<img data-profile-photo="" alt="" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="text-base font-bold text-slate-900 leading-tight">Prince Egah</h3>
+<p class="text-xs text-slate-500 font-medium">BSc Computer Science</p>
+</div>
+</div>
+<!-- Profile Skill Pills -->
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+<svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"></circle></svg>
+                Data Analytics
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
+<svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Web Development
+              </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+<svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Graphic Design
+              </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-50 text-brand-purple border border-purple-100">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                +2 more
+              </span>
+</div>
+</div>
+<!-- END: ProfileCard -->
+<!-- BEGIN: AchievementsCard -->
+<div class="bg-white rounded-2xl p-6 border border-brand-borderMuted shadow-sm space-y-4" data-purpose="achievements-widget">
+<div class="flex items-center justify-between">
+<h2 class="text-base font-bold text-slate-800">Achievements</h2>
+<a class="text-xs font-semibold text-brand-purple hover:underline flex items-center gap-0.5" href="#achievements">
+<span>View All</span>
+<span>→</span>
+</a>
+</div>
+<!-- Achievement Badges (3 items) -->
+<div class="grid grid-cols-3 gap-3 pt-2 text-center">
+<!-- Achievement 1 -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-blue-600 to-sky-400 p-0.5 shadow-md group-hover:scale-105 transition transform">
+<div class="w-full h-full bg-blue-600 rounded-full flex items-center justify-center text-amber-300">
+<svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+</svg>
+</div>
+</div>
+<span class="text-[11px] font-bold text-slate-800 mt-2 leading-tight">First Course Completed</span>
+</div>
+<!-- Achievement 2 -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-orange-600 to-amber-400 p-0.5 shadow-md group-hover:scale-105 transition transform">
+<div class="w-full h-full bg-orange-500 rounded-full flex items-center justify-center text-white">
+<svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+<path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"></path>
+</svg>
+</div>
+</div>
+<span class="text-[11px] font-bold text-slate-800 mt-2 leading-tight">7-Day Streak</span>
+</div>
+<!-- Achievement 3 -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 p-0.5 shadow-md group-hover:scale-105 transition transform">
+<div class="w-full h-full bg-blue-600 rounded-full flex items-center justify-center text-white">
+<svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+<path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"></path>
+</svg>
+</div>
+</div>
+<span class="text-[11px] font-bold text-slate-800 mt-2 leading-tight">Data Analytics Beginner</span>
+</div>
+</div>
+</div>
+<!-- END: AchievementsCard -->
+<!-- BEGIN: CampusOpportunities -->
+<div class="bg-white rounded-2xl p-6 border border-brand-borderMuted shadow-sm space-y-4" data-purpose="opportunities-widget">
+<div class="flex items-center justify-between">
+<h2 class="text-base font-bold text-slate-800">Campus Opportunities</h2>
+<a class="text-xs font-semibold text-brand-purple hover:underline flex items-center gap-0.5" href="#opportunities">
+<span>View All</span>
+<span>→</span>
+</a>
+</div>
+<!-- Opportunities List -->
+<div class="space-y-4 pt-1">
+<!-- Item 1: Graphic Designer -->
+<div class="flex items-start gap-3.5 pb-4 border-b border-slate-100 last:border-b-0 last:pb-0">
+<div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-bold text-slate-800 truncate">Graphic Designer Needed</h3>
+</div>
+<p class="text-[11px] text-slate-400 mt-0.5">Entrepreneurship Club • 2 days ago</p>
+<p class="text-xs text-slate-600 mt-1 line-clamp-1">Create social media graphics for our event.</p>
+<div class="mt-2.5 flex justify-end">
+<button class="px-3.5 py-1 bg-brand-purple text-white text-xs font-semibold rounded-lg hover:bg-brand-purpleHover transition shadow-sm" type="button">
+                      Apply
+                    </button>
+</div>
+</div>
+</div>
+<!-- Item 2: Data Analyst Intern -->
+<div class="flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-bold text-slate-800 truncate">Data Analyst Intern</h3>
+</div>
+<p class="text-[11px] text-slate-400 mt-0.5">Research Department • 3 days ago</p>
+<p class="text-xs text-slate-600 mt-1 line-clamp-1">Analyze student survey data.</p>
+<div class="mt-2.5 flex justify-end">
+<button class="px-3.5 py-1 bg-brand-purple text-white text-xs font-semibold rounded-lg hover:bg-brand-purpleHover transition shadow-sm" type="button">
+                      Apply
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- END: CampusOpportunities -->
+</div>
+</div>
+</main>
+</div>
+<!-- END: MainContentContainer -->
+
+
+
+
+<script src="../skillshub-api.js"></script>
+<script src="../profile.js"></script>
+<script src="../responsive.js"></script>
+</body></html>

@@ -1,0 +1,1267 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB University Dashboard</title>
+<meta content="web_dashboard" name="shell-type">
+<!-- Google Fonts: Manrope & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#5939e5",
+            "secondary-fixed-dim": "#c8bfff",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#77767e",
+            "secondary-container": "#7257ff",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#434560",
+            "tertiary-fixed": "#e7deff",
+            "primary-fixed-dim": "#c3c4e5",
+            "error": "#ba1a1a",
+            "on-surface": "#171a2f",
+            "inverse-primary": "#c3c4e5",
+            "on-error": "#ffffff",
+            "on-secondary-container": "#fffbff",
+            "inverse-surface": "#2c2f45",
+            "surface-tint": "#5b5c79",
+            "primary-container": "#171932",
+            "secondary-fixed": "#e5deff",
+            "surface-bright": "#fbf8ff",
+            "surface-container-high": "#e6e6ff",
+            "primary-fixed": "#e0e0ff",
+            "surface-variant": "#dfe0fd",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#4214d0",
+            "on-tertiary-container": "#8c69ff",
+            "surface-container-highest": "#dfe0fd",
+            "surface-container-low": "#f4f2ff",
+            "on-primary-container": "#8081a0",
+            "on-primary-fixed": "#171932",
+            "on-tertiary-fixed-variant": "#4e00d1",
+            "on-surface-variant": "#46464d",
+            "tertiary-fixed-dim": "#cdbdff",
+            "on-error-container": "#93000a",
+            "surface-dim": "#d7d8f4",
+            "inverse-on-surface": "#f0efff",
+            "on-tertiary-fixed": "#1f005f",
+            "on-primary": "#ffffff",
+            "primary": "#000000",
+            "tertiary": "#000000",
+            "surface-container": "#edecff",
+            "error-container": "#ffdad6",
+            "on-background": "#171a2f",
+            "background": "#fbf8ff",
+            "surface": "#fbf8ff",
+            "outline-variant": "#c8c5ce",
+            "on-secondary-fixed": "#190064",
+            "tertiary-container": "#1f005f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-desktop": "2.5rem",
+            "gutter-lg": "2rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "margin": "2rem",
+            "gutter-sm": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Manrope"],
+            "stat-counter": ["Manrope"],
+            "display-hero-mobile": ["Manrope"],
+            "label-md": ["Hanken Grotesk"],
+            "display-hero": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "label-sm": ["Hanken Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "headline-xl-mobile": ["Manrope"],
+            "body-lg": ["Hanken Grotesk"],
+            "headline-xl": ["Manrope"],
+            "headline-sm": ["Manrope"],
+            "body-md": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "stat-counter": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Hanken Grotesk', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="fixed top-0 left-0 bottom-0 w-64 bg-primary-container z-30 flex flex-col justify-between py-margin-desktop px-space-md select-none" data-purpose="main-sidebar">
+<div class="flex flex-col gap-space-lg">
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-space-sm px-space-sm"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCzSSFqOZgpcSA-ekdHjPfpoRqzTLQ1L-6tA3g6TpX6-NiCME5yGpLbS80xmgQagfHT4CdgLfA_39KhDHUcttEPDV2K5nrnarLxjNVZWZOZKvJl8rnCt1CI64PP2q88B35fBO_PVR8D9H9ITZNXUZ9w6WpojAAk2IROh42AYccPK27M3G31CFeZEl70lyiI7uzA8Fom9EGQHUnBsOCVZZ9Fqkb9UVr7l2peUPp0rA5g" alt="UCC SKILLSHUB Logo" class="h-10 w-auto object-contain"></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary shadow-md font-label-md">
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="dashboard" href="#dashboard">Dashboard</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="courses" href="#courses">Courses</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="skill-pathways" href="#skill-pathways">Skill Pathways</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="practical-projects" href="#practical-projects">Projects</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="certificates-achievements" href="#certificates-achievements">Certificates</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="student-portfolio" href="#student-portfolio">Portfolio</a>
+<a aria-current="page" class="px-space-md py-space-sm rounded-full transition block bg-secondary text-on-secondary shadow-md font-label-md" data-path="opportunities" href="#opportunities">Opportunities</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="analytics" href="#analytics">Analytics</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div class="flex flex-col gap-space-xs">
+<div class="h-px bg-on-primary-container/20 my-space-xs"></div>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="settings" href="#settings">Settings</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition" data-path="notifications" href="#notifications">
+<span>Notifications</span>
+<span class="w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="logout" href="#logout">Logout</a>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="pl-64 flex flex-col min-h-screen">
+<!-- Top App Header -->
+<header class="fixed top-0 left-64 right-0 z-20 bg-background/95 backdrop-blur-md px-margin py-0" data-purpose="top-header">
+<div class="h-16 flex items-center justify-between gap-space-lg">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-xl">
+<div class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</div>
+<input class="w-full pl-10 pr-space-md py-space-sm bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-space-lg">
+<!-- Notification Bell Icon with Badge -->
+<button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background"></span>
+</button>
+<!-- User Profile Pill Dropdown -->
+<div class="flex items-center gap-space-sm cursor-pointer group select-none px-space-xs py-space-xs rounded-full hover:bg-surface-container-low transition">
+<img alt="Prince Egah avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9L8alfGdZYDmktFgySfh2VxvbdddZhmZFpuHqq5PEXL_bM-3h-hex3PrEpJJofS3D9-yQWuTuB9oJW2_IM0dVsOcb0lJpfo4xX3--f_R2Oq8H_wSDdbUR_ylO8rUxh2hcX-dgd955yZjrdQ9Dn06ql4V9leTWmU9VYS--qQP0JAI0QIvWSzkFc9I-Mf2wd5IJjGoECFZW3RtaLh7IXfBZ8xfcTfTqZP332opM1U8">
+<span class="font-label-md text-label-md text-on-surface">Prince Egah</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Workspace -->
+<main class="pt-16 px-margin pb-space-2xl flex-1"><div class="flex flex-col w-full">
+<!-- Top Command / Hero Alert Section -->
+<section class="flex flex-col gap-space-lg mb-space-xl">
+<!-- Header Row -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-1">
+<span>Student Career Launchpad</span>
+<span>•</span>
+<span class="text-secondary font-bold">University of Cape Coast</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Discover Opportunities</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+          Put your verified academic and project skills into action. Unlock university internships, regional campus roles, freelance briefs, and high-growth African tech positions.
+        </p>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-space-sm flex-wrap self-start lg:self-center">
+<a class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-full shadow-sm hover:shadow transition" href="#pipeline-section">
+<span class="material-symbols-outlined text-[18px] text-secondary">assignment_turned_in</span>
+<span>My Applications</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold ml-1">4</span>
+</a>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-full shadow-sm hover:shadow transition">
+<span class="material-symbols-outlined text-[18px] text-outline">bookmark</span>
+<span>Saved Opportunities</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold ml-1">6</span>
+</button>
+</div>
+</div>
+<!-- SkillMatch AI Banner -->
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-container via-secondary-container to-secondary p-space-lg text-on-secondary shadow-md">
+<!-- Ambient Glow Spotlights -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-secondary-fixed-dim/20 blur-3xl pointer-events-none"></div>
+<div class="absolute top-0 right-1/3 w-40 h-40 rounded-full bg-surface-container-lowest/10 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-secondary-fixed text-[26px]">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-sm text-label-sm uppercase tracking-wider bg-surface-container-lowest/20 px-2 py-0.5 rounded-full text-secondary-fixed font-bold">SkillMatch AI Engine</span>
+<span class="inline-flex items-center gap-1 text-label-sm text-secondary-fixed-dim">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Verified Portfolio Sync Active
+              </span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-secondary mt-1">
+              Based on your verified skills in <span class="text-secondary-fixed font-bold underline decoration-secondary-fixed/40">Python (95%)</span>, <span class="text-secondary-fixed font-bold underline decoration-secondary-fixed/40">Data Analytics (92%)</span>, and <span class="text-secondary-fixed font-bold underline decoration-secondary-fixed/40">Web Development (88%)</span>:
+            </p>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim/90 mt-0.5">
+              14 opportunities match your UCC graduation roadmap with 85%+ employer compatibility score.
+            </p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-2">
+<button class="px-space-md py-space-sm rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low transition flex items-center gap-1" onclick="document.getElementById('high-match-filter').click()">
+<span>Filter High Matches</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Spotlight Card -->
+<section class="mb-space-xl">
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm relative overflow-hidden">
+<!-- Decorative Gradient Border bar -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-secondary-container to-secondary-fixed-dim"></div>
+<div class="flex flex-col lg:flex-row gap-space-lg justify-between items-start">
+<div class="flex-1 flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+              Featured Campus Opportunity
+            </span>
+<span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+              98% Skill Match for Prince
+            </span>
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+              6 Days Left
+            </span>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Data Analyst Intern — University Research Department</h2>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-1 flex-wrap">
+<span class="font-bold text-on-surface">Office of Institutional Research &amp; Analytics, UCC</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> Old Administration Block, Campus</span>
+<span>•</span>
+<span class="text-secondary font-bold">GHS 1,800/mo Stipend</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl mt-1">
+            Collaborate directly with the Director of Academic Affairs to clean, transform, and build executive Power BI dashboards visualizing student retention trends across all 5 colleges.
+          </p>
+<!-- Matched Skills Pills -->
+<div class="flex items-center gap-space-xs flex-wrap pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold mr-1">Matched Skills:</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check_circle</span> Data Analytics (Verified 92%)
+            </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check_circle</span> Excel &amp; DAX (Verified)
+            </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check_circle</span> Python (Verified 95%)
+            </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+              Star Schema Modeling
+            </span>
+</div>
+</div>
+<!-- Quick Meta & CTA -->
+<div class="w-full lg:w-72 shrink-0 bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm justify-between">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Schedule</span>
+<span class="font-bold text-on-surface">15 hrs/week (Hybrid)</span>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Application Deadline</span>
+<span class="font-bold text-error">March 30, 2025</span>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Applicants</span>
+<span class="font-bold text-on-surface">18 Students Applied</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full py-2.5 px-space-md rounded-full bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-1 shadow-md hover:bg-secondary-container transition" onclick="openApplyModal('Data Analyst Intern', 'Office of Institutional Research &amp; Analytics, UCC')">
+<span>Quick Apply with Portfolio</span>
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+</button>
+<button class="w-full py-2 px-space-md rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition text-center" onclick="populateRightDrawer('Data Analyst Intern', 'University Research Department (UCC)', 'Campus / Hybrid', 'GHS 1,800/mo', '15 hrs/week', '98%')">
+              View Full Details
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Filter Tabs (Pill style) -->
+<section class="mb-space-md">
+<div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-tabs">
+<button class="category-pill active px-4 py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md whitespace-nowrap shadow-sm transition">
+        All Opportunities <span class="ml-1 opacity-80">(38)</span>
+</button>
+<button class="category-pill px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md whitespace-nowrap hover:bg-surface-container transition">
+        Internships <span class="ml-1 text-on-surface-variant">(14)</span>
+</button>
+<button class="category-pill px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md whitespace-nowrap hover:bg-surface-container transition">
+        Campus Jobs <span class="ml-1 text-on-surface-variant">(8)</span>
+</button>
+<button class="category-pill px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md whitespace-nowrap hover:bg-surface-container transition">
+        Freelance Projects <span class="ml-1 text-on-surface-variant">(6)</span>
+</button>
+<button class="category-pill px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md whitespace-nowrap hover:bg-surface-container transition">
+        Graduate Jobs <span class="ml-1 text-on-surface-variant">(7)</span>
+</button>
+<button class="category-pill px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md whitespace-nowrap hover:bg-surface-container transition">
+        Competitions <span class="ml-1 text-on-surface-variant">(3)</span>
+</button>
+</div>
+</section>
+<!-- Search & Structured Filter Toolbar -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-md shadow-sm mb-space-lg flex flex-col gap-space-sm">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-space-sm">
+<!-- Search Input -->
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full pl-10 pr-space-md py-2.5 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" id="opportunity-search" placeholder="Search by job title, skill (e.g. React, Python), or company..." type="text">
+</div>
+<!-- Filter Dropdowns Row -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>All Locations</option>
+<option>On Campus (UCC)</option>
+<option>Accra</option>
+<option>Kumasi</option>
+<option>Remote</option>
+</select>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>All Types</option>
+<option>Full-time</option>
+<option>Part-time</option>
+<option>Contract</option>
+<option>Gig / Freelance</option>
+</select>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Experience Level</option>
+<option>Student / Entry-level</option>
+<option>Intermediate</option>
+<option>No Prior Experience</option>
+</select>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option>Work Mode</option>
+<option>Remote</option>
+<option>Hybrid</option>
+<option>On-site</option>
+</select>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer col-span-2 sm:col-span-1">
+<option>Application Deadline</option>
+<option>Ending Soon (&lt; 7d)</option>
+<option>Within 2 Weeks</option>
+<option>Next Month</option>
+</select>
+</div>
+</div>
+<!-- Quick Filter Toggles -->
+<div class="flex items-center justify-between flex-wrap gap-2 pt-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-sm text-label-sm text-on-surface-variant mr-1">Quick Filters:</span>
+<button class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-on-secondary-fixed transition flex items-center gap-1" id="high-match-filter" onclick="toggleQuickFilter(this)">
+<span>✨ High Skill Match (&gt;80%)</span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-on-secondary-fixed transition flex items-center gap-1" onclick="toggleQuickFilter(this)">
+<span>🎓 UCC Campus Verified</span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-on-secondary-fixed transition flex items-center gap-1" onclick="toggleQuickFilter(this)">
+<span>⚡ Fast Response (Avg 48h)</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing <span class="font-bold text-on-surface">38</span> Verified Postings</span>
+</div>
+</section>
+<!-- Two-Column Main Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-2xl">
+<!-- LEFT COLUMN: Opportunity Listings (approx 65% = 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md" id="opportunity-list">
+<!-- Card 1 (PayFlex - Currently Selected by Default) -->
+<div class="opportunity-card selected-card p-space-md bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer relative" data-id="payflex" onclick="selectOpportunity(this, 'payflex')">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-secondary to-secondary-container flex items-center justify-center text-on-secondary font-headline-md text-headline-md font-bold shrink-0 shadow-sm">
+              PF
+            </div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-md text-headline-md text-on-surface">Junior Web Developer</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 94% Match
+                </span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-0.5 flex-wrap">
+<span class="font-semibold text-on-surface">PayFlex Technology Startup</span>
+<span>•</span>
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[15px]">wifi</span> Remote (Accra HQ)</span>
+<span>•</span>
+<span class="font-semibold text-secondary">GHS 2,500/mo</span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant self-start">
+            Internship (6 Mos)
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 line-clamp-2">
+          Join our checkout tooling engineering team. Build high-performance React UI modules for student merchant onboarding across 12 Ghanaian universities.
+        </p>
+<!-- Required Skills Row with Prince's Checkmarks -->
+<div class="flex items-center gap-1.5 flex-wrap mt-3 pt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> React
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Node.js
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Tailwind CSS
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> REST APIs
+          </span>
+</div>
+<!-- Footer Meta & Actions -->
+<div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2">
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Posted 1d ago</span>
+<span>•</span>
+<span class="text-on-surface-variant font-medium">Deadline: Apr 12, 2025</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="event.stopPropagation(); openApplyModal('Junior Web Developer', 'PayFlex Technology Startup')">
+              Apply Now
+            </button>
+</div>
+</div>
+</div>
+<!-- Card 2 (UCC Research Dept) -->
+<div class="opportunity-card p-space-md bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer relative" data-id="ucc-research" onclick="selectOpportunity(this, 'ucc-research')">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-secondary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0">
+<span class="material-symbols-outlined text-[24px]">analytics</span>
+</div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-md text-headline-md text-on-surface">Data Analyst Intern</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 98% Match
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-secondary-fixed-variant font-label-sm text-label-sm">Campus Direct</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-0.5 flex-wrap">
+<span class="font-semibold text-on-surface">University Research Department (UCC)</span>
+<span>•</span>
+<span>Campus / Hybrid</span>
+<span>•</span>
+<span class="font-semibold text-secondary">GHS 1,800/mo</span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant self-start">
+            Part-Time (15h/w)
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 line-clamp-2">
+          Institutional research initiative synthesizing enrollment records, faculty ratios, and semester retention predictive models using Python and Power BI.
+        </p>
+<div class="flex items-center gap-1.5 flex-wrap mt-3 pt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Python 3
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> SQL / Relational Data
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Power BI
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Statistical Modeling
+          </span>
+</div>
+<div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2">
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Posted 2d ago</span>
+<span>•</span>
+<span class="text-error font-medium">Deadline: Mar 30, 2025</span>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="event.stopPropagation(); openApplyModal('Data Analyst Intern', 'University Research Department (UCC)')">
+            Apply Now
+          </button>
+</div>
+</div>
+<!-- Card 3 (FinCraft Software Company) -->
+<div class="opportunity-card p-space-md bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer relative" data-id="fincraft" onclick="selectOpportunity(this, 'fincraft')">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-secondary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0">
+              FC
+            </div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-md text-headline-md text-on-surface">Python Developer Intern</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 96% Match
+                </span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-0.5 flex-wrap">
+<span class="font-semibold text-on-surface">FinCraft Software Company</span>
+<span>•</span>
+<span>Fully Remote (Ghana-Wide)</span>
+<span>•</span>
+<span class="font-semibold text-secondary">GHS 2,200/mo</span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant self-start">
+            Internship
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 line-clamp-2">
+          Work with senior fintech architects building transactional microservices, automated ledger validation pipelines, and Django REST frameworks.
+        </p>
+<div class="flex items-center gap-1.5 flex-wrap mt-3 pt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Python 3
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Django
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> PostgreSQL
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Git
+          </span>
+</div>
+<div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2">
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Posted 5d ago</span>
+<span>•</span>
+<span class="text-on-surface-variant font-medium">Deadline: Apr 15, 2025</span>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="event.stopPropagation(); openApplyModal('Python Developer Intern', 'FinCraft Software Company')">
+            Apply Now
+          </button>
+</div>
+</div>
+<!-- Card 4 (Entrepreneurship Club - Graphic Designer) -->
+<div class="opportunity-card p-space-md bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer relative" data-id="graphic-club" onclick="selectOpportunity(this, 'graphic-club')">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-secondary-container flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0">
+<span class="material-symbols-outlined text-[24px]">palette</span>
+</div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-md text-headline-md text-on-surface">Graphic Designer Needed</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 84% Match
+                </span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-0.5 flex-wrap">
+<span class="font-semibold text-on-surface">UCC Entrepreneurship Club</span>
+<span>•</span>
+<span>Campus On-Site</span>
+<span>•</span>
+<span class="font-semibold text-secondary">GHS 850/project</span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant self-start">
+            Freelance Gig
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 line-clamp-2">
+          Design visual brand identity, social promo kits, and stage banners for the Annual Student Startup Pitch Day at Sam Jonah Library Auditorium.
+        </p>
+<div class="flex items-center gap-1.5 flex-wrap mt-3 pt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Figma
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Canva
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Poster Design
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Brand Identity
+          </span>
+</div>
+<div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2">
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Posted 3d ago</span>
+<span>•</span>
+<span class="text-on-surface-variant font-medium">Deadline: Apr 5, 2025</span>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="event.stopPropagation(); openApplyModal('Graphic Designer Needed', 'UCC Entrepreneurship Club')">
+            Apply Now
+          </button>
+</div>
+</div>
+<!-- Card 5 (Kente Digital Agency - UI/UX) -->
+<div class="opportunity-card p-space-md bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer relative" data-id="kente" onclick="selectOpportunity(this, 'kente')">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0">
+              KD
+            </div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-md text-headline-md text-on-surface">UI/UX Design Intern</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 88% Match
+                </span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-0.5 flex-wrap">
+<span class="font-semibold text-on-surface">Kente Digital Agency</span>
+<span>•</span>
+<span>Hybrid (Airport City, Accra)</span>
+<span>•</span>
+<span class="font-semibold text-secondary">GHS 2,000/mo</span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant self-start">
+            Internship (3 Mos)
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 line-clamp-2">
+          Design intuitive web &amp; mobile workflows for African SMEs. Conduct rapid usability sessions and maintain cross-functional design tokens.
+        </p>
+<div class="flex items-center gap-1.5 flex-wrap mt-3 pt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Figma
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            User Flows
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Wireframing
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Usability Testing
+          </span>
+</div>
+<div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2">
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Posted 1w ago</span>
+<span>•</span>
+<span class="text-on-surface-variant font-medium">Deadline: Apr 20, 2025</span>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="event.stopPropagation(); openApplyModal('UI/UX Design Intern', 'Kente Digital Agency')">
+            Apply Now
+          </button>
+</div>
+</div>
+<!-- Card 6 (Student Enterprise Hub - Social Media) -->
+<div class="opportunity-card p-space-md bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer relative" data-id="social-hub" onclick="selectOpportunity(this, 'social-hub')">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0">
+              SE
+            </div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-md text-headline-md text-on-surface">Social Media Manager</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold">
+                  78% Match
+                </span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mt-0.5 flex-wrap">
+<span class="font-semibold text-on-surface">Student Enterprise Hub</span>
+<span>•</span>
+<span>Hybrid (Cape Coast)</span>
+<span>•</span>
+<span class="font-semibold text-secondary">GHS 1,200/mo</span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant self-start">
+            Part-Time
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3 line-clamp-2">
+          Curate weekly founder stories, track engagement metrics on LinkedIn and Instagram, and broadcast UCC campus innovation showcases.
+        </p>
+<div class="flex items-center gap-1.5 flex-wrap mt-3 pt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Content Creation
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+            Copywriting
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Analytics
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[14px]">check</span> Canva
+          </span>
+</div>
+<div class="flex items-center justify-between mt-4 pt-3 flex-wrap gap-2">
+<div class="flex items-center gap-3 text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Posted 4d ago</span>
+<span>•</span>
+<span class="text-on-surface-variant font-medium">Deadline: Apr 8, 2025</span>
+</div>
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="event.stopPropagation(); openApplyModal('Social Media Manager', 'Student Enterprise Hub')">
+            Apply Now
+          </button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Interactive Details & Quick Apply Drawer (~35% = 4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="sticky top-20 rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md" id="opportunity-detail-panel">
+<!-- Organization Header -->
+<div class="flex items-start justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-secondary to-secondary-container text-on-secondary font-headline-lg text-headline-lg flex items-center justify-center font-extrabold shadow-sm" id="drawer-logo">
+              PF
+            </div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-headline-sm text-on-surface" id="drawer-company">PayFlex Technology</span>
+<span class="material-symbols-outlined text-secondary text-[18px]" title="UCC SKILLSHUB Verified Employer">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block" id="drawer-meta">Fintech • 45 Employees • Accra</span>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container text-outline hover:text-on-surface transition" title="Save Job">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+</button>
+</div>
+<!-- Role Title & High Match Callout -->
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-label-sm text-label-sm font-bold flex items-center gap-1" id="drawer-match-badge">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 94% Skill Match for Prince
+            </span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface" id="drawer-title">Junior Web Developer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5" id="drawer-sublocation">Hybrid / Remote-first (Ghana-based)</p>
+</div>
+<!-- Key Specs Grid -->
+<div class="grid grid-cols-2 gap-2 p-space-sm bg-surface-container-low rounded-xl">
+<div class="p-2 rounded-lg bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Stipend / Salary</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold" id="drawer-stipend">GHS 2,500<span class="text-xs font-normal text-on-surface-variant">/mo</span></span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Contract Type</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="drawer-contract">6-Mo Internship</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Workload</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Full-Time (40h)</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Path to PPO</span>
+<span class="font-headline-sm text-headline-sm text-emerald-700 font-bold">High Likelihood</span>
+</div>
+</div>
+<!-- Detailed Description -->
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">Role Overview</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="drawer-description">
+            PayFlex is building seamless instant bank &amp; mobile money checkout rails for Ghana. As a Junior Web Developer Intern, you will directly assist our core engineering team in delivering robust web client widgets used by tens of thousands of university campus merchants.
+          </p>
+</div>
+<!-- Core Responsibilities -->
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">Core Responsibilities</h4>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0 mt-2"></span>
+<span>Develop and maintain responsive student-facing checkout components using React and Tailwind CSS.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0 mt-2"></span>
+<span>Collaborate with backend engineers to consume RESTful endpoints and PostgreSQL webhooks.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0 mt-2"></span>
+<span>Optimize frontend bundle sizes and ensure WCAG 2.1 AA accessibility compliance across mobile browsers.</span>
+</li>
+</ul>
+</div>
+<!-- Verified Qualifications Match List -->
+<div class="flex flex-col gap-2">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold flex items-center justify-between">
+<span>Required Verified Skills</span>
+<span class="text-emerald-700 text-xs font-normal">4/4 Met</span>
+</h4>
+<div class="flex flex-col gap-1.5">
+<div class="p-2.5 rounded-xl bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span>
+<span class="font-medium text-on-surface">React &amp; JavaScript ES6+</span>
+</div>
+<span class="text-xs text-secondary font-bold">UCC Capstone (88%)</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span>
+<span class="font-medium text-on-surface">RESTful API Integration</span>
+</div>
+<span class="text-xs text-secondary font-bold">Pathway Stage 3</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span>
+<span class="font-medium text-on-surface">PostgreSQL &amp; SQL Queries</span>
+</div>
+<span class="text-xs text-secondary font-bold">Data Track (85%)</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span>
+<span class="font-medium text-on-surface">Git &amp; GitHub Workflows</span>
+</div>
+<span class="text-xs text-secondary font-bold">Verified Repo</span>
+</div>
+</div>
+</div>
+<!-- Big Apply CTA in drawer -->
+<div class="pt-2">
+<button class="w-full py-3 px-space-md rounded-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-[1.01] transition" id="drawer-apply-btn" onclick="openApplyModal('Junior Web Developer', 'PayFlex Technology Startup')"><span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Apply via UCC SKILLSHUB 1-Click</span></button>
+<span class="text-[11px] text-on-surface-variant text-center block mt-2">
+            Your verified academic transcripts and GitHub artifacts will be appended automatically.
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Application Tracking Pipeline Section -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm mb-space-2xl" id="pipeline-section">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">My Application Pipeline</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">4 Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Real-time tracking of employer reviews, campus recruiter feedback, and formal interview milestones.
+        </p>
+</div>
+<a class="font-label-md text-label-md text-secondary hover:underline flex items-center gap-1 self-start sm:self-center" href="#dashboard">
+<span>View Full Career Analytics</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Kanban Columns Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Stage 1: Applied -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-2xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-tint"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Applied</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold">1</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-2">
+<div class="flex items-start justify-between gap-2">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Junior Web Developer</h4>
+<span class="text-[11px] font-medium text-outline">Mar 22</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary font-medium">PayFlex Technology</span>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">verified</span>
+<span>Portfolio v2.4 Attached</span>
+</div>
+<div class="pt-2 mt-1">
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant block text-center">
+              Awaiting Initial Screen
+            </span>
+</div>
+</div>
+</div>
+<!-- Stage 2: Under Review -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-2xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Under Review</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-label-sm text-label-sm font-semibold">1</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-2">
+<div class="flex items-start justify-between gap-2">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Data Analyst Intern</h4>
+<span class="text-[11px] font-medium text-outline">Mar 20</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary font-medium">UCC Research Dept</span>
+<p class="text-[12px] text-on-surface-variant">
+            Assigned to: <strong class="text-on-surface">Dr. Sarah Osei</strong> (Reviewing Python capstone grade)
+          </p>
+<div class="pt-2 mt-1">
+<span class="px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 font-label-sm text-label-sm block text-center font-semibold">
+              Faculty Verification Pending
+            </span>
+</div>
+</div>
+</div>
+<!-- Stage 3: Shortlisted / Interview -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-2xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Shortlisted</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">1</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary"></div>
+<div class="flex items-start justify-between gap-2 pt-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Python Developer Intern</h4>
+<span class="text-[11px] font-medium text-outline">Mar 18</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary font-medium">FinCraft Software</span>
+<div class="p-2 rounded-lg bg-surface-container-low flex flex-col gap-1 text-[11px]">
+<span class="font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">videocam</span> Technical Interview
+            </span>
+<span class="text-on-surface-variant">Thursday, Mar 28 • 2:00 PM GMT</span>
+</div>
+<button class="w-full mt-1 py-1.5 px-3 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition font-bold">
+            View Interview Brief
+          </button>
+</div>
+</div>
+<!-- Stage 4: Accepted / Offer -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-2xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Accepted / Offer</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-label-sm text-label-sm font-semibold">1</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-emerald-500"></div>
+<div class="flex items-start justify-between gap-2 pt-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Portfolio Web Lead</h4>
+<span class="text-[11px] font-medium text-emerald-700 font-bold">OFFER</span>
+</div>
+<span class="text-body-sm font-body-sm text-secondary font-medium">Campus Tech Hub</span>
+<p class="text-[12px] text-on-surface-variant">
+            Official contract issued. Start Date: May 1, 2025.
+          </p>
+<button class="w-full mt-1 py-1.5 px-3 rounded-full bg-emerald-600 text-on-secondary font-label-sm text-label-sm hover:bg-emerald-700 transition font-bold shadow-sm">
+            Review &amp; Sign Offer
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive 1-Click SkillBridge Application Modal Backdrop -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-4" id="apply-modal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto p-space-lg shadow-2xl flex flex-col gap-space-md animate-in fade-in zoom-in-95 duration-150">
+<!-- Modal Header -->
+<div class="flex items-start justify-between gap-space-sm pb-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Fast-Track Verified Submission</span>
+<h3 class="font-headline-xl text-headline-xl text-on-surface mt-0.5" id="modal-role-title">Apply to PayFlex Technology</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="modal-org-name">Junior Web Developer Position</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition" onclick="closeApplyModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Portfolio Profile Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-bold">Selected Verified Portfolio</label>
+<div class="p-space-sm bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary font-headline-sm text-headline-sm flex items-center justify-center font-bold">
+              PE
+            </div>
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold block">Prince Egah — Full-Stack &amp; Data Analyst</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">BSc Computer Science • Class of 2026 • GPA: 3.82 / 4.0</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Pre-Checked Verified Credentials -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface font-bold">Append Verified Credentials (Tamper-Proof)</label>
+<div class="flex flex-col gap-2">
+<label class="flex items-start gap-2.5 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer">
+<input checked="" class="mt-1 rounded text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Python Programming Fundamentals</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Issued Feb 2025 • UCC Dept of Computer Science (Score: 95%)</span>
+</div>
+</label>
+<label class="flex items-start gap-2.5 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer">
+<input checked="" class="mt-1 rounded text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Data Analytics with Microsoft Learn</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Issued Jan 2025 • High Honors 96% • Power BI Certified</span>
+</div>
+</label>
+<label class="flex items-start gap-2.5 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition cursor-pointer">
+<input checked="" class="mt-1 rounded text-secondary focus:ring-secondary cursor-pointer" type="checkbox">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Multi-Tenant Student Management Microservice Capstone</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Grade: 96/100 • Production Docker Container &amp; Live Demo</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Statement of Interest (Tailored AI Draft) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-bold">Statement of Interest</label>
+<span class="text-xs text-secondary font-semibold">AI Generated from Coursework</span>
+</div>
+<textarea class="w-full p-space-sm bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-secondary" rows="3">I have built full-stack microservices at UCC and actively worked with React and PostgreSQL. I look forward to applying my verified skills to PayFlex's high-speed campus checkout engines.</textarea>
+</div>
+<!-- Additional Attachments -->
+<div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">description</span>
+<span class="font-label-md text-label-md text-on-surface">Prince_Egah_Resume_2025.pdf</span>
+<span class="font-label-sm text-label-sm text-outline">(1.2 MB)</span>
+</div>
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">cloud_done</span>
+</div>
+<!-- Cryptographic Disclaimer Notice -->
+<div class="p-2.5 rounded-xl bg-secondary-fixed/50 text-on-secondary-fixed-variant text-[11px] leading-relaxed flex items-start gap-2"><span class="material-symbols-outlined text-[16px] text-secondary shrink-0 mt-0.5">lock</span>
+<span>
+  Verified academic credentials, capstone GitHub commits, and instructor endorsements are cryptographically signed by University of Cape Coast UCC SKILLSHUB.
+</span></div>
+<!-- Modal Action Buttons -->
+<div class="flex items-center justify-end gap-2 pt-2">
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition" onclick="closeApplyModal()">
+          Cancel
+        </button>
+<button class="px-6 py-2.5 rounded-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary font-label-md text-label-md shadow-md hover:shadow-lg transition flex items-center gap-1.5" onclick="submitApplication()">
+<span>Submit Application</span>
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript logic -->
+<script>
+    const opportunitiesData = {
+      'payflex': {
+        title: 'Junior Web Developer',
+        company: 'PayFlex Technology Startup',
+        meta: 'Fintech • 45 Employees • Accra',
+        location: 'Hybrid / Remote-first (Ghana-based)',
+        stipend: 'GHS 2,500',
+        contract: '6-Mo Internship',
+        match: '94% Skill Match for Prince',
+        description: "PayFlex is building seamless instant bank & mobile money checkout rails for Ghana. As a Junior Web Developer Intern, you will directly assist our core engineering team in delivering robust web client widgets used by tens of thousands of university campus merchants.",
+        logo: 'PF'
+      },
+      'ucc-research': {
+        title: 'Data Analyst Intern',
+        company: 'University Research Department (UCC)',
+        meta: 'Academic Research • Campus Office • Cape Coast',
+        location: 'Campus / Hybrid (Old Admin Block)',
+        stipend: 'GHS 1,800',
+        contract: 'Part-Time (15h/w)',
+        match: '98% Skill Match for Prince',
+        description: "Collaborate directly with the Director of Academic Affairs to clean, transform, and build executive Power BI dashboards visualizing student retention trends across all 5 colleges at the University of Cape Coast.",
+        logo: 'UR'
+      },
+      'fincraft': {
+        title: 'Python Developer Intern',
+        company: 'FinCraft Software Company',
+        meta: 'Enterprise Fintech • 80 Employees • Remote',
+        location: 'Fully Remote (Ghana-Wide)',
+        stipend: 'GHS 2,200',
+        contract: 'Internship',
+        match: '96% Skill Match for Prince',
+        description: "Work with senior fintech architects building transactional microservices, automated ledger validation pipelines, and high-concurrency Django REST endpoints handling real-time interbank switches.",
+        logo: 'FC'
+      },
+      'graphic-club': {
+        title: 'Graphic Designer Needed',
+        company: 'UCC Entrepreneurship Club',
+        meta: 'Student Organization • 120 Members • UCC Campus',
+        location: 'Campus On-Site (Sam Jonah Library)',
+        stipend: 'GHS 850',
+        contract: 'Freelance Gig',
+        match: '84% Skill Match for Prince',
+        description: "Design visual brand identity, social promo kits, and stage banners for the Annual Student Startup Pitch Day at Sam Jonah Library Auditorium.",
+        logo: 'EC'
+      },
+      'kente': {
+        title: 'UI/UX Design Intern',
+        company: 'Kente Digital Agency',
+        meta: 'Product Agency • 22 Employees • Accra',
+        location: 'Hybrid (Airport City, Accra)',
+        stipend: 'GHS 2,000',
+        contract: 'Internship (3 Mos)',
+        match: '88% Skill Match for Prince',
+        description: "Design intuitive web & mobile workflows for African SMEs. Conduct rapid usability sessions, map user journey flows, and build cross-functional tokenized design systems.",
+        logo: 'KD'
+      },
+      'social-hub': {
+        title: 'Social Media Manager',
+        company: 'Student Enterprise Hub',
+        meta: 'Incubator • UCC Campus • Cape Coast',
+        location: 'Hybrid (Cape Coast)',
+        stipend: 'GHS 1,200',
+        contract: 'Part-Time',
+        match: '78% Match for Prince',
+        description: "Curate weekly founder stories, track engagement metrics on LinkedIn and Instagram, and broadcast UCC campus innovation showcases.",
+        logo: 'SE'
+      }
+    };
+
+    function selectOpportunity(element, id) {
+      document.querySelectorAll('.opportunity-card').forEach(c => {
+        c.classList.remove('ring-2', 'ring-secondary', 'bg-surface-container-low/40');
+      });
+      element.classList.add('ring-2', 'ring-secondary', 'bg-surface-container-low/40');
+
+      const data = opportunitiesData[id];
+      if (data) {
+        document.getElementById('drawer-title').innerText = data.title;
+        document.getElementById('drawer-company').innerText = data.company;
+        document.getElementById('drawer-meta').innerText = data.meta;
+        document.getElementById('drawer-sublocation').innerText = data.location;
+        document.getElementById('drawer-stipend').innerHTML = data.stipend + '<span class="text-xs font-normal text-on-surface-variant">/mo</span>';
+        document.getElementById('drawer-contract').innerText = data.contract;
+        document.getElementById('drawer-description').innerText = data.description;
+        document.getElementById('drawer-match-badge').innerHTML = '<span class="material-symbols-outlined text-[14px]">check_circle</span> ' + data.match;
+        document.getElementById('drawer-logo').innerText = data.logo;
+        
+        document.getElementById('drawer-apply-btn').setAttribute('onclick', `openApplyModal('${data.title}', '${data.company}')`);
+      }
+    }
+
+    function populateRightDrawer(title, company, location, stipend, contract, match) {
+      document.getElementById('drawer-title').innerText = title;
+      document.getElementById('drawer-company').innerText = company;
+      document.getElementById('drawer-sublocation').innerText = location;
+      document.getElementById('drawer-stipend').innerHTML = stipend + '<span class="text-xs font-normal text-on-surface-variant">/mo</span>';
+      document.getElementById('drawer-contract').innerText = contract;
+      document.getElementById('drawer-match-badge').innerHTML = '<span class="material-symbols-outlined text-[14px]">check_circle</span> ' + match + ' Skill Match for Prince';
+      document.getElementById('drawer-apply-btn').setAttribute('onclick', `openApplyModal('${title}', '${company}')`);
+      document.getElementById('opportunity-detail-panel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openApplyModal(role, org) {
+      document.getElementById('modal-role-title').innerText = `Apply for ${role}`;
+      document.getElementById('modal-org-name').innerText = `${org} • 1-Click Fast Track`;
+      const modal = document.getElementById('apply-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeApplyModal() {
+      const modal = document.getElementById('apply-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitApplication() {
+      const submitBtn = event.target.closest('button');
+      submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[16px]">sync</span> Submitting...';
+      setTimeout(() => {
+        closeApplyModal();
+        alert('Application successfully submitted with cryptographically signed SkillBridge credentials! Check the pipeline below for status.');
+        submitBtn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[16px]">send</span>';
+      }, 700);
+    }
+
+    function toggleQuickFilter(btn) {
+      btn.classList.toggle('bg-secondary');
+      btn.classList.toggle('text-on-secondary');
+      btn.classList.toggle('bg-surface-container-low');
+      btn.classList.toggle('text-on-surface-variant');
+    }
+
+    // Category Tabs Switching
+    document.querySelectorAll('.category-pill').forEach(pill => {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.category-pill').forEach(p => {
+          p.classList.remove('bg-secondary', 'text-on-secondary', 'shadow-sm');
+          p.classList.add('bg-surface-container-lowest', 'text-on-surface');
+        });
+        this.classList.add('bg-secondary', 'text-on-secondary', 'shadow-sm');
+        this.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+      });
+    });
+
+    // Real-time Search Filter
+    document.getElementById('opportunity-search').addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase();
+      document.querySelectorAll('#opportunity-list .opportunity-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</div></main>
+</div>
+<!-- END: MainContentArea -->
+
+
+</body></html>

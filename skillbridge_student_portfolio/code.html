@@ -1,0 +1,1371 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UCC SKILLSHUB University Dashboard</title>
+<meta content="web_dashboard" name="shell-type">
+<!-- Google Fonts: Manrope & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#5939e5",
+            "secondary-fixed-dim": "#c8bfff",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#77767e",
+            "secondary-container": "#7257ff",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#434560",
+            "tertiary-fixed": "#e7deff",
+            "primary-fixed-dim": "#c3c4e5",
+            "error": "#ba1a1a",
+            "on-surface": "#171a2f",
+            "inverse-primary": "#c3c4e5",
+            "on-error": "#ffffff",
+            "on-secondary-container": "#fffbff",
+            "inverse-surface": "#2c2f45",
+            "surface-tint": "#5b5c79",
+            "primary-container": "#171932",
+            "secondary-fixed": "#e5deff",
+            "surface-bright": "#fbf8ff",
+            "surface-container-high": "#e6e6ff",
+            "primary-fixed": "#e0e0ff",
+            "surface-variant": "#dfe0fd",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#4214d0",
+            "on-tertiary-container": "#8c69ff",
+            "surface-container-highest": "#dfe0fd",
+            "surface-container-low": "#f4f2ff",
+            "on-primary-container": "#8081a0",
+            "on-primary-fixed": "#171932",
+            "on-tertiary-fixed-variant": "#4e00d1",
+            "on-surface-variant": "#46464d",
+            "tertiary-fixed-dim": "#cdbdff",
+            "on-error-container": "#93000a",
+            "surface-dim": "#d7d8f4",
+            "inverse-on-surface": "#f0efff",
+            "on-tertiary-fixed": "#1f005f",
+            "on-primary": "#ffffff",
+            "primary": "#000000",
+            "tertiary": "#000000",
+            "surface-container": "#edecff",
+            "error-container": "#ffdad6",
+            "on-background": "#171a2f",
+            "background": "#fbf8ff",
+            "surface": "#fbf8ff",
+            "outline-variant": "#c8c5ce",
+            "on-secondary-fixed": "#190064",
+            "tertiary-container": "#1f005f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-desktop": "2.5rem",
+            "gutter-lg": "2rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "margin": "2rem",
+            "gutter-sm": "1rem",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Manrope"],
+            "stat-counter": ["Manrope"],
+            "display-hero-mobile": ["Manrope"],
+            "label-md": ["Hanken Grotesk"],
+            "display-hero": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "label-sm": ["Hanken Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "headline-xl-mobile": ["Manrope"],
+            "body-lg": ["Hanken Grotesk"],
+            "headline-xl": ["Manrope"],
+            "headline-sm": ["Manrope"],
+            "body-md": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "stat-counter": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Hanken Grotesk', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  </style>
+<link href="../responsive.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- BEGIN: NavigationSidebar -->
+<aside class="fixed top-0 left-0 bottom-0 w-64 bg-primary-container z-30 flex flex-col justify-between py-margin-desktop px-space-md select-none" data-purpose="main-sidebar">
+<div class="flex flex-col gap-space-lg">
+<!-- SkillBridge Brand Logo -->
+<div class="flex items-center gap-space-sm px-space-sm"><a href="#dashboard" class="block py-1"><img src="https://lh3.googleusercontent.com/aida/ALJJyrCVWTYgkzn-xXat5aYzOFQIe6hHFIOr52TSlwG_b7mghmgvlWLQOgdAluO49EhpxP3yI7c_7TdEoFe6jpbkDxKLUrLkMCd0j2A7Xt-SM1VARwTWtgT7K1m5-TRtlXHAxtzyr5LmHc_uanBi2RV0E_TonjJqbuADrBK3sSVPqWliYWg19VE1Qxjn1vjjekXNb5JRlO1a400IB3-U6EYl1Nsquu07TKCABRAnjdddEEkV" alt="UCC SKILLSHUB Logo" class="h-9 w-auto object-contain"></a></div>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="flex flex-col gap-space-xs" data-active-classes="bg-secondary text-on-secondary shadow-md font-label-md">
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="dashboard" href="#dashboard">Dashboard</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="courses" href="#courses">Courses</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="skill-pathways" href="#skill-pathways">Skill Pathways</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="practical-projects" href="#practical-projects">Projects</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="certificates-achievements" href="#certificates-achievements">Certificates</a>
+<a aria-current="page" class="px-space-md py-space-sm rounded-full transition block bg-secondary text-on-secondary shadow-md font-label-md" data-path="student-portfolio" href="#student-portfolio">Portfolio</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="opportunities" href="#opportunities">Opportunities</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="analytics" href="#analytics">Analytics</a>
+</nav>
+</div>
+<!-- Bottom Secondary Navigation -->
+<div class="flex flex-col gap-space-xs">
+<div class="h-px bg-on-primary-container/20 my-space-xs"></div>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="settings" href="#settings">Settings</a>
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition" data-path="notifications" href="#notifications">
+<span>Notifications</span>
+<span class="w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="logout" href="#logout">Logout</a>
+</div>
+</aside>
+<!-- END: NavigationSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="pl-64 flex flex-col min-h-screen">
+<!-- Top App Header -->
+<header class="fixed top-0 left-64 right-0 z-20 bg-background/95 backdrop-blur-md px-margin py-0" data-purpose="top-header">
+<div class="h-16 flex items-center justify-between gap-space-lg">
+<!-- Search Bar -->
+<div class="relative flex-1 max-w-xl">
+<div class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</div>
+<input class="w-full pl-10 pr-space-md py-space-sm bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" placeholder="Search courses, skills or opportunities..." type="text">
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-space-lg">
+<!-- Notification Bell Icon with Badge -->
+<button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background"></span>
+</button>
+<!-- User Profile Pill Dropdown -->
+<div class="flex items-center gap-space-sm cursor-pointer group select-none px-space-xs py-space-xs rounded-full hover:bg-surface-container-low transition">
+<img data-profile-photo="" alt="" class="w-9 h-9 rounded-full object-cover ring-2 ring-surface-container">
+<span class="font-label-md text-label-md text-on-surface">Prince Egah</span>
+<span class="material-symbols-outlined text-outline group-hover:text-on-surface transition text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Workspace -->
+<main class="pt-16 px-margin pb-space-2xl flex-1"><div class="flex flex-col w-full">
+<!-- Interactive View Switcher & Action Top Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm uppercase tracking-wider">
+          Student Verified Profile
+        </span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> Live Online
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">My Professional Portfolio</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Showcase your skills, capstones, and validated university milestones to prospective employers and industry recruiters.</p>
+</div>
+<!-- Actions & View Mode Toggle -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="bg-surface-container p-1 rounded-full flex items-center">
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition" id="btn-mode-editor" onclick="switchViewMode('editor')">
+          Dashboard Editor
+        </button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition flex items-center gap-1.5" id="btn-mode-public" onclick="switchViewMode('public')">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+          Public View
+        </button>
+</div>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm hover:bg-surface-container transition" onclick="openModal('edit-profile-modal')">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+        Edit Profile
+      </button>
+<button class="inline-flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-md shadow-secondary/25 hover:bg-secondary-container transition" onclick="copyShareLink()">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share Portfolio</span>
+</button>
+</div>
+</div>
+<!-- Portfolio Completeness & Health Banner -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm mb-space-xl">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-gradient-to-br from-secondary/10 to-transparent pointer-events-none blur-2xl"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="flex-1">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified_user</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Portfolio Health &amp; Completeness</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">88% Complete</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl mb-space-md">
+          Your profile is in the <strong class="text-on-surface font-semibold">Top 12% for Employer Visibility</strong> at University of Cape Coast. Complete two pending recommendations to activate automated job alerts and recruiter auto-matching.
+        </p>
+<!-- Dynamic Progress Bar -->
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden mb-space-md">
+<div class="h-full bg-gradient-to-r from-secondary via-secondary-container to-secondary-fixed-dim rounded-full transition-all duration-700" style="width: 88%;"></div>
+</div>
+<!-- Actionable checklist -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Profile photo &amp; bio</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Top 6 skills verified</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>3 Capstones with demos</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant hover:text-secondary cursor-pointer" onclick="openModal('elevator-pitch-modal')">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span>Add video pitch <strong class="text-secondary">(+8%)</strong></span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant hover:text-secondary cursor-pointer" onclick="openModal('github-sync-modal')">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span>Sync GitHub feed <strong class="text-secondary">(+4%)</strong></span>
+</div>
+</div>
+</div>
+<div class="flex lg:flex-col items-center justify-between gap-space-sm pt-space-sm lg:pt-0">
+<button class="px-space-md py-2 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-variant transition whitespace-nowrap" onclick="openModal('checklist-modal')">
+          View Recommendations
+        </button>
+<span class="font-label-sm text-label-sm text-outline">Updated 2 days ago</span>
+</div>
+</div>
+</div>
+<!-- MAIN TWO-COLUMN WORKSPACE -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start" id="portfolio-main-grid">
+<!-- LEFT COLUMN: Main Showcase Area (8 Cols) -->
+<div class="xl:col-span-8 flex flex-col gap-space-xl">
+<!-- HERO STUDENT PROFILE CARD -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg md:p-space-xl shadow-sm relative overflow-hidden">
+<!-- Subtle background accent glow -->
+<div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-secondary-fixed/30 pointer-events-none -mr-20 -mt-20 blur-3xl"></div>
+<div class="flex flex-col md:flex-row gap-space-lg items-start relative z-10">
+<!-- Student Avatar with Verified Status -->
+<div class="relative shrink-0">
+<img data-profile-photo="" alt="" class="w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover shadow-md ring-4 ring-surface-container-low">
+<span class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-md" title="UCC Verified Student">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</span>
+</div>
+<!-- Student Core Bio & Credentials -->
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs mb-space-xs">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+                Available for Summer 2025 Internship &amp; Co-op
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">
+                Class of 2026
+              </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">Prince Egah</h2>
+<p class="font-headline-sm text-headline-sm text-secondary font-semibold mb-2">Aspiring Full-Stack Software Engineer &amp; Data Analyst</p>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-space-md text-on-surface-variant font-body-sm text-body-sm mb-space-md">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-outline">school</span>
+                BSc Computer Science • University of Cape Coast (UCC)
+              </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-outline">location_on</span>
+                Accra &amp; Cape Coast, Ghana
+              </span>
+<span class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-[18px]">travel_explore</span>
+                Open to Remote &amp; Relocation
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+              Passionate Computer Science undergraduate bridging software engineering and modern data analytics. Experienced in building responsive web applications with React, Node.js, and crafting business intelligence solutions using SQL and Power BI. Active tech mentor and hackathon builder eager to solve real-world industry challenges.
+            </p>
+<!-- Contact & Social Connectivity Pills -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<button class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md transition" onclick="copyProfileEmail()">
+<span class="material-symbols-outlined text-[16px] text-secondary">mail</span>
+<span data-profile-email></span>
+<span class="material-symbols-outlined text-[14px] text-outline">content_copy</span>
+</button>
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md transition" href="https://github.com/prince-egah" rel="noopener" target="_blank">
+<svg class="w-4 h-4 fill-current text-on-surface" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+<span>github.com/prince-egah</span>
+</a>
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md transition" href="https://linkedin.com/in/prince-egah" rel="noopener" target="_blank">
+<svg class="w-4 h-4 fill-current text-secondary" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.65 1.65 0 0 0-1.66 1.65c0 .91.74 1.66 1.66 1.66.91 0 1.65-.75 1.65-1.66 0-.91-.74-1.65-1.65-1.65Z"></path></svg>
+<span>LinkedIn</span>
+</a>
+<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md transition" onclick="copyToClipboard('+233 24 000 0000', 'WhatsApp number copied!')">
+<span class="material-symbols-outlined text-[16px] text-[#10b981]">chat</span>
+<span>WhatsApp Available</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SKILLS & COMPETENCIES SECTION -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Verified Skills &amp; Technical Competencies</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Assessed and certified through coursework, peer-code reviews, and university capstones.</p>
+</div>
+<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-variant transition" onclick="openModal('add-skill-modal')">
+<span class="material-symbols-outlined text-[16px]">add</span>
+            Add Skill
+          </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Skill Card 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1">
+                    Python
+                    <span class="material-symbols-outlined text-[16px] text-secondary" title="Verified by 2 UCC Capstones">verified</span>
+</h4>
+<span class="font-label-sm text-label-sm text-outline">Verified by 2 UCC Capstones</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">Advanced • 95%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="h-full bg-secondary rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<!-- Skill Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-surface-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">insights</span>
+</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1">
+                    Data Analytics &amp; BI
+                    <span class="material-symbols-outlined text-[16px] text-secondary" title="Microsoft Certified Partner Track">verified</span>
+</h4>
+<span class="font-label-sm text-label-sm text-outline">Microsoft Certified Partner Track</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">Advanced • 92%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="h-full bg-secondary rounded-full" style="width: 92%;"></div>
+</div>
+</div>
+<!-- Skill Card 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1">
+                    Web Development
+                    <span class="material-symbols-outlined text-[16px] text-secondary" title="Full-Stack Engineering Track">verified</span>
+</h4>
+<span class="font-label-sm text-label-sm text-outline">React, Node.js, Express, REST APIs</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">Proficient • 88%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="h-full bg-secondary rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+<!-- Skill Card 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-surface-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">database</span>
+</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1">
+                    SQL &amp; Relational DBs
+                    <span class="material-symbols-outlined text-[16px] text-secondary" title="PostgreSQL &amp; MySQL Mastery">verified</span>
+</h4>
+<span class="font-label-sm text-label-sm text-outline">PostgreSQL, Indexing, Query Tuning</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">Proficient • 85%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="h-full bg-secondary rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+<!-- Skill Card 5 -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">design_services</span>
+</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1">
+                    UI/UX Design &amp; Prototyping
+                    <span class="material-symbols-outlined text-[16px] text-secondary" title="Figma Design Guild Badge">verified</span>
+</h4>
+<span class="font-label-sm text-label-sm text-outline">Figma Systems, Design Tokens, Wireframing</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">Proficient • 80%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="h-full bg-secondary rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Skill Card 6 -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-surface-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">diversity_3</span>
+</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-1">
+                    Technical Leadership &amp; Mentoring
+                    <span class="material-symbols-outlined text-[16px] text-secondary" title="Peer Tutor Foundation UCC">verified</span>
+</h4>
+<span class="font-label-sm text-label-sm text-outline">Peer Mentor, Hackathon Lead Organizer</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">Advanced • 90%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="h-full bg-secondary rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- FEATURED PROJECT SHOWCASE (Filterable Gallery) -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Featured Projects &amp; Capstones</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-world production deployments, data architectures, and software systems.</p>
+</div>
+<!-- Filter Tabs -->
+<div class="inline-flex p-1 bg-surface-container rounded-full text-label-sm font-label-sm self-start sm:self-auto">
+<button class="px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-xs transition" id="tab-all" onclick="filterProjects('all')">All (4)</button>
+<button class="px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition" id="tab-swe" onclick="filterProjects('swe')">Software (2)</button>
+<button class="px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition" id="tab-bi" onclick="filterProjects('bi')">Data &amp; BI (2)</button>
+</div>
+</div>
+<div class="flex flex-col gap-space-lg">
+<!-- PROJECT 1: University Survey & BI -->
+<div class="project-card bi group p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition flex flex-col md:flex-row gap-space-lg">
+<div class="w-full md:w-56 shrink-0 h-44 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-alt="Modern clean Power BI business intelligence dashboard screen showing student survey insights with purple bar charts, line graphs, KPIs, and sleek data visualizations with high visual clarity and university branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRNby995l8I_3s2Q8HctQItkaVkNOCjJJpSzrKouGJcBrSFcBJZVUm95zQExHOq9qB1RaQHyUg1Jm3I8hPuQaMno7ISdBPd6Jj7no1eJj2mGQwjPXQdOiPw7BRjNLbRCsM5QhNLqzcQuot3ptMscQ-tKL7FNf68hmwJAj0B-nFHU4D-dvyUvadpdE8SbNHC8mSyIbws1O0zV-yXgbJ5JvHbVY1si-5LGdbVUNCc0o">
+<span class="absolute top-2 left-2 px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm">Power BI Analytics</span>
+<span class="absolute bottom-2 right-2 px-space-xs py-0.5 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm font-bold shadow-xs">Grade: 94/100</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition">
+                    Analyze University Survey Data &amp; Student Insights Dashboard
+                  </h4>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm shrink-0 font-medium">Capstone</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-medium mb-1.5">
+<strong>Problem Solved:</strong> Addressed low survey actionability for UCC Academic Affairs by extracting, cleaning 2,400+ student responses and delivering an automated decision-support dashboard.
+                </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm line-clamp-2">
+                  Engineered 6 dynamic DAX measures, automated ETL pipelines in Power Query, and provided interactive drill-through views that uncovered 18% department retention opportunities.
+                </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Power BI</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">DAX</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Microsoft Excel</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Data Sanitization</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Star Schema</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-2">
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-xs hover:bg-surface-variant transition" href="https://github.com/prince-egah/ucc-survey-bi-analysis" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+                  GitHub Repo
+                </a>
+<button class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-xs hover:bg-secondary-container transition" onclick="alert('Launching Live Power BI Report Preview')">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                  Live Interactive Demo
+                </button>
+<button class="font-label-sm text-label-sm text-secondary hover:underline ml-auto" onclick="openModal('rubric-modal-1')">
+                  View Capstone Rubric (94/100)
+                </button>
+</div>
+</div>
+</div>
+<!-- PROJECT 2: Multi-Tenant Student Management Microservice -->
+<div class="project-card swe group p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition flex flex-col md:flex-row gap-space-lg">
+<div class="w-full md:w-56 shrink-0 h-44 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-alt="Software engineering architecture and web application UI interface displaying clean responsive dashboards with tables, user roles, charts, and dark theme elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlyG01N7p-zSP3wssXUvnwZQnmXQ31_kZ1_YJWhKlQeZoGaSUx-nXUInHkztNFRkGt9GUPFY3WnAQnuc4rK77q7Hc9YzbJ2qhAIl_1y7jzi29BI9VCvnn-4C5t3iwKd-9UK93R4yquGLiV1gV7SbhfUHGRm4_LksQauIGBR7kKlYvGyt5j0rx1Pu_zWp5wyNicwNA674VN5cQPvnAqQ6PZFzlf_3PYmHhk_6L-CNY">
+<span class="absolute top-2 left-2 px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm">Full-Stack SaaS</span>
+<span class="absolute bottom-2 right-2 px-space-xs py-0.5 rounded bg-surface-container-lowest text-secondary font-label-sm text-label-sm font-bold shadow-xs">Grade: 96/100</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition">
+                    Multi-Tenant Student Management Microservice
+                  </h4>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm shrink-0 font-medium">Production</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-medium mb-1.5">
+<strong>Problem Solved:</strong> Modernized fragmented university club record management with role-based auth, instant PDF transcript generator, and real-time announcements.
+                </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm line-clamp-2">
+                  Designed relational database schema, secured endpoints with JWT tokens &amp; Argon2 password hashing, deployed with automated Docker container staging.
+                </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">React</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Node.js</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Express</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">PostgreSQL</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Docker</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Tailwind CSS</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-2">
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-xs hover:bg-surface-variant transition" href="https://github.com/prince-egah/student-microservice" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+                  GitHub Repository
+                </a>
+<button class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-xs hover:bg-secondary-container transition" onclick="alert('Redirecting to Live Production Cluster Demo')">
+<span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+                  Live Web App
+                </button>
+<span class="font-label-sm text-label-sm text-outline ml-auto">Passed CI/CD Test Suite</span>
+</div>
+</div>
+</div>
+<!-- PROJECT 3: Developer Portfolio & Design System -->
+<div class="project-card swe group p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition flex flex-col md:flex-row gap-space-lg">
+<div class="w-full md:w-56 shrink-0 h-44 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-alt="Minimalist design portfolio website on laptop mockup screen with typography focus, violet accents, high contrast whitespace, and mobile preview view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx2Z4VDTQpoqfYekAySGz60pzP1FYr6JEnY_fE43KwhvcloFyGS0ZLGVIKKyjX4NXd3cOWlzE8RlCFh3pXniZdoIwubLUmWlgt9Zi10Kf8Zu5yX2shsTcMcOCfKJrna8ENpXIw8WCR_uTP_s8Q_VfufwqSFfBS36aaCIL9SjHA83ug6wQRCuSTrjFMhxRUae1HTJ77_KUHEXBlowqvOf5uyokqmmQU5Foiax2w67Y">
+<span class="absolute top-2 left-2 px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm">Web System</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition">
+                    Personal Developer Portfolio &amp; Design System
+                  </h4>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm shrink-0 font-medium">Lighthouse 100/100</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-medium mb-1.5">
+<strong>Problem Solved:</strong> Crafted a lightning-fast accessible digital portfolio achieving 100/100 Google Lighthouse score and responsive mobile layouts.
+                </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm line-clamp-2">
+                  Built with atomic Tailwind configuration tokens, WCAG AA compliance, semantic HTML5 structure, and continuous delivery deployment pipelines via Vercel.
+                </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">HTML5</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Tailwind CSS</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">JavaScript ES6+</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Vercel</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-2">
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-xs hover:bg-surface-variant transition" href="https://github.com/prince-egah/prince-egah-portfolio" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+                  GitHub Repo
+                </a>
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-xs hover:bg-secondary-container transition" href="https://prince-egah.vercel.app" target="_blank">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                  Live Vercel Site
+                </a>
+</div>
+</div>
+</div>
+<!-- PROJECT 4: Weather Forecast & Climate Tracker -->
+<div class="project-card bi group p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition flex flex-col md:flex-row gap-space-lg">
+<div class="w-full md:w-56 shrink-0 h-44 rounded-xl overflow-hidden relative bg-surface-container-high">
+<img class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-alt="Weather dashboard mobile interface featuring temperature trends in West Africa, precipitation charts, clean meteorological graphs, and minimalist typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs9W1-7l0p7mIEOX7rHs92AQl7xnaFslUWHgzQP9ihqx0G5Bmo6oFifOxr2X7Ix6IJlSrR74Ok1POnfU2lx5mLHeVma5ylHybIUBhpjwC3UHwedByZJ8sLsMvSNzPJebkP0go2d8lYEbFOSL46NcCd_uDMnVNZLuUOOYM4B9Ib4Cc5NzRR24LcFcIbnp4OUYkuFOGCvUWCMRtc_t99QI5VbeDwo1hiBHYgAGtFlHI">
+<span class="absolute top-2 left-2 px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm">API Integration</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-2 mb-1">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition">
+                    Weather Forecast &amp; Climate Tracker App
+                  </h4>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm shrink-0 font-medium">Client App</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-medium mb-1.5">
+<strong>Problem Solved:</strong> Lightweight weather prediction dashboard fetching real-time asynchronous API data with custom animated weather graphics.
+                </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm line-clamp-2">
+                  Implemented client-side caching to prevent API rate limiting, geolocation-aware forecasts for coastal Ghana cities, and dynamic background weather themes.
+                </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Vanilla JS</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">OpenWeatherMap API</span>
+<span class="px-space-sm py-0.5 rounded-md bg-surface-container-highest font-label-sm text-label-sm text-on-surface">CSS Grid</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-2">
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-xs hover:bg-surface-variant transition" href="https://github.com/prince-egah/ghana-weather-tracker" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+                  GitHub Repo
+                </a>
+<button class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-xs hover:bg-secondary-container transition" onclick="alert('Opening Climate Tracker Live Demo')">
+<span class="material-symbols-outlined text-[16px]">thunderstorm</span>
+                  Live Demo
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CERTIFICATES & INDUSTRY CREDENTIALS SECTION -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Verified Certifications &amp; Credentials</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Digitally anchored credentials issued by University of Cape Coast &amp; global partners.</p>
+</div>
+<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-variant transition" onclick="openModal('add-cert-modal')">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+            Add Certificate
+          </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Cert 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="w-10 h-10 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+</span>
+<span class="px-space-xs py-0.5 rounded bg-[#ecfdf5] text-[#047857] font-label-sm text-label-sm font-semibold">Honors 96%</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">Data Analytics Fundamentals</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">University of Cape Coast with Microsoft Learn</p>
+<div class="font-label-sm text-label-sm text-outline flex flex-col gap-0.5">
+<span>Issued: Jan 2025</span>
+<span class="font-mono">ID: UCC-DAT-2025-0199</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<button class="font-label-sm text-label-sm text-secondary font-semibold hover:underline flex items-center gap-1" onclick="viewCredential('UCC-DAT-2025-0199', 'Data Analytics Fundamentals', 'University of Cape Coast with Microsoft Learn', 'Jan 2025', '96%')">
+<span>View Credential</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+<span class="material-symbols-outlined text-outline text-[20px]" title="Cryptographically Verified">qr_code_2</span>
+</div>
+</div>
+<!-- Cert 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="w-10 h-10 rounded-xl bg-surface-variant text-secondary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">Verified</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">Python Programming Fundamentals</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Center for Computing &amp; Tech Institute</p>
+<div class="font-label-sm text-label-sm text-outline flex flex-col gap-0.5">
+<span>Issued: Feb 2025</span>
+<span class="font-mono">ID: UCC-PYT-2025-0842</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<button class="font-label-sm text-label-sm text-secondary font-semibold hover:underline flex items-center gap-1" onclick="viewCredential('UCC-PYT-2025-0842', 'Python Programming Fundamentals', 'Center for Computing &amp; Tech Institute', 'Feb 2025', '94%')">
+<span>View Credential</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+<span class="material-symbols-outlined text-outline text-[20px]" title="Cryptographically Verified">qr_code_2</span>
+</div>
+</div>
+<!-- Cert 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="w-10 h-10 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">draw</span>
+</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">Verified</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-1">UI/UX Design Essentials</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">UCC SKILLSHUB Global Academy &amp; Design Guild</p>
+<div class="font-label-sm text-label-sm text-outline flex flex-col gap-0.5">
+<span>Issued: Nov 2024</span>
+<span class="font-mono">ID: UCC-UIX-2024-9104</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<button class="font-label-sm text-label-sm text-secondary font-semibold hover:underline flex items-center gap-1" onclick="viewCredential('UCC-UIX-2024-9104', 'UI/UX Design Essentials', 'UCC SKILLSHUB Global Academy &amp; Design Guild', 'Nov 2024', 'Pass with Distinction')">
+<span>View Credential</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+<span class="material-symbols-outlined text-outline text-[20px]" title="Cryptographically Verified">qr_code_2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Academic Foundation, Stats & Employer Share Widget (4 Cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-xl">
+<!-- PUBLIC LINK & EMPLOYER SHARE CARD -->
+<div class="rounded-2xl bg-gradient-to-br from-primary-container via-[#1e2246] to-primary-container text-surface-container-lowest p-space-lg shadow-md relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-secondary/30 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm relative z-10">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary/30 text-secondary-fixed text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px]">public</span>
+            Employer Access Ready
+          </span>
+<span class="text-on-primary-container text-label-sm font-label-sm">Updated Today</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-surface-container-lowest font-bold mb-1 relative z-10">
+          Public Shareable Link
+        </h3>
+<p class="font-body-sm text-body-sm text-on-primary-container mb-space-md relative z-10">
+          Recruiters can view your full verified capstone portfolio without logging in.
+        </p>
+<!-- Share URL Input Box -->
+<div class="flex items-center gap-1 p-1.5 bg-surface-container-lowest/10 backdrop-blur-sm rounded-xl mb-space-md relative z-10">
+<span class="material-symbols-outlined text-on-primary-container text-[18px] pl-2">link</span>
+<input class="w-full bg-transparent text-surface-container-lowest text-label-sm font-label-sm border-none focus:ring-0 truncate px-2 select-all" id="portfolio-share-url" readonly="" type="text" value="https://skillshub.ucc.edu.gh/portfolio/prince-egah">
+<button class="px-space-md py-1.5 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm hover:bg-secondary-container transition shrink-0" onclick="copyShareLink()">
+            Copy
+          </button>
+</div>
+<!-- QR Code & Stats -->
+<div class="flex items-center justify-between pt-space-xs relative z-10">
+<div class="flex items-center gap-space-sm">
+<div class="w-14 h-14 bg-surface-container-lowest p-1 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
+<!-- Inline SVG QR Code Representation -->
+<svg class="w-full h-full text-primary" fill="currentColor" viewBox="0 0 24 24">
+<path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 10h8v8H2v-8zm2 2v4h4v-4H4zm10-14h8v8h-8V2zm2 2v4h4V4h-4zm2 8h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm-2 2h2v4h-2v-4zm-2 2h2v2h-2v-2zm4 2h2v2h-2v-2zm0-4h2v2h-2v-2z"></path>
+</svg>
+</div>
+<div>
+<span class="block font-label-md text-label-md text-surface-container-lowest font-semibold">Scan to View Mobile</span>
+<span class="font-label-sm text-label-sm text-on-primary-container">Optimized for iOS &amp; Android</span>
+</div>
+</div>
+<button class="p-2 rounded-full bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-surface-container-lowest transition" onclick="switchViewMode('public')" title="Preview Public Site">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- EDUCATION & ACADEMIC MILESTONES -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Academic Foundation</h3>
+<span class="material-symbols-outlined text-secondary">school</span>
+</div>
+<!-- University Card -->
+<div class="mb-space-lg">
+<div class="flex items-start gap-space-sm mb-space-xs">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary font-bold shrink-0">
+              UCC
+            </div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">University of Cape Coast</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cape Coast, Central Region, Ghana</p>
+</div>
+</div>
+<div class="mt-space-sm p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">BSc in Computer Science</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">First Class Track</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Cumulative GPA: <strong class="text-secondary font-semibold">3.82 / 4.00</strong></span>
+<span>2022 — June 2026</span>
+</div>
+</div>
+</div>
+<!-- Coursework Tags -->
+<div class="mb-space-lg">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold mb-space-xs">Relevant Completed Coursework</h4>
+<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm">
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Data Structures &amp; Algorithms</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Database Systems Design</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">OOP (Java / C++)</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Software Engineering</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Discrete Mathematics</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Computer Networks</span>
+</div>
+</div>
+<!-- Academic Milestones & Honors -->
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold mb-space-sm">Honors &amp; Extracurriculars</h4>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">emoji_events</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface block font-bold">Winner, UCC Department Innovation Hackathon 2024</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Awarded 1st place out of 28 collegiate teams for campus logistics optimization.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">military_tech</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface block font-bold">Dean's Honor Roll (2023, 2024)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Recognized consistently for academic excellence in School of Physical Sciences.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">groups</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface block font-bold">Lead Peer Tutor for Computing Foundations</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mentored 60+ Year 1 undergraduates in Python and introductory logic.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PORTFOLIO ACTIVITY & RECRUITER ENGAGEMENT STATS -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight mb-space-sm">Profile Engagement Analytics</h3>
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low">
+<span class="font-stat-counter text-stat-counter text-secondary block">142</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Employer Profile Views (30d)</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low">
+<span class="font-stat-counter text-stat-counter text-[#10b981] block">18</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Direct Demo Launches</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low">
+<span class="font-stat-counter text-stat-counter text-on-surface block">6</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Resume Downloads</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low">
+<span class="font-stat-counter text-stat-counter text-secondary-container block">3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Interview Inquiries</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition" onclick="downloadResumePDF()">
+<span class="material-symbols-outlined text-[18px]">description</span>
+          Download Compiled Resume (PDF)
+        </button>
+</div>
+</div>
+</div>
+<!-- PUBLIC EMPLOYER VIEW MODAL / FULL EMBED (Toggled via Switcher) -->
+<div class="hidden flex-col w-full bg-surface-container-lowest rounded-2xl shadow-xl overflow-hidden mt-space-md p-space-lg md:p-space-xl" id="public-preview-container">
+<!-- Clean Minimal Recruiter Top Header -->
+<div class="flex items-center justify-between pb-space-lg border-b border-surface-container">
+<div class="flex items-center gap-2">
+<div data-profile-initials class="w-8 h-8 rounded-lg bg-secondary text-on-secondary flex items-center justify-center font-bold font-headline-sm">
+        </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" data-profile-name></span>
+<span class="text-outline font-label-sm text-label-sm block">UCC Candidate Profile • Verified by UCC SKILLSHUB</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="hidden sm:inline-flex px-space-sm py-1 rounded-full bg-[#ecfdf5] text-[#047857] font-label-sm text-label-sm font-semibold">
+          Open to Summer 2025 Roles
+        </span>
+<button class="px-space-lg py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="copyProfileEmail()">
+          Contact
+        </button>
+<button class="p-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant transition" onclick="switchViewMode('editor')" title="Return to Dashboard">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Public View Content Preview -->
+<div class="py-space-xl max-w-4xl mx-auto">
+<div class="text-center mb-space-2xl">
+<img data-profile-photo="" alt="" class="w-32 h-32 rounded-2xl mx-auto mb-space-md object-cover shadow-lg ring-4 ring-secondary-fixed">
+<h2 class="font-display-hero text-headline-xl text-on-surface font-extrabold mb-2">Prince Egah</h2>
+<p class="font-headline-md text-headline-md text-secondary font-semibold max-w-2xl mx-auto mb-space-sm">
+          Computer Science Undergraduate &amp; Data Analyst
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+          Passionate about building scalable web systems and transforming raw business records into interactive decision-making dashboards.
+        </p>
+<div class="flex items-center justify-center gap-space-sm mt-space-md">
+<a class="px-space-md py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md" data-profile-email-link>Contact via University Email</a>
+<a class="px-space-md py-2 rounded-full bg-surface-container text-on-surface font-label-md text-label-md" href="https://github.com/prince-egah" target="_blank">GitHub Profile</a>
+</div>
+</div>
+<div class="p-space-lg rounded-2xl bg-surface-container-low mb-space-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-sm">Featured Capstone Spotlight</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          "Analyze University Survey Data &amp; Student Insights Dashboard" — Analyzed over 2,400 survey responses with custom DAX pipelines and reduced retention blindspots by 18%.
+        </p>
+<div class="flex gap-2">
+<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-label-sm font-label-sm">Power BI</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-label-sm font-label-sm">Data Warehousing</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-label-sm font-label-sm">SQL Server</span>
+</div>
+</div>
+<div class="text-center pt-space-lg">
+<button class="text-secondary font-label-md text-label-md hover:underline inline-flex items-center gap-1" onclick="switchViewMode('editor')">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+          Back to Dashboard Editor
+        </button>
+</div>
+</div>
+</div>
+<!-- GENERIC MODAL WRAPPER (Interactive Overlays) -->
+<div class="fixed inset-0 z-50 hidden bg-primary-container/70 backdrop-blur-sm flex items-center justify-center p-space-md" id="portfolio-modal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-space-xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
+<button class="absolute top-4 right-4 p-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition" onclick="closeModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+<div id="modal-content-slot">
+<!-- Injected dynamically via JavaScript -->
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none px-space-lg py-space-sm rounded-full bg-primary-container text-surface-container-lowest font-label-md text-label-md shadow-xl flex items-center gap-2" id="toast-notification">
+<span class="material-symbols-outlined text-[#10b981] text-[18px]">check_circle</span>
+<span id="toast-text">Action completed successfully</span>
+</div>
+<!-- INLINE CLIENT INTERACTIONS SCRIPT -->
+<script>
+    // Mode Switcher: Dashboard Editor vs Public Recruiter Preview
+    function switchViewMode(mode) {
+      const editorGrid = document.getElementById('portfolio-main-grid');
+      const publicPreview = document.getElementById('public-preview-container');
+      const btnEditor = document.getElementById('btn-mode-editor');
+      const btnPublic = document.getElementById('btn-mode-public');
+
+      if (mode === 'public') {
+        editorGrid.classList.add('hidden');
+        publicPreview.classList.remove('hidden');
+        publicPreview.classList.add('flex');
+        btnPublic.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+        btnPublic.classList.remove('text-on-surface-variant');
+        btnEditor.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+        btnEditor.classList.add('text-on-surface-variant');
+        showToast('Switched to Public Employer View');
+      } else {
+        publicPreview.classList.add('hidden');
+        publicPreview.classList.remove('flex');
+        editorGrid.classList.remove('hidden');
+        btnEditor.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+        btnEditor.classList.remove('text-on-surface-variant');
+        btnPublic.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+        btnPublic.classList.add('text-on-surface-variant');
+        showToast('Switched to Dashboard Editor Mode');
+      }
+    }
+
+    // Projects Filtering
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const tabs = ['all', 'swe', 'bi'];
+
+      tabs.forEach(t => {
+        const tabEl = document.getElementById('tab-' + t);
+        if (t === category) {
+          tabEl.className = 'px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-xs transition';
+        } else {
+          tabEl.className = 'px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition';
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+        } else if (card.classList.contains(category)) {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('flex');
+        }
+      });
+    }
+
+    // Copy to Clipboard Utility with Toast
+    function copyToClipboard(text, message) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(message || 'Copied to clipboard!');
+      }).catch(() => {
+        showToast('Copied text!');
+      });
+    }
+
+    function copyProfileEmail() {
+      const profile = window.skillsHubProfile;
+      if (!profile || !profile.currentUser || !profile.currentUser.email) {
+        showToast('Sign in to access your profile email.');
+        return;
+      }
+      copyToClipboard(profile.currentUser.email, 'Email copied!');
+    }
+
+    function copyShareLink() {
+      const shareUrl = document.getElementById('portfolio-share-url').value;
+      copyToClipboard(shareUrl, 'Public portfolio link copied to clipboard!');
+    }
+
+    function downloadResumePDF() {
+      showToast('Generating official UCC Academic & SkillBridge Resume PDF...');
+      setTimeout(() => {
+        showToast('Resume downloaded successfully!');
+      }, 1200);
+    }
+
+    // Toast Engine
+    function showToast(text) {
+      const toast = document.getElementById('toast-notification');
+      const toastText = document.getElementById('toast-text');
+      toastText.textContent = text;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // Generic Modal System
+    async function openModal(type) {
+      const modal = document.getElementById('portfolio-modal');
+      const slot = document.getElementById('modal-content-slot');
+
+      if (type === 'edit-profile-modal') {
+        const profile = window.skillsHubProfile;
+        if (!profile || !profile.isAuthenticated()) {
+          showToast('Sign in with your email to edit your profile.');
+          return;
+        }
+        await profile.ready;
+        if (!profile.currentUser) {
+          showToast('Your profile could not be loaded. Please sign in again.');
+          return;
+        }
+        slot.innerHTML = `
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Edit Your Profile</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Update the name shown on your SkillsHub profile and upload a profile photo.</p>
+          <form class="flex flex-col gap-space-sm font-label-md text-label-md" id="profile-edit-form">
+            <div class="flex items-center gap-space-md">
+              <img alt="" class="w-16 h-16 rounded-full object-cover ring-2 ring-surface-container" data-profile-photo id="profile-photo-preview">
+              <div class="flex-1">
+                <label class="block text-on-surface font-semibold mb-1" for="profile-photo-input">Profile photo</label>
+                <input accept="image/jpeg,image/png,image/webp" class="block w-full text-sm text-on-surface-variant file:mr-3 file:rounded-full file:border-0 file:bg-surface-container file:px-4 file:py-2 file:text-sm file:font-semibold file:text-on-surface hover:file:bg-surface-variant" id="profile-photo-input" type="file">
+                <p class="mt-1 text-xs text-outline">JPEG, PNG or WebP; maximum 5 MB.</p>
+              </div>
+            </div>
+            <div>
+              <label class="block text-on-surface font-semibold mb-1" for="profile-first-name">First name</label>
+              <input autocomplete="given-name" class="w-full px-space-md py-2 rounded-xl bg-surface-container-low border-none text-on-surface text-body-sm focus:ring-2 focus:ring-secondary" id="profile-first-name" required>
+            </div>
+            <div>
+              <label class="block text-on-surface font-semibold mb-1" for="profile-last-name">Last name</label>
+              <input autocomplete="family-name" class="w-full px-space-md py-2 rounded-xl bg-surface-container-low border-none text-on-surface text-body-sm focus:ring-2 focus:ring-secondary" id="profile-last-name" required>
+            </div>
+            <p class="text-xs text-outline" id="profile-email-label"></p>
+            <button class="mt-space-sm w-full py-2.5 rounded-full bg-secondary text-on-secondary font-semibold hover:bg-secondary-container transition" id="profile-save-button" type="submit">
+              Save Changes
+            </button>
+            <p class="text-sm text-error" id="profile-edit-error" role="alert"></p>
+          </form>
+        `;
+        const photoPreview = document.getElementById('profile-photo-preview');
+        if (profile.currentUser.profile_photo_url) {
+          photoPreview.src = profile.currentUser.profile_photo_url;
+        }
+        document.getElementById('profile-first-name').value = profile.currentUser.first_name || '';
+        document.getElementById('profile-last-name').value = profile.currentUser.last_name || '';
+        document.getElementById('profile-email-label').textContent =
+          `Signed-in email: ${profile.currentUser.email || ''}`;
+
+        let selectedPhoto = null;
+        let previewUrl = null;
+        const photoInput = document.getElementById('profile-photo-input');
+        photoInput.addEventListener('change', () => {
+          const file = photoInput.files[0];
+          if (!file) return;
+          if (file.size > 5 * 1024 * 1024 || !/^image\/(jpeg|png|webp)$/.test(file.type)) {
+            photoInput.value = '';
+            selectedPhoto = null;
+            if (previewUrl) URL.revokeObjectURL(previewUrl);
+            previewUrl = null;
+            window.profilePhotoPreviewUrl = null;
+            if (profile.currentUser.profile_photo_url) {
+              photoPreview.src = profile.currentUser.profile_photo_url;
+            } else {
+              photoPreview.removeAttribute('src');
+            }
+            showToast('Choose a JPEG, PNG or WebP image no larger than 5 MB.');
+            return;
+          }
+          selectedPhoto = file;
+          if (previewUrl) URL.revokeObjectURL(previewUrl);
+          previewUrl = URL.createObjectURL(file);
+          window.profilePhotoPreviewUrl = previewUrl;
+          photoPreview.src = previewUrl;
+        });
+
+        document.getElementById('profile-edit-form').addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const saveButton = document.getElementById('profile-save-button');
+          const errorMessage = document.getElementById('profile-edit-error');
+          saveButton.disabled = true;
+          saveButton.textContent = 'Saving...';
+          errorMessage.textContent = '';
+          let nameSaved = false;
+          try {
+            await profile.updateProfile({
+              first_name: document.getElementById('profile-first-name').value.trim(),
+              last_name: document.getElementById('profile-last-name').value.trim(),
+            });
+            nameSaved = true;
+            if (selectedPhoto) await profile.uploadProfilePhoto(selectedPhoto);
+            closeModal();
+            showToast('Profile updated successfully!');
+          } catch (error) {
+            errorMessage.textContent = nameSaved
+              ? `Your name was saved, but the photo could not be uploaded: ${error.message}`
+              : `Your profile could not be saved: ${error.message}`;
+            saveButton.disabled = false;
+            saveButton.textContent = 'Save Changes';
+          } finally {
+            if (previewUrl) {
+              URL.revokeObjectURL(previewUrl);
+              window.profilePhotoPreviewUrl = null;
+            }
+          }
+        });
+      } else if (type === 'elevator-pitch-modal') {
+        slot.innerHTML = `
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Record 60-Second Video Pitch</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Adding a video elevator pitch boosts student recruiter contact by 4.2x.</p>
+          <div class="p-space-lg rounded-2xl bg-surface-container-low text-center flex flex-col items-center justify-center gap-space-sm mb-space-md">
+            <span class="material-symbols-outlined text-[48px] text-secondary">videocam</span>
+            <span class="font-label-md text-label-md text-on-surface font-bold">Webcam & Microphone Ready</span>
+            <span class="font-body-sm text-body-sm text-outline">Supported format: MP4 or direct browser recording</span>
+          </div>
+          <button onclick="closeModal(); showToast('Video Elevator pitch saved (+8% completeness)!')" class="w-full py-2.5 rounded-full bg-secondary text-on-secondary font-semibold hover:bg-secondary-container transition">
+            Start 60s Recording
+          </button>
+        `;
+      } else if (type === 'github-sync-modal') {
+        slot.innerHTML = `
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Sync GitHub Activity Feed</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Authorize SkillBridge to pull commit heatmaps and repository pull requests.</p>
+          <div class="p-space-md rounded-xl bg-surface-container-low flex items-center gap-space-sm mb-space-md">
+            <svg class="w-6 h-6 fill-current text-on-surface" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <div>
+              <span class="block font-label-md text-label-md text-on-surface font-semibold">GitHub @prince-egah</span>
+              <span class="text-label-sm text-label-sm text-outline">Public repositories & verified commits</span>
+            </div>
+          </div>
+          <button onclick="closeModal(); showToast('GitHub commit feed synchronized (+4% completeness)!')" class="w-full py-2.5 rounded-full bg-secondary text-on-secondary font-semibold hover:bg-secondary-container transition">
+            Authorize & Connect Feed
+          </button>
+        `;
+      } else if (type === 'checklist-modal') {
+        slot.innerHTML = `
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Portfolio Completeness Checklist</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Recommended actions to achieve 100% employer match tier.</p>
+          <div class="flex flex-col gap-space-sm font-body-sm text-body-sm mb-space-md">
+            <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                Student Profile Photo & Bio
+              </span>
+              <span class="text-secondary font-semibold">Complete</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                6 Verified Technical Competencies
+              </span>
+              <span class="text-secondary font-semibold">Complete</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                3 Production Project Showcases
+              </span>
+              <span class="text-secondary font-semibold">Complete</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+                Video Elevator Pitch
+              </span>
+              <button onclick="openModal('elevator-pitch-modal')" class="text-secondary font-semibold hover:underline">+8% Add</button>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+                Sync GitHub Activity Heatmap
+              </span>
+              <button onclick="openModal('github-sync-modal')" class="text-secondary font-semibold hover:underline">+4% Sync</button>
+            </div>
+          </div>
+          <button onclick="closeModal()" class="w-full py-2.5 rounded-full bg-surface-container text-on-surface font-semibold hover:bg-surface-variant transition">
+            Close
+          </button>
+        `;
+      } else if (type === 'rubric-modal-1') {
+        slot.innerHTML = `
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Capstone Evaluation Rubric</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Evaluated by UCC Department of Computer Science & Microsoft Learning Evaluator.</p>
+          <div class="p-space-md rounded-xl bg-surface-container-low mb-space-md flex flex-col gap-2 font-label-md text-label-md">
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant">Data Extraction & Sanitization:</span>
+              <strong class="text-on-surface">25 / 25</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant">DAX Measure Architecture:</span>
+              <strong class="text-on-surface">24 / 25</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant">Visualization & UX Clarity:</span>
+              <strong class="text-on-surface">23 / 25</strong>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-on-surface-variant">Documentation & Reproducibility:</span>
+              <strong class="text-on-surface">22 / 25</strong>
+            </div>
+            <div class="pt-2 border-t border-surface-container flex justify-between text-secondary font-bold text-headline-sm">
+              <span>Overall Capstone Score:</span>
+              <span>94 / 100</span>
+            </div>
+          </div>
+          <button onclick="closeModal()" class="w-full py-2 rounded-full bg-surface-container text-on-surface font-semibold">Done</button>
+        `;
+      } else {
+        slot.innerHTML = `
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-2">Item Action</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Record has been staged for university peer review.</p>
+          <button onclick="closeModal()" class="w-full py-2 rounded-full bg-secondary text-on-secondary font-semibold">Close</button>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function viewCredential(id, title, issuer, date, honors) {
+      const modal = document.getElementById('portfolio-modal');
+      const slot = document.getElementById('modal-content-slot');
+      slot.innerHTML = `
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-2xl bg-secondary-fixed text-secondary mx-auto flex items-center justify-center mb-space-sm">
+            <span class="material-symbols-outlined text-[32px]">verified</span>
+          </div>
+          <span class="px-space-sm py-0.5 rounded-full bg-[#ecfdf5] text-[#047857] font-label-sm text-label-sm font-semibold uppercase">Digitally Verified Credential</span>
+          <h3 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-2 mb-1">${title}</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">${issuer}</p>
+
+          <div class="p-space-md rounded-xl bg-surface-container-low text-left font-label-md text-label-md flex flex-col gap-2 mb-space-lg">
+            <div class="flex justify-between">
+              <span class="text-outline">Credential ID:</span>
+              <span class="font-mono text-on-surface">${id}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline">Issue Date:</span>
+              <span class="text-on-surface">${date}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline">Honors / Standing:</span>
+              <span class="text-secondary font-bold">${honors}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline">Cryptographic Anchor:</span>
+              <span class="text-[#047857] flex items-center gap-1 font-semibold">
+                <span class="material-symbols-outlined text-[16px]">lock</span> UCC Blockchain Registry
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-space-sm">
+            <button onclick="copyToClipboard('${id}', 'Credential verification hash copied!')" class="flex-1 py-2 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md transition">
+              Copy Verification ID
+            </button>
+            <button onclick="closeModal()" class="flex-1 py-2 rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md transition">
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      if (window.profilePhotoPreviewUrl) {
+        URL.revokeObjectURL(window.profilePhotoPreviewUrl);
+        window.profilePhotoPreviewUrl = null;
+      }
+      document.getElementById('portfolio-modal').classList.add('hidden');
+    }
+
+    // Close modal on escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</div></main>
+</div>
+<!-- END: MainContentArea -->
+
+
+
+
+<script src="../skillshub-api.js"></script>
+<script src="../profile.js"></script>
+<script src="../responsive.js"></script>
+</body></html>

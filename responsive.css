@@ -1,0 +1,188 @@
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  max-width: 100%;
+  min-width: 320px;
+}
+
+.responsive-menu-toggle,
+.responsive-nav-backdrop {
+  display: none;
+}
+
+img,
+picture,
+video,
+canvas,
+iframe,
+svg {
+  max-width: 100%;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1023.98px) {
+  body.has-responsive-sidebar {
+    display: block !important;
+  }
+
+  body.has-responsive-sidebar [data-purpose="main-sidebar"],
+  body.has-responsive-sidebar [data-purpose="primary-sidebar"],
+  body.has-responsive-sidebar [data-purpose="sidebar"] {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    z-index: 50 !important;
+    width: min(18rem, 88vw) !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition: transform 220ms ease, visibility 220ms ease;
+  }
+
+  body.has-responsive-sidebar[data-responsive-nav-open="true"]
+    [data-purpose="main-sidebar"],
+  body.has-responsive-sidebar[data-responsive-nav-open="true"]
+    [data-purpose="primary-sidebar"],
+  body.has-responsive-sidebar[data-responsive-nav-open="true"]
+    [data-purpose="sidebar"] {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  body.has-responsive-sidebar > div.pl-64 {
+    padding-left: 0 !important;
+  }
+
+  body.has-responsive-sidebar > div:not(.responsive-menu-toggle):not(.responsive-nav-backdrop) {
+    flex: 1 1 auto !important;
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.has-responsive-sidebar header[data-purpose="top-header"] {
+    left: 0 !important;
+    right: 0 !important;
+    padding-left: 4rem !important;
+    padding-right: 1rem !important;
+  }
+
+  body.has-responsive-sidebar header[data-purpose="header"] {
+    padding-left: 4rem !important;
+    padding-right: 1rem !important;
+  }
+
+  body.has-responsive-sidebar main {
+    width: 100%;
+    min-width: 0;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  body.has-responsive-sidebar main > *,
+  body.has-responsive-sidebar main section,
+  body.has-responsive-sidebar main aside {
+    min-width: 0;
+  }
+
+  body.has-responsive-sidebar[data-responsive-nav-open="true"] {
+    overflow: hidden;
+  }
+
+  .responsive-menu-toggle {
+    position: fixed;
+    top: 0.6rem;
+    left: 0.6rem;
+    z-index: 60;
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 9999px;
+    background: #14162f;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.22);
+  }
+
+  .responsive-menu-toggle:focus-visible,
+  .responsive-nav-backdrop:focus-visible {
+    outline: 3px solid #8b7bff;
+    outline-offset: 2px;
+  }
+
+  .responsive-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: block;
+    border: 0;
+    background: rgba(15, 17, 35, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 220ms ease, visibility 220ms ease;
+  }
+
+  body[data-responsive-nav-open="true"] .responsive-nav-backdrop {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 639.98px) {
+  h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .responsive-profile-name {
+    display: none !important;
+  }
+
+  [data-responsive-stack="narrow"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  [data-responsive-stack="narrow"] > .relative {
+    align-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
