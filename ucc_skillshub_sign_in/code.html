@@ -553,8 +553,21 @@
           clearAuthValues();
         }
       }
-      const data = response.status === 204 || response.status === 205 ? null : await response.json();
-      if (!response.ok) throw new Error(apiErrorMessage(data));
+      // Vercel/Django errors may be HTML, not JSON. Report a useful error rather
+      // than throwing "Unexpected token '<'" or displaying a blank message.
+      const data = response.status === 204 || response.status === 205
+        ? null : await response.json().catch(() => null);
+      if (!response.ok) {
+        let message = data ? apiErrorMessage(data) : `Server returned HTTP ${response.status}.`;
+        if (response.status >= 500) {
+          message = 'The authentication service is temporarily unavailable. Please try again or contact support.';
+        } else if (response.status === 429) {
+          message = 'Too many attempts. Please wait before trying again.';
+        }
+        const error = new Error(message);
+        error.status = response.status;
+        throw error;
+      }
       return data;
     }
 
@@ -775,6 +788,37 @@
       }
     }
 
+    const DASHBOARD_PATH = '/ucc_skillshub_student_dashboard/code.html';
+
+    function saveAuthenticatedUser(access, refresh, user, remember = false) {
+      if (!access || !refresh) throw new Error('The server did not return valid sign-in tokens.');
+      setAuthValue('skillshubAccessToken', access, remember);
+      setAuthValue('skillshubRefreshToken', refresh, remember);
+      if (user) {
+        const cachedUser = { ...user };
+        delete cachedUser.profile_photo_url;
+        setAuthValue('skillshubUser', JSON.stringify(cachedUser), remember);
+      }
+    }
+
+    async function completeOAuthLogin(access, refresh) {
+      // Student verification can return tokens for an existing linked account.
+      // Load the verified user from the API instead of inventing a local profile.
+      saveAuthenticatedUser(access, refresh, null);
+      try {
+        const user = await apiRequest('/users/me/', { method: 'GET' }, false);
+        const resolved = user.user || user;
+        if (resolved && resolved.id) {
+          const cachedUser = { ...resolved };
+          delete cachedUser.profile_photo_url;
+          setAuthValue('skillshubUser', JSON.stringify(cachedUser), false);
+        }
+      } catch (error) {
+        // The JWT remains usable even if the profile lookup fails.
+      }
+      window.location.assign(DASHBOARD_PATH);
+    }
+
     async function handleFormSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
@@ -796,12 +840,9 @@
           body: JSON.stringify({ email, password }),
         }, false);
         const remember = document.getElementById('rememberMe').checked;
-        setAuthValue('skillshubAccessToken', response.access, remember);
-        setAuthValue('skillshubRefreshToken', response.refresh, remember);
-        const cachedUser = { ...response.user };
-        delete cachedUser.profile_photo_url;
-        setAuthValue('skillshubUser', JSON.stringify(cachedUser), remember);
-        showToast('success', `Welcome back, ${response.user.first_name}. You are signed in.`);
+        saveAuthenticatedUser(response.access, response.refresh, response.user, remember);
+        showToast('success', `Welcome back, ${response.user?.first_name || 'student'}. You are signed in.`);
+        window.location.assign(DASHBOARD_PATH);
       } catch (error) {
         showToast('error', error.message || 'Unable to sign in. Please try again.');
       } finally {
