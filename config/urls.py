@@ -11,7 +11,8 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.urls import include, path
+    1. Import the include() function: from django.urls import include, path, re_path
+from config.frontend_views import frontend
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
@@ -24,6 +25,7 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
+    path("", frontend, name="skillshub-landing"),
     path("admin/", admin.site.urls),
     path(
         "certificates/verify/<str:token>/",
@@ -49,4 +51,10 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+]
+
+# Keep legacy HTML page URLs and relative frontend asset requests working.
+# Route these last so the admin, API and certificate verification URLs win.
+urlpatterns += [
+    re_path(r"^(?P<resource>[^?]+)$", frontend, name="skillshub-frontend"),
 ]
