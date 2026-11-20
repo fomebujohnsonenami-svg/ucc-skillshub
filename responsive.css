@@ -192,7 +192,7 @@ pre {
 *, *::before, *::after { box-sizing: border-box; }
 html { max-width: 100%; }
 body { min-width: 0; overflow-x: clip; }
-img, video, picture, canvas, svg { height: auto; }
+img, video, picture, canvas, svg { max-width: 100%; }
 img, video, iframe { max-width: 100%; }
 main, section, article, aside, form, .grid, .flex { min-width: 0; }
 .grid > *, .flex > * { min-width: 0; }
@@ -234,4 +234,49 @@ table { border-collapse: collapse; }
   input, select, textarea { font-size: 16px; }
   dialog { width: calc(100vw - 1.5rem); padding: 1rem; }
   .responsive-menu-toggle { width: 2.5rem; height: 2.5rem; }
+}
+
+/* Responsive layout refinements — shared by all application pages. */
+:root { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { width: 100%; }
+body { width: 100%; }
+img { object-fit: var(--responsive-image-fit, initial); }
+button, input, select, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:where(.grid, .flex, main, section, article, aside, header, footer) > * { min-width: 0; }
+:where(h1, h2, h3, h4, p, span, a) { overflow-wrap: anywhere; }
+:where(input, select, textarea) { max-width: 100%; }
+:where([class*="overflow-x-auto"]) { -webkit-overflow-scrolling: touch; }
+:where([class*="max-w-7xl"], [class*="max-w-6xl"], [class*="max-w-5xl"]) { max-width: 100%; }
+@media (max-width: 1279.98px) {
+  header nav { gap: .75rem; }
+  header nav > * { min-width: 0; }
+}
+@media (max-width: 1023.98px) {
+  body.has-responsive-sidebar [data-purpose="main-sidebar"],
+  body.has-responsive-sidebar [data-purpose="primary-sidebar"],
+  body.has-responsive-sidebar [data-purpose="sidebar"] { box-shadow: 12px 0 36px rgba(15,23,42,.18); }
+  body.has-responsive-sidebar > div:not(.responsive-menu-toggle):not(.responsive-nav-backdrop) { max-width: 100%; }
+  body.has-responsive-sidebar main { overflow-wrap: anywhere; }
+  :where(main, section) .grid > * { min-width: 0; }
+}
+@media (max-width: 767.98px) {
+  :where(main, section, article) :where(.grid, .flex) { max-width: 100%; }
+  :where(main, section, article) img { max-width: 100%; }
+  :where(main, section, article) iframe { width: 100%; }
+  :where(main, section, article) [class*="w-screen"] { max-width: 100%; }
+  :where(main, section, article) [class*="min-w-max"] { min-width: 0; }
+  :where(main, section, article) [class*="grid-cols-5"]:not([class*="md:grid-cols-5"]):not([class*="lg:grid-cols-5"]),
+  :where(main, section, article) [class*="grid-cols-6"]:not([class*="md:grid-cols-6"]):not([class*="lg:grid-cols-6"]) { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  :where(main, section, article) .overflow-x-auto [class*="min-w-"] { max-width: none; }
+  :where(main, section, article) .overflow-x-auto table { display: table; width: max-content; min-width: 100%; }
+  :where(button, a, input, select, textarea) { touch-action: manipulation; }
+}
+@media (max-width: 479.98px) {
+  :where(main, section, article) [class*="grid-cols-5"]:not([class*="sm:grid-cols-5"]):not([class*="md:grid-cols-5"]):not([class*="lg:grid-cols-5"]),
+  :where(main, section, article) [class*="grid-cols-6"]:not([class*="sm:grid-cols-6"]):not([class*="md:grid-cols-6"]):not([class*="lg:grid-cols-6"]) { grid-template-columns: minmax(0,1fr); }
+  :where(main, section, article) [class*="text-6xl"] { font-size: clamp(2rem,9vw,3.75rem); }
+  :where(main, section, article) [class*="text-5xl"] { font-size: clamp(1.875rem,8vw,3rem); }
+  :where(main, section, article) [class*="text-4xl"] { font-size: clamp(1.75rem,7vw,2.25rem); }
+  :where(main, section, article) [class*="rounded-3xl"] { border-radius: 1.25rem; }
 }
