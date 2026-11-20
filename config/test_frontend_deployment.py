@@ -1,6 +1,6 @@
 """Smoke tests for a single-domain Vercel deployment."""
 from django.contrib.staticfiles import finders
-from django.test import SimpleTestCase, override_settings
+from django.test import SimpleTestCase
 
 
 class FrontendDeploymentTests(SimpleTestCase):
@@ -28,6 +28,14 @@ class FrontendDeploymentTests(SimpleTestCase):
             with self.subTest(path=path):
                 self.assertTrue(finders.find(path))
 
-    def test_assets_redirect_to_collected_static(self):
-        response = self.client.get("/responsive.css")
-        self.assertRedirects(response, "/static/responsive.css", fetch_redirect_response=False)
+    def test_frontend_assets_are_served_directly(self):
+        for path, mime in (
+            ("/responsive.css", "text/css"),
+            ("/skillbridge_public_landing_page/assets/ucc-students-computer-lab.png", "image/png"),
+        ):
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response["Content-Type"], mime)
+                self.assertTrue(response.streaming)
+                response.close()

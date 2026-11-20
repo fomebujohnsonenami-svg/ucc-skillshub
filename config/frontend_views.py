@@ -1,8 +1,8 @@
 """Serve existing frontend HTML without altering its contents or template syntax."""
-from pathlib import Path
+import mimetypes
 
 from django.conf import settings
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import FileResponse, Http404, HttpResponse
 from django.views.decorators.http import require_safe
 
 from config.frontend_static import PAGE_FOLDERS, ROOT, frontend_asset
@@ -22,8 +22,12 @@ def frontend(request, resource=""):
             raise Http404("Page not found.")
         return HttpResponse(path.read_bytes(), content_type="text/html; charset=utf-8")
 
-    # Original UI uses relative asset URLs. Redirect them to the collected CDN
-    # assets while preserving every link and script tag in the HTML itself.
-    if frontend_asset(resource):
-        return HttpResponseRedirect(f"{settings.STATIC_URL}{resource}")
+    # Vercel may not expose all application asset files at the CDN URL.
+    # Serve only allowlisted static assets directly from the deployed function.
+    asset_path = frontend_asset(resource)
+    if asset_path:
+        content_type = mimetypes.guess_type(asset_path.name)[0] or "application/octet-stream"
+        response = FileResponse(asset_path.open("rb"), content_type=content_type)
+        response["Cache-Control"] = "public, max-age=86400"
+        return response
     raise Http404("Page not found.")
