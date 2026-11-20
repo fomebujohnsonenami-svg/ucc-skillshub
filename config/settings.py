@@ -20,6 +20,11 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+# Accept the current Vercel preview/production hostname, not arbitrary hosts.
+_vercel_host = os.getenv("VERCEL_URL", "").strip()
+if _vercel_host and _vercel_host not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(_vercel_host)
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -207,7 +212,19 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+# The existing frontend JS/CSS/images are collected alongside Django app assets.
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "config.frontend_static.FrontendStaticFinder",
+]
+# Vercel functions cannot persist files locally. Certificate PDFs use the
+# existing private Supabase course-resource bucket in that environment.
+if os.getenv("VERCEL"):
+    STORAGES = {
+        "default": {"BACKEND": "certificates.storage.SupabaseCertificateStorage"},
+        "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+    }
 STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -225,6 +242,7 @@ if not DEBUG and os.getenv("DJANGO_TESTING") != "1":
     SECURE_HSTS_SECONDS = int(os.getenv("DJANGO_SECURE_HSTS_SECONDS", "31536000"))
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
