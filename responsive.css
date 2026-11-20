@@ -186,3 +186,52 @@ pre {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* Fluid application-wide layouts: preserve desktop design while fitting narrow screens. */
+*, *::before, *::after { box-sizing: border-box; }
+html { max-width: 100%; }
+body { min-width: 0; overflow-x: clip; }
+img, video, picture, canvas, svg { height: auto; }
+img, video, iframe { max-width: 100%; }
+main, section, article, aside, form, .grid, .flex { min-width: 0; }
+.grid > *, .flex > * { min-width: 0; }
+h1, h2, h3, h4, p, a, label { overflow-wrap: break-word; }
+input, select, textarea { min-width: 0; }
+textarea { width: 100%; }
+dialog { max-width: min(95vw, 44rem); max-height: min(90vh, 90dvh); overflow-y: auto; }
+[role="dialog"] { max-width: 100%; }
+table { border-collapse: collapse; }
+@media (max-width: 1279.98px) {
+  /* Keep navigation and toolbars from exceeding the available width. */
+  header nav, header [class*="justify-between"] { min-width: 0; }
+}
+@media (max-width: 1023.98px) {
+  body.has-responsive-sidebar > div.pl-64 { margin-left: 0 !important; }
+  body.has-responsive-sidebar [data-purpose="main-sidebar"],
+  body.has-responsive-sidebar [data-purpose="primary-sidebar"],
+  body.has-responsive-sidebar [data-purpose="sidebar"] { max-width: 88vw; }
+  body.has-responsive-sidebar header { min-width: 0; }
+  body.has-responsive-sidebar main { max-width: 100%; }
+  body.has-responsive-sidebar main .grid { min-width: 0; }
+  body.has-responsive-sidebar main [class*="overflow-x-auto"] { max-width: 100%; }
+}
+@media (max-width: 767.98px) {
+  /* Fixed desktop widths must not force a mobile horizontal scrollbar. */
+  main [class*="min-w-"], section [class*="min-w-"] { max-width: 100%; }
+  .grid[class*="grid-cols-3"]:not([class*="md:grid-cols-3"]):not([class*="lg:grid-cols-3"]),
+  .grid[class*="grid-cols-4"]:not([class*="md:grid-cols-4"]):not([class*="lg:grid-cols-4"]) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .responsive-menu-toggle { top: 0.75rem; left: 0.75rem; }
+  button, a, input, select, textarea { touch-action: manipulation; }
+}
+@media (max-width: 479.98px) {
+  .grid[class*="grid-cols-3"]:not([class*="sm:grid-cols-3"]):not([class*="md:grid-cols-3"]):not([class*="lg:grid-cols-3"]),
+  .grid[class*="grid-cols-4"]:not([class*="sm:grid-cols-4"]):not([class*="md:grid-cols-4"]):not([class*="lg:grid-cols-4"]) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  input, select, textarea { font-size: 16px; }
+  dialog { width: calc(100vw - 1.5rem); padding: 1rem; }
+  .responsive-menu-toggle { width: 2.5rem; height: 2.5rem; }
+}
