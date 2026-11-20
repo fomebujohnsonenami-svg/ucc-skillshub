@@ -163,8 +163,10 @@ def select_role(
     if role == User.Role.STUDENT:
         user.role = role
         user.student_email = student_email
+        # Student accounts can sign in immediately after choosing their role.
+        # This is not proof of UCC enrollment: keep verification false.
         user.student_email_verified = False
-        user.account_status = User.AccountStatus.PENDING_STUDENT_VERIFICATION
+        user.account_status = User.AccountStatus.ACTIVE
         user.save(
             update_fields=[
                 "role",
