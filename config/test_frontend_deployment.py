@@ -39,3 +39,10 @@ class FrontendDeploymentTests(SimpleTestCase):
                 self.assertEqual(response["Content-Type"], mime)
                 self.assertTrue(response.streaming)
                 response.close()
+
+    def test_login_page_has_redirect_and_verification_handler(self):
+        response = self.client.get("/ucc_skillshub_sign_in/code.html")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"window.location.assign(DASHBOARD_PATH)", response.content)
+        self.assertIn(b"async function completeOAuthLogin(", response.content)
+        self.assertIn(b"saveAuthenticatedUser(response.access, response.refresh", response.content)
