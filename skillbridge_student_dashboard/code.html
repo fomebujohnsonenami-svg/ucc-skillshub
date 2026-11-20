@@ -35,6 +35,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <!-- Custom Styles for Scrollbars and Refinements -->
 <style data-purpose="custom-enhancements">
+    [hidden],
+    .hidden {
+      display: none !important;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -143,7 +148,7 @@
 </svg>
 <span class="text-sm">Notifications</span>
 </div>
-<span class="w-5 h-5 rounded-full bg-rose-500 text-white text-[11px] font-bold flex items-center justify-center">3</span>
+<span class="w-5 h-5 rounded-full bg-rose-500 text-white text-[11px] font-bold flex items-center justify-center" data-notification-count>3</span>
 </a>
 <!-- Logout -->
 <a class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl hover:bg-rose-500/10 hover:text-rose-400 transition-colors group" href="#logout">
@@ -175,7 +180,7 @@
 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
 <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
-<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white"></span>
+<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white" data-notification-count></span>
 </button>
 <!-- User Profile Dropdown Pill -->
 <div class="flex items-center gap-3 pl-2 cursor-pointer group">
@@ -235,7 +240,7 @@
 </svg>
 </div>
 <div>
-<span class="text-2xl font-bold text-slate-800 leading-none">3</span>
+<span class="text-2xl font-bold text-slate-800 leading-none" data-dashboard-metric="enrolled_courses">—</span>
 <p class="text-xs text-slate-500 font-medium mt-1">Enrolled Courses</p>
 </div>
 </div>
@@ -247,7 +252,7 @@
 </svg>
 </div>
 <div>
-<span class="text-2xl font-bold text-slate-800 leading-none">1</span>
+<span class="text-2xl font-bold text-slate-800 leading-none" data-dashboard-metric="completed_courses">—</span>
 <p class="text-xs text-slate-500 font-medium mt-1">Completed Courses</p>
 </div>
 </div>
@@ -259,7 +264,7 @@
 </svg>
 </div>
 <div>
-<span class="text-2xl font-bold text-slate-800 leading-none">2</span>
+<span class="text-2xl font-bold text-slate-800 leading-none" data-dashboard-metric="certificates_earned">—</span>
 <p class="text-xs text-slate-500 font-medium mt-1">Certificates</p>
 </div>
 </div>
@@ -271,8 +276,8 @@
 </svg>
 </div>
 <div>
-<span class="text-2xl font-bold text-slate-800 leading-none">4</span>
-<p class="text-xs text-slate-500 font-medium mt-1">Projects</p>
+<span class="text-sm font-bold text-slate-800 leading-none" data-dashboard-metric="projects_submitted">Not tracked</span>
+<p class="text-xs text-slate-500 font-medium mt-1">Project submissions</p>
 </div>
 </div>
 </div>
@@ -294,7 +299,7 @@
 </a>
 </div>
 <!-- Learning Card Component -->
-<div class="bg-white rounded-2xl p-5 border border-brand-borderMuted shadow-sm flex flex-col md:flex-row items-center gap-6">
+<div class="bg-white rounded-2xl p-5 border border-brand-borderMuted shadow-sm flex flex-col md:flex-row items-center gap-6" data-dashboard-course-card>
 <!-- Course Illustration / Thumbnail -->
 <div class="w-full md:w-56 h-36 bg-gradient-to-tr from-blue-50 to-indigo-100 rounded-xl flex items-center justify-center p-4 relative overflow-hidden flex-shrink-0 border border-blue-100">
 <div class="w-28 h-20 bg-white rounded-lg shadow-md border border-slate-100 flex flex-col p-2 space-y-1.5 relative">
@@ -320,17 +325,17 @@
 <!-- Course Info & Progress -->
 <div class="flex-1 w-full space-y-3">
 <div class="flex flex-wrap items-center gap-2.5">
-<h3 class="text-base font-bold text-slate-800">Data Analytics Fundamentals</h3>
-<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-brand-purple">
-                    In Progress • 68%
+<h3 class="text-base font-bold text-slate-800" data-dashboard-course-title>Loading your courses…</h3>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-brand-purple" data-dashboard-course-status>
+                    —
                   </span>
 </div>
-<p class="text-xs text-slate-500">
-                  Learn the basics of data analysis using Excel and Power BI.
+<p class="text-xs text-slate-500" data-dashboard-course-description>
+                  Your enrolled course progress will appear here.
                 </p>
 <!-- Full Width Progress Bar -->
 <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-<div class="bg-gradient-to-r from-brand-accent to-brand-purple h-2.5 rounded-full" style="width: 68%;"></div>
+<div class="bg-gradient-to-r from-brand-accent to-brand-purple h-2.5 rounded-full" data-dashboard-course-progress style="width: 0%;"></div>
 </div>
 <div class="pt-1 flex justify-end">
 <button class="inline-flex items-center gap-2 px-5 py-2 bg-brand-purple text-white text-xs font-semibold rounded-full hover:bg-brand-purpleHover transition shadow-sm" type="button">
@@ -361,7 +366,7 @@
 </a>
 </div>
 <!-- Pathway Cards Grid (4 items) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" data-dashboard-pathway-list>
 <!-- Pathway 1 -->
 <div class="bg-white rounded-2xl p-4 border border-brand-borderMuted shadow-sm hover:shadow transition flex flex-col justify-between">
 <div>
@@ -462,12 +467,12 @@
 <img data-profile-photo="" alt="" class="w-full h-full object-cover">
 </div>
 <div>
-<h3 class="text-base font-bold text-slate-900 leading-tight">Prince Egah</h3>
-<p class="text-xs text-slate-500 font-medium">BSc Computer Science</p>
+<h3 class="text-base font-bold text-slate-900 leading-tight" data-profile-name></h3>
+<p class="text-xs text-slate-500 font-medium" data-profile-programme></p>
 </div>
 </div>
 <!-- Profile Skill Pills -->
-<div class="flex flex-wrap gap-2 pt-1">
+<div class="flex flex-wrap gap-2 pt-1" data-dashboard-skills>
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
 <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3"></circle></svg>
                 Data Analytics
@@ -497,7 +502,7 @@
 </a>
 </div>
 <!-- Achievement Badges (3 items) -->
-<div class="grid grid-cols-3 gap-3 pt-2 text-center">
+<div class="grid grid-cols-3 gap-3 pt-2 text-center" data-dashboard-achievement-list>
 <!-- Achievement 1 -->
 <div class="flex flex-col items-center group cursor-pointer">
 <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-blue-600 to-sky-400 p-0.5 shadow-md group-hover:scale-105 transition transform">
@@ -544,7 +549,7 @@
 </a>
 </div>
 <!-- Opportunities List -->
-<div class="space-y-4 pt-1">
+<div class="space-y-4 pt-1" data-dashboard-opportunity-list>
 <!-- Item 1: Graphic Designer -->
 <div class="flex items-start gap-3.5 pb-4 border-b border-slate-100 last:border-b-0 last:pb-0">
 <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -594,10 +599,87 @@
 </div>
 <!-- END: MainContentContainer -->
 
-
-
+<div class="fixed inset-0 z-[70] hidden items-center justify-center bg-slate-950/50 p-4" data-settings-dialog hidden role="dialog" aria-modal="true" aria-labelledby="settings-title">
+<section class="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+<div class="mb-5 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold text-slate-900" id="settings-title">Account settings</h2>
+<p class="mt-1 text-sm text-slate-500">Manage your profile, privacy, notifications and sign-in details.</p>
+</div>
+<button class="rounded-full px-3 py-2 text-slate-500 hover:bg-slate-100" data-settings-close type="button" aria-label="Close settings">✕</button>
+</div>
+<p class="mb-4 hidden text-sm" data-settings-status role="status"></p>
+<form class="space-y-5" data-settings-form>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+<label class="text-sm font-medium text-slate-700">First name<input class="mt-1 w-full rounded-lg border-slate-200" name="first_name" required></label>
+<label class="text-sm font-medium text-slate-700">Last name<input class="mt-1 w-full rounded-lg border-slate-200" name="last_name" required></label>
+<label class="text-sm font-medium text-slate-700">Username<input class="mt-1 w-full rounded-lg border-slate-200" name="username" required></label>
+<label class="text-sm font-medium text-slate-700">Email address<input class="mt-1 w-full rounded-lg border-slate-200 bg-slate-50" name="email" readonly></label>
+<label class="text-sm font-medium text-slate-700">Phone number<input class="mt-1 w-full rounded-lg border-slate-200" name="phone_number" type="tel"></label>
+<label class="hidden text-sm font-medium text-slate-700" data-student-setting hidden>Academic programme<input class="mt-1 w-full rounded-lg border-slate-200" name="academic_programme"></label>
+<label class="hidden text-sm font-medium text-slate-700" data-student-setting hidden>Academic level<input class="mt-1 w-full rounded-lg border-slate-200" name="academic_level"></label>
+<label class="hidden text-sm font-medium text-slate-700" data-student-setting hidden>Profile visibility<select class="mt-1 w-full rounded-lg border-slate-200" name="profile_visibility"><option value="private">Private</option><option value="university">University members</option><option value="public">Public</option></select></label>
+<label class="text-sm font-medium text-slate-700">Theme preference<select class="mt-1 w-full rounded-lg border-slate-200" name="theme"><option value="system">System default</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+</div>
+<label class="hidden block text-sm font-medium text-slate-700" data-biography-setting hidden>Biography<textarea class="mt-1 w-full rounded-lg border-slate-200" name="biography" rows="3"></textarea></label>
+<section class="rounded-xl border border-slate-100 p-4">
+<h3 class="font-semibold text-slate-800">In-app notification preferences</h3>
+<div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="course_announcement" type="checkbox"> Course announcements</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="enrollment_confirmation" type="checkbox"> Enrollment confirmations</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="learning_progress" type="checkbox"> Learning progress</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="project_submission" type="checkbox"> Project submissions</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="lecturer_feedback" type="checkbox"> Lecturer feedback</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="certificate_issued" type="checkbox"> Certificates</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="new_opportunity" type="checkbox"> New opportunities</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="application_status" type="checkbox"> Application status changes</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="pathway_milestone" type="checkbox"> Pathway milestones</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="platform_announcement" type="checkbox"> Platform announcements</label>
+<label class="flex items-center gap-2 text-sm"><input data-notification-preference="achievement_awarded" type="checkbox"> Achievement awards</label>
+</div>
+</section>
+<button class="rounded-full bg-brand-purple px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-purpleHover" type="submit">Save settings</button>
+</form>
+<div class="mt-6 grid grid-cols-1 gap-5 border-t border-slate-100 pt-5 md:grid-cols-2">
+<section>
+<h3 class="font-semibold text-slate-800">Change email</h3>
+<p class="mt-1 text-xs text-slate-500" data-pending-email></p>
+<p class="mt-2 hidden text-sm" data-email-change-status role="status"></p>
+<form class="mt-3 space-y-2" data-email-change-form>
+<input class="w-full rounded-lg border-slate-200" name="new_email" type="email" placeholder="New email address" required>
+<input class="w-full rounded-lg border-slate-200" name="current_password" type="password" placeholder="Current password" required>
+<button class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold" type="submit">Send verification code</button>
+</form>
+<form class="hidden mt-3 flex gap-2" data-email-confirm-form>
+<input class="min-w-0 flex-1 rounded-lg border-slate-200" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit code" required>
+<button class="rounded-full bg-slate-800 px-4 py-2 text-sm font-semibold text-white" type="submit">Verify</button>
+</form>
+</section>
+<section class="space-y-4">
+<div>
+<h3 class="font-semibold text-slate-800">Profile photograph</h3>
+<form class="mt-2 flex flex-wrap items-center gap-2" data-profile-photo-form>
+<input class="min-w-0 flex-1 text-sm" name="profile_photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+<button class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold" type="submit">Upload</button>
+</form>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800">Change password</h3>
+<form class="mt-2 space-y-2" data-change-password-form>
+<input class="w-full rounded-lg border-slate-200" name="current_password" type="password" placeholder="Current password" required>
+<input class="w-full rounded-lg border-slate-200" name="new_password" type="password" placeholder="New password" required>
+<button class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold" type="submit">Update password</button>
+</form>
+</div>
+</section>
+</div>
+</section>
+</div>
 
 <script src="../skillshub-api.js"></script>
 <script src="../profile.js"></script>
 <script src="../responsive.js"></script>
+<script src="../notifications.js"></script>
+<script src="../settings.js"></script>
+<script src="../dashboard-analytics.js"></script>
 </body></html>

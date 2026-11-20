@@ -17,7 +17,9 @@ from accounts.models import (
     RoleApproval,
     StudentProfile,
     User,
+    UserSettings,
 )
+from accounts.notification_preferences import NOTIFICATION_PREFERENCE_TYPES
 from accounts.storage import create_signed_url
 from accounts.validators import normalize_ucc_student_email
 
@@ -327,6 +329,97 @@ class ChangePasswordSerializer(serializers.Serializer):
         if not self.context["request"].user.check_password(value):
             raise serializers.ValidationError("The current password is incorrect.")
         return value
+
+
+class AccountSettingsSerializer(serializers.Serializer):
+    first_name = serializers.CharField(required=False, max_length=150)
+    last_name = serializers.CharField(required=False, max_length=150)
+    username = serializers.CharField(required=False, max_length=150)
+    phone_number = serializers.CharField(required=False, max_length=32, allow_blank=True)
+    academic_programme = serializers.CharField(
+        required=False, max_length=200, allow_blank=True
+    )
+    academic_level = serializers.CharField(
+        required=False, max_length=50, allow_blank=True
+    )
+    biography = serializers.CharField(required=False, allow_blank=True)
+    profile_visibility = serializers.ChoiceField(
+        required=False, choices=StudentProfile.Visibility.choices
+    )
+    theme = serializers.ChoiceField(required=False, choices=UserSettings.Theme.choices)
+    notification_preferences = serializers.DictField(
+        required=False, child=serializers.BooleanField()
+    )
+
+    def validate_username(self, value):
+        username = value.strip()
+        if not username:
+            raise serializers.ValidationError("Username cannot be empty.")
+        user = self.context["request"].user
+        if User.objects.filter(username__iexact=username).exclude(pk=user.pk).exists():
+            raise serializers.ValidationError("This username is already in use.")
+        return username
+
+    def validate_notification_preferences(self, value):
+        unknown = set(value) - set(NOTIFICATION_PREFERENCE_TYPES)
+        if unknown:
+            raise serializers.ValidationError(
+                f"Unsupported notification preferences: {', '.join(sorted(unknown))}."
+            )
+        return value
+
+    def validate(self, attrs):
+        request = self.context["request"]
+        allowed = set(self.fields)
+        unexpected = set(request.data) - allowed
+        if unexpected:
+            raise serializers.ValidationError(
+                {
+                    field: "This setting cannot be changed here."
+                    for field in sorted(unexpected)
+                }
+            )
+
+        student_fields = {
+            "academic_programme",
+            "academic_level",
+            "profile_visibility",
+        }
+        if request.user.role != User.Role.STUDENT:
+            supplied = student_fields.intersection(request.data)
+            if supplied:
+                raise serializers.ValidationError(
+                    {
+                        field: "This setting is only available to student accounts."
+                        for field in sorted(supplied)
+                    }
+                )
+        if (
+            "biography" in request.data
+            and request.user.role
+            not in {User.Role.STUDENT, User.Role.LECTURER}
+        ):
+            raise serializers.ValidationError(
+                {"biography": "This setting is not available to this account."}
+            )
+        return attrs
+
+
+class EmailChangeStartSerializer(serializers.Serializer):
+    current_password = serializers.CharField(write_only=True, trim_whitespace=False)
+    new_email = serializers.EmailField()
+
+    def validate_current_password(self, value):
+        if not self.context["request"].user.check_password(value):
+            raise serializers.ValidationError("The current password is incorrect.")
+        return value
+
+    def validate_new_email(self, value):
+        return User.objects.normalize_email(value).casefold()
+
+
+class EmailChangeConfirmSerializer(serializers.Serializer):
+    code = serializers.RegexField(r"^\d{6}$", write_only=True)
 
 
 class StudentProfileSerializer(serializers.ModelSerializer):

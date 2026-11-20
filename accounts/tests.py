@@ -15,6 +15,7 @@ from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 
 from accounts.models import (
+    EmailChangeVerification,
     OAuthState,
     RoleApproval,
     SocialAccount,
@@ -659,4 +660,136 @@ class AuthenticationApiTests(TestCase):
         self.assertEqual(response.data["profile_photo_url"], "https://signed.example/photo")
         self.assertEqual(upload_mock.call_args.args[0], "profile_photos")
         signed_url_mock.assert_called_once()
+
+
+@override_settings(EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend")
+class AccountSettingsApiTests(TestCase):
+    def setUp(self):
+        cache.clear()
+        self.client = APIClient()
+        self.user = User.objects.create_user(
+            email="settings@example.edu",
+            password=PASSWORD,
+            username="settings-user",
+            first_name="Ama",
+            last_name="Mensah",
+            student_email="settings@ucc.edu.gh",
+            student_email_verified=True,
+            account_status=User.AccountStatus.ACTIVE,
+        )
+        self.client.force_authenticate(user=self.user)
+
+    def test_settings_update_persists_preferences_and_keeps_privileged_fields_read_only(self):
+        response = self.client.patch(
+            "/api/v1/settings/",
+            {
+                "first_name": "Akua",
+                "username": "akua-mensah",
+                "phone_number": "+233200000000",
+                "academic_programme": "Computer Science",
+                "academic_level": "300",
+                "biography": "Learning software engineering.",
+                "profile_visibility": "public",
+                "theme": "dark",
+                "notification_preferences": {
+                    "new_opportunity": False,
+                    "certificate_issued": True,
+                },
+                "role": User.Role.ADMINISTRATOR,
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.first_name, "Ama")
+        self.assertEqual(self.user.role, User.Role.STUDENT)
+
+        response = self.client.patch(
+            "/api/v1/settings/",
+            {
+                "first_name": "Akua",
+                "username": "akua-mensah",
+                "phone_number": "+233200000000",
+                "academic_programme": "Computer Science",
+                "academic_level": "300",
+                "biography": "Learning software engineering.",
+                "profile_visibility": "public",
+                "theme": "dark",
+                "notification_preferences": {
+                    "new_opportunity": False,
+                    "certificate_issued": True,
+                },
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.first_name, "Akua")
+        self.assertEqual(self.user.email, "settings@example.edu")
+        self.assertEqual(self.user.role, User.Role.STUDENT)
+        self.assertEqual(response.data["academic_programme"], "Computer Science")
+        self.assertEqual(response.data["theme"], "dark")
+        self.assertFalse(response.data["notification_preferences"]["new_opportunity"])
+        self.assertTrue(
+            response.data["notification_preferences"]["certificate_issued"]
+        )
+
+    def test_email_changes_only_after_one_time_code_is_confirmed(self):
+        start = self.client.post(
+            "/api/v1/settings/email-change/",
+            {
+                "current_password": PASSWORD,
+                "new_email": "New.Address@example.edu",
+            },
+            format="json",
+        )
+
+        self.assertEqual(start.status_code, status.HTTP_202_ACCEPTED, start.data)
+        self.assertEqual(start.data["pending_email"], "new.address@example.edu")
+        verification = EmailChangeVerification.objects.get(user=self.user)
+        code = re.search(r"\b(\d{6})\b", mail.outbox[-1].body).group(1)
+        self.assertNotEqual(code, verification.code_hash)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.email, "settings@example.edu")
+
+        confirmed = self.client.post(
+            "/api/v1/settings/email-change/confirm/",
+            {"code": code},
+            format="json",
+        )
+
+        self.assertEqual(confirmed.status_code, status.HTTP_200_OK, confirmed.data)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.email, "new.address@example.edu")
+        self.assertTrue(self.user.email_verified)
+        self.assertFalse(
+            EmailChangeVerification.objects.filter(user=self.user).exists()
+        )
+
+    def test_settings_reject_email_and_student_only_fields_for_other_roles(self):
+        email_change = self.client.patch(
+            "/api/v1/settings/",
+            {"email": "unsafe@example.edu"},
+            format="json",
+        )
+        self.assertEqual(email_change.status_code, status.HTTP_400_BAD_REQUEST)
+
+        lecturer = User.objects.create_user(
+            email="lecturer-settings@example.edu",
+            password=PASSWORD,
+            username="lecturer-settings",
+            first_name="Kofi",
+            last_name="Asare",
+            role=User.Role.LECTURER,
+            account_status=User.AccountStatus.ACTIVE,
+        )
+        self.client.force_authenticate(user=lecturer)
+        denied = self.client.patch(
+            "/api/v1/settings/",
+            {"academic_programme": "Computer Science"},
+            format="json",
+        )
+        self.assertEqual(denied.status_code, status.HTTP_400_BAD_REQUEST)
 

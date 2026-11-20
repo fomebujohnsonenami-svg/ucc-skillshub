@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accounts.models import User
+from certificates.services import award_achievements, issue_pathway_certificate
 from accounts.storage import (
     SupabaseStorageError,
     create_signed_url,
@@ -40,6 +41,7 @@ from pathways.serializers import (
     SkillPathwayWriteSerializer,
     SkillSerializer,
 )
+from notifications.services import create_notification
 
 
 logger = logging.getLogger("pathways")
@@ -199,6 +201,15 @@ class PathwayEnrollmentView(APIView):
                 pathway=pathway, student=request.user
             )
             created = False
+        if created:
+            create_notification(
+                request.user,
+                title="Pathway enrollment confirmed",
+                message=f"You are enrolled in {pathway.name}.",
+                notification_type="enrollment_confirmation",
+                related_resource=enrollment,
+                target_url="/pathways/my-pathways/",
+            )
         enrollment.pathway = _pathway_stats(
             SkillPathway.objects.filter(pk=pathway.pk).select_related("category")
         ).get()
@@ -263,11 +274,17 @@ class CompletePathwayStepView(APIView):
         )
         now = timezone.now()
         with transaction.atomic():
-            PathwayStepProgress.objects.update_or_create(
+            progress, created = PathwayStepProgress.objects.get_or_create(
                 enrollment=enrollment,
                 step=step,
                 defaults={"is_completed": True, "completed_at": now},
             )
+            newly_completed = created
+            if not created and not progress.is_completed:
+                progress.is_completed = True
+                progress.completed_at = now
+                progress.save(update_fields=["is_completed", "completed_at"])
+                newly_completed = True
             enrollment.last_accessed_step = step
             enrollment.last_accessed_at = now
             total_steps = PathwayStep.objects.filter(pathway=step.pathway).count()
@@ -285,6 +302,32 @@ class CompletePathwayStepView(APIView):
                     "completed_at",
                 ]
             )
+        if newly_completed:
+            complete = (
+                enrollment.status == StudentPathwayEnrollment.Status.COMPLETED
+            )
+            create_notification(
+                request.user,
+                title="Pathway completed" if complete else "Pathway milestone reached",
+                message=(
+                    f"You completed {step.pathway.name}."
+                    if complete
+                    else f"You completed {step.title} in {step.pathway.name}."
+                ),
+                notification_type="pathway_milestone",
+                related_resource=progress,
+                target_url="/pathways/my-pathways/",
+            )
+        if enrollment.status == StudentPathwayEnrollment.Status.COMPLETED:
+            issue_pathway_certificate(enrollment)
+        award_achievements(
+            request.user,
+            event=(
+                "pathway_completed"
+                if enrollment.status == StudentPathwayEnrollment.Status.COMPLETED
+                else "pathway_step_completed"
+            ),
+        )
         enrollment.pathway = _pathway_stats(
             SkillPathway.objects.filter(pk=step.pathway_id).select_related("category")
         ).get()

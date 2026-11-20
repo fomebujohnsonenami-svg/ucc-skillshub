@@ -1,9 +1,12 @@
 from django.urls import path
 
 from accounts.views import (
+    AccountSettingsView,
     AdministratorAccountStatusView,
     ChangePasswordView,
     CurrentUserView,
+    EmailChangeConfirmView,
+    EmailChangeStartView,
     LoginView,
     LogoutView,
     AdministratorRoleApprovalDecisionView,
@@ -73,6 +76,17 @@ urlpatterns = [
     ),
     path("auth/change-password/", ChangePasswordView.as_view(), name="change-password"),
     path("users/me/", CurrentUserView.as_view(), name="current-user"),
+    path("settings/", AccountSettingsView.as_view(), name="account-settings"),
+    path(
+        "settings/email-change/",
+        EmailChangeStartView.as_view(),
+        name="email-change-start",
+    ),
+    path(
+        "settings/email-change/confirm/",
+        EmailChangeConfirmView.as_view(),
+        name="email-change-confirm",
+    ),
     path(
         "users/me/profile-photo/",
         ProfilePhotoView.as_view(),

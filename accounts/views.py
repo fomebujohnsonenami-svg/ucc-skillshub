@@ -18,12 +18,31 @@ from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from accounts.models import RoleApproval, SocialAccount, StudentProfile, User
+from accounts.models import (
+    EmailChangeVerification,
+    EmployerProfile,
+    LecturerProfile,
+    RoleApproval,
+    SocialAccount,
+    StudentProfile,
+    User,
+    UserSettings,
+)
+from accounts.email_changes import (
+    EmailChangeCooldown,
+    EmailChangeEmailError,
+    EmailChangeRejected,
+    confirm_email_change,
+    start_email_change,
+)
 from accounts.onboarding import create_onboarding_token, get_onboarding_user
 from accounts.permissions import IsAdministrator, IsStudent
 from accounts.serializers import (
+    AccountSettingsSerializer,
     AccountStatusSerializer,
     ChangePasswordSerializer,
+    EmailChangeConfirmSerializer,
+    EmailChangeStartSerializer,
     LoginSerializer,
     LogoutSerializer,
     MessageSerializer,
@@ -410,6 +429,181 @@ class CurrentUserView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class AccountSettingsView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    @staticmethod
+    def _profile(user):
+        if user.role == User.Role.STUDENT:
+            return StudentProfile.objects.filter(user=user).first()
+        if user.role == User.Role.LECTURER:
+            return LecturerProfile.objects.filter(user=user).first()
+        if user.role in {User.Role.EMPLOYER, User.Role.RECRUITER}:
+            return EmployerProfile.objects.filter(user=user).first()
+        return None
+
+    def _response_data(self, user):
+        user_settings, _ = UserSettings.objects.get_or_create(user=user)
+        profile = self._profile(user)
+        pending_email = EmailChangeVerification.objects.filter(
+            user=user, expires_at__gt=timezone.now()
+        ).values_list("new_email", flat=True).first()
+        is_student = user.role == User.Role.STUDENT
+        return {
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "username": user.username,
+            "email": user.email,
+            "pending_email": pending_email,
+            "role": user.role,
+            "phone_number": getattr(profile, "phone_number", ""),
+            "academic_programme": (
+                getattr(profile, "academic_programme", "") if is_student else ""
+            ),
+            "academic_level": (
+                getattr(profile, "academic_level", "") if is_student else ""
+            ),
+            "biography": getattr(profile, "biography", ""),
+            "profile_visibility": (
+                getattr(profile, "profile_visibility", StudentProfile.Visibility.PRIVATE)
+                if is_student
+                else None
+            ),
+            "profile_photo_url": UserSerializer(user).data["profile_photo_url"],
+            "theme": user_settings.theme,
+            "notification_preferences": user_settings.notification_preferences,
+        }
+
+    def get(self, request):
+        return Response(self._response_data(request.user))
+
+    def patch(self, request):
+        serializer = AccountSettingsSerializer(
+            data=request.data,
+            partial=True,
+            context={"request": request},
+        )
+        serializer.is_valid(raise_exception=True)
+        changes = serializer.validated_data
+        user = request.user
+
+        with transaction.atomic():
+            user_fields = ("first_name", "last_name", "username")
+            changed_user_fields = []
+            for field in user_fields:
+                if field in changes:
+                    setattr(user, field, changes[field])
+                    changed_user_fields.append(field)
+            if changed_user_fields:
+                user.save(update_fields=changed_user_fields)
+
+            profile_fields = {
+                field: changes[field]
+                for field in (
+                    "phone_number",
+                    "academic_programme",
+                    "academic_level",
+                    "biography",
+                    "profile_visibility",
+                )
+                if field in changes
+            }
+            if profile_fields:
+                profile = self._profile(user)
+                if profile is None and user.role == User.Role.STUDENT:
+                    profile = StudentProfile.objects.create(user=user)
+                elif profile is None and user.role == User.Role.LECTURER:
+                    profile = LecturerProfile.objects.create(user=user)
+                if profile is None:
+                    raise serializers.ValidationError(
+                        {
+                            "phone_number": (
+                                "A profile must be configured before these details "
+                                "can be changed."
+                            )
+                        }
+                    )
+                for field, value in profile_fields.items():
+                    if not hasattr(profile, field):
+                        raise serializers.ValidationError(
+                            {field: "This setting is not available to this account."}
+                        )
+                    setattr(profile, field, value)
+                profile.save(update_fields=tuple(profile_fields))
+
+            settings_fields = ("theme", "notification_preferences")
+            settings_changes = {
+                field: changes[field]
+                for field in settings_fields
+                if field in changes
+            }
+            if settings_changes:
+                user_settings, _ = UserSettings.objects.get_or_create(user=user)
+                if "notification_preferences" in settings_changes:
+                    preferences = dict(user_settings.notification_preferences)
+                    preferences.update(settings_changes["notification_preferences"])
+                    settings_changes["notification_preferences"] = preferences
+                for field, value in settings_changes.items():
+                    setattr(user_settings, field, value)
+                user_settings.save(update_fields=(*settings_changes, "updated_at"))
+
+        return Response(self._response_data(user))
+
+
+class EmailChangeStartView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "email_change_request"
+
+    @extend_schema(request=EmailChangeStartSerializer, responses={202: MessageSerializer})
+    def post(self, request):
+        serializer = EmailChangeStartSerializer(
+            data=request.data, context={"request": request}
+        )
+        serializer.is_valid(raise_exception=True)
+        try:
+            verification = start_email_change(
+                request.user, serializer.validated_data["new_email"]
+            )
+        except EmailChangeCooldown as exc:
+            return Response(
+                {"detail": "Please wait before requesting another verification code."},
+                status=status.HTTP_429_TOO_MANY_REQUESTS,
+                headers={"Retry-After": str(exc.retry_after)},
+            )
+        except EmailChangeRejected as exc:
+            raise serializers.ValidationError({"new_email": str(exc)}) from exc
+        except EmailChangeEmailError as exc:
+            return Response(
+                {"detail": str(exc)}, status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+        return Response(
+            {
+                "message": "A verification code was sent to the new email address.",
+                "pending_email": verification.new_email,
+                "expires_at": verification.expires_at,
+            },
+            status=status.HTTP_202_ACCEPTED,
+        )
+
+
+class EmailChangeConfirmView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "email_change_confirm"
+
+    @extend_schema(request=EmailChangeConfirmSerializer, responses={200: UserSerializer})
+    def post(self, request):
+        serializer = EmailChangeConfirmSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            confirm_email_change(request.user, serializer.validated_data["code"])
+        except EmailChangeRejected as exc:
+            raise serializers.ValidationError({"code": str(exc)}) from exc
+        request.user.refresh_from_db()
+        return Response(UserSerializer(request.user).data)
 
 
 class StudentProfileView(generics.RetrieveUpdateAPIView):

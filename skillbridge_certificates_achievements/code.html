@@ -205,12 +205,12 @@
 <div class="flex items-center gap-space-sm mb-space-xs">
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
 <span class="material-symbols-outlined text-[14px]">verified</span>
-          Verified Digital Portfolio
+          Learning Credentials
         </span>
 <span class="font-label-sm text-label-sm text-outline">Updated today</span>
 </div>
 <h1 class="font-headline-xl text-headline-xl text-on-surface">My Certificates</h1>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">Issued by UCC SKILLSHUB Academy &amp; Design Guild</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">Certificates and achievements earned through UCC SKILLSHUB learning.</p>
 </div>
 <!-- Header Quick Actions -->
 <div class="flex flex-wrap items-center gap-space-sm">
@@ -232,8 +232,8 @@
 <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
 <div>
 <span class="font-label-md text-label-md text-outline block mb-1">Certificates Earned</span>
-<span class="font-stat-counter text-stat-counter text-on-surface block">4</span>
-<span class="font-label-sm text-label-sm text-outline-variant mt-1 block">University &amp; Accredited</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block" id="certificate-count">0</span>
+<span class="font-label-sm text-label-sm text-outline-variant mt-1 block">Learning certificates issued</span>
 </div>
 <div class="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600">
 <span class="material-symbols-outlined text-[26px]">workspace_premium</span>
@@ -243,8 +243,8 @@
 <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
 <div>
 <span class="font-label-md text-label-md text-outline block mb-1">Courses Completed</span>
-<span class="font-stat-counter text-stat-counter text-on-surface block">5</span>
-<span class="font-label-sm text-label-sm text-secondary mt-1 block">Across 3 Skill Tracks</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block" id="completed-course-count">0</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1 block">Completed courses</span>
 </div>
 <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
 <span class="material-symbols-outlined text-[26px]">menu_book</span>
@@ -253,9 +253,9 @@
 <!-- Stat 3 -->
 <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition">
 <div>
-<span class="font-label-md text-label-md text-outline block mb-1">Projects Verified</span>
-<span class="font-stat-counter text-stat-counter text-on-surface block">4</span>
-<span class="font-label-sm text-label-sm text-outline-variant mt-1 block">Senior Mentor Evaluated</span>
+<span class="font-label-md text-label-md text-outline block mb-1">Pathway Certificates</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block" id="pathway-certificate-count">0</span>
+<span class="font-label-sm text-label-sm text-outline-variant mt-1 block">Completed skill pathways</span>
 </div>
 <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-600">
 <span class="material-symbols-outlined text-[26px]">assignment_turned_in</span>
@@ -266,10 +266,10 @@
 <div>
 <span class="font-label-md text-label-md text-outline block mb-1">Achievement Badges</span>
 <div class="flex items-baseline gap-1">
-<span class="font-stat-counter text-stat-counter text-on-surface">8</span>
-<span class="font-headline-sm text-headline-sm text-outline">/ 12</span>
+<span class="font-stat-counter text-stat-counter text-on-surface" id="achievement-count">0</span>
+<span class="font-headline-sm text-headline-sm text-outline" id="achievement-total">/ 0</span>
 </div>
-<span class="font-label-sm text-label-sm text-emerald-700 mt-1 block">Top 5% of Cohort</span>
+<span class="font-label-sm text-label-sm text-emerald-700 mt-1 block">Earned achievements</span>
 </div>
 <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600">
 <span class="material-symbols-outlined text-[26px]">military_tech</span>
@@ -277,7 +277,7 @@
 </div>
 </div>
 <!-- Featured Certificate Live Inspection Panel -->
-<div class="bg-surface-container-lowest rounded-2xl p-space-lg lg:p-space-xl shadow-md mb-space-2xl relative overflow-hidden">
+<div id="certificate-featured" aria-live="polite" class="hidden bg-surface-container-lowest rounded-2xl p-space-lg lg:p-space-xl shadow-md mb-space-2xl relative overflow-hidden">
 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-space-lg mb-space-lg border-b border-surface-container gap-space-md">
 <div>
 <div class="flex items-center gap-space-xs mb-1">
@@ -285,7 +285,7 @@
 <span class="font-label-sm text-label-sm text-emerald-700 font-semibold uppercase tracking-wider">Active Verified Credential</span>
 </div>
 <h2 class="font-headline-lg text-headline-lg text-on-surface">Data Analytics Fundamentals</h2>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Accredited by University of Cape Coast in partnership with Microsoft Learn</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Completed through UCC SKILLSHUB learning.</p>
 </div>
 <!-- Action Button Ribbon -->
 <div class="flex flex-wrap items-center gap-space-sm">
@@ -319,21 +319,21 @@
 <span class="material-symbols-outlined text-[28px]">school</span>
 </div>
 <div>
-<span class="font-headline-sm text-headline-sm tracking-wide block uppercase text-primary-container">University of Cape Coast</span>
-<span class="font-label-sm text-label-sm text-outline block">Division of Computational Science &amp; Career Pedagogy</span>
+<span class="font-headline-sm text-headline-sm tracking-wide block uppercase text-primary-container">UCC SKILLSHUB</span>
+<span class="font-label-sm text-label-sm text-outline block">Skills and Career Learning</span>
 </div>
 </div>
 <!-- Microsoft Partner Badge miniature -->
 <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-lowest shadow-sm">
 <span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
-<span class="font-label-sm text-label-sm text-on-surface font-semibold">Microsoft Learn Partner</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Learning Achievement</span>
 </div>
 </div>
 <!-- Certificate Core Content -->
 <div class="text-center my-6 relative z-10">
-<span class="font-label-sm text-label-sm text-[#8c6d32] uppercase tracking-[0.25em] block mb-2 font-bold">Certificate of Excellence and Accreditation</span>
+<span class="font-label-sm text-label-sm text-[#8c6d32] uppercase tracking-[0.25em] block mb-2 font-bold">Certificate of Completion</span>
 <p class="font-body-sm text-body-sm text-on-surface-variant italic mb-2">This is formally conferred upon</p>
-<h3 class="font-display-hero text-headline-xl text-primary-container font-extrabold tracking-tight mb-2">Prince Egah</h3>
+<h3 class="font-display-hero text-headline-xl text-primary-container font-extrabold tracking-tight mb-2">Student Name</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant max-w-lg mx-auto leading-relaxed">
               for successfully completing the rigorous 8-week curriculum and capstone defense in
               <span class="font-bold text-on-surface block mt-1">Data Analytics Fundamentals (Graduated with Honors - 96%)</span>
@@ -525,7 +525,7 @@
 <div class="h-32 rounded-lg bg-gradient-to-br from-[#122240] via-[#1a3560] to-secondary p-4 text-surface-container-lowest relative overflow-hidden mb-space-md flex flex-col justify-between">
 <div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-amber-400/20 blur-xl pointer-events-none"></div>
 <div class="flex items-center justify-between">
-<span class="font-label-sm text-[11px] uppercase tracking-wider text-outline-variant">UCC &amp; Microsoft Learn</span>
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-outline-variant">UCC SKILLSHUB Learning</span>
 <span class="material-symbols-outlined text-amber-300 text-[20px]">stars</span>
 </div>
 <div>
@@ -644,7 +644,7 @@
 </div>
 <!-- Footer Button -->
 <div class="mt-space-lg pt-space-md border-t border-surface-container flex items-center justify-between">
-<span class="font-label-sm text-label-sm text-outline">Warm Amber Seal Accredited</span>
+<span class="font-label-sm text-label-sm text-outline">UCC SKILLSHUB Certificate</span>
 <button class="inline-flex items-center gap-1 text-secondary font-label-md text-label-md group-hover:gap-2 transition-all">
 <span>View Certificate</span>
 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -660,14 +660,14 @@
 <p class="font-body-sm text-body-sm text-on-surface-variant">Earn badges as you complete courses, maintain study streaks, and deliver capstones.</p>
 </div>
 <div class="flex items-center gap-2">
-<span class="font-label-sm text-label-sm text-outline font-semibold">8 of 12 Unlocked</span>
+<span id="achievement-progress-label" class="font-label-sm text-label-sm text-outline font-semibold">Loading achievements…</span>
 <div class="w-24 h-2 rounded-full bg-surface-container overflow-hidden">
-<div class="h-full bg-secondary rounded-full" style="width: 66.6%;"></div>
+<div id="achievement-progress-bar" class="h-full bg-secondary rounded-full" style="width: 0%;"></div>
 </div>
 </div>
 </div>
 <!-- Badges Grid (6 Cards: 4 Earned, 2 Locked) -->
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-md">
+<div id="achievement-grid" class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-md" aria-live="polite">
 <!-- Badge 1: Earned -->
 <div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-center text-center group hover:bg-surface-container transition">
 <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-400 flex items-center justify-center text-on-secondary shadow-md group-hover:scale-105 transition mb-3">
@@ -730,37 +730,36 @@
 </div>
 <div>
 <h3 class="font-headline-sm text-headline-sm text-on-surface">Verify Student Credential</h3>
-<p class="font-label-sm text-label-sm text-outline">University Central Public Ledger</p>
+<p class="font-label-sm text-label-sm text-outline">Public certificate record</p>
 </div>
 </div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Enter a UCC SKILLSHUB certificate serial code or public hash below to confirm authenticity, grading honors, and student matriculation details.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Enter a certificate verification token or paste its public verification link. Only limited certificate details are shown.</p>
 <div class="space-y-space-sm mb-space-lg">
-<label class="block font-label-md text-label-md text-on-surface">Credential Identifier / Serial</label>
+<label class="block font-label-md text-label-md text-on-surface" for="credential-input">Verification token or link</label>
 <div class="relative">
-<input class="w-full pl-3 pr-10 py-2.5 bg-surface-container-low text-on-surface font-mono text-body-sm rounded-lg border-none focus:ring-2 focus:ring-secondary" id="credential-input" type="text" value="UCC-DAT-2025-0199">
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-emerald-600">check_circle</span>
+<input class="w-full pl-3 pr-10 py-2.5 bg-surface-container-low text-on-surface font-mono text-body-sm rounded-lg border-none focus:ring-2 focus:ring-secondary" id="credential-input" type="text" placeholder="Paste verification link or token">
 </div>
 </div>
-<div class="p-space-md bg-surface-container-low rounded-xl mb-space-lg text-body-sm space-y-1">
+<div id="verification-result" class="p-space-md bg-surface-container-low rounded-xl mb-space-lg text-body-sm space-y-1 hidden" aria-live="polite">
 <div class="flex justify-between">
 <span class="text-on-surface-variant">Recipient:</span>
-<span class="font-semibold text-on-surface">Prince Egah (BSc Computer Science)</span>
+<span id="verification-recipient" class="font-semibold text-on-surface"></span>
 </div>
 <div class="flex justify-between">
-<span class="text-on-surface-variant">Accredited by:</span>
-<span class="font-semibold text-on-surface">University of Cape Coast</span>
+<span class="text-on-surface-variant">Learning item:</span>
+<span id="verification-item" class="font-semibold text-on-surface"></span>
 </div>
 <div class="flex justify-between">
 <span class="text-on-surface-variant">Status:</span>
-<span class="text-emerald-700 font-semibold">Active &amp; Tamper-Proof</span>
+<span id="verification-status" class="font-semibold"></span>
 </div>
 </div>
 <div class="flex items-center justify-end gap-space-sm">
 <button class="px-space-md py-2.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition" id="close-modal-footer">
           Close
         </button>
-<button class="px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow hover:bg-secondary-container transition" onclick="alert('Public ledger verified! Credential is authentic and issued directly by the Academic Registry.');">
-          Check Blockchain Record
+<button id="verify-submit" class="px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow hover:bg-secondary-container transition">
+          Verify certificate
         </button>
 </div>
 </div>
@@ -798,6 +797,7 @@
 
 
 <script src="../skillshub-api.js"></script>
+<script src="../certificates.js"></script>
 <script src="../profile.js"></script>
 <script src="../responsive.js"></script>
 </body></html>

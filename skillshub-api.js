@@ -36,6 +36,9 @@
 
   async function request(path, options, retry) {
     const requestOptions = options || {};
+    const responseType = requestOptions.responseType;
+    const fetchOptions = { ...requestOptions };
+    delete fetchOptions.responseType;
     const headers = new Headers(requestOptions.headers || {});
     const access = getValue("skillshubAccessToken");
     if (access) headers.set("Authorization", `Bearer ${access}`);
@@ -48,7 +51,7 @@
     }
 
     let response = await fetch(`${baseUrl}${path}`, {
-      ...requestOptions,
+      ...fetchOptions,
       headers,
     });
     if (response.status === 401 && retry !== false && path !== "/auth/token/refresh/") {
@@ -73,15 +76,18 @@
     }
 
     const data =
-      response.status === 204 || response.status === 205
+      responseType === "blob" && response.ok
         ? null
-        : await response.json().catch(() => null);
+        : response.status === 204 || response.status === 205
+          ? null
+          : await response.json().catch(() => null);
     if (!response.ok) {
       const error = new Error(errorMessage(data));
       error.status = response.status;
       error.data = data;
       throw error;
     }
+    if (responseType === "blob") return response.blob();
     return data;
   }
 
@@ -90,6 +96,9 @@
     clearTokens,
     get(path) {
       return request(path, { method: "GET" });
+    },
+    download(path) {
+      return request(path, { method: "GET", responseType: "blob" });
     },
     post(path, body) {
       return request(path, {
@@ -102,6 +111,9 @@
         method: "PATCH",
         body: body instanceof FormData ? body : JSON.stringify(body || {}),
       });
+    },
+    delete(path) {
+      return request(path, { method: "DELETE" });
     },
   };
 })();

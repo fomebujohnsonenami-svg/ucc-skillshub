@@ -34,6 +34,11 @@ INSTALLED_APPS = [
     "accounts",
     "courses",
     "pathways",
+    "certificates",
+    "portfolios",
+    "opportunities",
+    "notifications",
+    "learning_analytics",
 ]
 
 MIDDLEWARE = [
@@ -129,6 +134,8 @@ REST_FRAMEWORK = {
         "student_verification_request": "5/hour",
         "student_verification_start": "5/hour",
         "student_verification_confirm": "10/hour",
+        "email_change_request": "3/hour",
+        "email_change_confirm": "10/hour",
         "oauth_authorize": "10/minute",
         "oauth_callback": "10/minute",
     },
@@ -170,6 +177,9 @@ SUPABASE_BUCKETS = {
         "SUPABASE_PROJECT_BUCKET", "project-attachments"
     ),
     "course_resources": os.getenv("SUPABASE_COURSE_BUCKET", "course-resources"),
+    "application_attachments": os.getenv(
+        "SUPABASE_APPLICATION_BUCKET", "application-attachments"
+    ),
 }
 SUPABASE_SIGNED_URL_TTL = int(os.getenv("SUPABASE_SIGNED_URL_TTL", "300"))
 if not 1 <= SUPABASE_SIGNED_URL_TTL <= 3600:
@@ -203,6 +213,7 @@ USE_I18N = True
 USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SECURE_CONTENT_TYPE_NOSNIFF = True

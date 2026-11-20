@@ -10,6 +10,9 @@
   const profileEmails = Array.from(
     document.querySelectorAll("[data-profile-email]")
   );
+  const profileProgrammes = Array.from(
+    document.querySelectorAll("[data-profile-programme]")
+  );
   const profileInitials = Array.from(
     document.querySelectorAll("[data-profile-initials]")
   );
@@ -86,6 +89,9 @@
     profileEmails.forEach((element) => {
       element.textContent = user.email || "";
     });
+    profileProgrammes.forEach((element) => {
+      element.textContent = user.academic_programme || "";
+    });
     profileEmailLinks.forEach((element) => {
       if (user.email) {
         element.href = `mailto:${user.email}`;
@@ -111,6 +117,14 @@
         image.setAttribute("aria-hidden", "true");
       }
     });
+    window.dispatchEvent(
+      new CustomEvent("skillsHubProfileUpdated", {
+        detail: {
+          full_name: fullName,
+          profile_photo_url: user.profile_photo_url || null,
+        },
+      })
+    );
   }
 
   function clearProfile() {
@@ -122,6 +136,9 @@
       element.textContent = "Welcome to UCC SKILLSHUB!";
     });
     profileEmails.forEach((element) => {
+      element.textContent = "";
+    });
+    profileProgrammes.forEach((element) => {
       element.textContent = "";
     });
     profileEmailLinks.forEach((element) => {
@@ -157,12 +174,17 @@
   }
 
   async function loadProfile() {
+    if (new URLSearchParams(window.location.search).has("slug")) {
+      clearProfile();
+      return;
+    }
     if (!hasSession()) {
       clearProfile();
       return;
     }
     const cachedUser = readCachedUser();
     if (cachedUser) render(cachedUser);
+    else clearProfile();
     if (!api) {
       console.error("The SkillsHub API client is unavailable.");
       return;
@@ -190,6 +212,7 @@
       return ready;
     },
     isAuthenticated: hasSession,
+    refresh: loadProfile,
     async updateProfile(changes) {
       if (!hasSession()) throw new Error("Sign in to update your profile.");
       const user = await api.patch("/users/me/", changes);

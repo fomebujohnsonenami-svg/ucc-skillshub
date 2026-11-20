@@ -12,6 +12,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+  #skillmatch-banner { display: none; }
+  #category-tabs, #opportunity-list, #opportunity-detail-panel, #pipeline-section, #featured-opportunity { visibility: hidden; }
+  body.opportunities-ready #category-tabs,
+  body.opportunities-ready #opportunity-list,
+  body.opportunities-ready #opportunity-detail-panel,
+  body.opportunities-ready #pipeline-section { visibility: visible; }
+  body.opportunities-ready #featured-opportunity { visibility: visible; }
+</style>
 <!-- Tailwind Configuration -->
 <script id="tailwind-config">
     tailwind.config = {
@@ -207,7 +216,7 @@
 </div>
 <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Discover Opportunities</h1>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
-          Put your verified academic and project skills into action. Unlock university internships, regional campus roles, freelance briefs, and high-growth African tech positions.
+          Browse internships, campus jobs, freelance opportunities, graduate roles, and competitions.
         </p>
 </div>
 <!-- Quick Action Buttons -->
@@ -215,17 +224,12 @@
 <a class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-full shadow-sm hover:shadow transition" href="#pipeline-section">
 <span class="material-symbols-outlined text-[18px] text-secondary">assignment_turned_in</span>
 <span>My Applications</span>
-<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold ml-1">4</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold ml-1" id="my-applications-count">0</span>
 </a>
-<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-full shadow-sm hover:shadow transition">
-<span class="material-symbols-outlined text-[18px] text-outline">bookmark</span>
-<span>Saved Opportunities</span>
-<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold ml-1">6</span>
-</button>
 </div>
 </div>
 <!-- SkillMatch AI Banner -->
-<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-container via-secondary-container to-secondary p-space-lg text-on-secondary shadow-md">
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-container via-secondary-container to-secondary p-space-lg text-on-secondary shadow-md" id="skillmatch-banner">
 <!-- Ambient Glow Spotlights -->
 <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-secondary-fixed-dim/20 blur-3xl pointer-events-none"></div>
 <div class="absolute top-0 right-1/3 w-40 h-40 rounded-full bg-surface-container-lowest/10 blur-2xl pointer-events-none"></div>
@@ -259,7 +263,7 @@
 </div>
 </section>
 <!-- Featured Spotlight Card -->
-<section class="mb-space-xl">
+<section class="mb-space-xl" id="featured-opportunity">
 <div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm relative overflow-hidden">
 <!-- Decorative Gradient Border bar -->
 <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-secondary-container to-secondary-fixed-dim"></div>
@@ -368,42 +372,37 @@
 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface-variant">
 <span class="material-symbols-outlined text-[20px]">search</span>
 </div>
-<input class="w-full pl-10 pr-space-md py-2.5 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" id="opportunity-search" placeholder="Search by job title, skill (e.g. React, Python), or company..." type="text">
+<input class="w-full pl-10 pr-space-md py-2.5 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full border-none focus:outline-none focus:ring-2 focus:ring-secondary placeholder:text-outline" id="opportunity-search" placeholder="Search by job title or organization..." type="text">
 </div>
 <!-- Filter Dropdowns Row -->
 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
-<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
-<option>All Locations</option>
-<option>On Campus (UCC)</option>
-<option>Accra</option>
-<option>Kumasi</option>
-<option>Remote</option>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer" id="opportunity-location-filter">
+<option value="">All Locations</option>
+<option value="Cape Coast">Cape Coast</option>
+<option value="Accra">Accra</option>
+<option value="Kumasi">Kumasi</option>
 </select>
-<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
-<option>All Types</option>
-<option>Full-time</option>
-<option>Part-time</option>
-<option>Contract</option>
-<option>Gig / Freelance</option>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer" id="opportunity-type-filter">
+<option value="">All Types</option>
+<option value="internship">Internship</option>
+<option value="full-time">Full-time</option>
+<option value="part-time">Part-time</option>
+<option value="contract">Contract</option>
+<option value="freelance">Freelance</option>
 </select>
-<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
-<option>Experience Level</option>
-<option>Student / Entry-level</option>
-<option>Intermediate</option>
-<option>No Prior Experience</option>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer" id="opportunity-arrangement-filter">
+<option value="">All Work Modes</option>
+<option value="remote">Remote</option>
+<option value="hybrid">Hybrid</option>
+<option value="onsite">On-site</option>
 </select>
-<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer">
-<option>Work Mode</option>
-<option>Remote</option>
-<option>Hybrid</option>
-<option>On-site</option>
+<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer col-span-2 sm:col-span-1" id="opportunity-deadline-filter">
+<option value="">Any Deadline</option>
+<option value="7">Ending within 7 days</option>
+<option value="14">Ending within 14 days</option>
+<option value="30">Ending within 30 days</option>
 </select>
-<select class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary cursor-pointer col-span-2 sm:col-span-1">
-<option>Application Deadline</option>
-<option>Ending Soon (&lt; 7d)</option>
-<option>Within 2 Weeks</option>
-<option>Next Month</option>
-</select>
+<input class="px-3 py-2 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-full border-none focus:ring-2 focus:ring-secondary placeholder:text-outline col-span-2 sm:col-span-1" id="opportunity-skill-filter" placeholder="Required skill" type="search">
 </div>
 </div>
 <!-- Quick Filter Toggles -->
@@ -420,7 +419,7 @@
 <span>⚡ Fast Response (Avg 48h)</span>
 </button>
 </div>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Showing <span class="font-bold text-on-surface">38</span> Verified Postings</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing <span class="font-bold text-on-surface" id="opportunity-count">0</span> open opportunities</span>
 </div>
 </section>
 <!-- Two-Column Main Content Layout -->
@@ -775,14 +774,10 @@
 <div>
 <div class="flex items-center gap-1">
 <span class="font-headline-sm text-headline-sm text-on-surface" id="drawer-company">PayFlex Technology</span>
-<span class="material-symbols-outlined text-secondary text-[18px]" title="UCC SKILLSHUB Verified Employer">verified</span>
 </div>
 <span class="font-label-sm text-label-sm text-on-surface-variant block" id="drawer-meta">Fintech • 45 Employees • Accra</span>
 </div>
 </div>
-<button class="p-2 rounded-full hover:bg-surface-container text-outline hover:text-on-surface transition" title="Save Job">
-<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
-</button>
 </div>
 <!-- Role Title & High Match Callout -->
 <div>
@@ -797,7 +792,7 @@
 <!-- Key Specs Grid -->
 <div class="grid grid-cols-2 gap-2 p-space-sm bg-surface-container-low rounded-xl">
 <div class="p-2 rounded-lg bg-surface-container-lowest">
-<span class="font-label-sm text-label-sm text-on-surface-variant block">Stipend / Salary</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Compensation</span>
 <span class="font-headline-sm text-headline-sm text-secondary font-bold" id="drawer-stipend">GHS 2,500<span class="text-xs font-normal text-on-surface-variant">/mo</span></span>
 </div>
 <div class="p-2 rounded-lg bg-surface-container-lowest">
@@ -805,12 +800,12 @@
 <span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="drawer-contract">6-Mo Internship</span>
 </div>
 <div class="p-2 rounded-lg bg-surface-container-lowest">
-<span class="font-label-sm text-label-sm text-on-surface-variant block">Workload</span>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Full-Time (40h)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Work arrangement</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="drawer-arrangement">On-site</span>
 </div>
 <div class="p-2 rounded-lg bg-surface-container-lowest">
-<span class="font-label-sm text-label-sm text-on-surface-variant block">Path to PPO</span>
-<span class="font-headline-sm text-headline-sm text-emerald-700 font-bold">High Likelihood</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Application deadline</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="drawer-deadline">—</span>
 </div>
 </div>
 <!-- Detailed Description -->
@@ -822,8 +817,8 @@
 </div>
 <!-- Core Responsibilities -->
 <div class="flex flex-col gap-2">
-<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">Core Responsibilities</h4>
-<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold">Responsibilities and requirements</h4>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant" id="drawer-responsibilities">
 <li class="flex items-start gap-2">
 <span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0 mt-2"></span>
 <span>Develop and maintain responsive student-facing checkout components using React and Tailwind CSS.</span>
@@ -844,7 +839,7 @@
 <span>Required Verified Skills</span>
 <span class="text-emerald-700 text-xs font-normal">4/4 Met</span>
 </h4>
-<div class="flex flex-col gap-1.5">
+<div class="flex flex-col gap-1.5" id="drawer-skills">
 <div class="p-2.5 rounded-xl bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span>
@@ -880,7 +875,7 @@
 <button class="w-full py-3 px-space-md rounded-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-[1.01] transition" id="drawer-apply-btn" onclick="openApplyModal('Junior Web Developer', 'PayFlex Technology Startup')"><span class="material-symbols-outlined text-[18px]">bolt</span>
 <span>Apply via UCC SKILLSHUB 1-Click</span></button>
 <span class="text-[11px] text-on-surface-variant text-center block mt-2">
-            Your verified academic transcripts and GitHub artifacts will be appended automatically.
+            Review the application instructions and share only the materials you choose.
           </span>
 </div>
 </div>
@@ -898,10 +893,6 @@
           Real-time tracking of employer reviews, campus recruiter feedback, and formal interview milestones.
         </p>
 </div>
-<a class="font-label-md text-label-md text-secondary hover:underline flex items-center gap-1 self-start sm:self-center" href="#dashboard">
-<span>View Full Career Analytics</span>
-<span class="material-symbols-outlined text-[16px]">chevron_right</span>
-</a>
 </div>
 <!-- Kanban Columns Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
@@ -1100,8 +1091,8 @@
 </div>
 </div>
 </div>
-<!-- Interactive JavaScript logic -->
-<script>
+<!-- Retained static mockup data is not executed; opportunities.js renders API data. -->
+<script type="application/json" id="legacy-opportunities-mockup">
     const opportunitiesData = {
       'payflex': {
         title: 'Junior Web Developer',
@@ -1270,4 +1261,5 @@
 <script src="../skillshub-api.js"></script>
 <script src="../profile.js"></script>
 <script src="../responsive.js"></script>
+<script src="../opportunities.js"></script>
 </body></html>

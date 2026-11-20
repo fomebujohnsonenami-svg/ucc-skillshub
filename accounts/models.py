@@ -7,6 +7,7 @@ from django.db import models, transaction
 from django.db.models.functions import Lower
 from django.utils.text import slugify
 
+from accounts.notification_preferences import default_notification_preferences
 from accounts.validators import validate_ucc_student_email
 
 
@@ -169,6 +170,49 @@ class StudentProfile(models.Model):
 
     def __str__(self):
         return f"Student profile: {self.user.email}"
+
+
+class UserSettings(models.Model):
+    class Theme(models.TextChoices):
+        LIGHT = "light", "Light"
+        DARK = "dark", "Dark"
+        SYSTEM = "system", "System default"
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="settings"
+    )
+    theme = models.CharField(
+        max_length=10, choices=Theme.choices, default=Theme.SYSTEM
+    )
+    notification_preferences = models.JSONField(
+        default=default_notification_preferences, blank=True
+    )
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Settings for {self.user_id}"
+
+
+class EmailChangeVerification(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="email_change_verification"
+    )
+    new_email = models.EmailField()
+    code_hash = models.CharField(max_length=256)
+    expires_at = models.DateTimeField()
+    last_sent_at = models.DateTimeField()
+    failed_attempts = models.PositiveSmallIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                Lower("new_email"), name="accounts_pending_email_ci_unique"
+            )
+        ]
+
+    def __str__(self):
+        return f"Email change verification for {self.user_id}"
 
 
 class LecturerProfile(models.Model):

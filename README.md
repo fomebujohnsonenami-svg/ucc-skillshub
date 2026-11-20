@@ -15,7 +15,7 @@ Django REST Framework API foundation for UCC SKILLSHUB. The existing HTML fronte
 
 3. Copy `.env.example` to `.env`. Set `DJANGO_SECRET_KEY` (generate one with `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`), `DATABASE_URL`, and Supabase storage settings. Set `DJANGO_DEBUG=True` for local development.
 4. In Supabase, use the PostgreSQL **session pooler** connection string (recommended for Django) or the direct PostgreSQL connection string, with `sslmode=require`. Put that URL in `DATABASE_URL`; URL-encode special characters in the database password. If using the transaction pooler, set `DATABASE_USE_TRANSACTION_POOLER=True`.
-5. Create private Supabase Storage buckets named by `SUPABASE_PROFILE_BUCKET`, `SUPABASE_PROJECT_BUCKET`, and `SUPABASE_COURSE_BUCKET` (defaults: `profile-photos`, `project-attachments`, `course-resources`). Keep them private. Only the Django server uses `SUPABASE_SERVICE_ROLE_KEY`; never place it in frontend code or expose it in an API response.
+5. Create private Supabase Storage buckets named by `SUPABASE_PROFILE_BUCKET`, `SUPABASE_PROJECT_BUCKET`, `SUPABASE_COURSE_BUCKET`, and `SUPABASE_APPLICATION_BUCKET` (defaults: `profile-photos`, `project-attachments`, `course-resources`, `application-attachments`). Keep them private. Only the Django server uses `SUPABASE_SERVICE_ROLE_KEY`; never place it in frontend code or expose it in an API response.
 6. Apply migrations and create the first administrator:
 
    ```powershell
@@ -72,6 +72,9 @@ Set `BACKEND_URL` to the API origin and `FRONTEND_URL` to the sign-in page URL. 
 | GET, PATCH | `/api/v1/users/me/` | Read or update the authenticated user's name/username |
 | POST | `/api/v1/users/me/profile-photo/` | Upload or replace a private profile photo |
 | GET, PATCH | `/api/v1/students/me/profile/` | Read or update the authenticated student's profile |
+| GET, PATCH | `/api/v1/settings/` | Read or update account profile fields, theme, and in-app notification preferences |
+| POST | `/api/v1/settings/email-change/` | Request an email change using the current password and email verification |
+| POST | `/api/v1/settings/email-change/confirm/` | Confirm the new email with its one-time code |
 | PATCH | `/api/v1/admin/users/{uuid}/status/` | Administrator activation, suspension, or deactivation |
 | GET | `/api/v1/admin/role-approvals/` | List pending Facilitator and Recruiter requests |
 | POST | `/api/v1/admin/role-approvals/{uuid}/decision/` | Approve or reject a role request |
@@ -136,17 +139,104 @@ The Skill Pathways catalogue and student dashboard use published pathway records
 
 Catalogue filters accept `search`, `category` (slug or ID), and `difficulty` (`beginner`, `intermediate`, `advanced`, `all`). Results use the global 12-record pagination. Lecturer management is limited to pathways created by that lecturer; administrators can manage all pathways. Student enrollment and progress endpoints are restricted to the active authenticated student. Thumbnails use private Supabase Storage and short-lived signed URLs.
 
+## Certificates and achievements
+
+Eligible course certificates are issued automatically after every course lesson is completed and the course is marked certificate-eligible. Pathway certificates are issued only after every pathway step is completed. Students cannot create or edit certificates; duplicate course/pathway awards are prevented by database constraints. PDFs are generated server-side and downloaded through an authenticated, student-scoped endpoint. Certificate verification uses a separate random token; the public response exposes only the recipient's first name and last initial, the learning item, issuer, dates, and validity status.
+
+The certificate issuer is `UCC SKILLSHUB`. The credential documents platform learning completion and does not claim official UCC accreditation or institutional recognition. The achievements catalogue is initialized with course, pathway, learning-streak, project-approval, and learning-champion criteria. Course and pathway achievements are evaluated automatically during completion. When a project approval workflow is added, it should call `certificates.services.award_achievements(student, event="project_approved")`; this repository does not yet include a project approval API or data model.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/api/v1/certificates/` | List the signed-in student's certificates |
+| GET | `/api/v1/certificates/{id}/` | Read a certificate owned by the signed-in student |
+| GET | `/api/v1/certificates/{id}/download/` | Download the generated PDF (owner only) |
+| GET | `/api/v1/certificates/verify/{token}/` | Public JSON verification endpoint |
+| GET | `/certificates/verify/{token}/` | Public certificate verification page; shows validity without contact or student-ID details |
+| GET | `/api/v1/achievements/` | List available achievements and the signed-in student's earned state |
+| GET | `/api/v1/achievements/my-achievements/` | List the signed-in student's awarded achievements |
+
+Certificate files are stored under the server's private media root and are never served as public media URLs. Keep that directory outside any public static-file route and back it up with the database.
+
+## Student portfolios
+
+Students manage a portfolio with their account profile, skills, projects, earned certificates, and professional links. A portfolio is private by default; only the owner can change visibility. Public portfolio requests return 404 for private slugs and omit account email, student ID, and other account-only fields. Projects marked private are excluded from the public response. Certificate links reference active certificates already earned by the same student, so certificate records are not duplicated.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET, PATCH | `/api/v1/portfolio/me/` | Read or update the signed-in student's portfolio and visibility |
+| GET | `/api/v1/portfolio/public/{slug}/` | Read a public portfolio without authentication |
+| GET, POST | `/api/v1/portfolio/projects/` | List or add portfolio projects |
+| GET, PATCH, DELETE | `/api/v1/portfolio/projects/{id}/` | Read, update, or remove an owned project |
+| GET, POST | `/api/v1/portfolio/skills/` | List or add skills |
+| GET, PATCH, DELETE | `/api/v1/portfolio/skills/{id}/` | Read, update, or remove an owned skill |
+| GET, POST | `/api/v1/portfolio/certificates/` | List showcased certificates or link an earned certificate |
+| DELETE | `/api/v1/portfolio/certificates/{id}/` | Remove a certificate from the portfolio (does not revoke it) |
+| GET, POST | `/api/v1/portfolio/social-links/` | List or add professional links |
+| GET, PATCH, DELETE | `/api/v1/portfolio/social-links/{id}/` | Read, update, or remove an owned link |
+
+Set `FRONTEND_URL` (or `FRONTEND_BASE_URL`) to the deployed frontend origin so the portfolio API can return an absolute share URL. The portfolio page builds the share link from its current frontend URL and slug.
+
+## Opportunities and applications
+
+The opportunities page loads current listings, categories, details, and the signed-in student's application pipeline from the API. Public catalogue responses include only published opportunities that are still open. Search supports title and organization; filters support category, location, required skills, work arrangement, opportunity type, and deadline. Results use the global 12-record pagination.
+
+Students need an active, verified account to apply. Applications are unique per student and opportunity; the applicant may attach their own portfolio and up to five supporting files (10 MB each). Attachments are stored in the private `SUPABASE_APPLICATION_BUCKET` and are available only to the applicant and authorized managers through short-lived signed URLs. Accepted file extensions are PDF, DOC/DOCX, RTF, TXT, PNG, and JPEG.
+
+Administrator accounts can manage all opportunities and applications. Active employer accounts with an employer profile, and recruiters whose role request is approved, are limited to opportunities and applications for their own organization. Students cannot update application decisions. Public catalogue and detail responses contain no applicant information. Opportunity listings make no claim of official UCC accreditation or endorsement.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/api/v1/opportunities/categories/` | List active opportunity categories |
+| GET | `/api/v1/opportunities/` | Search, filter, and paginate currently open opportunities |
+| GET | `/api/v1/opportunities/{id}/` | Read a published opportunity |
+| POST | `/api/v1/opportunities/{id}/apply/` | Submit an application and optional private attachments |
+| GET | `/api/v1/opportunities/my-applications/` | List the signed-in student's applications and status |
+| GET | `/api/v1/opportunities/applications/{id}/` | Read an owned application or one in a manager's organization |
+| GET | `/api/v1/opportunities/manage/` | List manageable opportunities |
+| POST | `/api/v1/opportunities/manage/` | Create an opportunity for an authorized organization |
+| GET, PATCH, PUT | `/api/v1/opportunities/manage/{id}/` | Read or update an opportunity within the manager's organization |
+| GET | `/api/v1/opportunities/applications/` | List applications within an authorized organization; supports `opportunity` and `status` filters |
+| PATCH | `/api/v1/opportunities/applications/{id}/status/` | Update a decision and optional review note |
+
+Seeded categories are Internships, Campus Jobs, Freelance Opportunities, Graduate Jobs, and Competitions. Manager-created listings default to draft; publishing requires a future application deadline. The existing catalogue UI is served from `skillbridge_opportunities_career_discovery/code.html` and uses `opportunities.js` with the shared API client.
+
+## Notifications, analytics, and settings
+
+Notifications are private to their recipient. The API returns a paginated list and unread count; recipients can mark one or all as read and delete their own notifications. In-app notifications are emitted for course and pathway enrollment, completed lessons and pathway milestones, certificates, achievements, newly published opportunities, and application status changes. The model also accepts course announcement, project submission, lecturer feedback, and platform announcement types, but those event producers do not exist yet. Email notifications are not sent.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/api/v1/notifications/` | List the signed-in user's notifications and unread count |
+| PATCH | `/api/v1/notifications/{id}/read/` | Mark an owned notification as read |
+| POST | `/api/v1/notifications/mark-all-read/` | Mark all of the signed-in user's notifications as read |
+| DELETE | `/api/v1/notifications/{id}/` | Delete an owned notification |
+| GET | `/api/v1/analytics/student-dashboard/` | Read the signed-in student's actual course, certificate, pathway, skill, and streak metrics |
+| GET | `/api/v1/analytics/student-progress/` | Read the signed-in student's course and pathway completion details |
+| GET | `/api/v1/analytics/learning-activity/` | Read daily recorded learning activity; `days` accepts 1–365 |
+| GET | `/api/v1/analytics/courses/{id}/` | Course enrollment and per-student learning activity for its authorized lecturer or administrator |
+| GET | `/api/v1/analytics/pathways/{id}/` | Pathway participation for its authorized lecturer or administrator |
+| GET | `/api/v1/analytics/opportunities/{id}/` | Application counts for an authorized opportunity manager |
+| GET | `/api/v1/analytics/administrator/` | Platform-wide aggregate counts for administrators |
+
+Student analytics are filtered to the authenticated student. Lecturer and opportunity-manager analytics are scoped to records they are permitted to manage; only administrators receive platform-wide aggregates. Learning activity is derived from existing lesson, pathway-step, and enrollment timestamps, not inferred study hours. The project workflow has no submission or approval records, so `projects_submitted` and `approved_projects` are `null` and `project_tracking_available` is false; portfolio projects are reported separately as showcased work.
+
+`/api/v1/settings/` stores light/dark/system theme and per-type in-app notification preferences. Name, username, phone, biography, student programme/level, and profile visibility are role-limited; role and email cannot be edited there. Email changes require the account password, a one-time code delivered to the proposed address, and configured SMTP. The settings controls are available from the dashboard; the existing photo-upload and password-change endpoints are reused.
+
 ## Tests
 
 The automated API tests use an in-memory SQLite database only when `DJANGO_TESTING=1` is set; normal application settings require the Supabase PostgreSQL `DATABASE_URL` and never fall back to another database.
 
 ```powershell
-$env:DJANGO_SECRET_KEY = "test-only-key-that-is-at-least-thirty-two-bytes"
+$env:DJANGO_SECRET_KEY = python -c "import secrets; print(secrets.token_urlsafe(48))"
 $env:DJANGO_TESTING = "1"
 python manage.py test
 ```
 
 The course API tests can be run alone with `python manage.py test courses.tests -v 1`.
 The pathway API tests can be run alone with `python manage.py test pathways.tests -v 1`.
+Certificate and achievement tests can be run with `python manage.py test certificates.tests -v 1`.
+Portfolio API tests can be run with `python manage.py test portfolios.tests -v 1`.
+Opportunity API tests can be run with `python manage.py test opportunities.tests -v 1`.
+Feature 8 tests can be run with `python manage.py test accounts.tests notifications.tests learning_analytics.tests -v 1`.
 
 For a live database check and migration, configure the actual Supabase URL and credentials in `.env`, then run `python manage.py check` and `python manage.py migrate`.

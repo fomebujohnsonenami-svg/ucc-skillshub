@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from certificates.views import certificate_verification_page
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
@@ -24,9 +25,19 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path(
+        "certificates/verify/<str:token>/",
+        certificate_verification_page,
+        name="public-certificate-verification",
+    ),
     path("api/v1/", include("accounts.urls")),
     path("api/v1/", include("courses.urls")),
     path("api/v1/", include("pathways.urls")),
+    path("api/v1/", include("certificates.urls")),
+    path("api/v1/", include("portfolios.urls")),
+    path("api/v1/", include("opportunities.urls")),
+    path("api/v1/", include("notifications.urls")),
+    path("api/v1/", include("learning_analytics.urls")),
     path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/v1/docs/",

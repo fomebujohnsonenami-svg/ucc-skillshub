@@ -123,6 +123,11 @@
     }
   </script>
 <style>
+    [hidden],
+    .hidden {
+      display: none !important;
+    }
+
     @layer base {
       html {
         scroll-behavior: smooth;
@@ -157,10 +162,10 @@
 <!-- Bottom Secondary Navigation -->
 <div class="flex flex-col gap-space-xs">
 <div class="h-px bg-on-primary-container/20 my-space-xs"></div>
-<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="settings" href="#settings">Settings</a>
+<a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="settings" href="../skillbridge_student_dashboard/code.html#settings">Settings</a>
 <a class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition" data-path="notifications" href="#notifications">
 <span>Notifications</span>
-<span class="w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+<span class="w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold" data-notification-count>0</span>
 </a>
 <a class="px-space-md py-space-sm rounded-full text-on-primary-container font-label-md text-label-md hover:text-surface-container-lowest hover:bg-surface-variant/10 transition block" data-path="logout" href="#logout">Logout</a>
 </div>
@@ -183,7 +188,7 @@
 <!-- Notification Bell Icon with Badge -->
 <button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition">
 <span class="material-symbols-outlined text-[24px]">notifications</span>
-<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background"></span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background" data-notification-count></span>
 </button>
 <!-- User Profile Pill Dropdown -->
 <div class="flex items-center gap-space-sm cursor-pointer group select-none px-space-xs py-space-xs rounded-full hover:bg-surface-container-low transition">
@@ -201,17 +206,13 @@
 <div class="flex flex-col gap-space-xs max-w-2xl">
 <div class="flex items-center gap-space-sm mb-1">
 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm uppercase tracking-wider font-bold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-          Academic Year 2024/2025
-        </span>
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">sync</span>
-          Synced: Today, 10:45 AM
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Based on recorded learning activity
         </span>
 </div>
 <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">My Learning Analytics</h1>
 <p class="font-body-md text-body-md text-on-surface-variant">
-        Track your learning velocity, evaluate verified skill competencies, and benchmark your progress toward career readiness.
+        Review course and pathway progress recorded on your account. Study hours, grades and project approvals are not currently tracked.
       </p>
 </div>
 <!-- Controls & Report Download -->
@@ -246,13 +247,13 @@
 </span>
 <span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
 <span class="material-symbols-outlined text-[14px]">trending_up</span>
-          +14%
+          Recorded data
         </span>
 </div>
 <div>
-<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1">148.5 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">hrs</span></span>
-<span class="font-label-md text-label-md text-on-surface-variant block">Total Learning Hours</span>
-<span class="font-label-sm text-label-sm text-outline block mt-1">+18.2h vs prior month</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1" data-analytics-total-activity>—</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Recorded learning actions</span>
+<span class="font-label-sm text-label-sm text-outline block mt-1">Recent 30-day activity records</span>
 </div>
 </div>
 <!-- Stat 2 -->
@@ -262,13 +263,13 @@
 <span class="material-symbols-outlined text-[22px]">school</span>
 </span>
 <span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm font-semibold text-secondary bg-secondary-fixed px-2 py-0.5 rounded-full">
-          71% Rate
+          From enrollment records
         </span>
 </div>
 <div>
-<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1">5 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">/ 7</span></span>
+<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1"><span data-analytics-completed-courses>—</span> <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">/ <span data-analytics-enrolled-courses>—</span></span></span>
 <span class="font-label-md text-label-md text-on-surface-variant block">Courses Completed</span>
-<span class="font-label-sm text-label-sm text-outline block mt-1">2 modules in progress</span>
+<span class="font-label-sm text-label-sm text-outline block mt-1">Completed / enrolled courses</span>
 </div>
 </div>
 <!-- Stat 3 -->
@@ -278,13 +279,13 @@
 <span class="material-symbols-outlined text-[22px]">terminal</span>
 </span>
 <span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-          Honors
+          Not tracked
         </span>
 </div>
 <div>
-<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1">4 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Done</span></span>
-<span class="font-label-md text-label-md text-on-surface-variant block">Projects Verified</span>
-<span class="font-label-sm text-label-sm text-outline block mt-1">Avg Score: 94 / 100</span>
+<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1">Not tracked</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Project submissions / approvals</span>
+<span class="font-label-sm text-label-sm text-outline block mt-1">No project submission workflow is recorded.</span>
 </div>
 </div>
 <!-- Stat 4 -->
@@ -294,13 +295,13 @@
 <span class="material-symbols-outlined text-[22px]">auto_awesome</span>
 </span>
 <span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">
-          6 Advanced
+          Completed pathways
         </span>
 </div>
 <div>
-<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1">18 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Skills</span></span>
+<span class="font-stat-counter text-stat-counter text-on-surface block leading-none mb-1"><span data-analytics-skills-count>—</span> <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Skills</span></span>
 <span class="font-label-md text-label-md text-on-surface-variant block">Skills Acquired</span>
-<span class="font-label-sm text-label-sm text-outline block mt-1">Across 4 career tracks</span>
+<span class="font-label-sm text-label-sm text-outline block mt-1">From completed skill pathways</span>
 </div>
 </div>
 <!-- Stat 5: Streak Card -->
@@ -310,13 +311,13 @@
 <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
 </span>
 <span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm font-semibold text-amber-700 bg-amber-100/70 px-2 py-0.5 rounded-full">
-          Record: 18d
+          Longest streak: <span data-analytics-longest-streak>—</span>d
         </span>
 </div>
 <div>
-<span class="font-stat-counter text-stat-counter text-amber-600 block leading-none mb-1">12 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Days</span></span>
+<span class="font-stat-counter text-stat-counter text-amber-600 block leading-none mb-1"><span data-analytics-current-streak>—</span> <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Days</span></span>
 <span class="font-label-md text-label-md text-on-surface-variant block">Active Study Streak</span>
-<span class="font-label-sm text-label-sm text-outline block mt-1">Keep it up today!</span>
+<span class="font-label-sm text-label-sm text-outline block mt-1">From recorded lesson and pathway activity</span>
 </div>
 </div>
 </section>
@@ -329,16 +330,16 @@
 <div class="flex items-center gap-2">
 <h2 class="font-headline-md text-headline-md text-on-surface">Weekly Learning Activity</h2>
 <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100/60 text-emerald-800 font-label-sm text-label-sm font-bold">
-              Target Exceeded (+32%)
+              Recorded activity
             </span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-            Hours logged in study sessions, labs, and interactive quizzes (Target: 14 hrs/wk)
+            Counts reflect lesson and pathway records, not time spent.
           </p>
 </div>
-<div class="flex items-center gap-3">
+<div class="hidden flex items-center gap-3">
 <div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
-<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Actual
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Recorded
           </div>
 <div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
 <span class="w-2.5 h-0.5 bg-outline"></span> Target
@@ -348,10 +349,7 @@
 <!-- Chart Canvas Area -->
 <div class="relative pt-6 pb-2">
 <!-- Goal Guide Line at 2.0h/day equivalent or 14h weekly -->
-<div class="absolute left-8 right-0 top-28 h-px bg-outline/25 border-dashed border-b pointer-events-none flex items-center justify-end">
-<span class="text-[10px] font-label-sm text-outline pr-1 bg-surface-container-lowest -mt-3">Goal: 2.0h/day</span>
-</div>
-<div class="grid grid-cols-7 gap-2 sm:gap-4 items-end h-56 pl-6 pr-2">
+<div class="hidden grid grid-cols-7 gap-2 sm:gap-4 items-end h-56 pl-6 pr-2" data-analytics-week-chart hidden>
 <!-- Mon: 2.5h -->
 <div class="group flex flex-col items-center h-full justify-end relative cursor-pointer">
 <div class="absolute -top-9 opacity-0 group-hover:opacity-100 transition-opacity bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded shadow-md pointer-events-none whitespace-nowrap z-10">
@@ -418,7 +416,7 @@
 </div>
 </div>
 <!-- Weekly Breakdown Metrics Bottom Strip -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-md mt-space-md bg-surface-container-low rounded-xl p-space-md">
+<div class="hidden grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-md mt-space-md bg-surface-container-low rounded-xl p-space-md" hidden>
 <div class="flex items-center gap-space-sm">
 <div class="w-3 h-3 rounded-full bg-secondary"></div>
 <div>
@@ -447,7 +445,7 @@
 <div>
 <div class="flex items-center justify-between mb-space-xs">
 <h2 class="font-headline-md text-headline-md text-on-surface">Course Completion</h2>
-<span class="font-label-md text-label-md font-bold text-secondary">8 Total Courses</span>
+<span class="font-label-md text-label-md font-bold text-secondary" data-analytics-total-courses>— Total Courses</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
           Cumulative status across registered degree &amp; micro-credential modules
@@ -460,12 +458,12 @@
 <!-- Background Ring -->
 <circle cx="18" cy="18" fill="none" r="15.9155" stroke="#dfe0fd" stroke-width="3.5"></circle>
 <!-- Completed Ring (62.5% = 62.5 stroke-dasharray) -->
-<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#5939e5" stroke-dasharray="62.5, 100" stroke-linecap="round" stroke-width="3.5"></circle>
+<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#5939e5" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3.5" data-analytics-completed-ring></circle>
 <!-- In Progress Ring (25%) offset by 62.5 -->
-<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#7257ff" stroke-dasharray="25, 100" stroke-dashoffset="-62.5" stroke-linecap="round" stroke-width="3.5"></circle>
+<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#7257ff" stroke-dasharray="0, 100" stroke-dashoffset="0" stroke-linecap="round" stroke-width="3.5" data-analytics-progress-ring></circle>
 </svg>
 <div class="absolute inset-0 flex flex-col items-center justify-center">
-<span class="font-headline-lg text-headline-lg font-bold text-on-surface leading-none">62.5%</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface leading-none" data-analytics-completion-rate>—</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant">Completed</span>
 </div>
 </div>
@@ -475,28 +473,24 @@
 <span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface">
 <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Completed
               </span>
-<span class="font-headline-sm text-headline-sm text-on-surface">5 <span class="text-xs text-outline font-normal">(62.5%)</span></span>
+<span class="font-headline-sm text-headline-sm text-on-surface" data-analytics-course-completed>—</span>
 </div>
 <div class="flex items-center justify-between">
 <span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface">
 <span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span> In Progress
               </span>
-<span class="font-headline-sm text-headline-sm text-on-surface">2 <span class="text-xs text-outline font-normal">(25.0%)</span></span>
+<span class="font-headline-sm text-headline-sm text-on-surface" data-analytics-course-progress-count>—</span>
 </div>
 <div class="flex items-center justify-between">
 <span class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface">
 <span class="w-2.5 h-2.5 rounded-full bg-surface-dim"></span> Not Started
               </span>
-<span class="font-headline-sm text-headline-sm text-on-surface">1 <span class="text-xs text-outline font-normal">(12.5%)</span></span>
-</div>
-<div class="pt-2 mt-1 border-t border-outline/10 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
-<span>Verified Grade Avg:</span>
-<span class="font-bold text-secondary">93.4% (Honors)</span>
+<span class="font-headline-sm text-headline-sm text-on-surface" data-analytics-course-not-started>—</span>
 </div>
 </div>
 </div>
 <!-- Active Course Progress Bars -->
-<div class="flex flex-col gap-space-sm">
+<div class="hidden flex flex-col gap-space-sm" data-analytics-course-progress hidden>
 <!-- Course A -->
 <div class="p-space-sm rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
 <div class="flex items-center justify-between mb-1">
@@ -530,23 +524,19 @@
 </div>
 </section>
 <!-- ROW 2: SKILL PROFICIENCY & EMPLOYABILITY READINESS -->
-<section aria-label="Skill Proficiency Matrix" class="mb-space-2xl">
+<section aria-label="Skills Acquired" class="mb-space-2xl">
 <!-- Section Header with Employability Readiness Banner -->
 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
 <div>
 <div class="flex items-center gap-2">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Skill Development &amp; Competency Matrix</h2>
-<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="material-symbols-outlined text-[14px]">verified</span>
-            UCC Academic Verified
-          </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Skills from Completed Pathways</h2>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
-          Assessment scores benchmarked against industrial standards, capstone code evaluations, and peer labs.
+          Required skills are listed only when they belong to a completed skill pathway.
         </p>
 </div>
 <!-- Employability Spotlight Card -->
-<div class="flex items-center gap-space-md px-space-lg py-space-md rounded-2xl bg-gradient-to-r from-primary-container via-inverse-surface to-primary-container text-surface-container-lowest shadow-md">
+<div class="hidden flex items-center gap-space-md px-space-lg py-space-md rounded-2xl bg-gradient-to-r from-primary-container via-inverse-surface to-primary-container text-surface-container-lowest shadow-md">
 <div class="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
 <span class="material-symbols-outlined text-[26px] text-on-secondary">workspace_premium</span>
 </div>
@@ -565,7 +555,7 @@
 </div>
 </div>
 <!-- 6 Core Skill Cards Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<div class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" data-analytics-skills-grid hidden>
 <!-- Skill 1 -->
 <div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
 <div>
@@ -712,9 +702,9 @@
 <div class="xl:col-span-7 flex flex-col p-space-xl rounded-2xl bg-surface-container-lowest shadow-sm">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
 <div>
-<h2 class="font-headline-md text-headline-md text-on-surface">Chronological Activity Timeline</h2>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Notifications</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-            Real-time feed of submissions, verified milestones, and awards
+            Recent events generated from your account records
           </p>
 </div>
 <!-- Filter Sub-tabs -->
@@ -726,7 +716,7 @@
 </div>
 </div>
 <!-- Vertical Timeline List -->
-<div class="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-surface-variant">
+<div class="hidden relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-surface-variant" data-analytics-notifications hidden>
 <!-- Event 1 -->
 <div class="relative flex items-start gap-4">
 <div class="absolute -left-6 mt-1 w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-sm">
@@ -818,12 +808,12 @@
 </div>
 </div>
 </div>
-<button class="mt-space-lg w-full py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors text-center font-semibold" type="button">
+<button class="hidden mt-space-lg w-full py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors text-center font-semibold" type="button" hidden>
         Load More Activity
       </button>
 </div>
 <!-- Right Column (45% ~ 5 cols): Goals & Smart Recommendations -->
-<div class="xl:col-span-5 flex flex-col gap-space-lg">
+<div class="hidden xl:col-span-5 flex flex-col gap-space-lg" hidden>
 <!-- Target Goal Tracker -->
 <div class="p-space-xl rounded-2xl bg-surface-container-lowest shadow-sm">
 <div class="flex items-center justify-between mb-space-sm">
@@ -929,6 +919,14 @@
         </button>
 </div>
 </div>
+<div class="xl:col-span-5 rounded-2xl bg-surface-container-lowest p-space-xl shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Analytics coverage</h2>
+<ul class="mt-space-md space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<li>Course enrollment, completion and lesson progress are recorded.</li>
+<li>Pathway enrollment, step progress and completed-pathway skills are recorded.</li>
+<li>Study hours, assessment grades and project submissions or approvals are not tracked.</li>
+</ul>
+</div>
 </section>
 </div></main>
 </div>
@@ -940,4 +938,7 @@
 <script src="../skillshub-api.js"></script>
 <script src="../profile.js"></script>
 <script src="../responsive.js"></script>
+<script src="../notifications.js"></script>
+<script src="../settings.js"></script>
+<script src="../analytics.js"></script>
 </body></html>

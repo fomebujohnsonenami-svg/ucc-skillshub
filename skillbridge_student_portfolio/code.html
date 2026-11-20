@@ -132,6 +132,35 @@
       }
     }
   </style>
+<script>
+    if (new URLSearchParams(window.location.search).has("slug")) {
+      document.documentElement.classList.add("public-portfolio-loading");
+    }
+  </script>
+<style>
+    [data-portfolio-loading] { display: none !important; }
+    html.public-portfolio-loading [data-purpose="main-sidebar"],
+    html.public-portfolio-loading [data-purpose="top-header"],
+    html.public-portfolio-loading button[aria-label="Open navigation menu"],
+    html.public-portfolio-loading #portfolio-health-banner,
+    html.public-portfolio-loading #portfolio-editor-actions,
+    html.public-portfolio-loading #portfolio-page-intro,
+    html.public-portfolio-loading #portfolio-main-grid,
+    html.public-portfolio-loading #public-preview-container { display: none !important; }
+    body.public-portfolio [data-purpose="main-sidebar"],
+    body.public-portfolio [data-purpose="top-header"] { display: none !important; }
+    body.public-portfolio button[aria-label="Open navigation menu"] { display: none !important; }
+    body.public-portfolio .pl-64 { padding-left: 0 !important; }
+    body.public-portfolio main { max-width: 1120px; margin: 0 auto; padding-top: 2rem; }
+    body.public-portfolio #portfolio-health-banner,
+    body.public-portfolio #portfolio-editor-actions,
+    body.public-portfolio #portfolio-page-intro,
+    body.public-portfolio #portfolio-main-grid,
+    body.public-portfolio #toast-notification,
+    body.public-portfolio #portfolio-modal { display: none !important; }
+    body.public-portfolio #public-preview-container button { display: none !important; }
+    body.public-portfolio #public-preview-footer { display: none !important; }
+  </style>
 <link href="../responsive.css" rel="stylesheet">
 </head>
 <body class="bg-background text-on-surface min-h-screen">
@@ -195,21 +224,18 @@
 <!-- Main Dashboard Workspace -->
 <main class="pt-16 px-margin pb-space-2xl flex-1"><div class="flex flex-col w-full">
 <!-- Interactive View Switcher & Action Top Bar -->
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div id="portfolio-page-intro" class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
 <div>
 <div class="flex items-center gap-space-sm mb-space-xs">
 <span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm uppercase tracking-wider">
-          Student Verified Profile
-        </span>
-<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
-<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> Live Online
+          Student Portfolio
         </span>
 </div>
 <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">My Professional Portfolio</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">Showcase your skills, capstones, and validated university milestones to prospective employers and industry recruiters.</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Showcase your skills, projects, and learning credentials.</p>
 </div>
 <!-- Actions & View Mode Toggle -->
-<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-sm" id="portfolio-editor-actions">
 <div class="bg-surface-container p-1 rounded-full flex items-center">
 <button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition" id="btn-mode-editor" onclick="switchViewMode('editor')">
           Dashboard Editor
@@ -223,6 +249,10 @@
 <span class="material-symbols-outlined text-[18px]">edit</span>
         Edit Profile
       </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm hover:bg-surface-container transition" onclick="openPortfolioEditor('profile')">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+        Edit Portfolio
+      </button>
 <button class="inline-flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-md text-label-md shadow-md shadow-secondary/25 hover:bg-secondary-container transition" onclick="copyShareLink()">
 <span class="material-symbols-outlined text-[18px]">share</span>
 <span>Share Portfolio</span>
@@ -230,51 +260,40 @@
 </div>
 </div>
 <!-- Portfolio Completeness & Health Banner -->
-<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm mb-space-xl">
+<div id="portfolio-health-banner" class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm mb-space-xl">
 <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-gradient-to-br from-secondary/10 to-transparent pointer-events-none blur-2xl"></div>
 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
 <div class="flex-1">
 <div class="flex items-center gap-space-sm mb-space-xs">
 <span class="material-symbols-outlined text-secondary text-[24px]">verified_user</span>
 <span class="font-headline-sm text-headline-sm text-on-surface font-bold">Portfolio Health &amp; Completeness</span>
-<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">88% Complete</span>
+<span id="portfolio-completeness" class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">Loading portfolio…</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl mb-space-md">
-          Your profile is in the <strong class="text-on-surface font-semibold">Top 12% for Employer Visibility</strong> at University of Cape Coast. Complete two pending recommendations to activate automated job alerts and recruiter auto-matching.
+          Complete your profile to help visitors understand your experience and work.
         </p>
 <!-- Dynamic Progress Bar -->
 <div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden mb-space-md">
-<div class="h-full bg-gradient-to-r from-secondary via-secondary-container to-secondary-fixed-dim rounded-full transition-all duration-700" style="width: 88%;"></div>
+<div id="portfolio-completeness-bar" class="h-full bg-gradient-to-r from-secondary via-secondary-container to-secondary-fixed-dim rounded-full transition-all duration-700" style="width: 0%;"></div>
 </div>
 <!-- Actionable checklist -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-space-sm font-label-sm text-label-sm">
-<div class="flex items-center gap-1.5 text-on-surface">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-space-sm font-label-sm text-label-sm">
+<div data-completeness-check="profile" class="flex items-center gap-1.5 text-on-surface">
 <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
 <span>Profile photo &amp; bio</span>
 </div>
-<div class="flex items-center gap-1.5 text-on-surface">
+<div data-completeness-check="skills" class="flex items-center gap-1.5 text-on-surface">
 <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>Top 6 skills verified</span>
+<span>Skills added</span>
 </div>
-<div class="flex items-center gap-1.5 text-on-surface">
+<div data-completeness-check="projects" class="flex items-center gap-1.5 text-on-surface">
 <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>3 Capstones with demos</span>
-</div>
-<div class="flex items-center gap-1.5 text-on-surface-variant hover:text-secondary cursor-pointer" onclick="openModal('elevator-pitch-modal')">
-<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
-<span>Add video pitch <strong class="text-secondary">(+8%)</strong></span>
-</div>
-<div class="flex items-center gap-1.5 text-on-surface-variant hover:text-secondary cursor-pointer" onclick="openModal('github-sync-modal')">
-<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
-<span>Sync GitHub feed <strong class="text-secondary">(+4%)</strong></span>
+<span>Projects added</span>
 </div>
 </div>
 </div>
 <div class="flex lg:flex-col items-center justify-between gap-space-sm pt-space-sm lg:pt-0">
-<button class="px-space-md py-2 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-variant transition whitespace-nowrap" onclick="openModal('checklist-modal')">
-          View Recommendations
-        </button>
-<span class="font-label-sm text-label-sm text-outline">Updated 2 days ago</span>
+<span class="font-label-sm text-label-sm text-outline" id="portfolio-updated-banner"></span>
 </div>
 </div>
 </div>
@@ -290,42 +309,33 @@
 <!-- Student Avatar with Verified Status -->
 <div class="relative shrink-0">
 <img data-profile-photo="" alt="" class="w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover shadow-md ring-4 ring-surface-container-low">
-<span class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-md" title="UCC Verified Student">
+<span id="portfolio-verified-badge" class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-secondary text-on-secondary hidden items-center justify-center shadow-md" title="Student portfolio">
 <span class="material-symbols-outlined text-[18px]">verified</span>
 </span>
 </div>
 <!-- Student Core Bio & Credentials -->
 <div class="flex-1 min-w-0">
 <div class="flex flex-wrap items-center gap-space-xs mb-space-xs">
-<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">
+<span id="portfolio-status" class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">
 <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
-                Available for Summer 2025 Internship &amp; Co-op
-              </span>
-<span class="px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">
-                Class of 2026
+                Student portfolio
               </span>
 </div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">Prince Egah</h2>
-<p class="font-headline-sm text-headline-sm text-secondary font-semibold mb-2">Aspiring Full-Stack Software Engineer &amp; Data Analyst</p>
+<h2 id="portfolio-full-name" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-1">Student Portfolio</h2>
+<p id="portfolio-headline" class="font-headline-sm text-headline-sm text-secondary font-semibold mb-2"></p>
 <div class="flex flex-wrap items-center gap-y-1 gap-x-space-md text-on-surface-variant font-body-sm text-body-sm mb-space-md">
 <span class="flex items-center gap-1">
 <span class="material-symbols-outlined text-[18px] text-outline">school</span>
-                BSc Computer Science • University of Cape Coast (UCC)
+                <span id="portfolio-academic-inline"></span>
               </span>
 <span class="flex items-center gap-1">
 <span class="material-symbols-outlined text-[18px] text-outline">location_on</span>
-                Accra &amp; Cape Coast, Ghana
-              </span>
-<span class="flex items-center gap-1 text-secondary font-medium">
-<span class="material-symbols-outlined text-[18px]">travel_explore</span>
-                Open to Remote &amp; Relocation
+                <span id="portfolio-location-inline"></span>
               </span>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
-              Passionate Computer Science undergraduate bridging software engineering and modern data analytics. Experienced in building responsive web applications with React, Node.js, and crafting business intelligence solutions using SQL and Power BI. Active tech mentor and hackathon builder eager to solve real-world industry challenges.
-            </p>
+<p id="portfolio-biography" class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg"></p>
 <!-- Contact & Social Connectivity Pills -->
-<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<div id="portfolio-social-links" data-portfolio-loading class="flex flex-wrap items-center gap-space-sm pt-space-xs">
 <button class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md transition" onclick="copyProfileEmail()">
 <span class="material-symbols-outlined text-[16px] text-secondary">mail</span>
 <span data-profile-email></span>
@@ -351,15 +361,15 @@
 <div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
 <div class="flex items-center justify-between mb-space-md">
 <div>
-<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Verified Skills &amp; Technical Competencies</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Assessed and certified through coursework, peer-code reviews, and university capstones.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Skills &amp; Technical Competencies</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Add skills and proficiency levels to your portfolio.</p>
 </div>
-<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-variant transition" onclick="openModal('add-skill-modal')">
+<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-variant transition" onclick="openPortfolioEditor('skill')">
 <span class="material-symbols-outlined text-[16px]">add</span>
             Add Skill
           </button>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div id="portfolio-skills-grid" data-portfolio-loading class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
 <!-- Skill Card 1 -->
 <div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition">
 <div class="flex items-start justify-between mb-2">
@@ -492,17 +502,20 @@
 <div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
 <div>
-<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Featured Projects &amp; Capstones</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Real-world production deployments, data architectures, and software systems.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Featured Projects</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showcase projects, repositories, and live demonstrations.</p>
 </div>
 <!-- Filter Tabs -->
+<button class="inline-flex items-center gap-1 rounded-full bg-secondary px-space-md py-1.5 text-label-sm text-on-secondary" onclick="openPortfolioEditor('project')">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Project
+</button>
 <div class="inline-flex p-1 bg-surface-container rounded-full text-label-sm font-label-sm self-start sm:self-auto">
-<button class="px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-xs transition" id="tab-all" onclick="filterProjects('all')">All (4)</button>
-<button class="px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition" id="tab-swe" onclick="filterProjects('swe')">Software (2)</button>
-<button class="px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition" id="tab-bi" onclick="filterProjects('bi')">Data &amp; BI (2)</button>
+<button class="px-space-md py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-xs transition" id="tab-all" onclick="filterProjects('all')">All</button>
+<button class="px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition" id="tab-swe" onclick="filterProjects('swe')">Software</button>
+<button class="px-space-md py-1 rounded-full text-on-surface-variant hover:text-on-surface transition" id="tab-bi" onclick="filterProjects('bi')">Data &amp; BI</button>
 </div>
 </div>
-<div class="flex flex-col gap-space-lg">
+<div id="portfolio-projects-grid" data-portfolio-loading class="flex flex-col gap-space-lg">
 <!-- PROJECT 1: University Survey & BI -->
 <div class="project-card bi group p-space-lg rounded-2xl bg-surface-container-low hover:bg-surface-container transition flex flex-col md:flex-row gap-space-lg">
 <div class="w-full md:w-56 shrink-0 h-44 rounded-xl overflow-hidden relative bg-surface-container-high">
@@ -677,15 +690,15 @@
 <div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
 <div class="flex items-center justify-between mb-space-md">
 <div>
-<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Verified Certifications &amp; Credentials</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Digitally anchored credentials issued by University of Cape Coast &amp; global partners.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">Earned Certificates</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showcase certificates you have earned through UCC SKILLSHUB.</p>
 </div>
-<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-variant transition" onclick="openModal('add-cert-modal')">
+<button class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-variant transition" onclick="openPortfolioEditor('certificate')">
 <span class="material-symbols-outlined text-[16px]">upload_file</span>
-            Add Certificate
+            Add Earned Certificate
           </button>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div id="portfolio-certificates-grid" data-portfolio-loading class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
 <!-- Cert 1 -->
 <div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition">
 <div>
@@ -769,36 +782,34 @@
 <div class="flex items-center justify-between mb-space-sm relative z-10">
 <span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary/30 text-secondary-fixed text-label-sm font-label-sm">
 <span class="material-symbols-outlined text-[14px]">public</span>
-            Employer Access Ready
+            <span id="portfolio-visibility-label">Private portfolio</span>
           </span>
-<span class="text-on-primary-container text-label-sm font-label-sm">Updated Today</span>
+<span id="portfolio-updated" class="text-on-primary-container text-label-sm font-label-sm"></span>
 </div>
 <h3 class="font-headline-md text-headline-md text-surface-container-lowest font-bold mb-1 relative z-10">
           Public Shareable Link
         </h3>
 <p class="font-body-sm text-body-sm text-on-primary-container mb-space-md relative z-10">
-          Recruiters can view your full verified capstone portfolio without logging in.
+          Only portfolios you make public can be viewed without signing in.
         </p>
 <!-- Share URL Input Box -->
 <div class="flex items-center gap-1 p-1.5 bg-surface-container-lowest/10 backdrop-blur-sm rounded-xl mb-space-md relative z-10">
 <span class="material-symbols-outlined text-on-primary-container text-[18px] pl-2">link</span>
-<input class="w-full bg-transparent text-surface-container-lowest text-label-sm font-label-sm border-none focus:ring-0 truncate px-2 select-all" id="portfolio-share-url" readonly="" type="text" value="https://skillshub.ucc.edu.gh/portfolio/prince-egah">
+<input class="w-full bg-transparent text-surface-container-lowest text-label-sm font-label-sm border-none focus:ring-0 truncate px-2 select-all" id="portfolio-share-url" readonly="" type="text" placeholder="Enable public visibility to create a share link">
 <button class="px-space-md py-1.5 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm hover:bg-secondary-container transition shrink-0" onclick="copyShareLink()">
             Copy
           </button>
 </div>
+<button id="portfolio-visibility-toggle" class="relative z-10 mb-space-md rounded-full bg-surface-container-lowest/15 px-space-md py-2 text-label-sm font-semibold text-surface-container-lowest hover:bg-surface-container-lowest/25 transition" type="button"></button>
 <!-- QR Code & Stats -->
 <div class="flex items-center justify-between pt-space-xs relative z-10">
 <div class="flex items-center gap-space-sm">
 <div class="w-14 h-14 bg-surface-container-lowest p-1 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
-<!-- Inline SVG QR Code Representation -->
-<svg class="w-full h-full text-primary" fill="currentColor" viewBox="0 0 24 24">
-<path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 10h8v8H2v-8zm2 2v4h4v-4H4zm10-14h8v8h-8V2zm2 2v4h4V4h-4zm2 8h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm-2 2h2v4h-2v-4zm-2 2h2v2h-2v-2zm4 2h2v2h-2v-2zm0-4h2v2h-2v-2z"></path>
-</svg>
+<span class="material-symbols-outlined text-primary text-[30px]">share</span>
 </div>
 <div>
-<span class="block font-label-md text-label-md text-surface-container-lowest font-semibold">Scan to View Mobile</span>
-<span class="font-label-sm text-label-sm text-on-primary-container">Optimized for iOS &amp; Android</span>
+<span class="block font-label-md text-label-md text-surface-container-lowest font-semibold">Share your portfolio</span>
+<span class="font-label-sm text-label-sm text-on-primary-container">Public access only when enabled</span>
 </div>
 </div>
 <button class="p-2 rounded-full bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-surface-container-lowest transition" onclick="switchViewMode('public')" title="Preview Public Site">
@@ -813,92 +824,50 @@
 <span class="material-symbols-outlined text-secondary">school</span>
 </div>
 <!-- University Card -->
-<div class="mb-space-lg">
+<div id="portfolio-academic-summary" class="mb-space-lg">
 <div class="flex items-start gap-space-sm mb-space-xs">
 <div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary font-bold shrink-0">
               UCC
             </div>
 <div>
-<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">University of Cape Coast</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Cape Coast, Central Region, Ghana</p>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">Academic programme</h4>
+<p id="portfolio-academic-programme" class="font-body-sm text-body-sm text-on-surface-variant"></p>
 </div>
 </div>
 <div class="mt-space-sm p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
 <div class="flex items-center justify-between">
-<span class="font-label-md text-label-md text-on-surface font-semibold">BSc in Computer Science</span>
-<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">First Class Track</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold" id="portfolio-academic-programme-detail"></span>
+<span id="portfolio-academic-level" class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold"></span>
 </div>
 <div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
-<span>Cumulative GPA: <strong class="text-secondary font-semibold">3.82 / 4.00</strong></span>
-<span>2022 — June 2026</span>
+<span id="portfolio-location"></span>
+<span id="portfolio-academic-year"></span>
 </div>
 </div>
 </div>
 <!-- Coursework Tags -->
-<div class="mb-space-lg">
-<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold mb-space-xs">Relevant Completed Coursework</h4>
-<div class="flex flex-wrap gap-1.5 font-label-sm text-label-sm">
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Data Structures &amp; Algorithms</span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Database Systems Design</span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">OOP (Java / C++)</span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Software Engineering</span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Discrete Mathematics</span>
-<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface">Computer Networks</span>
 </div>
-</div>
-<!-- Academic Milestones & Honors -->
-<div>
-<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold mb-space-sm">Honors &amp; Extracurriculars</h4>
-<div class="flex flex-col gap-space-sm">
-<div class="flex items-start gap-space-sm">
-<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">emoji_events</span>
-<div>
-<span class="font-label-md text-label-md text-on-surface block font-bold">Winner, UCC Department Innovation Hackathon 2024</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Awarded 1st place out of 28 collegiate teams for campus logistics optimization.</span>
-</div>
-</div>
-<div class="flex items-start gap-space-sm">
-<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">military_tech</span>
-<div>
-<span class="font-label-md text-label-md text-on-surface block font-bold">Dean's Honor Roll (2023, 2024)</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Recognized consistently for academic excellence in School of Physical Sciences.</span>
-</div>
-</div>
-<div class="flex items-start gap-space-sm">
-<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">groups</span>
-<div>
-<span class="font-label-md text-label-md text-on-surface block font-bold">Lead Peer Tutor for Computing Foundations</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Mentored 60+ Year 1 undergraduates in Python and introductory logic.</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- PORTFOLIO ACTIVITY & RECRUITER ENGAGEMENT STATS -->
+<!-- Portfolio summary -->
 <div class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm">
-<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight mb-space-sm">Profile Engagement Analytics</h3>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight mb-space-sm">Portfolio Summary</h3>
 <div class="grid grid-cols-2 gap-space-sm mb-space-md">
 <div class="p-space-md rounded-xl bg-surface-container-low">
-<span class="font-stat-counter text-stat-counter text-secondary block">142</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Employer Profile Views (30d)</span>
+<span id="portfolio-summary-project-count" class="font-stat-counter text-stat-counter text-secondary block">0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Projects</span>
 </div>
 <div class="p-space-md rounded-xl bg-surface-container-low">
-<span class="font-stat-counter text-stat-counter text-[#10b981] block">18</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Direct Demo Launches</span>
+<span id="portfolio-summary-skill-count" class="font-stat-counter text-stat-counter text-[#10b981] block">0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Skills</span>
 </div>
 <div class="p-space-md rounded-xl bg-surface-container-low">
-<span class="font-stat-counter text-stat-counter text-on-surface block">6</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Resume Downloads</span>
+<span id="portfolio-summary-certificate-count" class="font-stat-counter text-stat-counter text-on-surface block">0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Certificates</span>
 </div>
 <div class="p-space-md rounded-xl bg-surface-container-low">
-<span class="font-stat-counter text-stat-counter text-secondary-container block">3</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Interview Inquiries</span>
+<span id="portfolio-summary-visibility" class="font-stat-counter text-stat-counter text-secondary-container block">Private</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Visibility</span>
 </div>
 </div>
-<button class="w-full py-2.5 rounded-full bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition" onclick="downloadResumePDF()">
-<span class="material-symbols-outlined text-[18px]">description</span>
-          Download Compiled Resume (PDF)
-        </button>
 </div>
 </div>
 </div>
@@ -911,16 +880,11 @@
         </div>
 <div>
 <span class="font-headline-sm text-headline-sm text-on-surface font-bold" data-profile-name></span>
-<span class="text-outline font-label-sm text-label-sm block">UCC Candidate Profile • Verified by UCC SKILLSHUB</span>
+<span class="text-outline font-label-sm text-label-sm block">Public student portfolio</span>
 </div>
 </div>
 <div class="flex items-center gap-space-sm">
-<span class="hidden sm:inline-flex px-space-sm py-1 rounded-full bg-[#ecfdf5] text-[#047857] font-label-sm text-label-sm font-semibold">
-          Open to Summer 2025 Roles
-        </span>
-<button class="px-space-lg py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition" onclick="copyProfileEmail()">
-          Contact
-        </button>
+<div id="public-profile-links" data-portfolio-loading class="flex items-center gap-space-sm"></div>
 <button class="p-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant transition" onclick="switchViewMode('editor')" title="Return to Dashboard">
 <span class="material-symbols-outlined text-[18px]">close</span>
 </button>
@@ -930,30 +894,26 @@
 <div class="py-space-xl max-w-4xl mx-auto">
 <div class="text-center mb-space-2xl">
 <img data-profile-photo="" alt="" class="w-32 h-32 rounded-2xl mx-auto mb-space-md object-cover shadow-lg ring-4 ring-secondary-fixed">
-<h2 class="font-display-hero text-headline-xl text-on-surface font-extrabold mb-2">Prince Egah</h2>
-<p class="font-headline-md text-headline-md text-secondary font-semibold max-w-2xl mx-auto mb-space-sm">
-          Computer Science Undergraduate &amp; Data Analyst
-        </p>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
-          Passionate about building scalable web systems and transforming raw business records into interactive decision-making dashboards.
-        </p>
-<div class="flex items-center justify-center gap-space-sm mt-space-md">
-<a class="px-space-md py-2 rounded-full bg-secondary text-on-secondary font-label-md text-label-md" data-profile-email-link>Contact via University Email</a>
-<a class="px-space-md py-2 rounded-full bg-surface-container text-on-surface font-label-md text-label-md" href="https://github.com/prince-egah" target="_blank">GitHub Profile</a>
+<h2 id="public-full-name" class="font-display-hero text-headline-xl text-on-surface font-extrabold mb-2"></h2>
+<p id="public-headline" class="font-headline-md text-headline-md text-secondary font-semibold max-w-2xl mx-auto mb-space-sm"></p>
+<p id="public-academic-info" class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl mx-auto mb-space-sm"></p>
+<p id="public-biography" class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto"></p>
+<div id="public-social-links" data-portfolio-loading class="flex items-center justify-center gap-space-sm mt-space-md">
 </div>
 </div>
-<div class="p-space-lg rounded-2xl bg-surface-container-low mb-space-xl">
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-sm">Featured Capstone Spotlight</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
-          "Analyze University Survey Data &amp; Student Insights Dashboard" — Analyzed over 2,400 survey responses with custom DAX pipelines and reduced retention blindspots by 18%.
-        </p>
-<div class="flex gap-2">
-<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-label-sm font-label-sm">Power BI</span>
-<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-label-sm font-label-sm">Data Warehousing</span>
-<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-label-sm font-label-sm">SQL Server</span>
-</div>
-</div>
-<div class="text-center pt-space-lg">
+<section class="mb-space-xl">
+<h3 class="mb-space-md font-headline-md text-headline-md text-on-surface">Skills</h3>
+<div id="public-skills" data-portfolio-loading class="flex flex-wrap gap-space-sm"></div>
+</section>
+<section class="mb-space-xl">
+<h3 class="mb-space-md font-headline-md text-headline-md text-on-surface">Projects</h3>
+<div id="public-projects" data-portfolio-loading class="flex flex-col gap-space-lg"></div>
+</section>
+<section class="mb-space-xl">
+<h3 class="mb-space-md font-headline-md text-headline-md text-on-surface">Certificates</h3>
+<div id="public-certificates" data-portfolio-loading class="grid grid-cols-1 gap-space-md md:grid-cols-2"></div>
+</section>
+<div id="public-preview-footer" class="text-center pt-space-lg">
 <button class="text-secondary font-label-md text-label-md hover:underline inline-flex items-center gap-1" onclick="switchViewMode('editor')">
 <span class="material-symbols-outlined text-[16px]">arrow_back</span>
           Back to Dashboard Editor
@@ -1367,5 +1327,6 @@
 
 <script src="../skillshub-api.js"></script>
 <script src="../profile.js"></script>
+<script src="./portfolio.js"></script>
 <script src="../responsive.js"></script>
 </body></html>

@@ -15,6 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accounts.models import User
+from certificates.services import award_achievements, issue_course_certificate
 from accounts.storage import (
     SupabaseStorageError,
     create_signed_url,
@@ -47,6 +48,7 @@ from courses.serializers import (
     LessonDetailSerializer,
     LessonWriteSerializer,
 )
+from notifications.services import create_notification
 
 logger = logging.getLogger("courses")
 
@@ -240,6 +242,15 @@ class CourseEnrollmentView(APIView):
                 course=course, student=request.user
             )
             created = False
+        if created:
+            create_notification(
+                request.user,
+                title="Course enrollment confirmed",
+                message=f"You are enrolled in {course.title}.",
+                notification_type="enrollment_confirmation",
+                related_resource=enrollment,
+                target_url="/courses/my-courses/",
+            )
         code = status.HTTP_201_CREATED if created else status.HTTP_200_OK
         return Response(CourseEnrollmentSerializer(enrollment).data, status=code)
 
@@ -330,11 +341,17 @@ class CompleteLessonView(APIView):
         )
         now = timezone.now()
         with transaction.atomic():
-            LessonProgress.objects.update_or_create(
+            progress, created = LessonProgress.objects.get_or_create(
                 enrollment=enrollment,
                 lesson=lesson,
                 defaults={"is_completed": True, "completed_at": now},
             )
+            newly_completed = created
+            if not created and not progress.is_completed:
+                progress.is_completed = True
+                progress.completed_at = now
+                progress.save(update_fields=["is_completed", "completed_at"])
+                newly_completed = True
             enrollment.last_accessed_lesson = lesson
             enrollment.last_accessed_at = now
             total_lessons = Lesson.objects.filter(
@@ -354,6 +371,25 @@ class CompleteLessonView(APIView):
                     "completed_at",
                 ]
             )
+        if newly_completed:
+            create_notification(
+                request.user,
+                title="Learning progress updated",
+                message=f"You completed {lesson.title}.",
+                notification_type="learning_progress",
+                related_resource=progress,
+                target_url="/courses/my-courses/",
+            )
+        if enrollment.status == CourseEnrollment.Status.COMPLETED:
+            issue_course_certificate(enrollment)
+        award_achievements(
+            request.user,
+            event=(
+                "course_completed"
+                if enrollment.status == CourseEnrollment.Status.COMPLETED
+                else "lesson_completed"
+            ),
+        )
         return Response(
             CourseEnrollmentSerializer(enrollment).data,
             status=status.HTTP_200_OK,
