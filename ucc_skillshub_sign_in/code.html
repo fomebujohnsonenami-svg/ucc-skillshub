@@ -446,7 +446,7 @@
 <!-- BEGIN: InteractiveScripts -->
 <!-- Vanilla JavaScript for authentication feedback and API integration -->
 <script data-purpose="auth-interactions">
-    const API_BASE_URL = window.SKILLSHUB_API_BASE_URL || 'http://127.0.0.1:8000/api/v1';
+    const API_BASE_URL = window.SKILLSHUB_API_BASE_URL || ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://127.0.0.1:8000/api/v1' : '/api/v1');
 
     function getAuthValue(key) {
       return sessionStorage.getItem(key) || localStorage.getItem(key);

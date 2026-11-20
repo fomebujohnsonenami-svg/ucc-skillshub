@@ -15,7 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from config.frontend_views import frontend
 from certificates.views import certificate_verification_page
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -24,6 +25,7 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
+    path("", frontend, name="skillshub-landing"),
     path("admin/", admin.site.urls),
     path(
         "certificates/verify/<str:token>/",
@@ -49,4 +51,10 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+]
+
+# Keep legacy HTML page URLs and relative frontend asset requests working.
+# Route these last so the admin, API and certificate verification URLs win.
+urlpatterns += [
+    re_path(r"^(?P<resource>[^?]+)$", frontend, name="skillshub-frontend"),
 ]
