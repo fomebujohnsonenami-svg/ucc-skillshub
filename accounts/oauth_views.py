@@ -23,7 +23,7 @@ logger = logging.getLogger("accounts")
 
 
 class OAuthProvidersSerializer(serializers.Serializer):
-    google = serializers.BooleanField()
+    pass
 
 
 def _frontend_redirect(payload):
@@ -68,16 +68,7 @@ class OAuthProvidersView(APIView):
 
     @extend_schema(responses={200: OAuthProvidersSerializer})
     def get(self, request):
-        configured = bool(settings.BACKEND_URL and settings.FRONTEND_BASE_URL)
-        return Response(
-            {
-                SocialAccount.Provider.GOOGLE: bool(
-                    configured
-                    and settings.GOOGLE_CLIENT_ID
-                    and settings.GOOGLE_CLIENT_SECRET
-                )
-            }
-        )
+        return Response({})
 
 
 class OAuthCallbackView(APIView):

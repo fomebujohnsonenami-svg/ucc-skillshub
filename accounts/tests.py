@@ -314,67 +314,6 @@ class AuthenticationApiTests(TestCase):
         self.assertEqual(confirmed.status_code, status.HTTP_200_OK)
         self.assertEqual(self.login(email=user.email).status_code, status.HTTP_200_OK)
 
-    @override_settings(
-        GOOGLE_CLIENT_ID="google-client-id",
-        GOOGLE_CLIENT_SECRET="google-client-secret",
-        BACKEND_URL="https://api.example.test",
-        FRONTEND_BASE_URL="https://app.example.test/sign-in.html",
-    )
-    @patch("accounts.oauth._get_json")
-    @patch("accounts.oauth.jwt.decode")
-    @patch("accounts.oauth.jwt.PyJWKClient")
-    @patch("accounts.oauth._post_form")
-    def test_google_oauth_uses_one_time_pkce_state_and_creates_pending_user(
-        self, post_form, jwk_client, decode, get_json
-    ):
-        post_form.return_value = {"id_token": "signed-id-token", "access_token": "token"}
-        jwk_client.return_value.get_signing_key_from_jwt.return_value.key = "public-key"
-        get_json.return_value = {
-            "sub": "google-user-123",
-            "email": "new.student@example.com",
-            "email_verified": True,
-            "given_name": "Ama",
-            "family_name": "Mensah",
-        }
-
-        authorize = self.client.get("/api/v1/auth/oauth/google/")
-        self.assertEqual(authorize.status_code, 302)
-        query = parse_qs(urlparse(authorize["Location"]).query)
-        self.assertEqual(query["code_challenge_method"], ["S256"])
-        self.assertNotIn("code_verifier", query)
-        state = query["state"][0]
-        oauth_state = OAuthState.objects.get()
-        decode.return_value = {
-            "sub": "google-user-123",
-            "nonce": oauth_state.nonce,
-            "email": "new.student@example.com",
-        }
-
-        callback = self.client.get(
-            "/api/v1/auth/oauth/google/callback/",
-            {"code": "authorization-code", "state": state},
-        )
-        self.assertEqual(callback.status_code, 302)
-        self.assertIn("onboarding_token", callback["Location"])
-        user = User.objects.get(email="new.student@example.com")
-        self.assertEqual(
-            user.account_status, User.AccountStatus.PENDING_ROLE_SELECTION
-        )
-        self.assertTrue(
-            SocialAccount.objects.filter(
-                user=user,
-                provider=SocialAccount.Provider.GOOGLE,
-                provider_subject="google-user-123",
-            ).exists()
-        )
-        self.assertEqual(post_form.call_args.args[1]["code_verifier"], oauth_state.code_verifier)
-
-        replay = self.client.get(
-            "/api/v1/auth/oauth/google/callback/",
-            {"code": "authorization-code", "state": state},
-        )
-        self.assertIn("auth_error=", replay["Location"])
-
     def test_login_requires_student_email_verification_and_returns_tokens_after(self):
         self.register()
         self.assertEqual(self.login().status_code, status.HTTP_401_UNAUTHORIZED)

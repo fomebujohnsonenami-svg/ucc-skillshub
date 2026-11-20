@@ -31,29 +31,11 @@ class OAuthError(Exception):
     pass
 
 
-PROVIDERS = {
-    SocialAccount.Provider.GOOGLE: {
-        "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
-        "token_endpoint": "https://oauth2.googleapis.com/token",
-        "userinfo_endpoint": "https://openidconnect.googleapis.com/v1/userinfo",
-        "jwks_endpoint": "https://www.googleapis.com/oauth2/v3/certs",
-        "issuer": ["https://accounts.google.com", "accounts.google.com"],
-        "scope": "openid email profile",
-    },
-}
+PROVIDERS = {}
 
 
 def _client_credentials(provider):
-    if provider == SocialAccount.Provider.GOOGLE:
-        client_id = settings.GOOGLE_CLIENT_ID
-        client_secret = settings.GOOGLE_CLIENT_SECRET
-    else:
-        raise OAuthError("Unsupported identity provider.")
-    if not client_id or not client_secret:
-        raise OAuthError("This identity provider is not configured.")
-    if not settings.BACKEND_URL or not settings.FRONTEND_BASE_URL:
-        raise OAuthError("The OAuth callback URLs are not configured.")
-    return client_id, client_secret
+    raise OAuthError("Unsupported identity provider.")
 
 
 def _callback_uri(provider):
