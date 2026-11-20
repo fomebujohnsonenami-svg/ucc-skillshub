@@ -1,0 +1,92 @@
+name: Supabase Django migrations (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Review migration plan or apply migrations"
+        required: true
+        type: choice
+        options:
+          - plan
+          - apply
+        default: plan
+      confirmation:
+        description: "For apply only, type MIGRATE-PRODUCTION to confirm the target is production"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-production-migrations
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    name: Django migration ${{ inputs.action }}
+    if: ${{ inputs.action == 'plan' || (inputs.action == 'apply' && inputs.confirmation == 'MIGRATE-PRODUCTION') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+      DATABASE_CONN_MAX_AGE: "0"
+      DATABASE_USE_TRANSACTION_POOLER: "False"
+    steps:
+      - name: Checkout application
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Validate connection settings without printing secrets
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          import secrets
+          from urllib.parse import urlsplit
+          url = os.environ.get("DATABASE_URL", "")
+          if not url:
+              raise SystemExit("SUPABASE_DATABASE_URL GitHub Actions secret is missing. Add it under Settings > Secrets and variables > Actions.")
+          try:
+              parts = urlsplit(url)
+              valid = (parts.scheme in ("postgres", "postgresql") and
+                       bool(parts.username) and bool(parts.password) and
+                       parts.hostname is not None and
+                       (parts.hostname.endswith(".supabase.com") or parts.hostname.endswith(".supabase.co")) and
+                       parts.path == "/postgres")
+          except ValueError:
+              valid = False
+          if not valid:
+              raise SystemExit("Invalid Supabase PostgreSQL URL. Copy the Session pooler URI from Supabase > Connect (password URL-encoded when necessary).")
+          print("Supabase connection URL format looks valid; credentials are not printed.")
+          if not os.environ.get("DJANGO_SECRET_KEY"):
+              with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as f:
+                  f.write("DJANGO_SECRET_KEY=" + secrets.token_urlsafe(64) + "\n")
+              print("Using an ephemeral secret key for this one-off migration run.")
+          PY
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Check Django configuration
+        run: python manage.py check
+
+      - name: Print migration plan
+        run: python manage.py migrate --plan
+
+      - name: Apply migrations (only when explicitly confirmed)
+        if: ${{ inputs.action == 'apply' && inputs.confirmation == 'MIGRATE-PRODUCTION' }}
+        run: python manage.py migrate --noinput
+
+      - name: Verify applied migrations
+        if: ${{ inputs.action == 'apply' && inputs.confirmation == 'MIGRATE-PRODUCTION' }}
+        run: python manage.py showmigrations accounts courses
