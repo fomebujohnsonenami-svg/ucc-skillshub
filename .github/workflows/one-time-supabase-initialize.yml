@@ -1,0 +1,62 @@
+name: One-time UCC Skillshub Supabase migration
+
+# This temporary workflow only executes when THIS file is introduced on main.
+# Remove the file after completing the initial migration.
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/one-time-supabase-initialize.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-production-migrations
+  cancel-in-progress: false
+
+jobs:
+  initialize:
+    name: Apply initial migrations to production Supabase
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL }}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DJANGO_DEBUG: "False"
+      DATABASE_CONN_MAX_AGE: "0"
+      DATABASE_USE_TRANSACTION_POOLER: "False"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Validate intended Supabase connection (never print credentials)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os, secrets
+          from urllib.parse import urlsplit
+          url = os.getenv("DATABASE_URL", "")
+          parts = urlsplit(url)
+          if not (parts.scheme in ("postgresql", "postgres") and
+                  parts.username and parts.password and parts.hostname and
+                  (parts.hostname.endswith(".supabase.com") or parts.hostname.endswith(".supabase.co")) and
+                  parts.path == "/postgres"):
+              raise SystemExit("SUPABASE_DATABASE_URL is missing or is not a valid Supabase PostgreSQL URI.")
+          if not os.getenv("DJANGO_SECRET_KEY"):
+              with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+                  env.write("DJANGO_SECRET_KEY=" + secrets.token_urlsafe(64) + "\n")
+          print("Verified Supabase URI structure; secrets were not logged.")
+          PY
+      - name: Install application dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Check Django
+        run: python manage.py check
+      - name: Review plan
+        run: python manage.py migrate --plan
+      - name: Apply schema
+        run: python manage.py migrate --noinput
+      - name: Verify applied migrations
+        run: python manage.py showmigrations accounts courses
