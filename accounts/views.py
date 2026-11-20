@@ -134,7 +134,7 @@ class RoleSelectionView(APIView):
                     lecturer_profile=data.get("lecturer_profile"),
                     employer_profile=data.get("employer_profile"),
                 )
-         except ValueError as exc:
+        except ValueError as exc:
             raise serializers.ValidationError(
                 {"onboarding_token": str(exc)}
             ) from exc
