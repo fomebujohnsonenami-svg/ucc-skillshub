@@ -134,8 +134,6 @@ class RoleSelectionView(APIView):
                     lecturer_profile=data.get("lecturer_profile"),
                     employer_profile=data.get("employer_profile"),
                 )
-                if user.role == User.Role.STUDENT:
-                    send_student_verification_code(user)
         except ValueError as exc:
             raise serializers.ValidationError(
                 {"onboarding_token": str(exc)}
@@ -157,24 +155,27 @@ class RoleSelectionView(APIView):
             )
 
         if user.role == User.Role.STUDENT:
-            message = (
-                "A six-digit verification code was sent to your UCC student email."
-            )
-        else:
-            message = (
-                "Your request is pending administrator approval. "
-                "You can sign in after approval."
-            )
-        return Response(
-            {
-                "message": message,
+            # Return tokens so the registration flow can enter the dashboard
+            # without requesting an email verification code.
+            refresh = RefreshToken.for_user(user)
+            response_data = {
+                "message": "Your student account is ready.",
                 "status": user.account_status,
-                "onboarding_token": create_onboarding_token(user)
-                if user.role == User.Role.STUDENT
-                else None,
-            },
-            status=status.HTTP_200_OK,
-        )
+                "onboarding_token": None,
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "user": UserSerializer(user).data,
+            }
+        else:
+            response_data = {
+                "message": (
+                    "Your request is pending administrator approval. "
+                    "You can sign in after approval."
+                ),
+                "status": user.account_status,
+                "onboarding_token": None,
+            }
+        return Response(response_data, status=status.HTTP_200_OK)
 
 
 class StudentVerificationResendView(APIView):
@@ -694,11 +695,6 @@ class AdministratorAccountStatusView(APIView):
             if not user.role:
                 return Response(
                     {"detail": "Complete role selection before activating this account."},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            if user.role == User.Role.STUDENT and not user.student_email_verified:
-                return Response(
-                    {"detail": "The student email must be verified before activation."},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             if user.role in {User.Role.FACILITATOR, User.Role.RECRUITER} and not (

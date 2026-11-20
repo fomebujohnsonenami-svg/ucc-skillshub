@@ -18,11 +18,7 @@ class HasRole(BasePermission):
 class IsStudent(HasRole):
     allowed_role = User.Role.STUDENT
 
-    def has_permission(self, request, view):
-        return bool(
-            super().has_permission(request, view)
-            and request.user.student_email_verified
-        )
+    # Student access is based on the active student role, not email verification.
 
 
 class IsLecturer(HasRole):

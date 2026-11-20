@@ -90,6 +90,9 @@ class RoleSelectionResponseSerializer(serializers.Serializer):
     message = serializers.CharField()
     status = serializers.CharField()
     onboarding_token = serializers.CharField(allow_null=True)
+    access = serializers.CharField(required=False)
+    refresh = serializers.CharField(required=False)
+    user = UserSerializer(required=False)
 
 
 class StudentVerificationStartResponseSerializer(serializers.Serializer):
@@ -175,11 +178,7 @@ class RoleSelectionSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         role = attrs["role"]
-        if role == User.Role.STUDENT:
-            if not attrs.get("student_email"):
-                raise serializers.ValidationError(
-                    {"student_email": "An official @ucc.edu.gh student email is required."}
-                )
+        if role == User.Role.STUDENT and attrs.get("student_email"):
             if User.objects.filter(
                 student_email__iexact=attrs["student_email"]
             ).exists():

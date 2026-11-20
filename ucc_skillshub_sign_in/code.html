@@ -218,9 +218,6 @@
 <p class="text-xs text-slate-600 mt-2">
               New to UCC SKILLSHUB? Start building real-world skills that take you beyond your degree.
             </p>
-<p class="mt-2 text-xs">
-<a class="font-semibold text-brand-600 hover:text-brand-700 hover:underline" href="#verify-student" onclick="openLegacyVerificationDialog(event)">Already have a student account? Verify your UCC email.</a>
-</p>
 </div>
 </div>
 </div>
@@ -395,11 +392,7 @@
 </select>
 </div>
 <div class="hidden space-y-4 rounded-xl bg-slate-50 p-4" id="studentRoleFields">
-<p class="text-sm text-slate-600">Students must verify an official UCC student email ending exactly in <strong>@ucc.edu.gh</strong>.</p>
-<div>
-<label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-700" for="studentEmail">UCC student email</label>
-<input autocomplete="email" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-brand-500 focus:ring-2 focus:ring-brand-500" id="studentEmail" placeholder="name@ucc.edu.gh" type="email">
-</div>
+<p class="text-sm text-slate-600">Choose your programme to personalize your learning experience.</p>
 <div>
 <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-700" for="studentProgramme">Academic programme</label>
 <input class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-brand-500 focus:ring-2 focus:ring-brand-500" id="studentProgramme">
@@ -635,7 +628,6 @@
       studentFields.classList.toggle('hidden', role !== 'student');
       facilitatorFields.classList.toggle('hidden', role !== 'facilitator');
       recruiterFields.classList.toggle('hidden', role !== 'recruiter');
-      document.getElementById('studentEmail').required = role === 'student';
       document.getElementById('recruiterOrganization').required = role === 'recruiter';
     }
 
@@ -705,7 +697,6 @@
         role,
       };
       if (role === 'student') {
-        payload.student_email = document.getElementById('studentEmail').value.trim();
         payload.student_profile = {};
         const programme = document.getElementById('studentProgramme').value.trim();
         if (programme) payload.student_profile.academic_programme = programme;
@@ -723,12 +714,11 @@
           method: 'POST',
           body: JSON.stringify(payload),
         }, false);
-        if (response.onboarding_token) {
-          sessionStorage.setItem('skillshubOnboardingToken', response.onboarding_token);
-          setRegistrationStage('verify');
-          setRegistrationMessage(response.message, 'success');
+        sessionStorage.removeItem('skillshubOnboardingToken');
+        if (role === 'student' && response.access && response.refresh) {
+          document.getElementById('registrationDialog').close();
+          await completeOAuthLogin(response.access, response.refresh);
         } else {
-          sessionStorage.removeItem('skillshubOnboardingToken');
           setRegistrationStage('approval');
           setRegistrationMessage(response.message, 'info');
         }

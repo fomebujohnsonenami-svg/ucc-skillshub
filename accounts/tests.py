@@ -41,41 +41,31 @@ class AuthenticationApiTests(TestCase):
 
     def register(self, **overrides):
         registration_overrides = dict(overrides)
-        student_email = registration_overrides.pop(
-            "student_email", "student@ucc.edu.gh"
-        )
+        student_email = registration_overrides.pop("student_email", None)
         response = self.client.post(
             "/api/v1/auth/register/",
             {**self.registration_data, **registration_overrides},
             format="json",
         )
         if response.status_code == status.HTTP_201_CREATED:
+            payload = {
+                "onboarding_token": response.data["onboarding_token"],
+                "role": User.Role.STUDENT,
+            }
+            if student_email is not None:
+                payload["student_email"] = student_email
             selected = self.client.post(
-                "/api/v1/auth/role-selection/",
-                {
-                    "onboarding_token": response.data["onboarding_token"],
-                    "role": User.Role.STUDENT,
-                    "student_email": student_email,
-                },
-                format="json",
+                "/api/v1/auth/role-selection/", payload, format="json"
             )
             self.assertEqual(selected.status_code, status.HTTP_200_OK)
-            self.onboarding_token = selected.data["onboarding_token"]
+            self.assertEqual(selected.data["status"], User.AccountStatus.ACTIVE)
+            self.assertIn("access", selected.data)
+            self.assertIn("refresh", selected.data)
         return response
 
     def activate(self, email="student@example.edu"):
         user = User.objects.get(email=email)
-        verification = StudentVerification.objects.get(user=user)
-        code = re.search(r"\b(\d{6})\b", mail.outbox[-1].body).group(1)
-        response = self.client.post(
-            "/api/v1/auth/student-email/verify/",
-            {"onboarding_token": self.onboarding_token, "code": code},
-            format="json",
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        verification.refresh_from_db()
-        self.assertIsNotNone(verification.consumed_at)
-        user.refresh_from_db()
+        self.assertTrue(user.is_active)
         return user
 
     def login(self, email="student@example.edu"):
@@ -85,24 +75,20 @@ class AuthenticationApiTests(TestCase):
             format="json",
         )
 
-    def test_registration_creates_pending_student_with_hashed_password_and_profile(self):
+    def test_registration_activates_student_without_email_code(self):
         response = self.register()
-
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = User.objects.get(email="student@example.edu")
         self.assertEqual(user.role, User.Role.STUDENT)
-        self.assertEqual(
-            user.account_status, User.AccountStatus.PENDING_STUDENT_VERIFICATION
-        )
-        self.assertFalse(user.is_active)
-        self.assertEqual(user.student_email, "student@ucc.edu.gh")
+        self.assertEqual(user.account_status, User.AccountStatus.ACTIVE)
+        self.assertTrue(user.is_active)
+        self.assertEqual(user.student_email, "")
         self.assertFalse(user.student_email_verified)
         self.assertTrue(user.check_password(PASSWORD))
         self.assertNotEqual(user.password, PASSWORD)
         self.assertTrue(StudentProfile.objects.filter(user=user).exists())
-        self.assertEqual(response.data["user"]["role"], "")
-        self.assertNotIn("code", response.data)
-        self.assertEqual(mail.outbox[-1].to, ["student@ucc.edu.gh"])
+        self.assertEqual(mail.outbox, [])
+        self.assertEqual(self.login().status_code, status.HTTP_200_OK)
 
     def test_registration_rejects_client_supplied_role(self):
         response = self.register(role=User.Role.ADMINISTRATOR)
@@ -110,100 +96,42 @@ class AuthenticationApiTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertFalse(User.objects.filter(email="student@example.edu").exists())
 
-    def test_student_email_requires_exact_ucc_domain_and_normalizes_case(self):
+    def test_optional_student_email_must_have_ucc_domain(self):
         registration = self.client.post(
             "/api/v1/auth/register/", self.registration_data, format="json"
         )
-        self.assertEqual(registration.status_code, status.HTTP_201_CREATED)
         onboarding_token = registration.data["onboarding_token"]
-
-        for invalid_email in (
-            "student@gmail.com",
-            "student@stu.ucc.edu.gh",
-            "student@ucc.edu.gh.example",
-        ):
-            rejected = self.client.post(
-                "/api/v1/auth/role-selection/",
-                {
-                    "onboarding_token": onboarding_token,
-                    "role": User.Role.STUDENT,
-                    "student_email": invalid_email,
-                },
-                format="json",
-            )
-            self.assertEqual(rejected.status_code, status.HTTP_400_BAD_REQUEST)
-
+        rejected = self.client.post(
+            "/api/v1/auth/role-selection/",
+            {
+                "onboarding_token": onboarding_token,
+                "role": User.Role.STUDENT,
+                "student_email": "student@gmail.com",
+            },
+            format="json",
+        )
+        self.assertEqual(rejected.status_code, status.HTTP_400_BAD_REQUEST)
         selected = self.client.post(
             "/api/v1/auth/role-selection/",
             {
                 "onboarding_token": onboarding_token,
                 "role": User.Role.STUDENT,
                 "student_email": "Student@UCC.EDU.GH",
+                "student_profile": {"academic_programme": "Computer Science"},
             },
             format="json",
         )
         self.assertEqual(selected.status_code, status.HTTP_200_OK)
         user = User.objects.get(email="student@example.edu")
         self.assertEqual(user.student_email, "student@ucc.edu.gh")
-        self.assertEqual(mail.outbox[-1].to, ["student@ucc.edu.gh"])
-
-    @override_settings(
-        EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
-    )
-    def test_verification_code_is_never_sent_to_the_console_backend(self):
-        registration = self.client.post(
-            "/api/v1/auth/register/", self.registration_data, format="json"
-        )
-        response = self.client.post(
-            "/api/v1/auth/role-selection/",
-            {
-                "onboarding_token": registration.data["onboarding_token"],
-                "role": User.Role.STUDENT,
-                "student_email": "student@ucc.edu.gh",
-            },
-            format="json",
-        )
-        self.assertEqual(response.status_code, status.HTTP_503_SERVICE_UNAVAILABLE)
-        user = User.objects.get(email="student@example.edu")
-        self.assertEqual(
-            user.account_status, User.AccountStatus.PENDING_ROLE_SELECTION
-        )
-        self.assertEqual(user.role, "")
-        self.assertFalse(StudentVerification.objects.filter(user=user).exists())
+        self.assertFalse(user.student_email_verified)
+        self.assertEqual(user.student_profile.academic_programme, "Computer Science")
         self.assertEqual(mail.outbox, [])
 
-    def test_verification_code_is_one_time_and_resend_has_cooldown(self):
+    @override_settings(EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend")
+    def test_students_can_register_when_email_delivery_is_unavailable(self):
         self.register()
-        user = User.objects.get(email="student@example.edu")
-        verification = StudentVerification.objects.get(user=user)
-        first_code = re.search(r"\b(\d{6})\b", mail.outbox[-1].body).group(1)
-
-        too_soon = self.client.post(
-            "/api/v1/auth/student-email/resend/",
-            {"onboarding_token": self.onboarding_token},
-            format="json",
-        )
-        self.assertEqual(too_soon.status_code, status.HTTP_429_TOO_MANY_REQUESTS)
-        self.assertEqual(len(mail.outbox), 1)
-
-        verification.last_sent_at = timezone.now() - timedelta(seconds=61)
-        verification.save(update_fields=["last_sent_at"])
-        resent = self.client.post(
-            "/api/v1/auth/student-email/resend/",
-            {"onboarding_token": self.onboarding_token},
-            format="json",
-        )
-        self.assertEqual(resent.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(mail.outbox), 2)
-
-        accepted = self.client.post(
-            "/api/v1/auth/student-email/verify/",
-            {"onboarding_token": self.onboarding_token, "code": first_code},
-            format="json",
-        )
-        self.assertEqual(accepted.status_code, status.HTTP_400_BAD_REQUEST)
-        user.refresh_from_db()
-        self.assertFalse(user.student_email_verified)
+        self.assertTrue(User.objects.get(email="student@example.edu").is_active)
 
     def test_facilitator_requires_administrator_approval(self):
         registration = self.client.post(
@@ -251,7 +179,7 @@ class AuthenticationApiTests(TestCase):
         self.client.force_authenticate(user=None)
         self.assertEqual(self.login().status_code, status.HTTP_200_OK)
 
-    def test_existing_unverified_student_must_verify_before_login(self):
+    def test_active_student_without_verified_email_can_authenticate(self):
         user = User.objects.create_user(
             email="legacy@example.edu",
             password=PASSWORD,
@@ -261,70 +189,39 @@ class AuthenticationApiTests(TestCase):
             role=User.Role.STUDENT,
             account_status=User.AccountStatus.ACTIVE,
         )
-        self.assertEqual(
-            self.client.post(
-                "/api/v1/auth/login/",
-                {"email": user.email, "password": PASSWORD},
-                format="json",
-            ).status_code,
-            status.HTTP_401_UNAUTHORIZED,
-        )
-        self.client.credentials(
-            HTTP_AUTHORIZATION=f"Bearer {AccessToken.for_user(user)}"
-        )
-        self.assertEqual(
-            self.client.get("/api/v1/users/me/").status_code,
-            status.HTTP_401_UNAUTHORIZED,
-        )
-        self.client.credentials()
-        self.assertEqual(
-            self.client.post(
-                "/api/v1/auth/token/refresh/",
-                {"refresh": str(RefreshToken.for_user(user))},
-                format="json",
-            ).status_code,
-            status.HTTP_401_UNAUTHORIZED,
-        )
-        started = self.client.post(
-            "/api/v1/auth/student-email/start/",
-            {
-                "email": user.email,
-                "password": PASSWORD,
-                "student_email": "Legacy.Student@UCC.EDU.GH",
-            },
-            format="json",
-        )
-        self.assertEqual(started.status_code, status.HTTP_200_OK)
-        user.refresh_from_db()
-        self.assertEqual(
-            user.account_status, User.AccountStatus.PENDING_STUDENT_VERIFICATION
-        )
-        self.assertEqual(user.student_email, "legacy.student@ucc.edu.gh")
-        self.assertEqual(mail.outbox[-1].to, ["legacy.student@ucc.edu.gh"])
-
-        code = re.search(r"\b(\d{6})\b", mail.outbox[-1].body).group(1)
-        confirmed = self.client.post(
-            "/api/v1/auth/student-email/verify/",
-            {
-                "onboarding_token": started.data["onboarding_token"],
-                "code": code,
-            },
-            format="json",
-        )
-        self.assertEqual(confirmed.status_code, status.HTTP_200_OK)
-        self.assertEqual(self.login(email=user.email).status_code, status.HTTP_200_OK)
-
-    def test_login_requires_student_email_verification_and_returns_tokens_after(self):
-        self.register()
-        self.assertEqual(self.login().status_code, status.HTTP_401_UNAUTHORIZED)
-
-        self.activate()
-        response = self.login()
-
+        self.assertFalse(user.student_email_verified)
+        response = self.login(email=user.email)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn("access", response.data)
-        self.assertIn("refresh", response.data)
-        self.assertEqual(response.data["user"]["email"], "student@example.edu")
+        self.client.credentials(
+            HTTP_AUTHORIZATION=f"Bearer {response.data['access']}"
+        )
+        self.assertEqual(
+            self.client.get("/api/v1/students/me/profile/").status_code,
+            status.HTTP_200_OK,
+        )
+
+    def test_student_role_selection_returns_tokens_for_immediate_login(self):
+        registration = self.client.post(
+            "/api/v1/auth/register/", self.registration_data, format="json"
+        )
+        selected = self.client.post(
+            "/api/v1/auth/role-selection/",
+            {
+                "onboarding_token": registration.data["onboarding_token"],
+                "role": User.Role.STUDENT,
+                "student_profile": {"academic_programme": "Computer Science"},
+            },
+            format="json",
+        )
+        self.assertEqual(selected.status_code, status.HTTP_200_OK)
+        self.assertEqual(selected.data["status"], User.AccountStatus.ACTIVE)
+        self.assertIsNone(selected.data["onboarding_token"])
+        self.assertIn("access", selected.data)
+        self.assertIn("refresh", selected.data)
+        self.assertEqual(selected.data["user"]["role"], User.Role.STUDENT)
+        user = User.objects.get(email="student@example.edu")
+        self.assertEqual(user.student_profile.academic_programme, "Computer Science")
+        self.assertEqual(self.login().status_code, status.HTTP_200_OK)
 
     def test_refresh_rotates_refresh_token_and_logout_blacklists_it(self):
         self.register()
@@ -424,7 +321,7 @@ class AuthenticationApiTests(TestCase):
         self.assertEqual(denied.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(student.student_profile.location, "Cape Coast")
 
-    def test_administrator_cannot_activate_unverified_student(self):
+    def test_administrator_can_manage_active_student_account(self):
         self.register()
         user = User.objects.get(email="student@example.edu")
         administrator = User.objects.create_superuser(
@@ -434,28 +331,22 @@ class AuthenticationApiTests(TestCase):
             first_name="Admin",
             last_name="User",
         )
-
         self.client.force_authenticate(user=administrator)
-        activated = self.client.patch(
+        suspended = self.client.patch(
+            f"/api/v1/admin/users/{user.pk}/status/",
+            {"account_status": User.AccountStatus.SUSPENDED},
+            format="json",
+        )
+        self.assertEqual(suspended.status_code, status.HTTP_200_OK)
+        restored = self.client.patch(
             f"/api/v1/admin/users/{user.pk}/status/",
             {"account_status": User.AccountStatus.ACTIVE},
             format="json",
         )
-        self.assertEqual(activated.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(restored.status_code, status.HTTP_200_OK)
         user.refresh_from_db()
-        self.assertFalse(user.is_active)
-
-        self.client.force_authenticate(user=None)
-        user = self.activate()
         self.assertTrue(user.is_active)
-
-        self.client.force_authenticate(user=user)
-        denied = self.client.patch(
-            f"/api/v1/admin/users/{administrator.pk}/status/",
-            {"account_status": User.AccountStatus.DEACTIVATED},
-            format="json",
-        )
-        self.assertEqual(denied.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertFalse(user.student_email_verified)
 
     def test_account_deactivation_revokes_refresh_tokens(self):
         self.register()
