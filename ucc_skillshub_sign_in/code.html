@@ -903,6 +903,11 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      // Landing page Get Started buttons link here with #register.
+      if (window.location.hash === '#register') {
+        openRegistrationDialog();
+        return;
+      }
       const resetParams = window.location.hash.split('?')[1] || '';
       const params = new URLSearchParams(resetParams);
       const uid = params.get('uid');

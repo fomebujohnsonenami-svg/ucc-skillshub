@@ -46,3 +46,15 @@ class FrontendDeploymentTests(SimpleTestCase):
         self.assertIn(b"window.location.assign(DASHBOARD_PATH)", response.content)
         self.assertIn(b"async function completeOAuthLogin(", response.content)
         self.assertIn(b"saveAuthenticatedUser(response.access, response.refresh", response.content)
+
+    def test_landing_auth_buttons_link_to_real_pages(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(b'href="#login"', response.content)
+        self.assertNotIn(b'href="#get-started"', response.content)
+        self.assertIn(b'href="/ucc_skillshub_sign_in/code.html"', response.content)
+        self.assertIn(b'href="/ucc_skillshub_sign_in/code.html#register"', response.content)
+
+    def test_registration_hash_opens_dialog(self):
+        response = self.client.get("/ucc_skillshub_sign_in/code.html")
+        self.assertContains(response, "window.location.hash === '#register'")
