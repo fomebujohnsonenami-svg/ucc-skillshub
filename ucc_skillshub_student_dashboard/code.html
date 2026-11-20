@@ -60,6 +60,48 @@
     }
   </style>
 <link href="../responsive.css" rel="stylesheet">
+
+<style data-purpose="live-student-dashboard-responsive-fix">
+/* The original lg:col-span layout activates at 1024px, too early with a 256px sidebar. */
+body > div.flex-1 { min-width:0; width:0; flex:1 1 0%; }
+[data-purpose="header"] { gap:1rem; min-width:0; }
+[data-purpose="header"] > * { min-width:0; }
+main:has([data-purpose="center-feed"]) { min-width:0; width:100%; align-content:start; }
+[data-purpose="center-feed"],[data-purpose="right-panel"],main > aside { min-width:0; }
+[data-purpose="welcome-banner"] { width:100%; min-width:0; }
+[data-purpose="welcome-banner"] > .relative { min-width:0; }
+[data-purpose="welcome-banner"] .max-w-md { min-width:0; }
+[data-purpose="bottom-encouragement"] { min-width:0; }
+@media (max-width:1499.98px) {
+  main:has([data-purpose="center-feed"]) { grid-template-columns:minmax(0,1fr) !important; }
+  main > [data-purpose="center-feed"],main > aside { grid-column:1 / -1 !important; }
+  [data-purpose="welcome-banner"] .hidden.md\\:block { display:none !important; }
+}
+@media (min-width:1500px) {
+  main:has([data-purpose="center-feed"]) { grid-template-columns:repeat(12,minmax(0,1fr)); }
+  main > [data-purpose="center-feed"] { grid-column:span 8 / span 8; }
+  main > aside { grid-column:span 4 / span 4; }
+}
+@media (max-width:1023.98px) {
+  [data-purpose="header"] { padding:1rem 1rem 1rem 4rem !important; }
+  main:has([data-purpose="center-feed"]) { padding:1rem !important; gap:1rem !important; }
+  [data-purpose="welcome-banner"] { padding:1.5rem !important; }
+  [data-purpose="welcome-banner"] > .relative { flex-direction:column; }
+  [data-purpose="welcome-banner"] .max-w-md { max-width:100%; }
+  [data-purpose="bottom-encouragement"] { flex-direction:column !important; align-items:stretch !important; }
+  [data-purpose="bottom-encouragement"] > button { align-self:flex-start; }
+}
+@media (max-width:639.98px) {
+  [data-purpose="header"] .responsive-profile-name { display:none; }
+  [data-purpose="header"] .max-w-xl { max-width:100%; }
+  [data-purpose="quick-metrics"] { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  [data-purpose="welcome-banner"] h1 { font-size:clamp(1.5rem,7vw,2rem); }
+}
+@media (max-width:399.98px) {
+  [data-purpose="quick-metrics"] { grid-template-columns:minmax(0,1fr); }
+  [data-purpose="welcome-banner"] { padding:1.25rem !important; }
+}
+</style>
 </head>
 <body class="min-h-screen bg-[#F0F3F8] text-slate-800 antialiased flex overflow-x-hidden">
 <!-- BEGIN: LeftSidebar -->
@@ -87,49 +129,49 @@
 <!-- Main Navigation Menu -->
 <nav class="space-y-1.5" data-purpose="main-navigation">
 <!-- Dashboard (Active) -->
-<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F38DF] text-white font-semibold text-sm shadow-md shadow-indigo-900/30 transition-all" href="#">
+<a class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-[#4F38DF] text-white font-semibold text-sm shadow-md shadow-indigo-900/30 transition-all" href="./code.html">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
 <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
           Dashboard
         </a>
 <!-- Courses -->
-<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="#">
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="../ucc_skillshub_courses_catalogue/code.html">
 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
           Courses
         </a>
 <!-- Skill Pathways -->
-<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="#">
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="../skillbridge_skill_pathways_career_roadmaps/code.html">
 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
           Skill Pathways
         </a>
 <!-- Projects -->
-<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="#">
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="../skillbridge_practical_projects/code.html">
 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
           Projects
         </a>
 <!-- Certificates -->
-<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="#">
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="../skillbridge_student_portfolio/code.html">
 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
           Certificates
         </a>
 <!-- Portfolio -->
-<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="#">
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="../skillbridge_opportunities_career_discovery/code.html">
 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
           Portfolio
         </a>
 <!-- Opportunities -->
-<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="#">
+<a class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" href="../skillbridge_student_analytics_learning_progress/code.html">
 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
 <path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
@@ -228,9 +270,7 @@
                 Continue building your skills and unlocking new opportunities at the University.
               </p>
 <div class="pt-2">
-<button class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-slate-900 font-bold text-sm shadow hover:bg-slate-50 active:scale-95 transition-all">
-                  Explore Courses
-                  <svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<button type="button" onclick="window.location.href='../ucc_skillshub_courses_catalogue/code.html'" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-slate-900 font-bold text-sm shadow hover:bg-slate-50 active:scale-95 transition-all">Explore Courses<svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
 <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
 </svg>
 </button>
@@ -470,9 +510,7 @@
 </div>
 <p class="text-sm font-bold text-slate-800">Your future is brighter with new skills. Keep going!</p>
 </div>
-<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4F38DF] hover:bg-[#4338CA] text-white text-xs font-bold shadow-md shadow-indigo-300 transition-all flex-shrink-0">
-            Explore More Skills →
-          </button>
+<button type="button" onclick="window.location.href='../ucc_skillshub_courses_catalogue/code.html'" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4F38DF] hover:bg-[#4338CA] text-white text-xs font-bold shadow-md shadow-indigo-300 transition-all flex-shrink-0">Explore More Skills →</button>
 </div>
 <!-- END: MotivatingBottomBanner -->
 </section>
