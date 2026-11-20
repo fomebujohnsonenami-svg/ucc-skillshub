@@ -8,6 +8,7 @@ class FrontendDeploymentTests(SimpleTestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"UCC SKILLSHUB", response.content)
+        self.assertIn(b"/skillbridge_public_landing_page/assets/ucc-students-learning.jpg", response.content)
 
     def test_existing_sign_in_page_is_preserved(self):
         response = self.client.get("/ucc_skillshub_sign_in/code.html")
@@ -31,6 +32,7 @@ class FrontendDeploymentTests(SimpleTestCase):
     def test_frontend_assets_are_served_directly(self):
         for path, mime in (
             ("/responsive.css", "text/css"),
+            ("/skillbridge_public_landing_page/assets/ucc-students-learning.jpg", "image/jpeg"),
             ("/skillbridge_public_landing_page/assets/ucc-students-computer-lab.png", "image/png"),
         ):
             with self.subTest(path=path):
