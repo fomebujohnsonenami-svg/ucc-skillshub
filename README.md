@@ -28,10 +28,9 @@ Django REST Framework API foundation for UCC SKILLSHUB. The existing HTML fronte
 
 Configure SMTP (`DEFAULT_FROM_EMAIL`, `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, and TLS settings) before production use; verification codes are sent only to the supplied UCC student email and are never returned by the API or logged. Set `FRONTEND_URL` to the existing sign-in page. The existing sign-in page provides registration, role selection, student verification, legacy account verification, and password reset without replacing its design.
 
-Google and LinkedIn sign-in are enabled only when the corresponding client ID and secret are configured. Register these exact callback URLs with the providers:
+Google sign-in is enabled only when its client ID and secret are configured. Register this exact callback URL with Google:
 
 - `https://<your-api-host>/api/v1/auth/oauth/google/callback/`
-- `https://<your-api-host>/api/v1/auth/oauth/linkedin/callback/`
 
 Set `BACKEND_URL` to the API origin and `FRONTEND_URL` to the sign-in page URL. OAuth uses server-side code exchange, signed identity tokens, nonce/state validation, and PKCE. Provider credentials remain on the Django server.
 
@@ -52,7 +51,7 @@ Set `BACKEND_URL` to the API origin and `FRONTEND_URL` to the sign-in page URL. 
 - Password reset requests return the same response whether or not an active email exists. Reset confirmation uses the one-time UID/token sent by email.
 - Student profile endpoints are restricted to the authenticated owner. Role and account status are read-only in `/users/me/`; administrators alone may change account status.
 - Uploaded profile images are type-checked, size-limited, stored in the private profile bucket, and served through expiring signed URLs. The storage service also supports private project-attachment and course-resource buckets for later modules.
-- Google and LinkedIn buttons are disabled until server-side OAuth credentials and callback URLs are configured. Provider identity is not auto-linked to an existing password account by email.
+- The Google button is disabled until server-side OAuth credentials and the callback URL are configured. Provider identity is not auto-linked to an existing password account by email.
 
 ## Endpoints
 
@@ -81,8 +80,6 @@ Set `BACKEND_URL` to the API origin and `FRONTEND_URL` to the sign-in page URL. 
 | GET | `/api/v1/auth/oauth/providers/` | Report which OAuth providers are configured |
 | GET | `/api/v1/auth/oauth/google/` | Begin Google OAuth sign-in |
 | GET | `/api/v1/auth/oauth/google/callback/` | Validate Google response and return to the sign-in page |
-| GET | `/api/v1/auth/oauth/linkedin/` | Begin LinkedIn OAuth sign-in |
-| GET | `/api/v1/auth/oauth/linkedin/callback/` | Validate LinkedIn response and return to the sign-in page |
 
 ## Course catalogue and learning
 

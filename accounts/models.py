@@ -260,7 +260,6 @@ class StudentVerification(models.Model):
 class SocialAccount(models.Model):
     class Provider(models.TextChoices):
         GOOGLE = "google", "Google"
-        LINKEDIN = "linkedin", "LinkedIn"
 
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="social_accounts"

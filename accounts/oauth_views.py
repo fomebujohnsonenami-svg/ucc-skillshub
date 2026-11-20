@@ -24,7 +24,6 @@ logger = logging.getLogger("accounts")
 
 class OAuthProvidersSerializer(serializers.Serializer):
     google = serializers.BooleanField()
-    linkedin = serializers.BooleanField()
 
 
 def _frontend_redirect(payload):
@@ -76,12 +75,7 @@ class OAuthProvidersView(APIView):
                     configured
                     and settings.GOOGLE_CLIENT_ID
                     and settings.GOOGLE_CLIENT_SECRET
-                ),
-                SocialAccount.Provider.LINKEDIN: bool(
-                    configured
-                    and settings.LINKEDIN_CLIENT_ID
-                    and settings.LINKEDIN_CLIENT_SECRET
-                ),
+                )
             }
         )
 

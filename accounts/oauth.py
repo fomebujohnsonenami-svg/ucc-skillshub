@@ -40,14 +40,6 @@ PROVIDERS = {
         "issuer": ["https://accounts.google.com", "accounts.google.com"],
         "scope": "openid email profile",
     },
-    SocialAccount.Provider.LINKEDIN: {
-        "authorization_endpoint": "https://www.linkedin.com/oauth/v2/authorization",
-        "token_endpoint": "https://www.linkedin.com/oauth/v2/accessToken",
-        "userinfo_endpoint": "https://api.linkedin.com/v2/userinfo",
-        "jwks_endpoint": "https://www.linkedin.com/oauth/openid/jwks",
-        "issuer": "https://www.linkedin.com",
-        "scope": "openid profile email",
-    },
 }
 
 
@@ -55,9 +47,6 @@ def _client_credentials(provider):
     if provider == SocialAccount.Provider.GOOGLE:
         client_id = settings.GOOGLE_CLIENT_ID
         client_secret = settings.GOOGLE_CLIENT_SECRET
-    elif provider == SocialAccount.Provider.LINKEDIN:
-        client_id = settings.LINKEDIN_CLIENT_ID
-        client_secret = settings.LINKEDIN_CLIENT_SECRET
     else:
         raise OAuthError("Unsupported identity provider.")
     if not client_id or not client_secret:

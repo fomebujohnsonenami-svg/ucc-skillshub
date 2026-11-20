@@ -140,10 +140,6 @@
 <span id="googleBtnText">Continue with Google</span>
 <span class="hidden ml-2 w-4 h-4 border-2 border-slate-600 border-t-transparent rounded-full animate-spin" id="googleSpinner"></span>
 </button>
-<button class="mt-3 w-full relative flex items-center justify-center px-4 py-3 bg-white border border-slate-300 hover:border-slate-400 rounded-xl shadow-sm text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all duration-200 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500" disabled="" id="linkedinBtn" onclick="handleLinkedInSignIn()" type="button">
-<span aria-hidden="true" class="mr-3 flex h-5 w-5 items-center justify-center rounded-sm bg-[#0A66C2] text-xs font-extrabold text-white">in</span>
-<span>Continue with LinkedIn</span>
-</button>
 </div>
 <!-- Divider -->
 <div class="relative my-6">
@@ -818,29 +814,19 @@
       startOAuthSignIn('google');
     }
 
-    function handleLinkedInSignIn() {
-      if (document.getElementById('linkedinBtn').disabled) {
-        showToast('info', 'LinkedIn sign-in is not configured. Please use email and password.');
-        return;
-      }
-      startOAuthSignIn('linkedin');
-    }
-
     async function loadOAuthProviders() {
       try {
         const response = await fetch(`${API_BASE_URL}/auth/oauth/providers/`);
         if (!response.ok) return;
         const providers = await response.json();
         document.getElementById('googleBtn').disabled = !providers.google;
-        document.getElementById('linkedinBtn').disabled = !providers.linkedin;
-        ['googleBtn', 'linkedinBtn'].forEach((id) => {
+        ['googleBtn'].forEach((id) => {
           const button = document.getElementById(id);
           button.classList.toggle('opacity-50', button.disabled);
           button.classList.toggle('cursor-not-allowed', button.disabled);
         });
       } catch (error) {
         document.getElementById('googleBtn').disabled = true;
-        document.getElementById('linkedinBtn').disabled = true;
       }
     }
 
